@@ -10,7 +10,7 @@ int main() {
 	std::cout << "Please Into Your First And Last Name:" << std::endl;
 	std::getline(std::cin, name);
 
-	std::cout << "Your Name Is: " <<  name << std::endl;
+	std::cout << "Your Name Is: " << name << std::endl;
 
 
 
