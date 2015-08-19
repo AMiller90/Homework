@@ -5,8 +5,9 @@
 
 int main() {
 
+	//std::string name;
 	std::string name;
-
+	
 	std::cout << "Please Into Your First And Last Name:" << std::endl;
 	std::getline(std::cin, name);
 
@@ -14,7 +15,14 @@ int main() {
 
 
 
+	int x = name.length();
 
+	for (int x = name.length() - 1; x >= 0; x--) {
+
+		std::cout << name[x];
+	}
+
+	std::cout << std::endl;
 
 
 	system("PAUSE");
