@@ -6,7 +6,7 @@ int main() {
 
 
 	//Problem 3 
-	int a, b, c, d, e;
+	/*int a, b, c, d, e;
 
 
 
@@ -17,6 +17,7 @@ int main() {
 	std::cin >> e;
 
 	int sum = a + b + c + d + e;
+
 
 	if (sum > 0) {
 
@@ -30,7 +31,7 @@ int main() {
 			std::cout << c << std::endl;
 			std::cout << d << std::endl;
 			std::cout << e << std::endl;
-		}
+		}else 
 		if ((b < c && b < d && b < e && b < a) &&
 			(c < d && c < e && c < a && c > b) &&
 			(d < e && d < a && d > b && d > c) &&
@@ -41,7 +42,7 @@ int main() {
 			std::cout << d << std::endl;
 			std::cout << e << std::endl;
 			std::cout << a << std::endl;
-		}
+		}else 
 		if ((c < d && c < e && c < a && c < b) &&
 			(d < e && d < a && d < b && d > c) &&
 			(e < a && e < b && e > c && e > d) &&
@@ -52,7 +53,7 @@ int main() {
 			std::cout << e << std::endl;
 			std::cout << a << std::endl;
 			std::cout << b << std::endl;
-		}
+		}else
 		if ((d < e && d < a && d < b && d < c) &&
 			(e < a && e < b && e < c && e > d) &&
 			(a < b && a < c && a > d && a > e) &&
@@ -64,7 +65,7 @@ int main() {
 			std::cout << b << std::endl;
 			std::cout << c << std::endl;
 
-		}
+		}else 
 		if ((e < a && e < b && e < c && e < d) &&
 			(a < b && a < c && a < d && a > e) &&
 			(b < c && b < d && b > a && b > e) &&
@@ -143,7 +144,7 @@ int main() {
 
 			std::cout << a << b << c << d << e;
 
-		}
+		}*/
 
 
 		system("PAUSE");

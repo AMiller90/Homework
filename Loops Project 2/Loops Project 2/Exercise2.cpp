@@ -9,9 +9,6 @@ int main() {
 
 	//Using a for loop, iterate through numbers 0 to 100.
 
-	bool print = true;
-
-	while (print) {
 		for (int i = 0; i <= 100; i++) {
 
 			if ((i % 3 == 0) && (i % 5 == 0)) {
@@ -33,8 +30,8 @@ int main() {
 			}
 		}
 
-		break;
-	}
+		
+	
 
 
 
