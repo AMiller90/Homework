@@ -8,13 +8,17 @@
 int main() {
 	//Problem 7
 
+	//Sets Up Variables
 	int Month;
 	int Days;
 
+	//Propmts user to enter a number between 1 - 12 to find out how many days are in that month
 	std::cout << "Please Enter The Month from 1 - 12 To See The Number Of Days In That Month: " << std::endl;
 
+	//Gets user input
 	std::cin >> Month;
 
+	//Uses the month variable to refer to get the number of days
 	switch (Month) {
 
 	case 1:

@@ -1,5 +1,6 @@
 
 //Problem 9
+//Evaluate the following logical expression, where a is true and b is equal to false
 a. (a || b) || (a && b)
 b. !((!a) && (a)) || (a && b)
 c. !((5 || a) || (!b)) && (!(a) && b)

@@ -3,24 +3,28 @@
 #include<iostream>
 
 
+//Variable used for exercise 3 
 int sum;
-
 
 int main() {
 
-	//Problem 4- Put all 3 exercies in a while loop
+	//Problem 4- Put all 3 exercises in a while loop
 
 	std::cout << "Hello! I Put All 3 Loop Exercises Into 1 While Loop and You Get To Choose Which You Want To View. Just Enter A Number From 1 - 3: " << std::endl;
 	int choice1;
 	std::cin >> choice1;
 
-	
+
 	bool codeisRunning;
-
-	while (codeisRunning = true) {
-
+	
+	//keeps looping through program while it is equal to true
+	while (codeisRunning = true){
 		switch (choice1) {
 
+		case 0:
+			std::cout << "Thanks For Looking Around!" << std::endl;
+			system("PAUSE");
+			return false;
 
 		case 1:
 			std::cout << std::endl;
@@ -123,7 +127,7 @@ int main() {
 
 					//while looping and as the if statement continues to be == 0 - the value of i gets added into the variable sum and therefore
 					//adds the new i value to the already value stored in sum causing the values to add each time.
-					sum += i;
+				sum += i;
 
 
 				}
@@ -132,28 +136,27 @@ int main() {
 
 			}
 			//Prints grand total of all numbers iterated from 0 to 995
+		
 			std::cout << "This Is The Total: " << sum << std::endl;
 
 
 			break;
 
 		default:
-			std::cout << "That Is The Wrong Input!";
+			std::cout << "That Is The Wrong Input!" << std::endl;
 			break;
 
 
-		}// end switch statement
+		}//end switch statement scope
 
-
-
-		std::cout << "What Other Exercise Would You Like To See? Or Enter Q To Quit" << std::endl;
+		//prompt user to eiher choose another exercise to see or quit
+		std::cout << "What Exercise Would You Like To See? Or Enter 0 To Quit" << std::endl;
 		int result;
 		std::cin >> result;
-
 		choice1 = result;
-		
-		
-	}
+	}//end while loop
+
+	
 		system("PAUSE");
 		return 0;
 	
