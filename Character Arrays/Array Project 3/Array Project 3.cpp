@@ -6,7 +6,7 @@
 
 int main() {
 
-
+	//Problem 3
 
 
 	//std::string name;
@@ -17,7 +17,7 @@ int main() {
 	std::string name5;
 
 	//Prompts user to print 5 first and last names
-	std::cout << "Please prnto The First And Last Name of 5 People:" << std::endl;
+	std::cout << "Please print The First And Last Name of 5 People:" << std::endl;
 	//getline stores the strings in the name variables
 	std::getline(std::cin, name1);
 	std::getline(std::cin, name2);
@@ -43,7 +43,7 @@ int main() {
 	//Loops through variable name1s length and decrements the value by i each time it loops through
 	for (int x = name1.length() - 1; x >= 0; x--) {
 		//Prints the Result of This for loop
-		std::cout << name1[x];
+	std::cout << name1[x];
 
 	}
 	//Loops through variable name2s length and decrements the value by i each time it loops through
@@ -73,10 +73,6 @@ int main() {
 
 	std::cout << std::endl;
 
-
-
-
-	
 
 
 	system("PAUSE");

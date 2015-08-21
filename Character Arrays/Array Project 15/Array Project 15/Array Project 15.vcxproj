@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9B1EBEA7-1826-47F3-B572-1540E6757CD4}</ProjectGuid>
-    <RootNamespace>VariablesProject1</RootNamespace>
+    <ProjectGuid>{6FFF72EC-67FE-4FB7-88BC-229E5D900EEA}</ProjectGuid>
+    <RootNamespace>ArrayProject15</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -64,7 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Variable Project 1.cpp" />
+    <ClCompile Include="Array Project 15.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
