@@ -12,12 +12,14 @@
 int main() {
 
 
-	char a = 'A';
-	char b = 'n';
-	char c = 'd';
-	char d = 'r';
-	char e = 'e';
-	char f = 'w';
+	char a = 'M';
+	char b = 'I';
+	char c = 'L';
+	char d = 'L';
+	char e = 'E';
+	char f = 'R';
+
+	std::cout << a << " " << b << " "  << c << " " << d << " " << e << " " << f << std::endl;
 
 	float g = (float)a;
 	float h = (float)b;
@@ -41,12 +43,14 @@ int main() {
 	char y = (char)k;
 	char z = (char)l;
 
-	std::cout << u << std::endl;
-	std::cout << v << std::endl;
-	std::cout << w << std::endl;
-	std::cout << x << std::endl;
-	std::cout << y << std::endl;
-	std::cout << z << std::endl;
+	std::cout << u << " ";
+	std::cout << v << " ";
+	std::cout << w << " "; 
+	std::cout << x << " "; 
+	std::cout << y << " ";
+	std::cout << z << " ";
+
+	std::cout << std::endl;
 
 	system("PAUSE");
 	return 0;
