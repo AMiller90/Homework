@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{77DB188F-2256-4A58-AC30-3E33EB99DC25}</ProjectGuid>
-    <RootNamespace>VariablesProject3</RootNamespace>
+    <ProjectGuid>{4CCC5478-3632-4C2B-8B48-A17B4BF9FE19}</ProjectGuid>
+    <RootNamespace>ArrayProject11</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -118,7 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Problem 3.cpp" />
+    <ClCompile Include="Array Project 11.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
