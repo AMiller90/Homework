@@ -3,11 +3,13 @@
 #include<iostream>
 //access the rand() function
 #include<cstdlib>
+#include<time.h>
 
 //Function To Simulate Coin Tossing
-int CoinToss() {
-	
-	char hOt;
+int CoinToss() 
+{
+	srand(time(NULL));
+	char hOt[20];
 	std::cout << "Heads or Tails?" << std::endl;
 	std::cin >> hOt;
 

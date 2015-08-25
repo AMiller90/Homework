@@ -19,7 +19,22 @@ int main() {
 
 	std::cout << "Please Enter A Password - It Must Be atleast 8 characters long, Contain Atleast 1 Number, 1 Uppercase letter  And 1 Symbol:" << std::endl;
 	std::cin >> password;
+	//how do i get a number when ever the user inputs a string that contains said number
+	//for example 
 
+	/*
+	//switch(numrange)
+	//case numrange >65 + 26 
+	1.check ascii values
+	2.if ascii values do not pass the criteria then give user feedback
+	
+	int asciiLetter = (int)username[i]
+	
+	
+	
+	
+	
+	*/
 
 	int i = strlen(password);
 
