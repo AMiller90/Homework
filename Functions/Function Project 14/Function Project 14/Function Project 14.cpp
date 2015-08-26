@@ -8,18 +8,19 @@ int num;
 int Split(int input[], int size, int output_array[], int op_array[]) {
 
 	for (int i = 0; i < size; i++){
-
+		
 			if (input[i] > 0) {
+				
 				output_array[i] = input[i];
 				std::cout << output_array[i] << " ";
-
+				
 
 			}
 
 		if (input[i] < 0) {
 
 			op_array[i] = input[i];
-			std::cout << op_array[i] << " ";
+			//std::cout << op_array[i] << " ";
 		}
 	
 	}

@@ -6,15 +6,22 @@
 //Problem 14
 int main() {
 
-	std::string input;
-	std::getline(std::cin, input);
-	std::string input2;
-	int numOfchars = input.length();
 
-	for (unsigned int i = 0; i < input.length(); i++) {
+	
+
+	char input[30];
+	std::cin.getline(input, 30);
+	std::string input2;
+	int numOfchars = strlen(input);
+
+	
+
+
+	for (unsigned int i = 0; i < strlen(input);  i++) {
 
 		if (input[i] == ' ') {
 
+			std::cout << (int)' ';
 			//std::cout << input;
 
 		}
@@ -22,8 +29,8 @@ int main() {
 	}
 
 
-	std::cout << numOfchars << std::endl;
-	std::cout << input << std::endl;
+	//std::cout << numOfchars << std::endl;
+	//std::cout << input << std::endl;
 
 	system("PAUSE");
 	return 0;
