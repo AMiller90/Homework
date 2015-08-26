@@ -32,7 +32,7 @@ int sum;
 int main() {
 
 	
-	int array_input[4] = { 3, 2, 4, 7 };
+	int array_input[4] = { 3, 2, 4, 7};
 
 	modify(array_input, 4);
 

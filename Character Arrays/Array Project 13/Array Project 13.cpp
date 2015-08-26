@@ -13,9 +13,11 @@ int main() {
 	std::cin.getline(date, 15);
 
 	//std::cout << date;
-
-	int month = 01;
+	
+	int month;
 	int day, year;
+
+	std::cout << month << " " << day << "," << year;
 
 	switch (month) {
 
@@ -74,4 +76,6 @@ int main() {
 		break;
 
 	}
+	system("PAUSE");
+	return 0;
 }

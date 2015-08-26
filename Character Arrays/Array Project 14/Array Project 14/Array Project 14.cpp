@@ -7,32 +7,32 @@
 int main() {
 
 
-	
 
-	char input[30];
+
+	char input[50];
+	char copy[50];
 	std::cin.getline(input, 30);
-	std::string input2;
-	int numOfchars = strlen(input);
 
-	
+
+
 
 
 	for (unsigned int i = 0; i < strlen(input);  i++) {
 
-		if (input[i] == ' ') {
-
-			std::cout << (int)' ';
-			//std::cout << input;
+		if (input[i] != ' ') {
+			copy[i] = input[i];
+			std::cout << copy[i];
+		
 
 		}
 
 	}
 
 
-	//std::cout << numOfchars << std::endl;
-	//std::cout << input << std::endl;
+		std::cout << std::endl;
 
-	system("PAUSE");
-	return 0;
 
-}
+		system("PAUSE");
+		return 0;
+
+	}
