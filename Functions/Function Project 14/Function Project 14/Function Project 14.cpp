@@ -6,14 +6,19 @@
 int num;
 
 int Split(int input[], int size, int output_array[], int op_array[]) {
-
+	int count = 0;
 	for (int i = 0; i < size; i++){
 		
 			if (input[i] > 0) {
 				
 				output_array[i] = input[i];
-				std::cout << output_array[i] << " ";
+
+				//std::cout << output_array[i] << " ";
 				
+
+				//std::cout << output_array[i] << " ";
+				count++;
+
 
 			}
 
@@ -25,7 +30,7 @@ int Split(int input[], int size, int output_array[], int op_array[]) {
 	
 	}
 
-	return 0;
+	return count;
 }
 
 
@@ -37,7 +42,7 @@ int main() {
 	int op_array[4] = {};
 
 
-	Split(input, 4, output_array, op_array);
+	std::cout << Split(input, 4, output_array, op_array) << std::endl;
 
 
 

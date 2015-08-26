@@ -7,46 +7,35 @@ using namespace std;
 int main() {
 
 	//Problem 3
-	char input[25];
-	char namearray[5][25];
-	cout << "Enter a name \n";
-	cin.getline(input, 25);
-	int counter = 0;
-	for (int i = 0; i < 25; i++)
+	
+	
+	char namearray[5][50];
+	
+
+
+	for (int i = 0; i < 5; i++)
 	{
-		if ((int)input[i] > 32)
-			counter++;
+		char name[50];
+		cout << "Enter a name \n";
+		cin.getline(name, 50);
 
+		for (int j = 0; j < 50; j++)
+		{
+			namearray[i][j] = name[j];
+		}
 	}
-	namearray[0][0] = 'm';
-	namearray[0][1] = 'a';
+
+	for (int i = 0; i < 5; i++) 
+	{
+		for (int j = strlen(namearray[i]) - 1; j >= 0; j--) 
+		{
+			std::cout << namearray[i][j];
+		}
+		std::cout << endl;
+	}
+	
 
 
-	cout << "the length is " << counter << endl;
-
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	std::cout << "First Name: ";
-	//	std::cin >> fName;
-	//	std::cout << "Last Name: ";
-	//	std::cin >> lName;
-
-	//	int count = 0;
-	//	for (int j = 0; j <= sizeof(fName); j++)
-	//	{
-	//		name[i][j] = fName[j];
-	//		count++;
-	//	}
-	//	
-	//	name[i][count] = 127;
-	//	count++;
-
-	//	for (int k = 0; k <= sizeof(lName); k++)
-	//	{
-	//		name[i][count] = lName[k];
-	//		count++;
-	//	}
-	//}
 
 	//std::cout << name[0] << std::endl;
 	//std::cout << name[1] << std::endl;
