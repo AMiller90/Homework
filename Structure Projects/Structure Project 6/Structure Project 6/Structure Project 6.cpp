@@ -1,5 +1,5 @@
 #pragma once
-
+ 
 
 #include<iostream>
 #include<string>
@@ -40,10 +40,10 @@ struct Player
 
 
 
-void printShop()
+void printShop(Player user)
 {
 
-	Player user;
+	
 	Shop shop;
 	Items item;
 
@@ -51,8 +51,8 @@ void printShop()
 
 	
 	
-	std::cout << "Gold: " <<  shop.gold << std::endl;
-	std::cout << std::endl;
+	
+	std::cout << "Shop Inventory: \n";
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -65,6 +65,11 @@ void printShop()
 		std::cout << std::endl;
 	}
 	
+	std::cout << "Shop Gold: " << shop.gold << std::endl;
+	std::cout << std::endl;
+
+
+	std::cout << user.name << "'s Inventory: \n";
 
 
 }
@@ -78,9 +83,16 @@ int main()
 	Items item;
 
 
+	std::cout << "What Is Your Name?" << std::endl;
+	std::cin >> user.name;
+	std::cout << std::endl;
+
 	std::cout << "Hello! Welcome To My Item Shop\n" << std::endl;
 
-	printShop();
+	
+
+
+	printShop(user);
 
 
 

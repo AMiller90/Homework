@@ -1,8 +1,6 @@
 #pragma once
 
 #include<iostream>
-
-
 #include<string>
 
 
@@ -15,76 +13,58 @@ struct Player
 
 	int Health;
 	int Score;
-	float Position;
-	float Velocity;
+	Point2D Position;
+	Point2D Velocity;
 
 
 
 
 };
 
-//Player user = {"Andrew", 100, 0, {0.0f, 0.0f}, {1.0f, 1.0f}};
 
-struct Position
+
+
+struct Point2D
 {
-
-	float x, y;
-
-
-
-
-
-};
-
-
-struct Velocity
-{
-
-	float x, y;
+	int x, y;
 
 
 
 };
-
 
 
 struct Rect2D
 {
 
-	float x, y; 
+
+	Point2D p1;
+	Point2D p2;
+	Point2D p3;
+	Point2D p4;
 	
 
+	Color value;
 
-	float point1;
-	float point2;
-	float point3;
-	float point4;
+
+};
+
+
+
+struct Color
+{
 
 
 	unsigned char Red;
 	unsigned char Green;
 	unsigned char Blue;
 
-
-
-
-
 };
-//point1, point2, point3, point4, r, g, b
-//Rect Rectangle = {{0.0f, 0.0f} , {1.0f, 0.0f}, {0.0f, 0.1}, {1.0f, 1.0f}, 255, 255, 255}
+
 
 
 //Problem 1
 int main()
 {
-
-
-
-
-
-
-
-
 
 
 

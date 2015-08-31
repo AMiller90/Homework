@@ -60,8 +60,7 @@ Player PlayerData(std::string Name, int Score)
 	user.Name = Name;
 	user.Score = Score;
 
-	//std::cout << "This Is Your Name " << user.Name << " and Your Score " << user.Score << std::endl;
-
+	
 	
 	return user;
 
@@ -86,7 +85,9 @@ int main()
 	 user = PlayerData(Name,Score);
 
 	 std::cout << user.Name;
+	 std::cout << std::endl;
 	 std::cout << user.Score;
+	 std::cout << std::endl;
 	
 	
 	

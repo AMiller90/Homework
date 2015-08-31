@@ -24,7 +24,6 @@ struct Player
 
 };
 
-//Player user = {"Andrew", 100, 0, {0.0f, 0.0f}, {1.0f, 1.0f}};
 
 struct Position
 {
@@ -71,8 +70,7 @@ struct Rect2D
 
 
 };
-//point1, point2, point3, point4, r, g, b
-//Rect Rectangle = {{0.0f, 0.0f} , {1.0f, 0.0f}, {0.0f, 0.1}, {1.0f, 1.0f}, 255, 255, 255}
+
 
 
 
