@@ -22,7 +22,7 @@ struct Shop
 {
 
 	int gold = { 1000 };
-	Items inventory[5] = { {"Sword", 20, 5 } , {"Bow", 20, 5}, {"Axe", 20, 5}, {"Staff", 20, 5}, {"Gun", 20, 5} };
+	Items inventory[5] = { { "Sword", 20, 5 }, { "Bow", 20, 5 }, { "Axe", 20, 5 }, { "Staff", 20, 5 }, { "Gun", 20, 5 } };
 
 
 };

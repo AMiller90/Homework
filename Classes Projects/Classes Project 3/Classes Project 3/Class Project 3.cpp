@@ -67,13 +67,13 @@ void HighScores::setHS(float a)
 
 void HighScores::setHS2(float b)
 {
-	_HS1 = b;
+	_HS2 = b;
 
 }
 
 
 void HighScores::setHS3(float c)
 {
-	_HS1 = c;
+	_HS3 = c;
 
 }
