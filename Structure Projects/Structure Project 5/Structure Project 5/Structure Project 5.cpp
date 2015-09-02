@@ -4,7 +4,7 @@
 #include<iostream>
 #include<string>
 
-
+//Create Struct
 struct Player
 {
 
@@ -20,6 +20,7 @@ struct Player
 
 };
 
+//Create and define function
 void PlayerData()
 {
 
@@ -82,12 +83,15 @@ void PlayerData()
 }
 
 
-//Problem 5
+/*Problem 5
+After completing Question 4, now prompt the user to enter in a name.Loop through the 5
+Players and find the player with that name.If there is a match, output that player’s score,
+otherwise report this back to the user that a match could not be found.*/
 int main()
 {
 
 
-
+	//Call function
 	PlayerData();
 
 	

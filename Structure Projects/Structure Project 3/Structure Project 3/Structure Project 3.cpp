@@ -9,7 +9,7 @@
 
 
 
-
+//Creates Structs
 struct Player
 {
 
@@ -67,7 +67,10 @@ Player PlayerData(std::string Name, int Score)
 
 }
 
-//Problem 3
+/*Problem 3
+Pull the code you wrote for question 2 out into a function that creates and then returns the
+player the user created.*/
+
 int main()
 {
 

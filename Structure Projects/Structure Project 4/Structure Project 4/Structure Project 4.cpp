@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string>
 
+//Create Struct
 struct Player
 {
 
@@ -18,7 +19,7 @@ struct Player
 
 };
 
-
+//Declare Function and Define
 void PlayerData()
 {
 
@@ -52,13 +53,17 @@ void PlayerData()
 
 
 
-//Problem 4
+/*Problem 4
+Create an array of 5 Player structures.Loop through each Player and ask the user to
+input the Player’s name and score and store them in each of the 5 Player structures.Do
+this step using the function you wrote in question 3. Then loop through the 5 players and
+output each of their names and scores*/
 int main()
 {
 
 	
 
-
+	//Call Function
 	PlayerData();
 
 

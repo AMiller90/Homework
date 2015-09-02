@@ -5,7 +5,7 @@
 #include<string>
 
 
-
+//Create Structs
 struct Items
 {
 	int num;
@@ -23,6 +23,7 @@ struct Shop
 {
 
 	int gold = { 1000 };
+	//Use item struct inside shop
 	Items inventory[5] = { { 1, "knife", 10, 5 }, { 2, "Health Potion", 5, 5 }, { 3, "Mana Potion", 5, 5 }, { 4,  "Boots", 10, 5 }, { 5, "Hat", 3, 5 } };
 	Items discountInventory[5] = { { 1, "knife", 10/2, 5 },{ 2, "Health Potion", 6/2, 5 },{ 3, "Mana Potion", 6/2, 5 },{ 4,  "Boots", 10/2, 5 },{ 5, "Hat", 4/2, 5 } };
 
@@ -40,7 +41,7 @@ struct Player
 
 
 
-
+//Declare functions and define them
 void printShop(Player user, Shop shop)
 {
 
@@ -204,6 +205,7 @@ void discountShopping(Player user, Shop shop)
 
 
 }
+
 void Shopping(Player user, Shop shop)
 {
 	char choice;
@@ -276,10 +278,23 @@ void Shopping(Player user, Shop shop)
 
 }
 
+
+
+
+
+/*Problem 6
+Write a program that simulates an RPG shop inventory. The shop should store how much
+gold it currently has. It should also store an array of items it can stock. Each item should
+have the name of that item, the cost per item and the quantity of that item currently in the
+shop. The program should have the following options:
+a. Change the price of each item in the shop
+b. Spend gold to add stock for a specific item
+c. Sell stock for a specific item to gain more gold*/
+
 int main()
 {
 
-
+	//Create Struct Instances
 	Player user;
 	Shop shop;
 	Items item;
@@ -295,14 +310,18 @@ int main()
 
 	if (answer == 'y')
 	{
+		//If 'y' then you will be able to use the discount shop 
 		std::cout << "Hello! Welcome To The Item Shop! Prices are lower since you are new to gaming"<< std::endl;
+		//Call functions
 		discountShop(user, shop);
 		discountShopping(user, shop);
 
 	}
 	else if (answer == 'n')
 	{
+		//If 'n' then you will use the regular shop
 		std::cout << "Hello! Welcome To The Item Shop\n" << std::endl;
+		//Call functions
 		printShop(user, shop);
 		Shopping(user, shop);
 

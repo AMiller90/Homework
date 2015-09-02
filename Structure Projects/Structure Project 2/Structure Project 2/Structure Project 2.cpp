@@ -6,7 +6,7 @@
 #include<string>
 
 
-
+//Creates Different Structs
 struct Player
 {
 
@@ -16,8 +16,9 @@ struct Player
 
 	int Health;
 	int Score;
-	float Position;
-	float Velocity;
+	//uses Point 2d Variables
+	Point2D Position;
+	Point2D Velocity;
 
 
 
@@ -25,61 +26,56 @@ struct Player
 };
 
 
-struct Position
+
+
+struct Point2D
 {
-
-	float x, y;
-
-
-
-
-
-};
-
-
-struct Velocity
-{
-
-	float x, y;
+	int x, y;
 
 
 
 };
-
 
 
 struct Rect2D
 {
 
-	float x, y;
+	//uses Point 2d Variables
+	Point2D p1;
+	Point2D p2;
+	Point2D p3;
+	Point2D p4;
+
+
+	Color value;
+
+
+};
 
 
 
-	float point1;
-	float point2;
-	float point3;
-	float point4;
+struct Color
+{
 
 
 	unsigned char Red;
 	unsigned char Green;
 	unsigned char Blue;
 
-
-
-
-
 };
 
 
 
 
-//Problem 2
+/*Problem 2
+2. Create an instance of the Player structure and ask the user to input a name and score.
+Store the user’s input into the member variables of the structure.Then output the name and
+score in the Player structure.*/
 int main()
 {
 
 
-
+	//Creates Instance of Struct
 	Player user;
 
 
