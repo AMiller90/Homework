@@ -1,3 +1,4 @@
+//includes the header file in order for this .cpp file to know what class this data belongs too
 #include "Class Project 3.h"
 
 
@@ -5,16 +6,9 @@ HighScores::HighScores()
 {
 
 
-
-
-
-
-
-
-
 }
 
-
+//Average Of Numbers
 void HighScores::average()
 {
 	float sum = _HS1 + _HS2 + _HS3;

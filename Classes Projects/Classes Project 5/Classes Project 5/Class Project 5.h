@@ -11,6 +11,7 @@ public:
 
 	Question();
 	
+	//Function Declarations
 	void question1(std::string player1);
 	void question2(std::string player1);
 	void question3(std::string player2);
@@ -26,6 +27,7 @@ public:
 
 private:
 
+	//Private Variables
 	int _answer1;
 	int _answer2;
 	int _answer3;

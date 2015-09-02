@@ -2,10 +2,12 @@
 
 #include<iostream>
 #include<string>
+
+//includes the header file in order for this .cpp file to know what class this data belongs too
 #include"Class Project 5.h"
 
 
-
+//Declare Functions
 void result(std::string player1,std::string player2, int Score, int Score2, int Score3, int Score4)
 {
 
@@ -66,10 +68,36 @@ void trivia(Question questions[4], std::string player1, std::string player2)
 }
 
 
+
+/*Problem 5
+Create a simple trivia game for two players.The program will work like this:
+
+a.Starting with player 1, each player gets a turn at answering 2 trivia questions. (There
+	are 4 questions, 2 for each player.) When a question is displayed, four possible
+	answers are also displayed.Only one of the answers is correct, and if the player
+	selects the correct answer, he or she earns a point.
+	b.After answers have been selected for all of the questions, the program displays the
+	number of points earned by each player and declares the player with the highest
+	number of points the winner.
+	You are to design a Question class to hold the data for a trivia question.The Question class
+	should have character array fields for the following data :
+A trivia question
+Possible answer 1
+Possible answer 2
+Possible answer 3
+Possible answer 4
+The number of the correct answer(1, 2, 3, or 4)
+
+The Question class should have appropriate set and get methods.The program should
+create an array of 4 Question objects, one for each trivia question.Make up your own trivia
+questions on the subject or subjects of your choice for the objects.*/
+
+
+
 int main()
 {
 	
-
+	//Instance of Class
 	Question questions[4];
 
 	std::string player1;
@@ -91,7 +119,7 @@ int main()
 	std::cout << player1 << " Goes First\n";
 	std::cout << std::endl;
 
-
+	//Calls Function
 	trivia(questions, player1, player2);
 
 

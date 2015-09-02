@@ -1,3 +1,5 @@
+//includes the header file in order for this .cpp file to know what class this data belongs too
+
 #include"Zombie.h"
 
 using namespace std;
@@ -6,6 +8,8 @@ Zombie::Zombie()
 {
 
 }
+
+//Initializes Zombie in constructor
 Zombie::Zombie(string job, int h, int a, bool l)
 {
 	_occupation = job;
@@ -16,7 +20,7 @@ Zombie::Zombie(string job, int h, int a, bool l)
 
 }
 
-
+//Getters
 int Zombie::getHealth()
 {
 	
@@ -44,7 +48,15 @@ bool Zombie::getlife()
 
 }
 
+std::string Zombie::getJob()
+{
 
+	return _occupation;
+}
+
+
+
+//Setters
 void Zombie::setlife(bool l)
 {
 
@@ -68,13 +80,6 @@ void Zombie::setHealth(int h)
 	
 }
 
-
-
-std::string Zombie::getJob()
-{
-
-	return _occupation;
-}
 
 void Zombie::setJob(std::string j)
 {

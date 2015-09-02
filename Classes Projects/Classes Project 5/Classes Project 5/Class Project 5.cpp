@@ -1,4 +1,5 @@
 
+//includes the header file in order for this .cpp file to know what class this data belongs too
 #include"Class Project 5.h"
 
 Question::Question()
@@ -7,6 +8,7 @@ Question::Question()
 
 
 }
+
 
 void Question::question1(std::string player1)
 {
@@ -124,6 +126,7 @@ void Question::question4(std::string player2)
 
 }
 
+//Getters
 int Question::getAnswer1()
 {
 
@@ -225,6 +228,7 @@ int Question::getAnswer4()
 
 }
 
+//Setters
 void Question::setAnswer1(int one)
 {
 

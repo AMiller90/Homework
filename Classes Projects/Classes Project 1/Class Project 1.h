@@ -7,14 +7,15 @@ class Date {
 
 
 public:
-
+	//sets up all function decalarations
 	
-	Date(int, int, int);
+	Date(int d, int m, int y);
+	
 	void printDate();
 
 
 private:
-
+	//Private Variables
 
 	int day;
 	int month;

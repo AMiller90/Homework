@@ -1,3 +1,5 @@
+
+//includes the header file in order for this .cpp file to know what class this data belongs too
 #include "Class Project 2.h"
 
 Circle::Circle()
@@ -8,6 +10,7 @@ Circle::Circle()
 
 }
 
+//Sets Radius
 void Circle::setRadius(double r)
 {
 	//set radius
@@ -17,7 +20,7 @@ void Circle::setRadius(double r)
 	std::cout << "The Radius You Want Is: " << r << std::endl;
 }
 
-
+//Returns Radius
 double Circle::getRadius()
 {
 	double r;
@@ -29,7 +32,7 @@ double Circle::getRadius()
 
 }
 
-
+//Gets Radius
 double Circle::getArea(double r)
 {
 	double a;
@@ -39,7 +42,7 @@ double Circle::getArea(double r)
 
 }
 
-
+//Get Diameter
 double Circle::getDiameter(double r)
 {
 	double d;
@@ -48,7 +51,7 @@ double Circle::getDiameter(double r)
 	return d;
 }
 
-
+//Get Circumference
 double Circle::getCircumference(double r)
 {
 	double c;

@@ -32,6 +32,7 @@ public:
 
 private:
 
+	//Private Variables
 	float _HS1;
 	float _HS2;
 	float _HS3;

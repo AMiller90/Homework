@@ -1,16 +1,14 @@
-#ifndef ZOMBIE_H
-#define ZOMBIE_H
-
-
 
 #include<iostream>
 #include<string>
 
 using namespace std;
+
 class Zombie
 {
 public:
 
+	//Function Declarations
 	Zombie();	
 	Zombie(string job, int h, int a, bool l);
 
@@ -29,11 +27,10 @@ public:
 
 private:
 
+	//Privbate Variables
 	std::string _occupation;
 	int _health;
 	int _attack;
 	bool _life;
 
 };
-
-#endif // !ZOMBIE_H

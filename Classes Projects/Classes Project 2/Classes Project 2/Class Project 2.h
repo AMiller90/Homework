@@ -12,7 +12,7 @@ public:
 	Circle();
 
 
-
+	//sets up all function decalarations
 	void setRadius(double r);
 	double getRadius();
 	double getArea(double r);
@@ -21,6 +21,7 @@ public:
 
 private:
 
+	//Private Variables
 	double _radius;
 
 
