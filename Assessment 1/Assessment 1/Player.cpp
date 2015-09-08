@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Player.h"
-
+#include "Game.h"
 
 Player::Player()
 {
@@ -28,76 +28,48 @@ struct Items
 
 };
 
-Items iItems[] = { { 1, "Arrow", 1 }, { 2, "Remote", 1 }, { 3, "Gold", 0 } };
+bool wumpus = true;
+
+Items iItems[3] = { { 1, "Arrow", 1 }, { 2, "Remote", 1 }, { 3, "Gold", 0 } };
 
 
-void Player::PrintGameData()
+
+
+int Player::GetPosition()
 {
-	Player Player;
-
-	cout << "Move Up: w" << endl;
-	cout << "Move Down: s" << endl;
-	cout << "Move Left: a" << endl;
-	cout << "Move Right: d" << endl;
-	cout << endl;
 	
-
-	cout << "Inventory:\n";
-	Player.Inventory(Player);
-	cout << endl;
-
-	if (m_iX < 0)
-	{
-		
-		m_iX = m_iX + 1;
-		cout << "There Is A Wall There!\n";
-	}
-
-	if (m_iX > 3)
-	{
-		m_iX = m_iX - 1;
-		cout << "There Is A Wall There!\n";
-	}
-
-	if (m_iY < 0)
-	{
-		m_iY = m_iY + 1;
-		cout << "There Is A Wall There!\n";
-	}
-
-	if (m_iY > 3)
-	{
-		m_iY = m_iY - 1;
-		cout << "There Is A Wall There!\n";
-	}
-
-	cout << "Current position: " << m_iX << "," << m_iY << endl;
-
+	
+	return (m_iX, m_iY);
+	
 }
 
-void Player::GetPosition(int i_iX, int i_iY)
+void Player::SetPosition(int a_iX, int a_iY)
 {
-	i_iX = m_iX;
-	i_iY = m_iY;
 
-
+	m_iX = a_iX;
+	m_iY = a_iY;
+	
 }
 
-void Player::SetPosition(int i_iX, int i_iY)
+void Player::Victory(Player &Player)
 {
 
-	m_iX = i_iX;
-	m_iY = i_iY;
+	Player.GetPosition();
+
+	if ((m_iX == 0) && (m_iY == 0) && iItems[2].iQuantity == 1)
+	{
+		system("cls");
+		cout << "You Won!\n\n";
+		cout << "Thank You For Playing!\n";
+		system("PAUSE");
+		exit(1);
+	}
 
 }
 
 void Player::Actions(Player &Player)
 {
-	
 
-	Player.GetPosition(m_iX, m_iY);
-
-	
 	char cInput;
 	cin >> cInput;
 
@@ -105,49 +77,49 @@ void Player::Actions(Player &Player)
 	{
 		//up
 	case 'w':
-		Player.GetPosition(m_iX, m_iY);
+		Player.GetPosition();
 		Player.SetPosition(m_iX, m_iY + 1);
 		system("cls");
 		Player.PrintGameData();
 		cout << endl;
 		Wumpus(Player);
-		Pits(Player);
+		Player.Pits(Player);
 		cout << "What would you like to do?\n";
 		break;
 
 		//down
 	case 's':
-		Player.GetPosition(m_iX, m_iY);
+		Player.GetPosition();
 		Player.SetPosition(m_iX, m_iY - 1);
 		system("cls");
 		Player.PrintGameData();
 		cout << endl;
 		Wumpus(Player);
-		Pits(Player);
+		Player.Pits(Player);
 		cout << "What would you like to do?\n";
 		break;
 
 		//left
 	case 'a':
-		Player.GetPosition(m_iX, m_iY);
+		Player.GetPosition();
 		Player.SetPosition(m_iX - 1, m_iY);
 		system("cls");
 		Player.PrintGameData();
 		cout << endl;
 		Wumpus(Player);
-		Pits(Player);
+		Player.Pits(Player);
 		cout << "What would you like to do?\n";
 		break;
 
 		//right
 	case 'd':
-		Player.GetPosition(m_iX, m_iY);
+		Player.GetPosition();
 		Player.SetPosition(m_iX + 1, m_iY);
 		system("cls");
 		Player.PrintGameData();
 		cout << endl;
 		Wumpus(Player);
-		Pits(Player);
+		Player.Pits(Player);
 		cout << "What would you like to do?\n";
 		break;
 
@@ -176,59 +148,9 @@ void Player::Actions(Player &Player)
 
 }
 
-void Player::AdventureStart()
-{
-	Player Player;
-	char cInput;
-
-	cout << "Welcome To The Wumbus Adventure Game!\n";
-	cout << endl;
-	cout << "There are a total of 16 rooms in this cave you are about to enter.\n";
-	cout << "The key to victory is getting the pile of gold stashed in one of the rooms and\n";
-	cout << "return to the entrance with the gold.\n";
-	cout << "Becareful though, there are pits in some rooms and it is game over if you fall\n";
-	cout << "into one.\n";
-	cout << "Also, there is a Wumbus lurking about and should you encouter it,\n";
-	cout << "you have one chance of survival, your trusty arrow.\n";
-	cout << "You had better make the shot count because you only get one!\n";
-	cout << endl;
-	cout << "Would you like to enter the cave? Enter Y or N:\n";
-	cin >> cInput;
-
-	if (cInput == 'Y' || cInput == 'y')
-	{
-		system("cls");
-
-		cout << "You have entered the cave!\n";
-		cout << endl;
-
-		cout << "What would you like to do?\n";
-
-		cout << "Move Up: w" << endl;
-		cout << "Move Down: s" << endl;
-		cout << "Move Left: a" << endl;
-		cout << "Move Right: d" << endl;
-		cout << endl;
-		cout << "Inventory:\n";
-		Player.Inventory(Player);
-		cout << endl;
-		cout << "Current position: " << m_iX << "," << m_iY;
-		cout << endl;
-
-	}
-
-	else if (cInput != 'Y' || cInput != 'y')
-	{
-		system("cls");
-		cout << "You Quit!\n";
-		system("PAUSE");
-		exit(1);
-	}
-}
-
 void Player::Inventory(Player &Player)
 {
-	Player.GetPosition(m_iX, m_iY);
+	Player.GetPosition();
 
 	for (int i = 0; i < 3; ++i)
 	{
@@ -244,37 +166,67 @@ void Player::Inventory(Player &Player)
 void Player::UseArrow()
 {
 	Player Player;
-	Player.GetPosition(m_iX, m_iY);
+	Player.GetPosition();
 
-
-	if ((m_iX <= 1) && (m_iX >= 0) && (m_iY <= 3))
+	//Checks To See If You Use Your Arrow Unwisely
+	if ((m_iX <= 1) && (m_iX >= 0) && (m_iY <= 3) && (iItems[0].iQuantity == 1))
 	{
 		iItems[0].iQuantity = 0;
 		Player.PrintGameData();
 		cout << "You Wasted Your Arrow!\n";
 	}
 
-	if ((m_iX == 3) && (m_iY == 3))
+	//Check If You Have An Arrow To Use
+	if ((m_iX <= 1) && (m_iX >= 0) && (m_iY <= 3) && (iItems[0].iQuantity == 0))
+	{
+		cout << "You Are Out Of Arrows!\n";
+	}
+
+	//Checks To See If You Use Your Arrow Unwisely
+	if ((m_iX == 3) && (m_iY == 3) && (iItems[0].iQuantity == 1))
 	{
 		iItems[0].iQuantity = 0;
 		Player.PrintGameData();
 		cout << "You Wasted Your Arrow!\n";
 	}
 
-	if ((m_iX == 3) && (m_iY == 1))
+	//Check If You Have An Arrow To Use
+	if ((m_iX == 3) && (m_iY == 3) && (iItems[0].iQuantity == 0))
+	{
+		Player.PrintGameData();
+		cout << "You Are Out Of Arrows!\n";
+	}
+
+	//Checks To See If You Use Your Arrow Unwisely
+	if ((m_iX == 3) && (m_iY == 1) && (iItems[0].iQuantity == 1))
 	{
 		iItems[0].iQuantity = 0;
 		Player.PrintGameData();
 		cout << "You Wasted Your Arrow!\n";
 	}
 
-	if ((m_iX == 2) && (m_iY == 0))
+	//Check If You Have An Arrow To Use
+	if ((m_iX == 3) && (m_iY == 1) && (iItems[0].iQuantity == 0))
+	{
+	    Player.PrintGameData();
+		cout << "You Are Out Of Arrows!\n";
+	}
+
+	//Checks To See If You Use Your Arrow Unwisely
+	if ((m_iX == 2) && (m_iY == 0) && (iItems[0].iQuantity == 1))
 	{
 		iItems[0].iQuantity = 0;
 		Player.PrintGameData();
 		cout << "You Wasted Your Arrow!\n";
 	}
 	
+	//Check If You Have An Arrow To Use
+	if ((m_iX == 2) && (m_iY == 0) && (iItems[0].iQuantity == 0))
+	{
+		Player.PrintGameData();
+		cout << "You Are Out Of Arrows!\n";
+	}
+
 	AttackWumpus(Player);
 	
 }
@@ -283,7 +235,7 @@ void Player::UseRemote()
 {
 	Player Player;
 
-	Player.GetPosition(m_iX, m_iY);
+	Player.GetPosition();
 	if ((m_iX == 0) && (m_iY == 0))
 	{
 		cout << "Beep Beep...Breeze Detected\n";
@@ -351,7 +303,7 @@ void Player::UseRemote()
 void Player::FoundGold(Player &Player)
 {
 
-	Player.GetPosition(m_iX, m_iY);
+	Player.GetPosition();
 
 	
 	
@@ -371,10 +323,108 @@ void Player::FoundGold(Player &Player)
 	
 }
 
+void Player::PrintGameData()
+{
+	Player Player;
+
+	cout << "Move Up: w" << endl;
+	cout << "Move Down: s" << endl;
+	cout << "Move Left: a" << endl;
+	cout << "Move Right: d" << endl;
+	cout << endl;
+
+
+	cout << "Inventory:\n";
+	Player.Inventory(Player);
+	cout << endl;
+
+	if (m_iX < 0)
+	{
+
+		m_iX = m_iX + 1;
+		cout << "There Is A Wall There!\n";
+	}
+
+	if (m_iX > 3)
+	{
+		m_iX = m_iX - 1;
+		cout << "There Is A Wall There!\n";
+	}
+
+	if (m_iY < 0)
+	{
+		m_iY = m_iY + 1;
+		cout << "There Is A Wall There!\n";
+	}
+
+	if (m_iY > 3)
+	{
+		m_iY = m_iY - 1;
+		cout << "There Is A Wall There!\n";
+	}
+
+	cout << "Current position: " << m_iX << "," << m_iY << endl;
+
+}
+
+void Player::AttackWumpus(Player &Player)
+{
+
+	Player.GetPosition();
+
+	if ((m_iX == 2) && (m_iY == 3) && (iItems[0].iQuantity == 1) ||
+		(m_iX == 3) && (m_iY == 2) && (iItems[0].iQuantity == 1) ||
+		(m_iX == 2) && (m_iY == 1) && (iItems[0].iQuantity == 1))
+	{
+		system("cls");
+		iItems[0].iQuantity = 0;
+		PrintGameData();
+		cout << "You Killed The Wumpus!\n\n";
+		wumpus = false;
+		cout << "What would you like to do?\n";
+
+	}
+
+	else if ((m_iX == 2) && (m_iY == 3) && (iItems[0].iQuantity == 0) ||
+		(m_iX == 3) && (m_iY == 2) && (iItems[0].iQuantity == 0) ||
+		(m_iX == 2) && (m_iY == 1) && (iItems[0].iQuantity == 0))
+	{
+		system("cls");
+		PrintGameData();
+		cout << "You Dont Have An Arrow To Kill The Wumpus With!\n";
+		cout << "What would you like to do?\n";
+	}
+}
+
+void Player::Wumpus(Player &Player)
+{
+	Player.GetPosition();
+	
+
+	if ((m_iX == 2) && (m_iY == 2) && (wumpus == true))
+		{
+			system("cls");
+			cout << "You Were Killed By The Wumpus....Game Over!\n";
+			system("PAUSE");
+			exit(1);
+
+		}
+
+		else if ((m_iX == 2) && (m_iY == 2) && (wumpus == false))
+		{
+			system("cls");
+			PrintGameData();
+			cout << "\nYou See The Remains Of The Wumpus.\n";
+			
+
+		}
+
+}
+
 void Player::Pits(Player &Player)
 {
 
-	Player.GetPosition(m_iX, m_iY);
+	Player.GetPosition();
 
 	if ((m_iX == 0) && (m_iY == 2))
 	{
@@ -404,64 +454,6 @@ void Player::Pits(Player &Player)
 	{
 		system("cls");
 		cout << "You Fell Into A Pit....Game Over!\n";
-		system("PAUSE");
-		exit(1);
-	}
-
-}
-
-void Player::AttackWumpus(Player &Player)
-{
-
-	Player.GetPosition(m_iX, m_iY);
-
-	if ((m_iX == 2) && (m_iY == 3) ||
-		(m_iX == 3) && (m_iY == 2) ||
-		(m_iX == 2) && (m_iY == 1))
-	{
-		system("cls");
-		iItems[0].iQuantity = 0;
-		PrintGameData();
-		cout << "You Killed The Wumpus!\n\n";
-		cout << "What would you like to do?\n";
-	}
-
-	
-}
-
-void Player::Wumpus(Player &Player)
-{
-	Player.GetPosition(m_iX, m_iY);
-	
-
-	if ((m_iX == 2) && (m_iY == 2))
-		{
-			system("cls");
-			cout << "You Were Killed By The Wumpus....Game Over!\n";
-			system("PAUSE");
-			exit(1);
-
-		}
-
-		/*if ((m_iX == 2) && (m_iY == 2))
-		{
-			system("cls");
-			cout << "You See The Remains Of The Wumpus.\n";
-			cout << "What would you like to do?\n";
-
-		}*/
-
-}
-
-void Player::Victory(Player &Player)
-{
-	Player.GetPosition(m_iX, m_iY);
-
-	if ((m_iX == 0) && (m_iY == 0) && iItems[2].iQuantity == 1)
-	{
-		system("cls");
-		cout << "You Won!\n\n";
-		cout << "Thank You For Playing!\n";
 		system("PAUSE");
 		exit(1);
 	}

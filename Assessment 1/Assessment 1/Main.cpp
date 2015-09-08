@@ -7,6 +7,7 @@
 
 
 #include "Player.h"
+#include "Game.h"
 #include<iostream>
 
 
@@ -17,9 +18,10 @@ using namespace std;
 int main()
 {
 	Player Player;
-	
+	Game Game;
 
-	Player.AdventureStart();
+	Game.AdventureStart();
+	
 
 	bool bIsDone = false;
 
@@ -32,7 +34,6 @@ int main()
 		Player.Victory(Player);
 	}
 	
-
 
 	system("PAUSE");
 	return 0;
