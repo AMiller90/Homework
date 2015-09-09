@@ -17,18 +17,13 @@ public:
 	Game();
 	 ~Game();
 
-
-	
+	//Prompts User On The Adventure Ahead And Explain How To Achieve Vicroery
 	 void AdventureStart();
-
-
+	 void HelpMenu();
 	
 
  private:
-
-	 
-	 int m_iX;
-	 int m_iY;
 	
+	 
 };
 #endif _GAME_H_

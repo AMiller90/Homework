@@ -18,9 +18,9 @@ using namespace std;
 int main()
 {
 	Player Player;
-	Game Game;
+	Game game;
 
-	Game.AdventureStart();
+	game.AdventureStart();
 	
 
 	bool bIsDone = false;
@@ -29,9 +29,9 @@ int main()
 	{
 
 		
-		Player.Actions(Player);
-		Player.FoundGold(Player);
-		Player.Victory(Player);
+		Player.Actions();
+		Player.FoundGold();
+		Player.Victory();
 	}
 	
 

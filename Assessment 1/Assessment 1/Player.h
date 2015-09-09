@@ -11,7 +11,7 @@
 #include<iostream>
 #include<string>
 
-
+#include"Game.h"
 
 using namespace std;
 
@@ -32,18 +32,19 @@ public:
 	
 
 	void PrintGameData();
-
-	int GetPosition();
+	int GetPositionX();
+	int GetPositionY();
 	void SetPosition(int a_iX, int a_iY);
-	void Actions(Player &Player);
-	void Inventory(Player &Player);
-	void Pits(Player &Player);
+	void Actions();
+	void Inventory();
+	void Pits();
 	void UseArrow();
 	void UseRemote();
-	void FoundGold(Player &Player);
-	void AttackWumpus(Player &Player);
-	void Wumpus(Player &Player);
-	void Victory(Player&Player);
+	void FoundGold();
+	void Victory();
+	void AttackWumpus();
+	void Wumpus();
+	
 	
 
 
