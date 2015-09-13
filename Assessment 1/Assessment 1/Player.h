@@ -19,7 +19,7 @@
 //Include Header File Of Game Class In Order To Use Its Functions And Variables
 #include"Game.h"
 
-//Includes std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed
+//Includes std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
 //using namespace std takes care of that
 using namespace std;
 
@@ -51,13 +51,13 @@ public:
 	void UseArrow();
 	void UseRemote();
 	void FoundGold();
-	void Victory();
+	bool Victory();
 	void AttackWumpus();
 	void Wumpus();
 	
 	
 
-	//Variables Or Functions Only Accessible By This Class Go Here Under Private
+	//Variables and Functions Only Accessible By This Class Go Here Under Private
 private:
 
 	//Private Variables

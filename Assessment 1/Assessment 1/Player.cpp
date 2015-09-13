@@ -12,11 +12,11 @@
 //Constructor Definition
 Player::Player()
 {
-	//Initialize The Players Position To Zero
+	//Initializes The Players Position To Zero
 	m_iX = 0;
 	m_iY = 0;
 }
-//Constructor Definition
+//Destructor Definition
 Player::~Player()
 {
 
@@ -35,7 +35,7 @@ struct Items
 
 };
 
-//Bool Variable Used To Represent The Wumpus Life. It Is Set To True Meaning The Wumpu Is Alive
+//Bool Variable Used To Represent The Wumpus Life. It Is Set To True Meaning The Wumpus Is Alive
 bool wumpus = true;
 
 //Creates An Array Of 3 Items Using The Item Struct And Its Variables.Then Initializes The Items After The "=" Sign.
@@ -44,7 +44,7 @@ Items iItems[3] = { { 1, "Arrow", 1 }, { 2, "Remote", 1 }, { 3, "Gold", 0 } };
 //Function Used To Get The Private Variables Of This Class So They Can Be Used Outside The Class If Need Be.
 int Player::GetPositionX()
 {
-
+	//Returns integer set to the variable m_iX
 	return m_iX;
 
 }
@@ -52,7 +52,7 @@ int Player::GetPositionX()
 //Function Used To Get The Private Variables Of This Class So They Can Be Used Outside The Class If Need Be.
 int Player::GetPositionY()
 {
-
+	//Returns integer set to the variable m_iY
 	return m_iY;
 }
 
@@ -181,8 +181,6 @@ void Player::Inventory()
 //This Function Allows The Player To Use The Arrow From The Inventory
 void Player::UseArrow()
 {
-	//Clears The Screen
-	system("cls");
 	//Calls PrintGameFunction
 	PrintGameData();
 
@@ -246,41 +244,43 @@ void Player::UseArrow()
 //This Function Allows The Player To Use The Remote From The Inventory
 void Player::UseRemote()
 {
+	//Clears Screen
 	system("cls");
+	//PrintGameData
 	PrintGameData();
 
 	//These If Statements Check The Currently Players Position And Print Out To The Screen The Hint of What Dangers Or If The Gold
 	//Is Nearby. I Have The Hints Printed Out Accordng To The Locatons Of The Dangers And Gold.
 	if ((m_iX == 0) && (m_iY == 0))
-	{//Prints Out Beep For Pits Nearby
+	{//Prints Out Breeze For Pits Nearby
 		cout << "Beep Beep...Breeze Detected\n";
 	}
 
 	cout << endl;
 
 	if((m_iX == 0) && (m_iY == 1))
-	{//Prints Out Beep For Pits Nearby
+	{//Prints Out Breeze For Pits Nearby
 		cout << "Beep Beep...Breeze Detected\n";
 	}
 
 	if ((m_iX == 0) && (m_iY == 3))
-	{//Prints Out Beep For Pits Nearby
+	{//Prints Out Breeze For Pits Nearby
 		cout << "Beep Beep...Breeze Detected\n";
 	}
 
 	if ((m_iX == 1) && (m_iY == 1))
-	{//Prints Out Beep For Pits Nearby..2 Pits Nearby
+	{//Prints Out Breeze For Pits Nearby..2 Pits Nearby
 		cout << "Beep Beep...Breeze Detected\n\n";
 		cout << "Beep Beep...Breeze Detected\n";
 	}
 
 	if ((m_iX == 1) && (m_iY == 3))
-	{//Prints Out Beep For Pits Nearby
+	{//Prints Out Breeze For Pits Nearby
 		cout << "Beep Beep...Breeze Detected\n";
 	}
 
 	if ((m_iX == 2) && (m_iY == 0))
-	{//Prints Out Beep For Pits Nearby..2 Pits Nearby
+	{//Prints Out Breeze For Pits Nearby..2 Pits Nearby
 		cout << "Beep Beep...Breeze Detected\n\n";
 		cout << "Beep Beep...Breeze Detected\n";
 	}
@@ -302,7 +302,7 @@ void Player::UseRemote()
 	}
 
 	if ((m_iX == 3) && (m_iY == 2))
-	{//Prints Out Smell For The Wumpus Nearby And Glitter For Gold NEarby
+	{//Prints Out Smell For The Wumpus Nearby And Glitter For Gold Nearby
 		cout << "Beep Beep...Glitter Detected\n\n";
 		cout << "Beep Beep...Smell Detected\n";
 	}
@@ -310,7 +310,8 @@ void Player::UseRemote()
 	cout << "What would you like to do?\n";
 }
 
-//This Function Allows The Player To Automatically Get The Gold And Put It Into The Inventory
+//This Function Allows The Player To Automatically Get The Gold Once Inside The Room That Has The Gold And Put 
+//It Into The Inventory
 void Player::FoundGold()
 {
 	//This If Statement Checks The Players Position.
@@ -323,7 +324,7 @@ void Player::FoundGold()
 		//Calls Print Function And Now It Will Show The Gold Having 1 In Inventory
 		PrintGameData();
 		cout << endl;
-		//Prompts Player The Found The Gold
+		//Prompts Player They Found The Gold
 		cout << "Found the gold!\n";
 		cout << endl;
 		cout << "What Would You Like To Do?\n";
@@ -335,22 +336,24 @@ void Player::FoundGold()
 }
 
 //This Function Is Used To Check If The Player Made It Back To The Entrance With The Gold. If So, Player Wins.
-void Player::Victory()
+bool Player::Victory()
 {
+	//Variable to check for victory
+	bool bIsDone = false;
 	//If Statement Checks Players Position And If The Gold Is In The Inventory
 	if ((m_iX == 0) && (m_iY == 0) && iItems[2].iQuantity == 1)
 	{
 		//If Statement Is Correct Then The Screen Is Cleared And You Won And Thank You For Playing Are Prompted To The Screen
-		//Then The Program Exits.
 		system("cls");
 		cout << "You Won!\n\n";
 		cout << "Thank You For Playing!\n";
-		system("PAUSE");
-		//Exits Program
-		exit(1);
+		//The bIsDone Variable is set to true
+		bIsDone = true;
 	}
-
+	//return the value set to bIsDone 
+	return bIsDone;
 }
+
 //This Function Prints The Controls, Inventory, Players Current Position And If They Run Into A Wall Out Onto The Screen.
 void Player::PrintGameData()
 {
@@ -405,6 +408,7 @@ void Player::PrintGameData()
 	cout << "Current position: " << m_iX << "," << m_iY << "\n\n";
 	
 }
+
 //This Function Determines If The Wumpus Is killed Or If The Player Does Not Have An Arrow To Use
 void Player::AttackWumpus()
 {
@@ -413,9 +417,7 @@ void Player::AttackWumpus()
 	if ((m_iX == 2) && (m_iY == 3) && (iItems[0].iQuantity == 1) ||
 		(m_iX == 3) && (m_iY == 2) && (iItems[0].iQuantity == 1) ||
 		(m_iX == 2) && (m_iY == 1) && (iItems[0].iQuantity == 1))
-	{//If Statement Is True Then clear Screen
-		system("cls");
-		//Set Arrow Quantity to 0
+	{//If Statement Is True Then Set Arrow Quantity to 0
 		iItems[0].iQuantity = 0;
 		//PrintGameData
 		PrintGameData();
@@ -431,8 +433,7 @@ void Player::AttackWumpus()
 	else if ((m_iX == 2) && (m_iY == 3) && (iItems[0].iQuantity == 0) ||
 		(m_iX == 3) && (m_iY == 2) && (iItems[0].iQuantity == 0) ||
 		(m_iX == 2) && (m_iY == 1) && (iItems[0].iQuantity == 0))
-	{//If Statement Is True Then clear Screen
-		system("cls");
+	{//If Statement Is True Then 
 		//PrintGameData
 		PrintGameData();
 		//Prompt User That They Dont Have An Arrow To Kill The Wumpus With
@@ -440,6 +441,7 @@ void Player::AttackWumpus()
 
 	}
 }
+
 //This Function Checks The Wumpus Life
 void Player::Wumpus()
 {
@@ -463,11 +465,11 @@ void Player::Wumpus()
 			PrintGameData();
 			//Prompt User That They Can See The Remains Of The Wumpus
 			cout << "\nYou See The Remains Of The Wumpus.\n";
-			
 
 		}
 
 }
+
 //This Function Checks For The Players Position In The Level And The Pit Positions
 void Player::Pits()
 {

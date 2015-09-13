@@ -18,7 +18,7 @@
 using namespace std;
 
 
-
+//Function that will used to run the game and end it
 int main()
 {
 	//Create Instances Of Player And Game To Be Able To Use Them For Calling Functions
@@ -31,16 +31,19 @@ int main()
 	//Sets Up A boolean Variable And Sets It To False
 	bool bIsDone = false;
 
-	//Using A While Loop To Initiate The Game Loop
+	//Using A While Loop To Initiate The Game Loop - It will keep running while bIsDone is equal to false
 	while (bIsDone == false)
 	{
 
 		//Uses Player Input To Move And Execute Commands
 		Player.Actions();
-		//When Player Finds The Gold It Gets Added The Inventory Using This Function
+		//When Player Finds The Gold It Gets Added To The Inventory Using This Function
 		Player.FoundGold();
-		//This Function Is Used To Check If The Player Made It Back To The Entrance With The Gold. If So, Player Wins.
-		Player.Victory();
+		//This Function Is Used To Check If The Player Made It Back To The Entrance With The Gold. If So, The Function Returns True
+		// Then The Variable bIsDone Gets Set To True Which Is The Return Value Of The Function And It Causes The Program To Break Out
+		//The While Loop. Causing The Program To End
+		bIsDone = Player.Victory();
+		
 	}
 	
 

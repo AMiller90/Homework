@@ -30,7 +30,8 @@ void Game::AdventureStart()
 {
 	//Creates Instance Of Player 
 	Player player;
-	//Gets The Player Position For X And Y
+	//Gets The Player Position For X And Y By Calling These Functions 
+	//From The Player Class
 	player.GetPositionX();
 	player.GetPositionY();
 
