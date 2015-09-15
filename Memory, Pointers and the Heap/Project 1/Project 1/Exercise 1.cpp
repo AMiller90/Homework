@@ -32,13 +32,13 @@ int main()
 	cout << "*p1 = " << *p1; // (4)
 	
 	cout << ", p1 = " << p1 << endl; // (5)
-
+/*
 	Answers:
 	1.S
 	2.T
 	3.T
 	4.S
-	5.S
+	5.S*/
 
 
 

@@ -5,14 +5,18 @@
 
 void RevString(char *myArray)
 {
-	
 
-	for (int i = 3; i >= 0; --i)
+	int len = strlen(myArray);
+
+	for (int i = 0, j = len - 1; i < len / 2; i++, j--)
 	{
-		myArray[i];
+		char temp;
+	    temp = myArray[i];
+		myArray[i] = myArray[j];
+		myArray[j] = temp;
 
+		
 	}
-	std::cout << std::endl;
 }
 
 
@@ -107,8 +111,9 @@ int main()
 		true if the 1st parameter contains the 2nd parameter, or false otherwise*/
 
 
-	char myArray[4] = {'a','b','c','d'};
+	char myArray[100] = {'a','b','c','d'};
 	RevString(myArray); 
+	std::cout << myArray << std::endl;
 
 		int iArray[4] = { 1, 2, 3, 4 };
 		std::cout << CountEven(iArray, 4);
