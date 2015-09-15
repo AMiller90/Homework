@@ -8,7 +8,7 @@ int main()
 {
 
 
-	//Predict the output of the following program.Run the program to see if your prediction is
+	//Question 7.Predict the output of the following program.Run the program to see if your prediction is
 	//right.
 
 	//Answer: program will not compile

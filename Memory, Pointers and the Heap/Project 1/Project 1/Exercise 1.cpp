@@ -16,7 +16,7 @@ int main()
 	char *p3;
 
 
-	/*If the address of c is 6940, the address of d is 9772, and the address of e is 2224. What will
+	/*Question 1.If the address of c is 6940, the address of d is 9772, and the address of e is 2224. What will
 		be printed when the following statements are executed sequentially ?*/
 
 

@@ -9,7 +9,7 @@ int main()
 
 
 
-	/*Consider the following statements:
+	/*Question 2.Consider the following statements:
 
 	int *p;
 	int i;
