@@ -9,10 +9,10 @@ void RevString(char *myArray)
 	//Get length of myArray and set it to new int len variable.
 	int len = strlen(myArray);
 
-	//Use for loop to iterate through the length of the array.
-	//i is set to 0. j is set to the len - 1..because we do not want to include the null pointer at the end of the array...char arrays have a null pointer at the end.
-	//The conditon will be while i is les than the length of the array dvided by 2.
-	//i will increment by one each iteration and j will decrement by one each iteration.
+	/*Use for loop to iterate through the length of the array.
+	i is set to 0. j is set to the len - 1..because we do not want to include the null pointer at the end of the array...char arrays have a null pointer at the end.
+	The conditon will be while i is les than the length of the array dvided by 2.
+	i will increment by one each iteration and j will decrement by one each iteration.*/
 	for (int i = 0, j = len - 1; i < len / 2; i++, j--)
 	{
 		//Create a new char variable and Store the current i index value into the temp variable each iteration.
@@ -162,11 +162,6 @@ int main()
 	Contains(myArray, search_value);
 
 	
-
-
-
-
-
 	system("PAUSE");
 	return 0;
 }
