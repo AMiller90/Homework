@@ -5,7 +5,7 @@
 //Exerceise 4
 int main()
 {
-
+	//Question 4.Explain the error.
 	char c = 'A';
 	double *p = &c;
 

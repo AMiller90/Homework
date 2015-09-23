@@ -8,11 +8,11 @@ int main()
 {
 
 
-	//Predict the output of the following program.Run the program to see if your prediction is
+	//Question 7.Predict the output of the following program.Run the program to see if your prediction is
 	//right.
 
 	//Answer: program will not compile
-	int * ptr_a, ptr_b, *ptr_c;
+	/*int * ptr_a, ptr_b, *ptr_c;
 
 	ptr_a = new int;
 	*ptr_a = 3;
@@ -34,12 +34,7 @@ int main()
 	cout << *ptr_c << " " << **ptr_c << "\n";
 
 	delete ptr_a;
-	ptr_a = NULL;
-	
-
-
-
-
+	ptr_a = NULL;*/
 
 	system("PAUSE");
 	return 0;
