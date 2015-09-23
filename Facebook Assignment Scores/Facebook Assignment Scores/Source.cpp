@@ -9,8 +9,9 @@ void AddScoresToFile(string file)
 {
 	bool bLoop = true;
 	int ScoresArray[5];
-	int max = 0;
-	
+	int cmax;
+	int temp[5];
+
 	ofstream Scores;
 	
 	Scores.open(file, ios_base::app);
@@ -36,16 +37,25 @@ void AddScoresToFile(string file)
 	
 			for (int i = 0; i < 5; i++)
 			{
-				if (ScoresArray[i] > max)
+				cmax = 0;
+
+				for (int j = 0; j < 5; j++)
 				{
-					max = ScoresArray[i];
+
+					if (ScoresArray[j] > cmax)
+					{
+						
+						cmax = ScoresArray[j];
+					
+						temp[i] = cmax;
+					}
+					
 
 				}
-
+			
+				cout << temp[i] << " ";
 			}
 
-			Scores << max << endl;
-		
 
 		Scores.close();
 	}
@@ -97,7 +107,7 @@ int main()
 
 	AddScoresToFile("Scores.txt");
 	
-	ReadFromFile("Scores.txt");
+	//ReadFromFile("Scores.txt");
 
 
 	system("PAUSE");
