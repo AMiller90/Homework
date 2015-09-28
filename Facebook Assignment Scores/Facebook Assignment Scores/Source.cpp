@@ -7,56 +7,71 @@ using namespace std;
 //Add Data to file
 void AddScoresToFile(string file)
 {
+	//bool variable used to store true or false
 	bool bLoop = true;
-	int ScoresArray[5];
-	int cmax;
-	int temp[5];
+	//int array variable
+	int ScoresArray[10];
+	//int variable
+	int hold;
 
+	//Creates instance of ofstream
 	ofstream Scores;
 	
+	//Opens A File To Write To It
 	Scores.open(file, ios_base::app);
 
+	//Error Checking
 	if (Scores.fail())
-	{
+	{//If file fails to open then print this
 		cout << "File Failed To Open!";
 	}
 	else
-	{
+	{//if file is opened then print this and set up while loop
 		cout << "Please Enter The Scores You Want To Record:\n";
+		//while the loop variable is set to true
 		while (bLoop == true)
 		{
-
-			for (int i = 0; i < 5; i++)
-			{
+			//Loop through the array 
+			for (int i = 0; i < 10; i++)
+			{//Get input from user and store into array
 				cin >> ScoresArray[i];
 
 			}
+			//once all input is gathered then bloop is set to false and break out the while loop
 			bLoop = false;
 		}
 
-	
-			for (int i = 0; i < 5; i++)
+		    //loop through the array
+			for (int i = 0; i < 10; i++)
 			{
-				cmax = 0;
-
-				for (int j = 0; j < 5; j++)
+				//loop through the array
+				for (int j = 0; j < 10; j++)
 				{
-
-					if (ScoresArray[j] > cmax)
+					//checks if current variables value is less than the next variables value
+					if (ScoresArray[j] < ScoresArray[j + 1])
 					{
-						
-						cmax = ScoresArray[j];
-					
-						temp[i] = cmax;
+						//if true then store current variables value in hold variable
+						hold = ScoresArray[j];
+						 //Store next variable value into current variable
+						ScoresArray[j] = ScoresArray[j + 1];
+						//store hold variables value into next variable
+						ScoresArray[j + 1] = hold;
 					}
-					
 
 				}
 			
-				cout << temp[i] << " ";
+				
 			}
+			//Loop through array
+			for (int i = 0; i < 10; i++)
+			{//Store the data in the array into the file and a space in between each index value
+				Scores << ScoresArray[i] << " " ;
+			
+			}
+			//Put a new line in the file after all data has been put in
+			Scores << endl;
 
-
+			//Closes The File
 		Scores.close();
 	}
 }
@@ -66,28 +81,30 @@ void ReadFromFile(string file)
 {
 	//Variable for data from the file
 	int data;
-	//Creates in stream
+	//Creates instance of ifstream
 	ifstream Scores;
-	//variable for loop
+	//variable for while loop
 	bool bIsDone = true;
 
+	//Opens the file to read from
 	Scores.open("Scores.txt", ios_base::in);
 
 	//Error checking
 	if (Scores.fail())
-	{
+	{//If file fails to open then print this
 		cout << "File Failed To Open!";
 	}
 	else
 	{
-		cout << "This Is The Files Content:\n";
+		cout << "File Contents:\n";
 		//While there is something to put into the data variable from the Scores variable
 		while (Scores >> data)
 		{
-			//Prints out the data to console
-			cout << data;
+			//Prints out the data to console and a space between each element
+			cout << data << " ";
 		}
-		
+		//Print out newline
+		cout << endl;
 	}
 
 
@@ -104,10 +121,11 @@ void ReadFromFile(string file)
 int main()
 {
 
-
+	//Open and Add Data to file
 	AddScoresToFile("Scores.txt");
 	
-	//ReadFromFile("Scores.txt");
+	//Read data from file
+	ReadFromFile("Scores.txt");
 
 
 	system("PAUSE");

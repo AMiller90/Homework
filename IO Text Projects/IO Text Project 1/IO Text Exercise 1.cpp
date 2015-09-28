@@ -77,7 +77,7 @@ void Display()
 		cout << "This Is The Files Content:\n";
 		while (getline(file, s))
 		{//Prints out the s data
-			cout << s;;
+			cout << s;
 		}
 	}
 	//Newlines
