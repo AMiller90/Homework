@@ -37,3 +37,15 @@ void Player::SetPosition(int a_iX, int a_iY)
 	m_iY = a_iY;
 
 }
+
+void Player::Move()
+{
+
+
+}
+
+void Player::Attack()
+{
+
+
+}

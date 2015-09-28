@@ -12,14 +12,18 @@
 class Cell
 {
 public:
-	Cell();
 
+	Cell();
 	~Cell();
 
+	int InitCell(int a_iX, int a_iY);
+	/*int GetPositionX(int a_iX);
+	int GetPositionY(int a_iY);*/
 
 private:
 
-
+	int m_iX;
+	int m_iY;
 
 };
 

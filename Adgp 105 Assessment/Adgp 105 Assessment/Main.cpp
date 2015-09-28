@@ -10,6 +10,9 @@
 //as output to the console window.
 #include<iostream>
 
+//Include Grid header file to be able to use its class functions
+#include "Grid.h"
+
 //Using namespce std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
 using namespace std;
 
@@ -17,6 +20,9 @@ using namespace std;
 int main()
 {
 
+	Grid Grid;
+
+	Grid.GenerateRandomGrid();
 
 
 
