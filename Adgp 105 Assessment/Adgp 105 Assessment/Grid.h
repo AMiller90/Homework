@@ -9,8 +9,6 @@
 #ifndef _GRID_H_
 #define _GRID_H_
 
-
-
 #include<iostream>
 using namespace std;
 
@@ -21,8 +19,9 @@ public:
 	Grid();
 	~Grid();
 
-	void GenerateRandomGrid();
+    void GenerateRandomGrid();
 	void GenerateGridFromFile();
+	void PrintGame();
 
 };
 

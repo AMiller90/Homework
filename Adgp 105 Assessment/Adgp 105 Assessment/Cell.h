@@ -20,10 +20,8 @@ public:
 	~Cell();
 
 	Cell InitCell(int a_iX, int a_iY);
-	/*int GetPositionX(int a_iX);
-	int GetPositionY(int a_iY);*/
-
-
+	int GetPositionX();
+	int GetPositionY();
 
 private:
 

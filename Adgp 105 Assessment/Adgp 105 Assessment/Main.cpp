@@ -13,7 +13,8 @@
 
 //Include Grid header file to be able to use its class functions
 #include "Grid.h"
-
+//Include Player header file to be able to use its class functions
+#include "Player.h"
 
 //Using namespce std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
 using namespace std;
@@ -21,15 +22,25 @@ using namespace std;
 //Main Function Where The Program Is Started And Ended
 int main()
 {
+	bool bIsDone = true;
+
+	Player pPlayer;
+	Grid gGrid;
+	
+	pPlayer.StartAdventure();
+	pPlayer.ChooseMap();
+	gGrid.PrintGame();
+	cout << "Current Position: " << pPlayer.GetPositionX() << ',' << pPlayer.GetPositionY();
+
+	while (bIsDone == true)
+	{
+		
+		pPlayer.Move();
+		pPlayer.Attack();
 
 
-	Grid Grid;
 
-	Grid.GenerateRandomGrid();
-
-
-
-
+	}
 
 
 

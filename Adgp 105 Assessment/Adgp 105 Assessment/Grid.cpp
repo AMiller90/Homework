@@ -8,9 +8,12 @@
 
 #include "Grid.h"
 #include "Cell.h"
+#include "Player.h"
 #include <random>
 #include <time.h>
 #include <fstream>
+#include <string>
+
 //Constructor
 Grid::Grid()
 {
@@ -23,7 +26,7 @@ Grid::~Grid()
 
 }
 
-//Generate Random Grid Size And Initialize
+////Generate Random Grid Size And Initialize
 void Grid::GenerateRandomGrid()
 {
 	//Creates instance of cell
@@ -44,26 +47,94 @@ void Grid::GenerateRandomGrid()
 	Grid = new Cell[Size];
 	//Sets the square root of the size variables value to the temp2 variable
 	int temp2 = sqrt(Size);
+
+	int y = 0;
 	//Loop through array
 	for (int i = 0; i < Size; ++i)
 	{//Set x variable to i % 2
 		int x = i % temp2;
+		if (i % temp2 == temp2 - 1)
+		{//Print out a newline 
+			y++;
+		}
 		//Gives the Grid index its values 
-		Grid[i] = cCell.InitCell(x, i);
+		Grid[i] = cCell.InitCell(y, x);
+
 	}
 
-	//Loop through array 
+	////Loop through array 
 	for (int i = 0; i < Size; i++)
 	{//Print out array
-		cout << Grid[i];
-		//if i % temp2 is equal to the squareroot of size -1 
-		if (i % temp2 == sqrt(Size) - 1)
+		if (i % temp2 == temp2 - 1)
 		{//Print out a newline 
 			cout << endl;
 		}
-			
+
+		cout << Grid[i].GetPositionY() << "," << Grid[i].GetPositionX() << " ";
 		
 	}
 
-
+	
 }
+
+//Generate Grid From File And Initialize
+void Grid::GenerateGridFromFile()
+{
+
+	ofstream OFile;
+
+	OFile.open("Wumpus Map.txt", ios_base::app);
+
+	if (OFile.fail())
+	{
+
+		cout << "File Could Not Be Opened!\n";
+
+	}
+
+
+
+	OFile.close();
+
+	string s;
+	ifstream File;
+
+	File.open("Wumpus Map.txt", ios_base::in);
+
+	if (File.fail())
+	{
+
+		cout << "File Could Not Be Opened!\n";
+
+	}
+	else
+	{
+
+		while (getline(File, s))
+		{
+			cout << s;
+			cout << endl;
+		}
+		
+
+	}
+	cout << endl;
+
+	File.close();
+}
+
+void Grid::PrintGame()
+{
+	Player pPlayer;
+	//system("cls");
+	cout << "What Would You Like To Do?\n\n";
+	cout << "Move Up: w\n";
+	cout << "Move Up: a\n";
+	cout << "Move Up: s\n";
+	cout << "Move Up: d\n";
+	cout << "Use Arrow: 1\n\n";
+	pPlayer.Inventory();
+	
+}
+
+

@@ -6,10 +6,13 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Cell.h"
+#include "Player.h"
+
 //Constructor
 Cell::Cell()
 {
-
+	m_iX = 0;
+	m_iY = 0;
 }
 
 //Destructor
@@ -17,7 +20,7 @@ Cell::~Cell()
 {
 }
 
-Cell Cell::InitCell(int a_iX, int a_iY)
+Cell Cell::InitCell(int a_iY, int a_iX)
 {
 	Cell cCell;
 
@@ -28,14 +31,12 @@ Cell Cell::InitCell(int a_iX, int a_iY)
 
 }
 
-//int Cell::GetPositionX(int a_iX)
-//{
-//	m_iX = a_iX;
-//	return m_iX;
-//}
-//
-//int Cell::GetPositionY(int a_iY)
-//{
-//	m_iY = a_iY;
-//	return m_iY;
-//}
+int Cell::GetPositionX()
+{
+	return m_iX;
+}
+
+int Cell::GetPositionY()
+{
+	return m_iY;
+}

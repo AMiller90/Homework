@@ -9,6 +9,10 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+#include<iostream>
+#include<string>
+
+using namespace std;
 
 class Player
 {
@@ -23,6 +27,9 @@ public:
 	void SetPosition(int a_iX, int a_iY);
 	void Move();
 	void Attack();
+	void StartAdventure();
+	void ChooseMap();
+	void Inventory();
 
 private:
 
