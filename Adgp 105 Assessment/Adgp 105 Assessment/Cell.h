@@ -12,6 +12,7 @@
 class Cell
 {
 public:
+<<<<<<< HEAD
 	Cell();
 
 	~Cell();
@@ -20,6 +21,20 @@ public:
 private:
 
 
+=======
+
+	Cell();
+	~Cell();
+
+	int InitCell(int a_iX, int a_iY);
+	/*int GetPositionX(int a_iX);
+	int GetPositionY(int a_iY);*/
+
+private:
+
+	int m_iX;
+	int m_iY;
+>>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
 
 };
 
