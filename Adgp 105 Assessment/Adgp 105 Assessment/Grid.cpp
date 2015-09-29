@@ -7,25 +7,10 @@
 
 
 #include "Grid.h"
+#include "Cell.h"
 #include <random>
 #include <time.h>
-<<<<<<< HEAD
-
-Grid::Grid()
-{
-}
-
-
-Grid::~Grid()
-{
-}
-
-
-void Grid::GenerateRandomGrid()
-{
-=======
-#include <math.h>
-
+#include <fstream>
 //Constructor
 Grid::Grid()
 {
@@ -43,26 +28,20 @@ void Grid::GenerateRandomGrid()
 {
 	//Creates instance of cell
 	Cell cCell;
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
+
 	//sets random generator and seeds it with time
 	mt19937 randomGen(time(0));
 	
 	//distributes random numbers that are between the numbers set in parenthesis
-<<<<<<< HEAD
-	uniform_int_distribution<int> GridSize(4, 10);
-	//sets variable to the random number generated from the range and generator
-	int Rows = GridSize(randomGen);
-	int Columns = GridSize(randomGen);
-=======
 	uniform_int_distribution<int> GridSize(3, 10);
 	//sets variable to the random number generated from the range and generator
 	int Temp = GridSize(randomGen);
 	//Sets variable to temp time temp variables
 	int Size = Temp * Temp;
 	//sets up a pointer
-	int *Grid;
+	Cell *Grid;
 	//sets pointer to new allocated array of memory set to the size variables value
-	Grid = new int[Size];
+	Grid = new Cell[Size];
 	//Sets the square root of the size variables value to the temp2 variable
 	int temp2 = sqrt(Size);
 	//Loop through array
@@ -85,6 +64,6 @@ void Grid::GenerateRandomGrid()
 			
 		
 	}
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
+
 
 }

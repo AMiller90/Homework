@@ -5,20 +5,7 @@
 //Brief: This is the Cell cpp file. It will contain all the Cell Class function definitions and variable definitions.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 #include "Cell.h"
-
-<<<<<<< HEAD
-
-Cell::Cell()
-{
-}
-
-
-Cell::~Cell()
-{
-}
-=======
 //Constructor
 Cell::Cell()
 {
@@ -30,12 +17,14 @@ Cell::~Cell()
 {
 }
 
-int Cell::InitCell(int a_iX, int a_iY)
+Cell Cell::InitCell(int a_iX, int a_iY)
 {
-	m_iX = a_iX;
-	m_iY = a_iY;
+	Cell cCell;
 
-	return m_iX;
+	cCell.m_iX = a_iX;
+	cCell.m_iY = a_iY;
+
+	return cCell;
 
 }
 
@@ -50,4 +39,3 @@ int Cell::InitCell(int a_iX, int a_iY)
 //	m_iY = a_iY;
 //	return m_iY;
 //}
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924

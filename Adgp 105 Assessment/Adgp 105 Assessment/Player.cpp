@@ -36,8 +36,7 @@ void Player::SetPosition(int a_iX, int a_iY)
 	m_iX = a_iX;
 	m_iY = a_iY;
 
-<<<<<<< HEAD
-=======
+
 }
 
 void Player::Move()
@@ -50,5 +49,5 @@ void Player::Attack()
 {
 
 
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
+
 }

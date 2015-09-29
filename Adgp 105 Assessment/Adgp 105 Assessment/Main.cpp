@@ -10,12 +10,11 @@
 //as output to the console window.
 #include<iostream>
 
-<<<<<<< HEAD
-=======
+
 //Include Grid header file to be able to use its class functions
 #include "Grid.h"
 
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
+
 //Using namespce std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
 using namespace std;
 
@@ -23,12 +22,11 @@ using namespace std;
 int main()
 {
 
-<<<<<<< HEAD
-=======
+
 	Grid Grid;
 
 	Grid.GenerateRandomGrid();
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
+
 
 
 

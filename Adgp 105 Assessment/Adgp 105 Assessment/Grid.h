@@ -9,10 +9,8 @@
 #ifndef _GRID_H_
 #define _GRID_H_
 
-<<<<<<< HEAD
-=======
-#include "Cell.h"
->>>>>>> f0369dcf4cf3701c9073e90fe4172c0e11a3d924
+
+
 #include<iostream>
 using namespace std;
 
