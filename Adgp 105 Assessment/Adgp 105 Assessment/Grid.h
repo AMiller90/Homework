@@ -19,7 +19,7 @@ public:
 	Grid();
 	~Grid();
 
-    void GenerateRandomGrid();
+    //void GenerateGrid();
 	void GenerateGridFromFile();
 	void PrintGame();
 

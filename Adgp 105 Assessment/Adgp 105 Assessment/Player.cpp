@@ -134,35 +134,35 @@ void Player::StartAdventure()
 
 }
 
-void Player::ChooseMap()
-{
-	Grid gGrid;
-
-	int iInput;
-	
-	cout << "Please Choose A Map:\n";
-	cout << "1.Generate Random Map\n";
-	cout << "2.Generate Map From File\n";
-	cin >> iInput;
-
-	if (iInput == 1)
-	{
-		system("cls");
-		gGrid.GenerateRandomGrid();
-	}
-	else if (iInput == 2)
-	{
-		system("cls");
-		gGrid.GenerateGridFromFile();
-
-	}
-	else
-	{
-		cout << "Invalid Input!\n";
-		exit(1);
-	}
-
-}
+//void Player::ChooseMap()
+//{
+//	Grid gGrid;
+//
+//	int iInput;
+//	
+//	cout << "Please Choose A Map:\n";
+//	cout << "1.Generate Random Map\n";
+//	cout << "2.Generate Map From File\n";
+//	cin >> iInput;
+//
+//	if (iInput == 1)
+//	{
+//		system("cls");
+//		gGrid.GenerateRandomGrid();
+//	}
+//	else if (iInput == 2)
+//	{
+//		system("cls");
+//		gGrid.GenerateGridFromFile();
+//
+//	}
+//	else
+//	{
+//		cout << "Invalid Input!\n";
+//		exit(1);
+//	}
+//
+//}
 
 void Player::Inventory()
 {

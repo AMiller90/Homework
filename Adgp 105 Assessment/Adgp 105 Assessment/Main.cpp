@@ -28,7 +28,7 @@ int main()
 	Grid gGrid;
 	
 	pPlayer.StartAdventure();
-	pPlayer.ChooseMap();
+	//pPlayer.ChooseMap();
 	gGrid.PrintGame();
 	cout << "Current Position: " << pPlayer.GetPositionX() << ',' << pPlayer.GetPositionY();
 
