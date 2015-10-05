@@ -22,6 +22,15 @@ Player::~Player()
 {
 }
 
+struct Items
+{
+	string sName;
+	int iQuantity;
+
+};
+
+Items iItem[2] = {{ "Arrow", 1 }, {"Gold", 0}};
+
 int Player::GetPositionX()
 {
 	return m_iX;
@@ -53,60 +62,112 @@ void Player::Move()
 	switch (cInput)
 	{
 	case 'w':
+	{
 		SetPosition(m_iX, m_iY - 1);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case 'a':
+	{
 		SetPosition(m_iX - 1, m_iY);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case 's':
+	{
 		SetPosition(m_iX, m_iY + 1);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case 'd':
+	{
 		SetPosition(m_iX + 1, m_iY);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case '1':
-		gGrid.PrintGame();
-		system("cls");
+	{
 		Attack();
 		break;
-
-
-
-		default:
-		break;
-
 	}
+	    
+	default:
+	{
+		break;
+	}
+		
+	};
 
 
 
 }
 
-void Player::Attack()
+bool bWumpus = true;
+
+bool Player::Attack()
 {
+	Cell Wumpus;
+	Grid gGrid;
 
+	if (((((GetPositionX() == 1 && GetPositionY() == 2) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) ||
+		(GetPositionX() == 3 && GetPositionY() == 2) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) || 
+		(GetPositionX() == 2 && GetPositionY() == 1) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) || 
+		(GetPositionX() == 2 && GetPositionY() == 3) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1)))))
+	{
+		bWumpus = false;
+		iItem[0].iQuantity--;
+		gGrid.PrintGame();
+		cout << "You Have Killed The Wumpus!\n";
+	}
 
+	/*else if  (((((GetPositionX() != 2 && GetPositionY() != 3) &&
+		(GetPositionX() != 2 && GetPositionY() != 1) &&
+		(GetPositionX() != 3 && GetPositionY() != 2) &&
+		(GetPositionX() != 1 && GetPositionY() != 2) &&
+		(iItem[0].iQuantity == 1)))))
+	{
+		iItem[0].iQuantity--;
+		gGrid.PrintGame();
+		cout << "You Have Wasted Your Arrow!\n";
+	}*/
 
+	return bWumpus;
+}
+
+void Player::Inventory()
+{
+	cout << "Inventory:\n";
+	for (int i = 0; i < 2; ++i)
+	{
+		cout << iItem[i].sName << " x " << iItem[i].iQuantity << endl;
+	}
 
 }
 
 void Player::StartAdventure()
 {
+	Grid gGrid;
+
 	char cInput;
 	cout << "Welcome To The Wumpus Adventure!\n\n";
 	cout << "Would You Like To Play Or Quit? Enter P or Q:\n";
@@ -134,6 +195,18 @@ void Player::StartAdventure()
 
 }
 
+void Player::FoundGold(int &x, int &y)
+{
+	Grid gGrid;
+	if ((x == 3 && y == 3) && (iItem[1].iQuantity == 0))
+	{
+		iItem[1].iQuantity++;
+		gGrid.PrintGame();
+		cout << "You Found The Gold!\n";
+	}
+		
+}
+
 //void Player::ChooseMap()
 //{
 //	Grid gGrid;
@@ -148,7 +221,7 @@ void Player::StartAdventure()
 //	if (iInput == 1)
 //	{
 //		system("cls");
-//		gGrid.GenerateRandomGrid();
+//		gGrid.GenerateGridToFile();
 //	}
 //	else if (iInput == 2)
 //	{
@@ -164,20 +237,3 @@ void Player::StartAdventure()
 //
 //}
 
-void Player::Inventory()
-{
-	struct Items
-	{
-		string sName;
-		int iQuantity;
-	};
-
-	Items iItem;
-
-	iItem.sName = "Arrow";
-	iItem.iQuantity = 1;
-
-
-	cout << "Inventory:\n"; 
-	cout << iItem.sName << " x " << iItem.iQuantity << endl; 
-}

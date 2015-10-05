@@ -8,7 +8,7 @@
 //Preprocessor Directives - If Not Defined Then Define 
 #ifndef _GRID_H_
 #define _GRID_H_
-
+#include "Player.h"
 #include<iostream>
 using namespace std;
 
@@ -19,7 +19,7 @@ public:
 	Grid();
 	~Grid();
 
-    //void GenerateGrid();
+    void GenerateGridToFile();
 	void GenerateGridFromFile();
 	void PrintGame();
 

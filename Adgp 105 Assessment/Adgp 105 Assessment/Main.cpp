@@ -31,14 +31,11 @@ int main()
 	//pPlayer.ChooseMap();
 	gGrid.PrintGame();
 	cout << "Current Position: " << pPlayer.GetPositionX() << ',' << pPlayer.GetPositionY();
-
+	
 	while (bIsDone == true)
 	{
 		
 		pPlayer.Move();
-		pPlayer.Attack();
-
-
 
 	}
 

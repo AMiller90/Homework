@@ -9,6 +9,8 @@
 #ifndef _CELL_H_
 #define _CELL_H_
 
+#include "Player.h"
+
 using namespace std;
 
 class Cell
@@ -19,20 +21,21 @@ public:
 	Cell();
 	~Cell();
 
-	Cell InitCell(int a_iX, int a_iY);
+	Cell StoreCells(int a_iX, int a_iY);
 	int GetPositionX();
 	int GetPositionY();
+	bool GetLife();
+	void SetLife(bool l);
+	void Pits(Player player, int x, int y);
+	void SetPosition(int a_iX, int a_iY);
+	void Wumpus(Player player, int x, int y);
+	void Gold(Player player, int x, int y);
+	
 
 private:
-
-
-
-
-private:
-
+	bool life;
 	int m_iX;
 	int m_iY;
-
 
 };
 

@@ -26,19 +26,19 @@ Grid::~Grid()
 
 }
 
-////Generate Random Grid Size And Initialize
-//void Grid::GenerateGrid()
+///Generate Random Grid Size And Initialize
+//void Grid::GenerateGridToFile()
 //{
 //	//Creates instance of cell
 //	Cell cCell;
 //
-//	//sets random generator and seeds it with time
-//	mt19937 randomGen(time(0));
-//	
-//	//distributes random numbers that are between the numbers set in parenthesis
-//	uniform_int_distribution<int> GridSize(3, 10);
+//	////sets random generator and seeds it with time
+//	//mt19937 randomGen(time(0));
+//
+//	////distributes random numbers that are between the numbers set in parenthesis
+//	//uniform_int_distribution<int> GridSize(3, 10);
 //	//sets variable to the random number generated from the range and generator
-//	int Size = 9;// GridSize(randomGen);
+//	int Size = 16;// GridSize(randomGen);
 //	//Sets variable to temp time temp variables
 //	//int Size = Temp * Temp;
 //	//sets up a pointer
@@ -56,29 +56,55 @@ Grid::~Grid()
 //		if (i % temp2 == temp2 - 1)
 //		{//Print out a newline 
 //			y++;
+//
 //		}
 //		//Gives the Grid index its values 
-//		Grid[i] = cCell.InitCell(y, x);
+//		Grid[i] = cCell.StoreCells(y, x);
 //
 //	}
+//	
+//	
+//	string s;
+//	ofstream File;
 //
-//	////Loop through array 
-//	for (int i = 0; i < Size; i++)
-//	{//Print out array
-//		if (i % temp2 == temp2 - 1)
-//		{//Print out a newline 
-//			cout << endl;
+//	File.open("Wumpus Map.txt", ios_base::out);
+//
+//	if (File.fail())
+//	{
+//
+//		cout << "File Could Not Be Opened!\n";
+//
+//	}
+//	else
+//	{
+//		////Loop through array 
+//		for (int i = 0; i < Size; i++)
+//		{//Print out array
+//			if (i % temp2 == temp2 - 1)
+//			{//Print out a newline 
+//				File << endl;
+//			}
+//
+//			File << Grid[i].GetPositionY() << "," << Grid[i].GetPositionX() << " ";
+//		
 //		}
 //
-//		/*cout << Grid[i].GetPositionY() << "," << Grid[i].GetPositionX() << " ";*/
-//
+//		File.close();
 //		
+//
+//
 //	}
+//
+//	delete[] Grid;
+//
 //}
 
 //Generate Grid From File And Initialize
 void Grid::GenerateGridFromFile()
 {
+	Cell Wumpus;
+	Cell Gold;
+	Cell Pit;
 
 	string s;
 	ifstream File;
@@ -105,21 +131,24 @@ void Grid::GenerateGridFromFile()
 	cout << endl;
 
 	File.close();
+
 }
 
 void Grid::PrintGame()
 {
-	Player pPlayer;
+	Player player;
+	
+	system("cls");
 	GenerateGridFromFile();
-	//system("cls");
+
 	cout << "What Would You Like To Do?\n\n";
 	cout << "Move Up: w\n";
 	cout << "Move Up: a\n";
 	cout << "Move Up: s\n";
 	cout << "Move Up: d\n";
 	cout << "Use Arrow: 1\n\n";
-	pPlayer.Inventory();
-	
+	player.Inventory();
+
 }
 
 

@@ -14,10 +14,11 @@
 
 using namespace std;
 
+
 class Player
 {
 public:
-
+	
 	Player();
 
     ~Player();
@@ -26,10 +27,11 @@ public:
 	int GetPositionY();
 	void SetPosition(int a_iX, int a_iY);
 	void Move();
-	void Attack();
+	bool Attack();
 	void StartAdventure();
 	void ChooseMap();
 	void Inventory();
+	void FoundGold(int &x, int &y);
 
 private:
 
