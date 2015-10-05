@@ -9,21 +9,31 @@
 #ifndef _GRID_H_
 #define _GRID_H_
 
+//Includes The input/output stream to interact with the user and get input as well
+//as output to the console window.
 #include<iostream>
+
+//Includes std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
+//using namespace std takes care of that
 using namespace std;
 
+//Sets up Grid class
 class Grid
 {
+//Variables Or Functions That Can Be Accessed In Any Class Go Here Under Public And Before Private
 public:
-
+	//Class Constructor
 	Grid();
+	//Class Deconstructor
 	~Grid();
 
-    //void GenerateGrid();
+	//All Function Prototypes That Are Used In This Class
+	//This Declares These Functions-The Definitions Will Be In The .cpp File 
+    void GenerateGridToFile();
 	void GenerateGridFromFile();
 	void PrintGame();
 
 };
 
 //Ends The Inclusion Of This Class
-#endif _PLAYER_H_
+#endif _GRID_H_

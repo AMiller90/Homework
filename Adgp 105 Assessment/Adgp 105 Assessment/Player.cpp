@@ -5,9 +5,11 @@
 //Brief: This is the Player cpp file. It will contain all the Player Class function definitions and variable definitions.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//Include Player header file to be able to use its class functions
 #include "Player.h"
+//Include Grid header file to be able to use its class functions
 #include "Grid.h"
+//Include Cell header file to be able to use its class functions
 #include "Cell.h"
 
 Player::Player()
@@ -21,6 +23,15 @@ Player::Player()
 Player::~Player()
 {
 }
+
+struct Items
+{
+	string sName;
+	int iQuantity;
+
+};
+
+Items iItem[2] = {{ "Arrow", 1 }, {"Gold", 0}};
 
 int Player::GetPositionX()
 {
@@ -39,7 +50,7 @@ void Player::SetPosition(int a_iX, int a_iY)
 
 
 }
-
+//Done
 void Player::Move()
 {
 	Grid gGrid;
@@ -53,60 +64,124 @@ void Player::Move()
 	switch (cInput)
 	{
 	case 'w':
+	{
 		SetPosition(m_iX, m_iY - 1);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		if (m_iY < 0)
+		{
+			SetPosition(m_iX, m_iY = 0);
+			cout << "There is a wall there!\n";
+		}
+		cCell.Pits(GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case 'a':
+	{
 		SetPosition(m_iX - 1, m_iY);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		if (m_iX < 0)
+		{
+			SetPosition(m_iX = 0, m_iY);
+			cout << "There is a wall there!\n";
+		}
+		cCell.Pits(GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case 's':
+	{
 		SetPosition(m_iX, m_iY + 1);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		if (m_iY > 3)
+		{
+			SetPosition(m_iX, m_iY = 3);
+			cout << "There is a wall there!\n";
+		}
+		cCell.Pits(GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case 'd':
+	{
 		SetPosition(m_iX + 1, m_iY);
-		system("cls");
 		gGrid.PrintGame();
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX();
+		if (m_iX > 3)
+		{
+			SetPosition(m_iX = 3, m_iY);
+			cout << "There is a wall there!\n";
+		}
+		cCell.Pits(GetPositionY(), GetPositionX());
+		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
+		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
+		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
 		break;
-
+	}
 	case '1':
-		gGrid.PrintGame();
-		system("cls");
+	{
 		Attack();
 		break;
-
-
-
-		default:
+	}
+	    
+	default:
+	{
 		break;
+	}
+		
+	};
 
+
+
+}
+
+bool g_bWumpus = true;
+
+bool Player::Attack()
+{
+	Cell Wumpus;
+	Grid gGrid;
+
+	if (((((GetPositionX() == 1 && GetPositionY() == 2) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) ||
+		(GetPositionX() == 3 && GetPositionY() == 2) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) || 
+		(GetPositionX() == 2 && GetPositionY() == 1) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) || 
+		(GetPositionX() == 2 && GetPositionY() == 3) && 
+		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1)))))
+	{
+		g_bWumpus = false;
+		iItem[0].iQuantity--;
+		gGrid.PrintGame();
+		cout << "You Have Killed The Wumpus!\n";
+	}
+	
+
+	 
+
+	return g_bWumpus;
+}
+//Done
+void Player::Inventory()
+{
+	cout << "Inventory:\n";
+	for (int i = 0; i < 2; ++i)
+	{
+		cout << iItem[i].sName << " x " << iItem[i].iQuantity << endl;
 	}
 
-
-
 }
-
-void Player::Attack()
-{
-
-
-
-
-}
-
+//Done
 void Player::StartAdventure()
 {
+	Grid gGrid;
+
 	char cInput;
 	cout << "Welcome To The Wumpus Adventure!\n\n";
 	cout << "Would You Like To Play Or Quit? Enter P or Q:\n";
@@ -133,51 +208,31 @@ void Player::StartAdventure()
 
 
 }
-
-//void Player::ChooseMap()
-//{
-//	Grid gGrid;
-//
-//	int iInput;
-//	
-//	cout << "Please Choose A Map:\n";
-//	cout << "1.Generate Random Map\n";
-//	cout << "2.Generate Map From File\n";
-//	cin >> iInput;
-//
-//	if (iInput == 1)
-//	{
-//		system("cls");
-//		gGrid.GenerateRandomGrid();
-//	}
-//	else if (iInput == 2)
-//	{
-//		system("cls");
-//		gGrid.GenerateGridFromFile();
-//
-//	}
-//	else
-//	{
-//		cout << "Invalid Input!\n";
-//		exit(1);
-//	}
-//
-//}
-
-void Player::Inventory()
+//Done
+void Player::FoundGold(int &a_rfX, int &a_rfY)
 {
-	struct Items
+	Grid gGrid;
+	if ((a_rfX == 3 && a_rfY == 3) && (iItem[1].iQuantity == 0))
 	{
-		string sName;
-		int iQuantity;
-	};
-
-	Items iItem;
-
-	iItem.sName = "Arrow";
-	iItem.iQuantity = 1;
-
-
-	cout << "Inventory:\n"; 
-	cout << iItem.sName << " x " << iItem.iQuantity << endl; 
+		iItem[1].iQuantity++;
+		gGrid.PrintGame();
+		cout << "You Found The Gold!\n";
+	}
+		
 }
+//Done
+bool Player::Victory()
+{
+	bool bVictory = true;
+	if (((GetPositionX() == 0 && GetPositionY() == 0) &&
+		iItem[1].iQuantity == 1))
+	{
+		cout << "You have won! Congrats!\n";
+		bVictory = false;
+
+	}
+
+	return bVictory;
+}
+
+

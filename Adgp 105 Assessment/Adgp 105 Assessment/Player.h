@@ -9,30 +9,41 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+//Includes The input/output stream to interact with the user and get input as well
+//as output to the console window.
 #include<iostream>
+//Includes String So We Can Use That Data Type In The Class
 #include<string>
 
+//Includes std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
+//using namespace std takes care of that
 using namespace std;
 
+//Sets Up Player Class
 class Player
 {
+//Variables Or Functions That Can Be Accessed In Any Class Go Here Under Public And Before Private
 public:
-
+	//Class Constructor
 	Player();
-
+	//Class Deconstructor
     ~Player();
 
+	//All Function Prototypes That Are Used In This Class
+	//This Declares These Functions-The Definitions Will Be In The .cpp File
 	int GetPositionX();
 	int GetPositionY();
 	void SetPosition(int a_iX, int a_iY);
 	void Move();
-	void Attack();
+	bool Attack();
 	void StartAdventure();
-	void ChooseMap();
 	void Inventory();
+	void FoundGold(int &a_rfX, int &a_rfY);
+	bool Victory();
 
+//Variables and Functions Only Accessible By This Class Go Here Under Private
 private:
-
+	//Private Member Variables
 	int m_iX;
 	int m_iY;
 
