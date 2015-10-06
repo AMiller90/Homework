@@ -33,16 +33,16 @@ using namespace std;
 //	INPUT : A single integer specifying the array - index of the item to return.
 //	OUTPUT : A copy / reference(your choice) of an item from the data array.
 
-template<typename T, int N>
+//template<typename T>
 
-int main()
+void main()
 {
-	Template temp;
-	
+    Template<int, 5> temp(5);
 
+	temp.add(5);
+	temp.oper(0);
 
 
 
 	system("PAUSE");
-	return 0;
 }

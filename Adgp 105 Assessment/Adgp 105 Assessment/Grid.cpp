@@ -11,10 +11,6 @@
 #include "Cell.h"
 //Include Player header file to be able to use its class functions
 #include "Player.h"
-//Include random to access its functions
-#include <random>
-//Include time.h to access its functions
-#include <time.h>
 //Include fstream to access the file streams 
 #include <fstream>
 //Includes String So We Can Use That Data Type In The Class
@@ -36,13 +32,8 @@ void Grid::GenerateGridToFile()
 	//Creates instance of cell
 	Cell cCell;
 
-	////sets random generator and seeds it with time
-	mt19937 randomGen(time(0));
-
-	////distributes random numbers that are between the numbers set in parenthesis
-	uniform_int_distribution<int> GridSize(4, 4);
-	//sets variable to the random number generated from the range and generator
-	int Temp = GridSize(randomGen);
+	//sets up a variable called temp and sets its value to 4
+	int Temp = 4;
 	//Sets variable to temp time temp variables
 	int Size = Temp * Temp;
 	//sets up a pointer

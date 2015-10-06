@@ -63,18 +63,15 @@ T CMin(T a, T b)
 template<typename T>
 T CMax(T a, T b)
 {
-	T biggest;
-
 	if (a > b)
 	{
-		biggest = a;
+		return a;
 	}
 	else if (b > a)
 	{
-		biggest = b;
+		return b;
 	}
 
-	return biggest;
 }
 
 //Exercise 1:
@@ -104,7 +101,6 @@ T CMax(T a, T b)
 
 int main()
 {
-
 	
 	/*1.)int a = Min(3, 4);
 	cout << a;*/
@@ -115,10 +111,10 @@ int main()
 	/*3.)int c = Clamp(9, 10, 8);
 	cout << c;*/
 	
-	/*4.)char a = CMin<char>(86, 87);
+	/*4.)char a = CMin<char>('Z', 'A');
 	cout << a;*/
 
-   /* 5.)char b = CMax<char>(90, 87);
+    /*4.)char b = CMax<char>('B', 'A');
 	cout << b;*/
 
 
