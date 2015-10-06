@@ -19,14 +19,16 @@
 //Constructor
 Grid::Grid()
 {
+	//Is not initialized
 }
 
 //Destructor
 Grid::~Grid()
 {
+	//Is not initialized
 }
 
-//Generate Random Grid Size And Initialize
+//Generate Grid Size,Initialize and Store in A File
 void Grid::GenerateGridToFile()
 {
 	//Creates instance of cell
@@ -100,9 +102,9 @@ void Grid::GenerateGridToFile()
 
 }
 
-//Generate Grid From File And Initialize
+//Generate Grid From File
 void Grid::GenerateGridFromFile()
-{//Create instance of cell object and call it Wumpus
+{//Create instance of cell object and call it Wumpus so the functions from the respective class can be accessed
 	Cell Wumpus;
 	//create a string variable and call it s
 	string s;
@@ -152,5 +154,3 @@ void Grid::PrintGame()
 	player.Inventory();
 
 }
-
-

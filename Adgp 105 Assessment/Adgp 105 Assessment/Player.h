@@ -30,15 +30,26 @@ public:
     ~Player();
 
 	//All Function Prototypes That Are Used In This Class
-	//This Declares These Functions-The Definitions Will Be In The .cpp File
+	//The Definitions Will Be In The .cpp File
+
+	//Function Used To Get The Private Variable m_iX Of This Class So They Can Be Used Outside The Class If Need Be.
 	int GetPositionX();
+	//Function Used To Get The Private Variable m_iY Of This Class So They Can Be Used Outside The Class If Need Be.
 	int GetPositionY();
+	//Function Used To Set The Player Position To 2 integer Variables if Wanting To Set Them To Something Different
 	void SetPosition(int a_iX, int a_iY);
+	//This Function Takes User Input To Move The Player In The Cave And Use The Inventory Items
 	void Move();
+	//This Function Allows The Player To Use The Arrow From The Inventory To Attack and returns a boolean value
 	bool Attack();
+	//Prompts User To Play Game Or Quit 
 	void StartAdventure();
+	//This Function Sets Up The Players Inventory
 	void Inventory();
+	//This Function Allows The Player To Automatically Get The Gold Once Inside The Room That Has The Gold And Put 
+	//It Into The Inventory
 	void FoundGold(int &a_rfX, int &a_rfY);
+	//This Function Is Used To Check If The Player Made It Back To The Entrance With The Gold. If So, Player Wins.
 	bool Victory();
 
 //Variables and Functions Only Accessible By This Class Go Here Under Private

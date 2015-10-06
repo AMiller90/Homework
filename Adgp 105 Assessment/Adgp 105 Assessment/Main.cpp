@@ -33,7 +33,7 @@ int main()
 	pPlayer.StartAdventure();
 	//Prints Player Instructions, Inventory and map
 	gGrid.PrintGame();
-	//Print Players Position
+	//Print Players Position - prints x position using GetPositionX function and prints y position using GetPositionY function
 	cout << "Current Position: " << pPlayer.GetPositionX() << ',' << pPlayer.GetPositionY();
 
 	//Using A While Loop To Initiate The Game Loop - It will keep running while bIsDone is equal to true
@@ -46,13 +46,9 @@ int main()
 		//The While Loop. Causing The Program To End.
 		bIsDone = pPlayer.Victory();
 	}
-
-
-
-
-
-
+	//Pauses Program and waits for input
 	system("PAUSE");
+	//Returns from the main function
 	return 0;
 
 }

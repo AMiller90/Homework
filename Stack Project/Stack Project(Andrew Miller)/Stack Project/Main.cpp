@@ -16,28 +16,31 @@ using namespace std;
 
 int main()
 {
+	
 	//Create instance of class TheStack
-	TheStack sStack;
+	TheStack<char> sStack;
 
-	//Creates instances of 2 nodes called temp and temp2
-	Node Temp;
-	Node Temp2;
-	Node Temp3;
+	//Creates instances of 3 nodes called temp, temp2, and temp3
+	Node<char> Temp;
+	Node<char> Temp2;
+	Node<char> Temp3;
 	//Creates instance of node called Node1 and Sets it to address of temp
-	Node *Node1 = &Temp;
+	Node<char> *Node1 = &Temp;
 	//Creates instance of node called Node2 and Sets it to address of temp2
-	Node *Node2 = &Temp2;
-
-	Node *Node3 = &Temp3;
+	Node<char> *Node2 = &Temp2;
+	//Creates instance of node called Node3 and Sets it to address of temp3
+	Node<char> *Node3 = &Temp3;
 
 	//node1 num is set to 1
-	Node1->num = 1;
+	Node1->num = 'A';
 	//mode 1 points to next node and it is set to node2
 	Node1->next = Node2;
 	//node2 num is set to 2
-	Node2->num = 2;
-	Node1->next = Node3;
-	Node3->num = 5;
+	Node2->num = 'B';
+	//mode 2 points to next node and it is set to node3
+	Node2->next = Node3;
+	//node3 num is set to 5
+	Node3->num = 'C';
 
 
 	//calls the push function

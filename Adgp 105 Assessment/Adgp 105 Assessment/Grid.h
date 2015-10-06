@@ -29,8 +29,12 @@ public:
 
 	//All Function Prototypes That Are Used In This Class
 	//This Declares These Functions-The Definitions Will Be In The .cpp File 
+
+	//Generate Grid Size, Initialize and Store in A File
     void GenerateGridToFile();
+	//Generate Grid From File
 	void GenerateGridFromFile();
+	//Prints Player Instructions, Inventory and map
 	void PrintGame();
 
 };
