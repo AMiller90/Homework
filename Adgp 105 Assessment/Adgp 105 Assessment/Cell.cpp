@@ -71,13 +71,30 @@ void Cell::SetLife(bool l)
 
 }
 
-//Function Used To Implement Pit Positions
+//Function Used To Implement Pit Positions and prompt user about breezes
 void Cell::Pits(int a_ix, int a_iy)
 {//Create Instance of cell object and calls it Pit so functions can be used from the respective class
 	Cell Pit;
 
+
+	
 	//Sets the Pit Position to Specific Coordinates
 	Pit.SetPosition(1, 0);
+
+	//if statement that checks current players position
+	if (((a_ix == 0 && a_iy == 0) ||
+		(a_ix == 2 && a_iy == 0) ||
+		(a_ix == 1 && a_iy == 1) ||
+		(a_ix == 3 && a_iy == 0) ||
+		(a_ix == 2 && a_iy == 1) ||
+		(a_ix == 3 && a_iy == 2) ||
+		(a_ix == 0 && a_iy == 2) ||
+		(a_ix == 1 && a_iy == 2) ||
+		(a_ix == 1 && a_iy == 3)))
+	{//if current position is any of these coordinates then print this
+		cout << "There Is A Breeze\n";
+
+	}
 	//if statement that checks the players current position and the Pits X and Y positions
 	if ((a_ix == 1 && a_iy == 0) &&
 		(Pit.GetPositionX() == 1 && Pit.GetPositionY() == 0))
@@ -121,12 +138,21 @@ void Cell::Pits(int a_ix, int a_iy)
 	
 }
 
-//Function Used To Implement Wumpus Position And check its life
+//Function Used To Implement Wumpus Position, check its life and prompt user about a smell
 void Cell::Wumpus(Player &a_rfplayer, int a_ix, int a_iy)
 {//Create a cell object called Wumpus so now functions can be used from the respective class
 	Cell Wumpus;
 	//Sets the Wumpus Position to Specific Coordinates
 	Wumpus.SetPosition(2, 2);
+	//If statement that checks players current position
+	if ((a_ix == 1 && a_iy == 2) ||
+		(a_ix == 2 && a_iy == 1) ||
+		(a_ix == 2 && a_iy == 3) ||
+		(a_ix == 3 && a_iy == 2))
+	{//if players current position is any of those coordinates then print this
+		cout << "There is a smell\n";
+	}
+
 	//Set Wumpus Life to the return value of the Attack function
 	Wumpus.SetLife(a_rfplayer.Attack());
 	//if statement that checks player current position and the wumpus position and if the wumpus is alive
@@ -150,12 +176,19 @@ void Cell::Wumpus(Player &a_rfplayer, int a_ix, int a_iy)
 
 }
  
-//Function used to Implement Gold Position And check the player position and the gold position
+//Function used to Implement Gold Position And check the player position, the gold position and prompt user about glitter
 void Cell::Gold(Player &a_rfplayer, int a_ix, int a_iy)
 {//Creates a Cell object called Gold so now functions can be used from the respective class
 	Cell Gold;
 	//Sets the Gold Position to Specific Coordinates
 	Gold.SetPosition(3, 3);
+	//If statement that checks players current position
+	if ((a_ix == 2 && a_iy == 3) ||
+		(a_ix == 3 && a_iy == 2))
+	{//if players current position is any of those coordinates then print this
+		cout << "There Is A Glitter\n";
+	}
+
 	//If statement that checks the players current position and if it is the same as the golds position 
 	if ((a_ix == 3 && a_iy == 3) &&
 		(Gold.GetPositionX() == 3 && Gold.GetPositionY() == 3))

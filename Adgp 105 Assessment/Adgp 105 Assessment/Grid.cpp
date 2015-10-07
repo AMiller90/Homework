@@ -104,8 +104,7 @@ void Grid::GenerateGridToFile()
 
 //Generate Grid From File
 void Grid::GenerateGridFromFile()
-{//Create instance of cell object and call it Wumpus so the functions from the respective class can be accessed
-	Cell Wumpus;
+{
 	//create a string variable and call it s
 	string s;
 	//create an ifstream object and call it file

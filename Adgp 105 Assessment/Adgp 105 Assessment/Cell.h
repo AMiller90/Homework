@@ -29,7 +29,7 @@ public:
 
 	//All Function Prototypes That Are Used In This Class
 	//This Declares These Functions-The Definitions Will Be In The .cpp File
-
+	
 	//Function that is used to store the positions for cells and returns the object data
 	Cell StoreCells(int a_iX, int a_iY);
 	//Function Used To Get The Private Variable m_iX Of This Class So They Can Be Used Outside The Class If Need Be.
@@ -40,13 +40,13 @@ public:
 	bool GetLife();
 	//Function Used To Set The Cell Life To a boolean Variable if Wanting To Set It To Something Different
 	void SetLife(bool a_l);
-	//Function Used To Implement Pit Positions
+	//Function Used To Implement Pit Positions and prompt user about breezes
 	void Pits(int a_x, int a_y);
 	//Function Used To Set The Cell Position To 2 integer Variables if Wanting To Set Them To Something Different
 	void SetPosition(int a_iX, int a_iY);
-	//Function Used To Implement Wumpus Position And check its life
+	//Function Used To Implement Wumpus Position, check its life and prompt user about a smell
 	void Wumpus(Player &a_rfplayer, int a_x, int a_y);
-	//Function used to Implement Gold Position And check the player position and the gold position
+	//Function used to Implement Gold Position And check the player position, the gold position and prompt user about glitter
 	void Gold(Player &a_rfplayer, int a_x, int a_y);
 
 //Variables and Functions Only Accessible By This Class Go Here Under Private
