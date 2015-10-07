@@ -8,13 +8,9 @@
 //Preprocessor Directives - If Not Defined Then Define 
 #ifndef _GRID_H_
 #define _GRID_H_
-<<<<<<< HEAD
-#include "Player.h"
-=======
 
 //Includes The input/output stream to interact with the user and get input as well
 //as output to the console window.
->>>>>>> origin/master
 #include<iostream>
 
 //Includes std Globally So std Does Not Have To Be Used Each And Every Time When It Is Needed.
@@ -31,16 +27,12 @@ public:
 	//Class Deconstructor
 	~Grid();
 
-<<<<<<< HEAD
-    void GenerateGridToFile();
-=======
 	//All Function Prototypes That Are Used In This Class
 	//This Declares These Functions-The Definitions Will Be In The .cpp File 
 
 	//Generate Grid Size, Initialize and Store in A File
     void GenerateGridToFile();
 	//Generate Grid From File
->>>>>>> origin/master
 	void GenerateGridFromFile();
 	//Prints Player Instructions, Inventory and map
 	void PrintGame();

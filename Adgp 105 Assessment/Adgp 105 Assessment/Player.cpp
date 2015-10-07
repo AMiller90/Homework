@@ -27,17 +27,6 @@ Player::~Player()
 	//Is not initialized
 }
 
-<<<<<<< HEAD
-struct Items
-{
-	string sName;
-	int iQuantity;
-
-};
-
-Items iItem[2] = {{ "Arrow", 1 }, {"Gold", 0}};
-
-=======
 //Item Struct Created To Give Player An Inventory
 struct Items
 
@@ -51,7 +40,6 @@ struct Items
 Items iItem[2] = {{ "Arrow", 1 }, {"Gold", 0}};
 
 //Function Used To Get The Private Variable m_iX Of This Class So They Can Be Used Outside The Class If Need Be.
->>>>>>> origin/master
 int Player::GetPositionX()
 {//return the m_iX value
 	return m_iX;
@@ -91,53 +79,6 @@ void Player::Move()
 	{
 	//Move down the Y axis
 	case 'w':
-<<<<<<< HEAD
-	{
-		SetPosition(m_iX, m_iY - 1);
-		gGrid.PrintGame();
-		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
-		break;
-	}
-	case 'a':
-	{
-		SetPosition(m_iX - 1, m_iY);
-		gGrid.PrintGame();
-		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
-		break;
-	}
-	case 's':
-	{
-		SetPosition(m_iX, m_iY + 1);
-		gGrid.PrintGame();
-		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
-		break;
-	}
-	case 'd':
-	{
-		SetPosition(m_iX + 1, m_iY);
-		gGrid.PrintGame();
-		cCell.Pits(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Wumpus(pPlayer, GetPositionY(), GetPositionX());
-		cCell.Gold(pPlayer, GetPositionY(), GetPositionX());
-		cout << "Current Position: " << GetPositionY() << ',' << GetPositionX() << endl;
-		break;
-	}
-	case '1':
-	{
-		Attack();
-		break;
-	}
-	    
-=======
 	{//Set players position to new coordinates
 		SetPosition(m_iX, m_iY - 1);
 		//Call PrintGame function
@@ -235,7 +176,6 @@ void Player::Move()
 		break;
 	}
 	    //Not Used
->>>>>>> origin/master
 	default:
 	{
 		break;
@@ -247,47 +187,6 @@ void Player::Move()
 
 }
 
-<<<<<<< HEAD
-bool bWumpus = true;
-
-bool Player::Attack()
-{
-	Cell Wumpus;
-	Grid gGrid;
-
-	if (((((GetPositionX() == 1 && GetPositionY() == 2) && 
-		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) ||
-		(GetPositionX() == 3 && GetPositionY() == 2) && 
-		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) || 
-		(GetPositionX() == 2 && GetPositionY() == 1) && 
-		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1) || 
-		(GetPositionX() == 2 && GetPositionY() == 3) && 
-		(Wumpus.GetLife() == true) && (iItem[0].iQuantity == 1)))))
-	{
-		bWumpus = false;
-		iItem[0].iQuantity--;
-		gGrid.PrintGame();
-		cout << "You Have Killed The Wumpus!\n";
-	}
-
-	/*else if  (((((GetPositionX() != 2 && GetPositionY() != 3) &&
-		(GetPositionX() != 2 && GetPositionY() != 1) &&
-		(GetPositionX() != 3 && GetPositionY() != 2) &&
-		(GetPositionX() != 1 && GetPositionY() != 2) &&
-		(iItem[0].iQuantity == 1)))))
-	{
-		iItem[0].iQuantity--;
-		gGrid.PrintGame();
-		cout << "You Have Wasted Your Arrow!\n";
-	}*/
-
-	return bWumpus;
-}
-
-void Player::Inventory()
-{
-	cout << "Inventory:\n";
-=======
 //Bool Variable Used To Represent The Wumpus Life. It Is Set To True Meaning The Wumpus Is Alive
 bool g_bWumpus = true;
 
@@ -328,7 +227,6 @@ void Player::Inventory()
 {
 	cout << "Inventory:\n";
 	//This For Loop Is Used To Iterate(Loop) Through The Index Of All The Variables In The Item Struct And Then Prints Them
->>>>>>> origin/master
 	for (int i = 0; i < 2; ++i)
 	{
 		cout << iItem[i].sName << " x " << iItem[i].iQuantity << endl;
@@ -339,14 +237,9 @@ void Player::Inventory()
 //Prompts User To Play Game Or Quit 
 void Player::StartAdventure()
 {
-<<<<<<< HEAD
-	Grid gGrid;
-
-=======
 	//Create instance of Grid object so the functions from their respective class can be accessed
 	Grid gGrid;
 	//Create a char variable to store user input
->>>>>>> origin/master
 	char cInput;
 	//Print out intro to game
 	cout << "Welcome To The Wumpus Adventure!\n\n";
@@ -380,15 +273,6 @@ void Player::StartAdventure()
 
 }
 
-<<<<<<< HEAD
-void Player::FoundGold(int &x, int &y)
-{
-	Grid gGrid;
-	if ((x == 3 && y == 3) && (iItem[1].iQuantity == 0))
-	{
-		iItem[1].iQuantity++;
-		gGrid.PrintGame();
-=======
 //This Function Allows The Player To Automatically Get The Gold Once Inside The Room That Has The Gold And Put 
 //It Into The Inventory
 void Player::FoundGold(int &a_rfX, int &a_rfY)
@@ -402,43 +286,11 @@ void Player::FoundGold(int &a_rfX, int &a_rfY)
 		//Calls the PrintGame function
 		gGrid.PrintGame();
 		//print this to the screen
->>>>>>> origin/master
 		cout << "You Found The Gold!\n";
 	}
 		
 }
 
-<<<<<<< HEAD
-//void Player::ChooseMap()
-//{
-//	Grid gGrid;
-//
-//	int iInput;
-//	
-//	cout << "Please Choose A Map:\n";
-//	cout << "1.Generate Random Map\n";
-//	cout << "2.Generate Map From File\n";
-//	cin >> iInput;
-//
-//	if (iInput == 1)
-//	{
-//		system("cls");
-//		gGrid.GenerateGridToFile();
-//	}
-//	else if (iInput == 2)
-//	{
-//		system("cls");
-//		gGrid.GenerateGridFromFile();
-//
-//	}
-//	else
-//	{
-//		cout << "Invalid Input!\n";
-//		exit(1);
-//	}
-//
-//}
-=======
 //This Function Is Used To Check If The Player Made It Back To The Entrance With The Gold. If So, Player Wins.
 bool Player::Victory()
 {//Created a bool variable named bVictory and set its value to true
@@ -456,5 +308,4 @@ bool Player::Victory()
 	return bVictory;
 }
 
->>>>>>> origin/master
 

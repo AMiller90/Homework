@@ -35,24 +35,16 @@ int main()
 	gGrid.PrintGame();
 	//Print Players Position - prints x position using GetPositionX function and prints y position using GetPositionY function
 	cout << "Current Position: " << pPlayer.GetPositionX() << ',' << pPlayer.GetPositionY();
-<<<<<<< HEAD
-	
-=======
 
 	//Using A While Loop To Initiate The Game Loop - It will keep running while bIsDone is equal to true
->>>>>>> origin/master
 	while (bIsDone == true)
 	{
 		//Gets user input to move player 
 		pPlayer.Move();
-<<<<<<< HEAD
-
-=======
 		//This Function Is Used To Check If The Player Made It Back To The Entrance With The Gold. If So, The Function Returns False
 		//Then The Variable bIsDone Gets Set To False Which Is The Return Value Of The Function And It Causes The Program To Break Out
 		//The While Loop. Causing The Program To End.
 		bIsDone = pPlayer.Victory();
->>>>>>> origin/master
 	}
 	//Pauses Program and waits for input
 	system("PAUSE");

@@ -28,87 +28,6 @@ Grid::~Grid()
 	//Is not initialized
 }
 
-<<<<<<< HEAD
-///Generate Random Grid Size And Initialize
-//void Grid::GenerateGridToFile()
-//{
-//	//Creates instance of cell
-//	Cell cCell;
-//
-//	////sets random generator and seeds it with time
-//	//mt19937 randomGen(time(0));
-//
-//	////distributes random numbers that are between the numbers set in parenthesis
-//	//uniform_int_distribution<int> GridSize(3, 10);
-//	//sets variable to the random number generated from the range and generator
-//	int Size = 16;// GridSize(randomGen);
-//	//Sets variable to temp time temp variables
-//	//int Size = Temp * Temp;
-//	//sets up a pointer
-//	Cell *Grid;
-//	//sets pointer to new allocated array of memory set to the size variables value
-//	Grid = new Cell[Size];
-//	//Sets the square root of the size variables value to the temp2 variable
-//	int temp2 = sqrt(Size);
-//
-//	int y = 0;
-//	//Loop through array
-//	for (int i = 0; i < Size; ++i)
-//	{//Set x variable to i % 2
-//		int x = i % temp2;
-//		if (i % temp2 == temp2 - 1)
-//		{//Print out a newline 
-//			y++;
-//
-//		}
-//		//Gives the Grid index its values 
-//		Grid[i] = cCell.StoreCells(y, x);
-//
-//	}
-//	
-//	
-//	string s;
-//	ofstream File;
-//
-//	File.open("Wumpus Map.txt", ios_base::out);
-//
-//	if (File.fail())
-//	{
-//
-//		cout << "File Could Not Be Opened!\n";
-//
-//	}
-//	else
-//	{
-//		////Loop through array 
-//		for (int i = 0; i < Size; i++)
-//		{//Print out array
-//			if (i % temp2 == temp2 - 1)
-//			{//Print out a newline 
-//				File << endl;
-//			}
-//
-//			File << Grid[i].GetPositionY() << "," << Grid[i].GetPositionX() << " ";
-//		
-//		}
-//
-//		File.close();
-//		
-//
-//
-//	}
-//
-//	delete[] Grid;
-//
-//}
-
-//Generate Grid From File And Initialize
-void Grid::GenerateGridFromFile()
-{
-	Cell Wumpus;
-	Cell Gold;
-	Cell Pit;
-=======
 //Generate Grid Size,Initialize and Store in A File
 void Grid::GenerateGridToFile()
 {
@@ -140,7 +59,6 @@ void Grid::GenerateGridToFile()
 			y++;
 		}
 		
->>>>>>> origin/master
 
 	}
 	//create a string variable called s
@@ -219,13 +137,6 @@ void Grid::GenerateGridFromFile()
 //Prints Player Instructions, Inventory and map
 void Grid::PrintGame()
 {
-<<<<<<< HEAD
-	Player player;
-	
-	system("cls");
-	GenerateGridFromFile();
-
-=======
 	//create a player object and call it player
 	Player player;
 	//clear the screen
@@ -233,21 +144,13 @@ void Grid::PrintGame()
 	//Print grid to the screen from the file
 	GenerateGridFromFile();
 	//Print out input options
->>>>>>> origin/master
 	cout << "What Would You Like To Do?\n\n";
 	cout << "Move Up: w\n";
 	cout << "Move Up: a\n";
 	cout << "Move Up: s\n";
 	cout << "Move Up: d\n";
 	cout << "Use Arrow: 1\n\n";
-<<<<<<< HEAD
-	player.Inventory();
-
-}
-
-=======
 	//call player inventory function to print inventory to screen
 	player.Inventory();
->>>>>>> origin/master
 
 }
