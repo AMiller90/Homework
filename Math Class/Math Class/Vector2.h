@@ -8,24 +8,18 @@ class Vector2
 
 public:
 	//Constructor
-	Vector2<T>();
+	Vector2();
 	//Overloaded Constructor
-	Vector2<T>(T x, T y);
+	Vector2(T x, T y);
 	//Destructor
-	~Vector2<T>();
-	//Add Vectors
-	Vector2 Add(Vector2 &a, Vector2 &b);
-	//Subtract Vectors
-	Vector2 Sub(Vector2 &a, Vector2 &b);
-	//Multiply Vectors
-	Vector2 Multiply(Vector2 &a, Vector2 &b);
+	~Vector2();
 	//Magnitude of Vectors
-	float Mag(Vector2 &a);
+	float Mag(Vector2<T> &a);
 	//Normalise Vectors
-	Vector2 Normalise(Vector2 &a);
+	Vector2 Normalise(Vector2<T> &a);
 	//Dot Product Vector
-	T Dot(Vector2 &a, Vector2 &b);
-
+	T Dot(Vector2 &a, Vector2<T> &b);
+	
 	//Variables for coordinates
 	int x;
 	int y;
@@ -65,23 +59,23 @@ Vector2<T>::~Vector2()
 
 //Add Vectors
 template<typename T>
-Vector2<T> Vector2<T>::Add(Vector2 &a, Vector2 &b)
+Vector2<T> operator +(Vector2<T> &a, Vector2<T> &b)
 {
-	Vector2 c;
+	Vector2<T> c;
 	//Add each x coordinate of 2 passed in vectors then store value into x value of new vector
 	c.x = a.x + b.x;
 	//Add each y coordinate of 2 passed in vectors then store value into y value of new vector
 	c.y = a.y + b.y;
-	
+
 	//Return new vector
 	return c;
 }
 
 //Subtract Vectors
 template<typename T>
-Vector2<T> Vector2<T>::Sub(Vector2 &a, Vector2 &b)
+Vector2<T> operator -(Vector2<T> &a, Vector2<T> &b)
 {
-	Vector2 c;
+	Vector2<T> c;
 	//Subtract each x coordinate of 2 passed in vectors then store value into x value of new vector
 	c.x = a.x - b.x;
 	//Subtract each y coordinate of 2 passed in vectors then store value into y value of new vector
@@ -134,17 +128,16 @@ Vector2<T> Vector2<T>::Normalise(Vector2 &a)
 
 //Multiply Vectors
 template<typename T>
-Vector2<T> Vector2<T>::Multiply(Vector2 &a, Vector2 &b)
-{//New vector variable
-	Vector2 c;
+Vector2<T> operator *(Vector2<T> &a, Vector2<T> &b)
+{
+	Vector2<T> c;
 	//Square each x coordinate of 2 passed in vectors then store value into x value of new vector
 	c.x = a.x * b.x;
 	//Square each y coordinate of 2 passed in vectors then store value into y value of new vector
 	c.y = a.y * b.y;
-	
+
 	//Return new vector
 	return c;
-
 }
 
 //Dot Product Vector

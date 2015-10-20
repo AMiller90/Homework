@@ -23,23 +23,29 @@ int main()
 	Vector2<int>TwoDVec4;
 
 	//Add Vectors
-	TwoDVec4 = TwoDVec3.Add(TwoDVec1, TwoDVec2);
+	TwoDVec4 = TwoDVec1 + TwoDVec2;
 	std::cout << "(" << TwoDVec4.x << "," << TwoDVec4.y << ")\n";
+	
 	//Subtract Vectors
-	TwoDVec4 = TwoDVec3.Sub(TwoDVec1, TwoDVec2);
+	TwoDVec4 = TwoDVec1 - TwoDVec2;
 	std::cout << "(" << TwoDVec4.x << "," << TwoDVec4.y << ")\n";
+
 	//Multiply Vectors
-	TwoDVec4 = TwoDVec3.Multiply(TwoDVec1, TwoDVec2);
+	TwoDVec4 = TwoDVec1 * TwoDVec2;
 	std::cout << "(" << TwoDVec4.x << "," << TwoDVec4.y << ")\n";
+
 	//Magnitude of Vector
 	Mag = TwoDVec3.Mag(TwoDVec1);
 	std::cout << "Magnitude is: " << Mag << std::endl;
+
 	//Magnitude of Vector
 	Mag = TwoDVec3.Mag(TwoDVec2);
 	std::cout << "Magnitude is: " << Mag << std::endl;
+
 	//Normalise Vector
 	TwoDVec4 = TwoDVec3.Normalise(TwoDVec1);
 	std::cout << "(" << TwoDVec4.x << "," << TwoDVec4.y << ")\n";
+
 	//Dot Product
 	Dot = TwoDVec3.Dot(TwoDVec1, TwoDVec2);
 	std::cout << "Dot Product is: " << Dot << std::endl;
@@ -52,25 +58,34 @@ int main()
 	Vector3<int> Vec4;
 
 	//Add Vectors
-	Vec4 = Vec3.Add(Vec1, Vec2);
+	Vec4 = Vec1 + Vec2;
 	std::cout << "(" << Vec4.x << "," <<  Vec4.y << "," << Vec4.z << ")\n";
+
 	//Subtract Vectors
-	Vec4 = Vec3.Sub(Vec1, Vec2);
+	Vec4 = Vec1 - Vec2;
 	std::cout << "(" << Vec4.x << "," << Vec4.y << "," << Vec4.z << ")\n";
+
 	//Multiply Vectors
-	Vec4 = Vec3.Multiply(Vec1, Vec2);
+	Vec4 = Vec1 * Vec2;
 	std::cout << "(" << Vec4.x << "," << Vec4.y << "," << Vec4.z << ")\n";
+
 	//Magnitude of Vector
 	Mag = Vec3.Mag(Vec1);
 	std::cout << "Magnitude is: " << Mag << std::endl;
+
 	//Magnitude of Vector
 	Mag = Vec3.Mag(Vec2);
 	std::cout << "Magnitude is: " << Mag << std::endl;
+
 	//Normalise Vector
 	Vec4 = Vec3.Normalise(Vec1);
 	std::cout << "(" << Vec4.x << "," << Vec4.y << "," << Vec4.z << ")\n";
+
+	//Dot Product of Vectors
 	Dot = Vec3.Dot(Vec1, Vec2);
 	std::cout << "Dot Product is: " << Dot << std::endl;
+
+	//Cross Product of vectors
 	Vec4 = Vec3.Cross(Vec1, Vec2);
 	std::cout << "Cross Product is: " << "(" <<  Vec4.x << "," << Vec4.y << "," << Vec4.z << ")" << "\n";
 

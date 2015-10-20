@@ -13,12 +13,6 @@ public:
 	Vector3<T>(T x, T y, T z);
 	//Destructor
 	~Vector3<T>();
-	//Add Vectors
-	Vector3 Add(Vector3 &a, Vector3 &b);
-	//Subtract Vectors
-	Vector3 Sub(Vector3 &a, Vector3 &b);
-	//Multiply Vectors
-	Vector3 Multiply(Vector3 &a, Vector3 &b);
 	//Magnitude of Vectors
 	float Mag(Vector3 &a);
 	//Normalise Vectors
@@ -67,10 +61,10 @@ Vector3<T>::~Vector3()
 
 //Add Vectors
 template<typename T>
-Vector3<T> Vector3<T>::Add(Vector3 &a,Vector3 &b)
+Vector3<T> operator +(Vector3<T> &a,Vector3<T> &b)
 {
 	//New Vector variable
-	Vector3 c;
+	Vector3<T> c;
 	//Add each x coordinate of 2 passed in vectors then store value into x value of new vector
 	c.x = a.x + b.x;
 	//Add each y coordinate of 2 passed in vectors then store value into y value of new vector
@@ -83,10 +77,10 @@ Vector3<T> Vector3<T>::Add(Vector3 &a,Vector3 &b)
 
 //Subtract Vectors
 template<typename T>
-Vector3<T> Vector3<T>::Sub(Vector3 &a, Vector3 &b)
+Vector3<T> operator -(Vector3<T> &a, Vector3<T> &b)
 {
     //New Vector variable
-	Vector3 c;
+	Vector3<T> c;
 	//Subtract each x coordinate of 2 passed in vectors then store value into x value of new vector
 	c.x = a.x - b.x;
 	//Subtract each y coordinate of 2 passed in vectors then store value into y value of new vector
@@ -143,9 +137,9 @@ Vector3<T> Vector3<T>::Normalise(Vector3 &a)
 
 //Multiply Vectors
 template<typename T>
-Vector3<T> Vector3<T>::Multiply(Vector3 &a, Vector3 &b)
+Vector3<T> operator *(Vector3<T> &a, Vector3<T> &b)
 {//New Vector variable
-	Vector3 c;
+	Vector3<T> c;
 	//Square each x coordinate of 2 passed in vectors then store value into x value of new vector
 	c.x = a.x * b.x;
 	//Square each y coordinate of 2 passed in vectors then store value into y value of new vector
