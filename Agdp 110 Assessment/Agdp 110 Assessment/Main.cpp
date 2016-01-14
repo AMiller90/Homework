@@ -8,7 +8,6 @@
 
 int main()
 {
-
 	Vector2<int> vec2(12,24);
 	Vector2<int> vec3(12,24);
 	Vector2<int> storage;
