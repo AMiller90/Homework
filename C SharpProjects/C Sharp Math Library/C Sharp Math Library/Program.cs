@@ -62,6 +62,22 @@ namespace C_Sharp_Math_Library
                 return new Vector2<T>(d_a.X % d_b.X, d_a.Y % d_b.Y);
             }
 
+            public static double Mag(Vector2<T> a)
+            {//Variable used to store squared values of passed in vector values
+                float Asquared;
+                
+                dynamic d_a = a;
+                //Variable to hold square root value
+                double Asqrt;
+                //Square each coordinate and all together then store into new variable
+                Asquared = (d_a.x * d_a.x) + (d_a.y * d_a.y);
+                //Get the square root of the variable and store into a new variable
+                Asqrt = Math.Sqrt(Asquared);
+
+                //Return Magnitude as a double to be more precise
+                return Asqrt;
+            }
+
             public override string ToString()
             {
                 return (String.Format("{0},{1}", X, Y));
@@ -195,55 +211,56 @@ namespace C_Sharp_Math_Library
 
         static void Main(string[] args)
         {
-
+            
             Vector2<int> nvec = new Vector2<int>(15, 10);
-            Vector2<int> nvec1 = new Vector2<int>(15, 10);
+           
+            //Vector2<int> nvec1 = new Vector2<int>(15, 10);
 
-            Vector2<int> Sum = nvec + nvec1;
-            Vector2<int> Difference = nvec - nvec1;
-            Vector2<int> Product = nvec * nvec1;
-            Vector2<int> Quotient = nvec / nvec1;
-            Vector2<int> Modulus = nvec % nvec1;
+            //Vector2<int> Sum = nvec + nvec1;
+            //Vector2<int> Difference = nvec - nvec1;
+            //Vector2<int> Product = nvec * nvec1;
+            //Vector2<int> Quotient = nvec / nvec1;
+            //Vector2<int> Modulus = nvec % nvec1;
 
-            Console.WriteLine("Vector 2 Math: ");
-            Console.WriteLine("Sum is: ({0})", Sum);
-            Console.WriteLine("Difference is: ({0})", Difference);
-            Console.WriteLine("Product is: ({0})", Product);
-            Console.WriteLine("Quotient is: ({0})", Quotient);
-            Console.WriteLine("Modulus is: ({0})\n", Modulus);
+            //Console.WriteLine("Vector 2 Math: ");
+            //Console.WriteLine("Sum is: ({0})", Sum);
+            //Console.WriteLine("Difference is: ({0})", Difference);
+            //Console.WriteLine("Product is: ({0})", Product);
+            //Console.WriteLine("Quotient is: ({0})", Quotient);
+            //Console.WriteLine("Modulus is: ({0})\n", Modulus);
+            Console.WriteLine("Magnitude is: ({0})\n", Magnitude);
+            //Vector3<int> nvec2 = new Vector3<int>(15, 10, 5);
+            //Vector3<int> nvec3 = new Vector3<int>(15, 10, 5);
 
-            Vector3<int> nvec2 = new Vector3<int>(15, 10, 5);
-            Vector3<int> nvec3 = new Vector3<int>(15, 10, 5);
+            //Vector3<int> Sum2 = nvec2 + nvec3;
+            //Vector3<int> Difference2 = nvec2 - nvec3;
+            //Vector3<int> Product2 = nvec2 * nvec3;
+            //Vector3<int> Quotient2 = nvec2 / nvec3;
+            //Vector3<int> Modulus2 = nvec2 % nvec3;
 
-            Vector3<int> Sum2 = nvec2 + nvec3;
-            Vector3<int> Difference2 = nvec2 - nvec3;
-            Vector3<int> Product2 = nvec2 * nvec3;
-            Vector3<int> Quotient2 = nvec2 / nvec3;
-            Vector3<int> Modulus2 = nvec2 % nvec3;
-
-            Console.WriteLine("Vector 3 Math: ");
-            Console.WriteLine("Sum is: ({0})", Sum2);
-            Console.WriteLine("Difference is: ({0})", Difference2);
-            Console.WriteLine("Product is: ({0})", Product2);
-            Console.WriteLine("Quotient is: ({0})", Quotient2);
-            Console.WriteLine("Modulus is: ({0})\n", Modulus2);
+            //Console.WriteLine("Vector 3 Math: ");
+            //Console.WriteLine("Sum is: ({0})", Sum2);
+            //Console.WriteLine("Difference is: ({0})", Difference2);
+            //Console.WriteLine("Product is: ({0})", Product2);
+            //Console.WriteLine("Quotient is: ({0})", Quotient2);
+            //Console.WriteLine("Modulus is: ({0})\n", Modulus2);
 
 
-            Color<int> white = new Color<int>(255, 255, 255, 1);
-            Color<int> black = new Color<int>(1, 1, 1, 1);
+            //Color<int> white = new Color<int>(255, 255, 255, 1);
+            //Color<int> black = new Color<int>(1, 1, 1, 1);
 
-            Color<int> Sum3 = white + black;
-            Color<int> Difference3 = white - black;
-            Color<int> Product3 = white * black;
-            Color<int> Quotient3 = white / black;
-            Color<int> Modulus3 = white % black;
+            //Color<int> Sum3 = white + black;
+            //Color<int> Difference3 = white - black;
+            //Color<int> Product3 = white * black;
+            //Color<int> Quotient3 = white / black;
+            //Color<int> Modulus3 = white % black;
 
-            Console.WriteLine("Color Math: ");
-            Console.WriteLine("Sum is: ({0})", Sum3);
-            Console.WriteLine("Difference is: ({0})", Difference3);
-            Console.WriteLine("Product is: ({0})", Product3);
-            Console.WriteLine("Quotient is: ({0})", Quotient3);
-            Console.WriteLine("Modulus is: ({0})", Modulus3);
+            //Console.WriteLine("Color Math: ");
+            //Console.WriteLine("Sum is: ({0})", Sum3);
+            //Console.WriteLine("Difference is: ({0})", Difference3);
+            //Console.WriteLine("Product is: ({0})", Product3);
+            //Console.WriteLine("Quotient is: ({0})", Quotient3);
+            //Console.WriteLine("Modulus is: ({0})", Modulus3);
 
             Console.ReadLine();
         }
