@@ -85,6 +85,48 @@ Vector2<T> operator -(Vector2<T> &a, Vector2<T> &b)
 	return c;
 }
 
+//Multiply Vectors
+template<typename T>
+Vector2<T> operator *(Vector2<T> &a, Vector2<T> &b)
+{
+	Vector2<T> c;
+	//Square each x coordinate of 2 passed in vectors then store value into x value of new vector
+	c.x = a.x * b.x;
+	//Square each y coordinate of 2 passed in vectors then store value into y value of new vector
+	c.y = a.y * b.y;
+
+	//Return new vector
+	return c;
+}
+
+//Divide Vectors
+template<typename T>
+Vector2<T> operator /(Vector2<T> &a, Vector2<T> &b)
+{
+	Vector2<T> c;
+	//Divide each x coordinate of 2 passed in vectors then store value into x value of new vector
+	c.x = a.x / b.x;
+	//Divide each y coordinate of 2 passed in vectors then store value into y value of new vector
+	c.y = a.y / b.y;
+
+	//Return new vector
+	return c;
+}
+
+//Modulus Vectors
+template<typename T>
+Vector2<T> operator %(Vector2<T> &a, Vector2<T> &b)
+{
+	Vector2<T> c;
+	//Divide each x coordinate of 2 passed in vectors then store remainder value into x value of new vector
+	c.x = a.x % b.x;
+	//Divide each y coordinate of 2 passed in vectors then store remainder value into y value of new vector
+	c.y = a.y % b.y;
+
+	//Return new vector
+	return c;
+}
+
 //Magnitude of Vectors
 template<typename T>
 float Vector2<T>::Mag(Vector2 &a)
@@ -126,33 +168,6 @@ Vector2<T> Vector2<T>::Normalise(Vector2 &a)
 
 }
 
-//Multiply Vectors
-template<typename T>
-Vector2<T> operator *(Vector2<T> &a, Vector2<T> &b)
-{
-	Vector2<T> c;
-	//Square each x coordinate of 2 passed in vectors then store value into x value of new vector
-	c.x = a.x * b.x;
-	//Square each y coordinate of 2 passed in vectors then store value into y value of new vector
-	c.y = a.y * b.y;
-
-	//Return new vector
-	return c;
-}
-
-//Divide Vectors
-template<typename T>
-Vector2<T> operator /(Vector2<T> &a, Vector2<T> &b)
-{
-	Vector2<T> c;
-	//Square each x coordinate of 2 passed in vectors then store value into x value of new vector
-	c.x = a.x / b.x;
-	//Square each y coordinate of 2 passed in vectors then store value into y value of new vector
-	c.y = a.y / b.y;
-
-	//Return new vector
-	return c;
-}
 
 //Dot Product Vector
 template<typename T>
