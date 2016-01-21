@@ -14,18 +14,18 @@ public:
 	//Destructor
 	~Vector3<T>();
 	//Magnitude of Vectors
-	float Mag(Vector3 &a);
+	float Mag(Vector3<T> &a);
 	//Normalise Vectors
-	Vector3 Normalise(Vector3 &a);
+	Vector3 Normalise(Vector3<T> &a);
 	//Dot Product Vector
-	T Dot(Vector3 &a, Vector3 &b);
+	T Dot(Vector3<T> &a, Vector3<T> &b);
 	//Cros Product Vector
-	Vector3 Cross(Vector3 &a, Vector3 &b);
+	Vector3 Cross(Vector3<T> &a, Vector3<T> &b);
 	
 	//Variables for coordinates
-	int x;
-	int y;
-	int z;
+	T x;
+	T y;
+	T z;
 };
 
 
@@ -141,7 +141,7 @@ Vector3<T> operator %(Vector3<T> &a, Vector3<T> &b)
 
 //Magnitude of Vectors
 template<typename T>
-float Vector3<T>::Mag(Vector3 &a)
+float Vector3<T>::Mag(Vector3<T> &a)
 {//Variable used to store squared values of passed in vector values
 	T Asquared;
 	//Variable to hold square root value
@@ -158,7 +158,7 @@ float Vector3<T>::Mag(Vector3 &a)
 
 //Normalise Vector
 template<typename T>
-Vector3<T> Vector3<T>::Normalise(Vector3 &a)
+Vector3<T> Vector3<T>::Normalise(Vector3<T> &a)
 {//New Vector variable
 	Vector3 c;
 	//Variable used to store squared values of passed in vector values
@@ -185,7 +185,7 @@ Vector3<T> Vector3<T>::Normalise(Vector3 &a)
 
 //Dot Product Vector
 template<typename T>
-T Vector3<T>::Dot(Vector3 &a, Vector3 &b)
+T Vector3<T>::Dot(Vector3<T> &a, Vector3<T> &b)
 {//Multiply the passed in x values and the y values then add them together and return the product
 	return (a.x * b.x ) + (a.y * b.y) + (a.z * b.z);
 
@@ -193,7 +193,7 @@ T Vector3<T>::Dot(Vector3 &a, Vector3 &b)
 
 //Cross Product Vector
 template<typename T>
-Vector3<T> Vector3<T>::Cross(Vector3 &a, Vector3 &b)
+Vector3<T> Vector3<T>::Cross(Vector3<T> &a, Vector3<T> &b)
 {//Variable just used for temporary purposes
 	Vector3 c;
 	//Variable just used for temporary purposes

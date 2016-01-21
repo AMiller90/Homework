@@ -18,11 +18,11 @@ public:
 	//Normalise Vectors
 	Vector2 Normalise(Vector2<T> &a);
 	//Dot Product Vector
-	T Dot(Vector2 &a, Vector2<T> &b);
+	T Dot(Vector2<T> &a, Vector2<T> &b);
 	
 	//Variables for coordinates
-	int x;
-	int y;
+	T x;
+	T y;
 };
 
 
@@ -129,7 +129,7 @@ Vector2<T> operator %(Vector2<T> &a, Vector2<T> &b)
 
 //Magnitude of Vectors
 template<typename T>
-float Vector2<T>::Mag(Vector2 &a)
+float Vector2<T>::Mag(Vector2<T> &a)
 {//Variable used to store squared values of passed in vector values
 	T Asquared;
 	//Variable to hold square root value
@@ -145,7 +145,7 @@ float Vector2<T>::Mag(Vector2 &a)
 
 //Normalise Vectors
 template<typename T>
-Vector2<T> Vector2<T>::Normalise(Vector2 &a)
+Vector2<T> Vector2<T>::Normalise(Vector2<T> &a)
 {//New Vector variable
 	Vector2 c;
 	//Variable used to store squared values of passed in vector values
@@ -171,7 +171,7 @@ Vector2<T> Vector2<T>::Normalise(Vector2 &a)
 
 //Dot Product Vector
 template<typename T>
-T Vector2<T>::Dot(Vector2 &a, Vector2 &b)
+T Vector2<T>::Dot(Vector2<T> &a, Vector2<T> &b)
 {//Multiply the passed in x values and the y values then add them together and return the product
 	return (a.x * b.x) + (a.y * b.y);
 
