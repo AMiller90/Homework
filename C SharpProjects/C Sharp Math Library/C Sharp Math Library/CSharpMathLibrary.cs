@@ -10,7 +10,7 @@ namespace C_Sharp_Math_Library
     class Program
     {
         //Vector2 Class
-        class Vector2<T>
+        public class Vector2<T>
         {//Set Up Public Variables
             public T X;
             public T Y;
@@ -136,7 +136,7 @@ namespace C_Sharp_Math_Library
         }
 
         //Vector3 Class
-        class Vector3<T>
+        public class Vector3<T>
         {
             //Set Up Public Variables
             public T X;
@@ -283,7 +283,7 @@ namespace C_Sharp_Math_Library
         }
 
         //Color Class
-        class Color<T>
+        public class Color<T>
         {
             //Set Up Public Variables
             public T R;

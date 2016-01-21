@@ -22,6 +22,7 @@
     <ProjectGuid>{B8F2F6D7-718A-4754-A91D-8A95AA538E77}</ProjectGuid>
     <RootNamespace>Agdp110Assessment</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Agdp_110 Assessment C++</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
