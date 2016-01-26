@@ -63,6 +63,21 @@ namespace MathLibrary
             dynamic d_a = a;
             dynamic d_b = b;
 
+            //Check is either vector is going to have a 0 in their x or y components
+            if (d_a.R == 0 || d_a.G == 0 || d_a.B == 0 || d_a.A == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Color<T>(d_a.R, d_a.G, d_a.B, d_a.A);
+            }
+
+            if (d_b.R == 0 || d_b.G == 0 || d_b.B == 0 || d_b.A == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Color<T>(d_b.R, d_b.G, d_b.B, d_b.A);
+            }
+
             //Return new vector(Divide R Values for R Place, Divide G Values for G place, Divide B Values for B place, Divide A Values for A place)
             return new Color<T>(d_a.R / d_b.R, d_a.G / d_b.G, d_a.B / d_b.B, d_a.A / d_b.A);
         }
@@ -73,6 +88,21 @@ namespace MathLibrary
             //Dynamic Checks At Runtime for data type
             dynamic d_a = a;
             dynamic d_b = b;
+
+            //Check is either vector is going to have a 0 in their x or y components
+            if (d_a.R == 0 || d_a.G == 0 || d_a.B == 0 || d_a.A == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Color<T>(d_a.R, d_a.G, d_a.B, d_a.A);
+            }
+
+            if (d_b.R == 0 || d_b.G == 0 || d_b.B == 0 || d_b.A == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Color<T>(d_b.R, d_b.G, d_b.B, d_b.A);
+            }
 
             //Return new vector(Modulus R Values for R Place, Modulus G Values for G place, Modulus B Values for B place, Modulus A Values for A place)
             return new Color<T>(d_a.R % d_b.R, d_a.G % d_b.G, d_a.B % d_b.B, d_a.A % d_b.A);

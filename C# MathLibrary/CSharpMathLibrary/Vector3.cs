@@ -59,6 +59,21 @@ namespace MathLibrary
             dynamic d_a = a;
             dynamic d_b = b;
 
+            //Check is either vector is going to have a 0 in their x or y components
+            if (d_a.X == 0 || d_a.Y == 0 || d_a.Z == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Vector3<T>(d_a.X, d_a.Y, d_a.Z);
+            }
+
+            if (d_b.X == 0 || d_b.Y == 0 || d_b.Z == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Vector3<T>(d_b.X, d_b.Y, d_b.Z);
+            }
+
             //Return new vector(Divide X Values for X Place, Divide Y Values for Y place, Divide Z Values for Z place)
             return new Vector3<T>(d_a.X / d_b.X, d_a.Y / d_b.Y, d_a.Z / d_b.Z);
         }
@@ -69,6 +84,22 @@ namespace MathLibrary
             //Dynamic Checks At Runtime for data type
             dynamic d_a = a;
             dynamic d_b = b;
+
+
+            //Check is either vector is going to have a 0 in their x or y components
+            if (d_a.X == 0 || d_a.Y == 0 || d_a.Z == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Vector3<T>(d_a.X, d_a.Y, d_a.Z);
+            }
+
+            if (d_b.X == 0 || d_b.Y == 0 || d_b.Z == 0)
+            {//Print Error Message
+                Console.WriteLine("Error! Can't Divide By 0");
+                //If so then just return the vectors
+                return new Vector3<T>(d_b.X, d_b.Y, d_b.Z);
+            }
 
             //Return new vector(Modulus X Values for X Place, Modulus Y Values for Y place, Modulus Z Values for Z place)
             return new Vector3<T>(d_a.X % d_b.X, d_a.Y % d_b.Y, d_a.Z % d_b.Z);
