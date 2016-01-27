@@ -102,24 +102,21 @@ namespace MathLibrary
         }
 
         //Function For Returning Magnitude Of Passed In Vector
-        public static double Mag(Vector2<T> a)
+        public static T Mag(Vector2<T> a)
         {
             //Variable used to store squared values of passed in vector values
-            float Asquared;
+            T Asquared;
 
             //Dynamic Checks At Runtime for data type
             dynamic d_a = a;
-
-            //Variable to hold square root value
-            double Asqrt;
 
             //Square each coordinate and add together then store into new variable
             Asquared = (d_a.X * d_a.X) + (d_a.Y * d_a.Y);
 
             //Get the square root of the variable and store into a new variable
-            Asqrt = Math.Sqrt(Asquared);
+            T Asqrt = SquareRoot(Asquared);
 
-            //Return Magnitude as a double to be more precise
+            //Return Magnitude 
             return Asqrt;
         }
 
@@ -133,7 +130,7 @@ namespace MathLibrary
             T Asqrt;
 
             //Square each coordinate and add together then store into new variable 
-            Asqrt = Math.Sqrt((d_a.X * d_a.X) + (d_a.Y * d_a.Y));
+            Asqrt = SquareRoot((d_a.X * d_a.X) + (d_a.Y * d_a.Y));
 
             //Return the normalised vector(X coordinate divided by Asqrt Variable is the X Value Of New Vector, Y coordinate divided by Asqrt Variable is the Y Value Of New Vector)
             return new Vector2<T>(d_a.X / Asqrt, d_a.Y / Asqrt);
@@ -149,6 +146,28 @@ namespace MathLibrary
 
             //Multiply the passed in x values and the y values then add them together and return the product
             return (d_a.X * d_b.X) + (d_a.Y * d_b.Y);
+        }
+
+        //Function used to calculate the square root of passed in variable
+        public static T SquareRoot(T num)
+        {//Dynamic Checks At Runtime for data type
+            dynamic d_a = num;
+            //if num entered is greater than or equal to 0
+            if (d_a >= 0)
+            {//set variable to num
+                dynamic d_x = num;
+                //create a new variable
+                int i;
+                //Each time i is incremented
+                for (i = 0; i < 20; i++)
+                {//run this math equation
+                    d_x = (((d_x * d_x) + num) / (2 * d_x));
+                }
+                //returns the new x value
+                return d_x;
+            }
+            //returns num
+            return num;
         }
 
         //Override The ToString() Method So We Can Write Strings

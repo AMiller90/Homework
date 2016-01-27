@@ -9,44 +9,51 @@ namespace Adgp110Assessment
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            Vector2<float> nvec = new Vector2<float>(5.0f, 5.0f);
-            Vector2<float> nvec1 = new Vector2<float>(5.0f, 5.0f);
 
+
+            //Vector3<int> nvec = new Vector3<int>(5, 5, 5);
+            //Vector2<int> nvec1 = new Vector2<int>(5, 5);
+
+
+            //int mag = Vector3<int>.Mag(nvec);
+
+            //Console.WriteLine("Mag is: ({0})", mag);
             //Vector2<char> Sum = nvec + nvec1;
             //Vector2<double> Difference = nvec - nvec1;
             //Vector2<char> Product = nvec * nvec1;
             //Vector2<double> Quotient = nvec / nvec1;
             //Vector2<double> Modulus = nvec % nvec1;
             //double Magnitude = Vector2<int>.Mag(nvec1);
-            Vector2<float> Normalise = Vector2<float>.Normalise(nvec);
+            //Vector2<int> Normalise = Vector2<int>.Normalise(nvec1);
             //double Dot = Vector2<double>.Dot(nvec, nvec1);
 
-            Console.WriteLine("Vector 2 Math: ");
+            //Console.WriteLine("Vector 2 Math: ");
             //Console.WriteLine("Sum is: ({0})", Sum);
             //Console.WriteLine("Difference is: ({0})", Difference);
             //Console.WriteLine("Product is: ({0})", Product);
             //Console.WriteLine("Quotient is: ({0})", Quotient);
             //Console.WriteLine("Modulus is: ({0})\n", Modulus);
             //Console.WriteLine("Magnitude is: ({0})\n", Magnitude);
-            Console.WriteLine("Normalised is: ({0})\n", Normalise);
+            //Console.WriteLine("Normalised is: ({0})\n", Normalise);
             //Console.WriteLine("Dot Product is: ({0})\n", Dot);
 
 
 
-            //Vector3<float> nvec2 = new Vector3<float>(10, 10, 5);
-            //Vector3<float> nvec3 = new Vector3<float>(10, 100, 25);
+            //Vector3<float> nvec2 = new Vector3<float>(1,2,3);
+            //Vector3<float> nvec3 = new Vector3<float>(1.0f, 2.0f, 3.0f);
 
-            //Vector3<float> Sum2 = nvec2 + nvec3;
-            //Vector3<float> Difference2 = nvec2 - nvec3;
-            //Vector3<float> Product2 = nvec2 * nvec3;
-            //Vector3<float> Quotient2 = nvec2 / nvec3;
-           // Vector3<float> Modulus2 = nvec2 % nvec3;
-            //double Magnitude2 = Vector3<double>.Mag(nvec2);
-            //Vector3<float> Normalise2 = Vector3<float>.Normalise(nvec2);
-            //float Dot2 = Vector3<float>.Dot(nvec2, nvec3);
-            //Vector3<float> Cross = Vector3<float>.Cross(nvec2, nvec3);
+            //Vector3<string> Sum2 = nvec2 + nvec3;
+            //Vector3<string> Difference2 = nvec2 - nvec3;
+            //Vector3<string> Product2 = nvec2 * nvec3;
+            //Vector3<string> Quotient2 = nvec2 / nvec3;
+            //Vector3<string> Modulus2 = nvec2 % nvec3;
+            //float Magnitude2 = Vector3<float>.Mag(nvec2);
+            //Vector3<int> Normalise2 = Vector3<int>.Normalise(nvec2);
+            //string Dot2 = Vector3<string>.Dot(nvec2, nvec3);
+            //Vector3<string> Cross = Vector3<string>.Cross(nvec2, nvec3);
 
             //Console.WriteLine("Vector 3 Math: ");
             //Console.WriteLine("Sum is: ({0})", Sum2);
@@ -63,17 +70,17 @@ namespace Adgp110Assessment
             //Create An Array For Storing The Input Variables From The User
             //char[] Hex = new char[8];
 
-            //Color<double> white = new Color<double>(0, 0, 0, 0);
-            //Color<float> black = new Color<float>(1, 1, 1, 1);
+            //Color<float> white = new Color<float>(1.0f, 1.0f, 1.0f, 1.0f);
+            //Color<double> black = new Color<double>(1, 1, 1, 1);
 
-            //Color<float> Sum3 = white + black;
-            //Color<float> Difference3 = white - black;
-            //Color<float> Product3 = white * black;
-            //Color<float> Quotient3 = white / black;
-            //Color<float> Modulus3 = white % black;
-            //double Magnitude3 = Color<double>.Mag(white);
+            //Color<double> Sum3 = white + black;
+            //Color<double> Difference3 = white - black;
+            //Color<double> Product3 = white * black;
+            //Color<double> Quotient3 = white / black;
+            //Color<double> Modulus3 = white % black;
+            //float Magnitude3 = Color<float>.Mag(white);
             //Color<float> Normalise3 = Color<float>.Normalise(white);
-            //float Dot3 = Color<float>.Dot(white, black);
+            //double Dot3 = Color<double>.Dot(white, black);
 
             //Console.WriteLine("Color Math: ");
             //Console.WriteLine("Sum is: ({0})", Sum3);
@@ -88,7 +95,7 @@ namespace Adgp110Assessment
             //Create An Array For Storing The Input Variables From The User
             //char[] cHex = { '#', '1', '1', '1', '1', '1', '1' };
 
-            //Color<float> hecdec = Color<float>.HexConv(cHex);
+            //Color<char> hecdec = Color<char>.HexConv(cHex);
 
             //Console.WriteLine("RGBA Values Are: ({0})\n", hecdec);
 

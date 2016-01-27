@@ -106,22 +106,22 @@ namespace MathLibrary
         }
 
         //Function For Returning Magnitude Of Passed In Vector
-        public static double Mag(Vector3<T> a)
+        public static T Mag(Vector3<T> a)
         {
             //Dynamic Checks At Runtime for data type
             dynamic d_a = a;
 
             //Variable used to store squared values of passed in vector values
-            double Asquared;
+            T Asquared;
 
             //Variable to hold square root value
-            double Asqrt;
+            T Asqrt;
 
             //Square each coordinate and add together then store into new variable
             Asquared = (d_a.X * d_a.X) + (d_a.Y * d_a.Y) + (d_a.Z * d_a.Z);
 
             //Get the square root of the variable and store into a new variable
-            Asqrt = Math.Sqrt(Asquared);
+            Asqrt = SquareRoot(Asquared);
 
             //Return Magnitude as a double to be more precise
             return Asqrt;
@@ -138,7 +138,7 @@ namespace MathLibrary
             T Asqrt;
 
             //Get the square root of the variable and store into a new variable
-            Asqrt = Math.Sqrt((d_a.X * d_a.X) + (d_a.Y * d_a.Y) + (d_a.Z * d_a.Z));
+            Asqrt = SquareRoot((d_a.X * d_a.X) + (d_a.Y * d_a.Y) + (d_a.Z * d_a.Z));
 
             //Return the normalised vector(X Coordinate Divided by Asqrt Sets X Coordinate Of New Vector, 
             //Y Coordinate Divided by Asqrt Sets Y Coordinate Of New Vector, 
@@ -171,6 +171,27 @@ namespace MathLibrary
 
         }
 
+        //Function used to calculate the square root of passed in variable
+        public static T SquareRoot(T num)
+        {//Dynamic Checks At Runtime for data type
+            dynamic d_a = num;
+            //if num entered is greater than or equal to 0
+            if (d_a >= 0)
+            {//set variable to num
+                dynamic d_x = num;
+                //create a new variable
+                int i;
+                //Each time i is incremented
+                for (i = 0; i < 20; i++)
+                {//run this math equation
+                    d_x = (((d_x * d_x) + num) / (2 * d_x));
+                }
+                //returns the new x value
+                return d_x;
+            }
+            //returns num
+            return num;
+        }
 
         //Override The ToString() Method So We Can Write Strings
         public override string ToString()
