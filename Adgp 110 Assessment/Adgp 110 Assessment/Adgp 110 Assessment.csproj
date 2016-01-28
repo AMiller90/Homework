@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="CSharpMathLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\C# MathLibrary\CSharpMathLibrary\obj\Debug\CSharpMathLibrary.dll</HintPath>
+      <HintPath>..\..\C# MathLibrary\CSharpMathLibrary\obj\Release\CSharpMathLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

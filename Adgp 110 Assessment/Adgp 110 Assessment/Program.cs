@@ -70,7 +70,7 @@ namespace Adgp110Assessment
             //Create An Array For Storing The Input Variables From The User
             //char[] Hex = new char[8];
 
-            //Color<float> white = new Color<float>(1.0f, 1.0f, 1.0f, 1.0f);
+            //Color<double> white = new Color<double>(1.0f, 1.0f, 1.0f, 1.0f);
             //Color<double> black = new Color<double>(1, 1, 1, 1);
 
             //Color<double> Sum3 = white + black;
@@ -93,11 +93,11 @@ namespace Adgp110Assessment
             //Console.WriteLine("Dot Product is: ({0})\n", Dot3);
 
             //Create An Array For Storing The Input Variables From The User
-            //char[] cHex = { '#', '1', '1', '1', '1', '1', '1' };
+             char[] cHex = { '#', '1', '1', '1', '1', '1', '1' };
 
-            //Color<char> hecdec = Color<char>.HexConv(cHex);
+             Color<int> hecdec = Color<int>.HexConv(cHex);
 
-            //Console.WriteLine("RGBA Values Are: ({0})\n", hecdec);
+             Console.WriteLine("RGBA Values Are: ({0})\n", hecdec);
 
             Console.ReadLine();
 

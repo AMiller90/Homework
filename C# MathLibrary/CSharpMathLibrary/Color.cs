@@ -195,9 +195,9 @@ namespace MathLibrary
             int temp;
 
             //Create an instance of a color object
-            Color<int> Hexvec = new Color<int>(0, 0, 0, 0);
+            Color<int> Hexvec = new Color<int>(0,0,0,0);
 
-
+             
             //Checks the first index of the inputted value
             if (Hex[0] == '#')
             {//For Loop will loop through each index of the inputted array as long as its less than 7
