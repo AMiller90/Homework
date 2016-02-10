@@ -14,11 +14,13 @@ public:
 	//Destructor
 	~Color<T>();
 	//Magnitude of Vectors
-	float Mag(Color<T> &a);
+	T Mag(Color<T> &a);
 	//Normalise Vectors
-	Color Normalise(Color<T> &a);
+	Color<T> Normalise(Color<T> &a);
 	//Dot Product Vector
 	T Dot(Color<T> &a, Color<T> &b);
+	//SquareRoot Function
+	T SquareRoot(T &num);
 	//Color Vector
 	Color<T> HexConv(char[8]);
 
@@ -120,6 +122,21 @@ template<typename T>
 Color<T> operator /(Color<T> &a, Color<T> &b)
 {//New Vector variable
 	Color<T> c;
+
+	//Check is either vector is going to have a 0 in their x or y components
+	if (a.r == 0 || a.g == 0 || a.b == 0 || a.a == 0)
+	{//Print Error Message
+		std::cout << "Error! Can't Divide By 0\n";
+		//If so then just return the vectors
+		return Color<T>(a.r, a.g, a.b, a.a);
+	}
+
+	if (b.r == 0 || b.g == 0 || b.b == 0 || b.a == 0)
+	{//Print Error Message
+		std::cout << "Error! Can't Divide By 0\n";
+		//If so then just return the vectors
+		return Color<T>(b.r, b.g, b.b, b.a);
+	}
 	//Divide each r coordinate of 2 passed in vectors then store value into r value of new vector
 	c.r = a.r / b.r;
 	//Divideeach g coordinate of 2 passed in vectors then store value into g value of new vector
@@ -137,6 +154,22 @@ template<typename T>
 Color<T> operator %(Color<T> &a, Color<T> &b)
 {//New Vector variable
 	Color<T> c;
+
+	//Check is either vector is going to have a 0 in their x or y components
+	if (a.r == 0 || a.g == 0 || a.b == 0 || a.a == 0)
+	{//Print Error Message
+		std::cout << "Error! Can't Divide By 0\n";
+		//If so then just return the vectors
+		return Color<T>(a.r, a.g, a.b, a.a);
+	}
+
+	if (b.r == 0 || b.g == 0 || b.b == 0 || b.a == 0)
+	{//Print Error Message
+		std::cout << "Error! Can't Divide By 0\n";
+		//If so then just return the vectors
+		return Color<T>(b.r, b.g, b.b, b.a);
+	}
+
 	//Divide each r coordinate of 2 passed in vectors then store value into r value of new vector
 	c.r = a.r % b.r;
 	//Divideeach g coordinate of 2 passed in vectors then store value into g value of new vector
@@ -151,15 +184,15 @@ Color<T> operator %(Color<T> &a, Color<T> &b)
 
 //Magnitude of Vectors
 template<typename T>
-float Color<T>::Mag(Color<T> &a)
+T Color<T>::Mag(Color<T> &a)
 {//Variable used to store squared values of passed in vector values
 	T Asquared;
 	//Variable to hold square root value
-	float Asqrt;
+	T Asqrt;
 	//Square each coordinate and all together then store into new variable
 	Asquared = (a.r * a.r) + (a.g * a.g) + (a.b * a.b) + ( a.a * a.a);
 	//Get the square root of the variable and store into a new variable
-	Asqrt = sqrt(Asquared);
+	Asqrt = SquareRoot(Asquared);
 
 	//Return Magnitude as a float to be more precise
 	return Asqrt;
@@ -174,13 +207,13 @@ Color<T> Color<T>::Normalise(Color<T> &a)
 	//Variable used to store squared values of passed in vector values
 	T Asquared;
 	//Variable to hold square root value
-	float Asqrt;
+	T Asqrt;
 
 	//Square each coordinate and all together then store into new variable
 	Asquared = (a.r * a.r) + (a.g * a.g) + (a.b * a.b) + (a.a * a.a);
 
 	//Get the square root of the variable and store into a new variable
-	Asqrt = sqrt(Asquared);
+	Asqrt = SquareRoot(Asquared);
 	//Divide passed in r value by the square root value and get the new value and store it into r of new vector
 	c.r = (a.r / Asqrt);
 	//Divide passed in g value by the square root value and get the new value and store it into g of new vector
@@ -207,9 +240,9 @@ template <typename T>
 Color<T> Color<T>::HexConv(char Hex[8])
 {
 	//Create a temp variable for holding a number
-	float temp;
+	T temp;
 	//Create an instance of a color object
-	Color<float> Hexvec;
+	Color<T> Hexvec;
 
 	//Checks the first index of the inputted value
 	if (Hex[0] == '#')
@@ -471,4 +504,27 @@ Color<T> Color<T>::HexConv(char Hex[8])
 	//Return The New Vector With The Converted Numbers
 		return Hexvec;
 	
+}
+
+//Function used to calculate the square root of passed in variable
+template<typename T>
+T Color<T>::SquareRoot(T &num)
+{//Dynamic Checks At Runtime for data type
+	T d_a = num;
+	//if num entered is greater than or equal to 0
+	if (d_a >= 0)
+	{//set variable to num
+		T d_x = num;
+		//create a new variable
+		int i;
+		//Each time i is incremented
+		for (i = 0; i < 20; i++)
+		{//run this math equation
+			d_x = (((d_x * d_x) + num) / (2 * d_x));
+		}
+		//returns the new x value
+		return d_x;
+	}
+	//returns num
+	return num;
 }
