@@ -53,7 +53,8 @@ public class Move : MonoBehaviour {
                 gameObject.transform.position.y >= Destination.y && 
                 gameObject.transform.position.z >= Destination.z) 
             {//If true then set isMoving to false and the object will stop moving
-                isMoving = false;
+             isMoving = false;
+             
             }
 
         }
