@@ -13,7 +13,7 @@ struct node
 	string name;
 	node* Left;
 	node* Right;
-
+	
 };
 
 class Grid
