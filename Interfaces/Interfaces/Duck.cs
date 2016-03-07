@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 
         public void Fight()
         {
+          hp -= 1;
           Console.WriteLine("Time to fight...Quack!");
         }
 

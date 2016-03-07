@@ -18,7 +18,8 @@ using System.Threading.Tasks;
     
         public void Fight()
         {
-          Console.WriteLine("Time to fight...Aaaaah!");
+             health -= 1;
+             Console.WriteLine("Time to fight...Aaaaah!");
         }
 
         public int Health

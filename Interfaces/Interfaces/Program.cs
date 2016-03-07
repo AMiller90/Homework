@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
 
-        Ninja n = new Ninja(5, "Andrew");
+        Ninja n = new Ninja(25, "Andrew");
         Duck d = new Duck(10, "Programmer");
 
       
