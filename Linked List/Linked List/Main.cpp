@@ -22,7 +22,7 @@ int main()
 	{
 		g.CreateGrid();
 
-		cout << "\nHello! What would you like to do for " << p.getName() << "?" << endl;
+		cout << "\nHello! What would you like to do for " << p.getName() << "?" << endl << endl;
 
 		//PrintStats(p);
 
@@ -68,24 +68,28 @@ void ActivateNodes(Player &p)
 		break;
 
 	case 2:
+		system("cls");
 		p.setMp(p.getMp() + 100);
 		cout << "Mp Up!" << endl;
 		PrintStats(p);
 		break;
 
 	case 3:
+		system("cls");
 		p.setatk(p.getatk() + 5);
 		cout << "Atk Up!" << endl;
 		PrintStats(p);
 		break;
 
 	case 4:
+		system("cls");
 		p.setdef(p.getdef() + 5);
 		cout << "Def Up!" << endl;
 		PrintStats(p);
 		break;
 
 	case 5:
+		system("cls");
 		p.setspd(p.getspd() + 5);
 		cout << "Spd Up!" << endl;
 		PrintStats(p);
