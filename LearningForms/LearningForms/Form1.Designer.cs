@@ -71,7 +71,8 @@
             // 
             // Editing
             // 
-            this.Editing.HelpNamespace = "C:\\Users\\HeavensGate\\Desktop\\HTML WorkshopStuff\\Winform.chm";
+            this.Editing.HelpNamespace = "C:\\Users\\Andrew.Miller\\Desktop\\Github Clones\\Homework\\LearningForms\\HTML Workshop" +
+    "Stuff\\Winform.chm";
             // 
             // Form1
             // 
