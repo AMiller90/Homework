@@ -7,7 +7,7 @@
 using namespace std;
 
 void PrintStats(Player p);
-void ActivateNodes(Player &p);
+bool ActivateNodes(Player &p, bool b);
 
 int main()
 {
@@ -24,9 +24,8 @@ int main()
 
 		cout << "\nHello! What would you like to do for " << p.getName() << "?" << endl << endl;
 
-		//PrintStats(p);
+		isDone = ActivateNodes(p,isDone);
 
-		ActivateNodes(p);
 	}
 	
 	
@@ -47,7 +46,7 @@ void PrintStats(Player p)
 	cout << "Spd: " << p.getspd() << endl << endl;
 }
 
-void ActivateNodes(Player &p)
+bool ActivateNodes(Player &p, bool b)
 {
 	int input;
 
@@ -58,7 +57,8 @@ void ActivateNodes(Player &p)
 	switch (input)
 	{
 	case 0:
-		break;
+		b = false;
+		return b;
 
 	case 1:
 		system("cls");

@@ -12,8 +12,6 @@ Grid::~Grid()
 }
 
 
-
-
 void Grid::CreateGrid()
 {
 
