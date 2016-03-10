@@ -136,7 +136,7 @@ class FiniteStateMachine
                 }
             }
         }
-        //If the currentState is not in the passed in state
+        //If the currentState is the passed in state
         else
         {
             Console.WriteLine("You are already in that state!");
