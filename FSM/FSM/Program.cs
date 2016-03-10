@@ -32,7 +32,7 @@ namespace FSM
 
             fsm.info();
 
-            fsm.ChangeStates(PlayerStates.INIT);
+            fsm.ChangeStates(PlayerStates.WALK);
 
             Console.Read();
         }
