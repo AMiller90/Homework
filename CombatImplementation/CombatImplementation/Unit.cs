@@ -131,7 +131,8 @@ public class Unit : IActions, IStats, ICombat
     //Attack
     public void Attack(Unit u)
     {
-      
+        float perc = u.m_Defense * 0.25f;
+        u.m_Health -= this.m_Strength / (int)perc;
 
     }
 
@@ -144,13 +145,56 @@ public class Unit : IActions, IStats, ICombat
     //Guard Action
     public void Guard()
     {
-    
+
+        Unit check = currentUnitTakingTurn;
+
+        if(currentUnitTakingTurn == this)
+        {
+            this.m_Defense += 10;
+        }
+        else
+        {
+            this.m_Defense = Defense;
+        }
+        
+
 
     }
     //Next Unit Turn 
     public void NextUnit()
     {
         
+    }
+
+    //Check for the highest speed stat
+    public void checkForSpeed()
+    {
+        foreach (Unit m in m_participants)
+        {
+            currentUnitTakingTurn = Compare(m);
+
+        }
+
+    }
+
+    //Check list of units for unit with highest speed stat to attack first
+    public Unit Compare(Unit m)
+    {
+        foreach (Unit p in m_participants)
+        {
+            if(p.m_Speed > m.m_Speed)
+            {
+                currentUnitTakingTurn = p;
+                p.m_Turn = true;
+            }
+            else
+            {
+                currentUnitTakingTurn = m;
+                m.m_Turn = true;
+            }
+        }
+
+        return currentUnitTakingTurn;
     }
 }
 

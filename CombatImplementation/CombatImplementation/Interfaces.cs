@@ -30,7 +30,8 @@ public interface ICombat
 
     bool Turn { get; set; }
     Unit currentUnitTakingTurn { get; set; }
+    void checkForSpeed();
     void NextUnit();
-
+    Unit Compare(Unit m);
 }
 

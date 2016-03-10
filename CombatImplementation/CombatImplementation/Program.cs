@@ -9,26 +9,34 @@ using System.Threading.Tasks;
     {
         static void Main(string[] args)
         {
-        
 
         Unit a = new Unit();
         Unit u = new Unit(100, 100, 100, 100);
-        Unit v = new Unit(200, 100, 100, 100);
+        Unit v = new Unit(200, 50, 50, 100);
 
-        a.participants.Add(u);
-        a.participants.Add(v);
+        List<Unit> b = a.participants;
 
-        foreach(Unit m in a.participants)
-        {
-            Console.WriteLine(m.Health);
-        }
-
-        List<Unit>b = a.participants;
+        b.Add(u);
+        b.Add(v);
 
         foreach (Unit m in b)
         {
             Console.WriteLine(m);
         }
+
+        u.Attack(v);
+        Console.WriteLine(v.Health);
+
+        u.Attack(v);
+        Console.WriteLine(v.Health);
+
+        Console.WriteLine(u.Defense);
+        u.Guard();
+        Console.WriteLine(u.Defense);
+        u.Guard();
+        Console.WriteLine(u.Defense);
+
+
 
         Console.Read();
         }
