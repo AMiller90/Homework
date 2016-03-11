@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 class FiniteStateMachine
 {
-    //Transiton Class
+    //Transition Class
     class Transition
     {
         //Transition from
         public Enum from;
         //Transition to
         public Enum to;
-       
+
         //Transition constructor
         public Transition(Enum f, Enum t)
         {
@@ -32,7 +32,7 @@ class FiniteStateMachine
     private List<Transition> tlist = new List<Transition>();
     //Dictionary containing Enum keys and List of transitions for values
     private Dictionary<Enum, List<Transition>> Transitiontable = new Dictionary<Enum, List<Transition>>();
-  
+
     //Constructor
     public FiniteStateMachine(Enum sta)
     {
@@ -61,36 +61,19 @@ class FiniteStateMachine
 
     //Add transitions to list 
     //Add keys and values to dictionary
-    public void Addtransition(Enum s1, Enum s2)
+    public void Addtransition(Enum f, Enum t)
     {
-        //If dictionary is empty..
-        if(Transitiontable.Count == 0)
-        {//Creat a new transition
-            Transition t = new Transition(s1, s2);
-            //Add the transition to the list
-            tlist.Add(t);
-            //Add the key and value to the dictionary
-            Transitiontable.Add(s1, tlist);
+        //If key does not exist
+        if (!Transitiontable.ContainsKey(f))
+        {//Add the new key with a new list as a value
+            Transitiontable.Add(f, new List<Transition>());
+            //Set that new list with the states passed into function
+            Transitiontable[f].Add(new Transition(f, t));
         }
-        //If dictionary is not empty
+        //If the key does exist
         else
-        {//check if current key is already in the dictionary
-            if (Transitiontable.ContainsKey(s1))
-            {//If it is then create another transition
-                Transition t = new Transition(s1, s2);
-                //then just add the transition to the current list in that key
-                Transitiontable[s1].Add(t);
-            }
-            //If key does not exist then make it
-            else
-            {//Create a new transition
-                Transition t = new Transition(s1, s2);
-                //Add the transition to the list
-                tlist.Add(t);
-                //Add the key and value to the dictionary
-                Transitiontable.Add(s1, tlist);
-            }
-
+        {//Add a new transition to the current list at that key
+            Transitiontable[f].Add(new Transition(f, t));
         }
 
     }
@@ -119,31 +102,34 @@ class FiniteStateMachine
     //Changes states
     public void ChangeStates(Enum a)
     {
-        //need the list of transitions that are associated with the key
-        //Check if the state passed in is same as currentState 
-        if (_currentState != a)
+        Console.WriteLine("\n" + _currentState +"->" + a.ToString());
+
+        Enum cstate = _currentState;
+
+        foreach (Transition t in Transitiontable[_currentState])
         {
-            //Loop through dictionary's keys
-            foreach (Enum e in Transitiontable.Keys)
-            {//for each key check if its equal to the passed in state
-                if (e == a)
-                { //Then transition to that state
-                    _currentState = e;
-                }
-                else
-                {
-                    Console.WriteLine("Key does not exist");
-                }
+            if (t.to.Equals(a))
+            {
+                
+                Console.Write("\nTransitioned from " + _currentState);
+                _currentState = a;
+                
+                Console.WriteLine(" to " + a + ".");
+                Console.WriteLine("\nCurrent State: " + _currentState);
+                break;
+
             }
+            
+            
+            
         }
-        //If the currentState is the passed in state
-        else
+
+        if (cstate == _currentState)
         {
-            Console.WriteLine("You are already in that state!");
+            Console.WriteLine("invalid transition");
         }
-
-        //_currentState = a;
-        Console.WriteLine("\nCurrent State: " + _currentState);
+            
+         
     }
-
 }
+

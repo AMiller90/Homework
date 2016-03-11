@@ -30,9 +30,17 @@ namespace FSM
             fsm.Addtransition(PlayerStates.RUN, PlayerStates.WALK);
 
 
-            fsm.info();
 
+            fsm.info();
+            fsm.ChangeStates(PlayerStates.INIT);
+            fsm.ChangeStates(PlayerStates.IDLE);
             fsm.ChangeStates(PlayerStates.WALK);
+            fsm.ChangeStates(PlayerStates.IDLE);
+            fsm.ChangeStates(PlayerStates.RUN);
+            fsm.ChangeStates(PlayerStates.WALK);
+            fsm.ChangeStates(PlayerStates.INIT);
+
+
 
             Console.Read();
         }
@@ -40,4 +48,6 @@ namespace FSM
         
     
     }
+    
 }
+
