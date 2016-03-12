@@ -17,7 +17,8 @@ namespace FSM
         static void Main(string[] args)
         {
 
-            FiniteStateMachine fsm = new FiniteStateMachine(PlayerStates.INIT);
+            FiniteStateMachine<PlayerStates> fsm = new FiniteStateMachine<PlayerStates>();
+
             fsm.AddStates(PlayerStates.INIT);
             fsm.AddStates(PlayerStates.IDLE);
             fsm.AddStates(PlayerStates.WALK);
@@ -30,9 +31,9 @@ namespace FSM
             fsm.Addtransition(PlayerStates.RUN, PlayerStates.WALK);
 
 
-
             fsm.info();
-            fsm.ChangeStates(PlayerStates.INIT);
+
+            //fsm.ChangeStates(PlayerStates.INIT);
             fsm.ChangeStates(PlayerStates.IDLE);
             fsm.ChangeStates(PlayerStates.WALK);
             fsm.ChangeStates(PlayerStates.IDLE);
