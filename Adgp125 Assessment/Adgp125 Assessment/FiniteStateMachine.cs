@@ -32,7 +32,7 @@ public class FiniteStateMachine<T>
     //Dictionary containing Generic keys and List of transitions for values
     private Dictionary<T, List<Transition>> Transitiontable;
 
-    //Property used to get the current state outside of the FSM and being modified from the outside
+    //Property used to get the current state outside of the FSM and prevent from being modified from the outside
     public T state
     {
         get
@@ -106,7 +106,7 @@ public class FiniteStateMachine<T>
     public void ChangeStates(T a)
     {
         //Print the current state and the state user is wanting to change to
-        Console.WriteLine("\n" + _currentState + "->" + a.ToString());
+        //Console.WriteLine("\n" + _currentState + "->" + a.ToString());
 
         //Dynamic variable used to store current state at runtime
         dynamic cstate = _currentState;
@@ -119,13 +119,13 @@ public class FiniteStateMachine<T>
             {
                 //It has the valid transition
                 //Print current state transitioned from
-                Console.Write("\nTransitioned from " + _currentState);
+                //Console.Write("\nTransitioned from " + _currentState);
                 //Set current state to passed into new state
                 _currentState = a;
                 //Print the current state transitioned to 
-                Console.WriteLine(" to " + a + ".");
+                //Console.WriteLine(" to " + a + ".");
                 //Print out the current state
-                Console.WriteLine("\nCurrent State: " + _currentState);
+                //Console.WriteLine("\nCurrent State: " + _currentState);
                 break;
 
             }

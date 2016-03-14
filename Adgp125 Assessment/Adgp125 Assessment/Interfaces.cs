@@ -9,13 +9,11 @@ public interface IActions<T>
 {
 
     bool Attack(T u);
-    void Guard();
-
+    
 }
 
 public interface IStats
 {
-    string Name { get; }
     int Level { get; set; }
     int Health { get; set; }
     int Strength { get; set; }
@@ -23,13 +21,14 @@ public interface IStats
     int Defense { get; set; }
     int Experience { get; set; }
     bool Turn { get; set; }
+    string Type { get; set; }
 
 }
 
-public interface IManage<T, V>
+public interface IManage<T, V, W>
 {
     bool checkForSpeed(T p, V e);
-    void Timetofight(bool b, T p, V e);
+    void Timetofight(bool b, T p, V e, W f);
     void Statsofobjects(T p, V e);
 }
 

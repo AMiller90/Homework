@@ -22,7 +22,7 @@ namespace Adgp125_Assessment
     {
         static void Main(string[] args)
         {
-            bool gameLoop = true;
+            //bool gameLoop = true;
             FiniteStateMachine<e_STATES> fsm = new FiniteStateMachine<e_STATES>();
 
             fsm.AddStates(e_STATES.INIT);
@@ -34,46 +34,65 @@ namespace Adgp125_Assessment
             fsm.Addtransition(e_STATES.SEARCH, e_STATES.TURN);
             fsm.Addtransition(e_STATES.TURN, e_STATES.DEAD);
 
-            bool readytofight = false;
-            //fsm.info();
-            GameManager manager = new GameManager();
-            Player Andrew = new Player("Andrew",100, 10, 10, 30);
-            Enemy Ghost = new Enemy("Ghost", 100, 10, 10, 15);
+            //bool readytofight = false;
 
-            while (gameLoop)
+            List<Unit> unitlist = new List<Unit>();
+
+            GameManager manager = GameManager.instance;
+            Player Andrew = new Player("Andrew", 200, 10, 10, 30, "Player");
+            Player Andrew2 = new Player("Andrew", 200, 10, 10, 30, "Player");
+            Enemy Ghost = new Enemy("Ghost", 100, 10, 10, 15, "Enemy");
+
+
+            List<Player> Party = new List<Player>();
+
+            unitlist.Add(Andrew);
+            unitlist.Add(Ghost);
+            unitlist.Add(Andrew2);
+            foreach(Unit u in unitlist)
             {
-                switch(fsm.state)
+                if (u.Type == "Player")
                 {
-                    case e_STATES.INIT:
-                        fsm.ChangeStates(e_STATES.SEARCH);
-                        break;
-
-                    case e_STATES.SEARCH:
-                        readytofight = manager.checkForSpeed(Andrew, Ghost);
-                        fsm.ChangeStates(e_STATES.TURN);
-                        break;
-
-                    case e_STATES.TURN:
-                        manager.Timetofight(readytofight, Andrew, Ghost);
-                        manager.Statsofobjects(Andrew, Ghost);
-                        break;
-
-                    case e_STATES.DEAD:
-                        manager.Statsofobjects(Andrew, Ghost);
-                        gameLoop = false;
-                        break;
-
-                    default:
-                        break;
+                    Party.Add((Player)u);
                 }
             }
+
+         
             
-            
+                Console.WriteLine(unitlist.Count);
             
 
+            //Console.WriteLine(unitlist.ElementAt(2).Type);
             
-          
 
+
+            //while (gameLoop)
+            //{
+            //    switch(fsm.state)
+            //    {
+            //        case e_STATES.INIT:
+            //            fsm.ChangeStates(e_STATES.SEARCH);
+            //            break;
+
+            //        case e_STATES.SEARCH:
+            //            readytofight = manager.checkForSpeed(Andrew, Ghost);
+            //            fsm.ChangeStates(e_STATES.TURN);
+            //            break;
+
+            //        case e_STATES.TURN:
+            //            Console.Write("Do You Want To Attack or Guard? A or G: \n");
+            //            manager.Timetofight(readytofight, Andrew, Ghost, fsm);
+            //            break;
+
+            //        case e_STATES.DEAD:
+            //            manager.Statsofobjects(Andrew, Ghost);
+            //            gameLoop = false;  
+            //            break;
+
+            //        default:
+            //            break;
+            //    }
+            //}
 
 
             Console.Read();

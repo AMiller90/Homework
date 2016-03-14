@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class Enemy : FiniteStateMachine<e_STATES>,IStats, IActions<Player>
+public class Enemy : Unit, IStats, IActions<Player>
 {
+    
     private string m_ename;
     private int m_elevel = 1;
     private int m_ehp;
@@ -15,8 +16,9 @@ public class Enemy : FiniteStateMachine<e_STATES>,IStats, IActions<Player>
     private int m_espd;
     private int m_exp = 50;
     private bool m_eturn;
+    private string m_eType;
 
-    public Enemy(string name, int hp, int strength, int defense, int speed)
+    public Enemy(string name, int hp, int strength, int defense, int speed, string t)
     {
         m_ename = name;
         m_ehp = hp;
@@ -25,6 +27,7 @@ public class Enemy : FiniteStateMachine<e_STATES>,IStats, IActions<Player>
         m_espd = speed;
         m_elevel = Level;
         m_exp = Experience;
+        Type = t;
     }
 
     public int Level
@@ -101,7 +104,7 @@ public class Enemy : FiniteStateMachine<e_STATES>,IStats, IActions<Player>
 
         set
         {
-           m_exp = value;
+            m_exp = value;
         }
     }
 
@@ -128,6 +131,7 @@ public class Enemy : FiniteStateMachine<e_STATES>,IStats, IActions<Player>
 
     public bool Attack(Player p)
     {
+        //If the player health is greater than 0
         if (p.Health > 0)
         {
 
@@ -135,23 +139,18 @@ public class Enemy : FiniteStateMachine<e_STATES>,IStats, IActions<Player>
             float perc = p.Defense * 0.25f;
             //Set the enemies health to the players' attacking strength mulitplied by the perc value
             p.Health -= this.m_estr * (int)perc;
+            Console.WriteLine(p.Name + " took " + this.m_estr * (int)perc + " damage!");
             return true;
 
         }
+        //If player health is equal to or less than 0
         else
         {
+            Console.WriteLine(p.Name + " has been killed!");
+            //Player is dead return false
             return false;
         }
-    }
 
-    public void Guard()
-    {
-        //Set new float variable to the current defense of this enemy mulitplied by 0.25
-        float increaseD = this.Defense * 0.25f;
-        //Increase current enemies defense by value stored in increaseD varaiable
-        this.Defense += (int)increaseD;
     }
-
-  
 }
 
