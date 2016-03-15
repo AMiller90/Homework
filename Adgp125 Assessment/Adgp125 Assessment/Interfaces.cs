@@ -22,14 +22,15 @@ public interface IStats
     int Experience { get; set; }
     bool Turn { get; set; }
     string Type { get; set; }
-
+    string Name { get; set; }
 }
 
-public interface IManage<T, V, W>
+public interface IManage<T, U, V, W>
 {
-    bool checkForSpeed(T p, V e);
-    void Timetofight(bool b, T p, V e, W f);
-    void Statsofobjects(T p, V e);
+    List<Unit> sortBySpeed(T u);
+    void Timetofight(bool b, T u, W f);
+    void Statsofobjects(T u);
+    bool Checkforvictory(bool b, U p, V e);
 }
 
 

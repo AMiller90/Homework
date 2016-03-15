@@ -10,7 +10,7 @@ public enum e_STATES
     //Searches for who attacks first
     SEARCH,
     //The current turn
-    TURN,
+    BATTLE,
     //Out of health
     DEAD
 
@@ -22,77 +22,67 @@ namespace Adgp125_Assessment
     {
         static void Main(string[] args)
         {
-            //bool gameLoop = true;
+            bool gameLoop = true;
             FiniteStateMachine<e_STATES> fsm = new FiniteStateMachine<e_STATES>();
 
             fsm.AddStates(e_STATES.INIT);
             fsm.AddStates(e_STATES.SEARCH);
-            fsm.AddStates(e_STATES.TURN);
+            fsm.AddStates(e_STATES.BATTLE);
             fsm.AddStates(e_STATES.DEAD);
 
             fsm.Addtransition(e_STATES.INIT, e_STATES.SEARCH);
-            fsm.Addtransition(e_STATES.SEARCH, e_STATES.TURN);
-            fsm.Addtransition(e_STATES.TURN, e_STATES.DEAD);
+            fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
+            fsm.Addtransition(e_STATES.BATTLE, e_STATES.DEAD);
 
-            //bool readytofight = false;
-
-            List<Unit> unitlist = new List<Unit>();
-
+            bool readytofight = true;
+         
             GameManager manager = GameManager.instance;
-            Player Andrew = new Player("Andrew", 200, 10, 10, 30, "Player");
-            Player Andrew2 = new Player("Andrew", 200, 10, 10, 30, "Player");
-            Enemy Ghost = new Enemy("Ghost", 100, 10, 10, 15, "Enemy");
 
+            Unit a = new Unit();
 
-            List<Player> Party = new List<Player>();
+            Player plist = new Player();
+            Enemy eList = new Enemy();
 
-            unitlist.Add(Andrew);
-            unitlist.Add(Ghost);
-            unitlist.Add(Andrew2);
-            foreach(Unit u in unitlist)
+            Player Cloud = new Player("Cloud", 200, 10, 10, 30, "Player");
+            Player Tifa= new Player("Tifa", 200, 10, 10, 35, "Player");
+
+            Enemy Ghost = new Enemy("Ghost", 20, 10, 10, 15, "Enemy");
+            Enemy Spook = new Enemy("Spook", 20, 10, 10, 6, "Enemy");
+
+           
+            a.Participants.Add(Cloud);
+            a.Participants.Add(Tifa);
+            a.Participants.Add(Ghost);
+            a.Participants.Add(Spook);
+
+            List<Unit> BattleGroup = new List<Unit>();
+
+            while (gameLoop)
             {
-                if (u.Type == "Player")
+                switch (fsm.state)
                 {
-                    Party.Add((Player)u);
+                    case e_STATES.INIT:
+                        fsm.ChangeStates(e_STATES.SEARCH);
+                        break;
+
+                    case e_STATES.SEARCH:
+                        BattleGroup = manager.sortBySpeed(a.Participants);
+                        fsm.ChangeStates(e_STATES.BATTLE);
+                        break;
+
+                    case e_STATES.BATTLE:
+                        manager.Timetofight(readytofight, BattleGroup, fsm);
+                        break;
+
+                    case e_STATES.DEAD:
+                        manager.Statsofobjects(a.Participants);
+                        gameLoop = false;
+                        break;
+
+                    default:
+                        break;
                 }
             }
-
-         
-            
-                Console.WriteLine(unitlist.Count);
-            
-
-            //Console.WriteLine(unitlist.ElementAt(2).Type);
-            
-
-
-            //while (gameLoop)
-            //{
-            //    switch(fsm.state)
-            //    {
-            //        case e_STATES.INIT:
-            //            fsm.ChangeStates(e_STATES.SEARCH);
-            //            break;
-
-            //        case e_STATES.SEARCH:
-            //            readytofight = manager.checkForSpeed(Andrew, Ghost);
-            //            fsm.ChangeStates(e_STATES.TURN);
-            //            break;
-
-            //        case e_STATES.TURN:
-            //            Console.Write("Do You Want To Attack or Guard? A or G: \n");
-            //            manager.Timetofight(readytofight, Andrew, Ghost, fsm);
-            //            break;
-
-            //        case e_STATES.DEAD:
-            //            manager.Statsofobjects(Andrew, Ghost);
-            //            gameLoop = false;  
-            //            break;
-
-            //        default:
-            //            break;
-            //    }
-            //}
 
 
             Console.Read();
