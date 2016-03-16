@@ -119,13 +119,13 @@ public class FiniteStateMachine<T>
             {
                 //It has the valid transition
                 //Print current state transitioned from
-                Console.Write("\nTransitioned from " + _currentState);
+                //Console.Write("\nTransitioned from " + _currentState);
                 //Set current state to passed into new state
                 _currentState = a;
                 //Print the current state transitioned to
-                Console.WriteLine(" to " + a + ".");
+                //Console.WriteLine(" to " + a + ".");
                 //Print out the current state
-                Console.WriteLine("\nCurrent State: " + _currentState);
+                //Console.WriteLine("\nCurrent State: " + _currentState);
                 break;
 
             }

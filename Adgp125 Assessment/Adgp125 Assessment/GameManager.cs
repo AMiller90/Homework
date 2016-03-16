@@ -32,13 +32,25 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
     //Function used to check the which object goes first based on higher speed stat
     public List<Unit> sortBySpeed(List<Unit> List)
     {
-        Player plist = new Player();
-        Enemy eList = new Enemy();
         List<Unit> sortedlist = new List<Unit>();
 
-       sortedlist = List.OrderByDescending(u => u.Speed).ToList<Unit>();
+        sortedlist = List.OrderByDescending(u => u.Speed).ToList<Unit>();
 
-        foreach (Unit i in sortedlist)
+        Console.WriteLine(sortedlist.ElementAt(0).Name + " attacks first!\n");
+
+        return sortedlist;
+    }
+
+    //Function used for the fighting between objects
+    public void Timetofight(List<Unit> uList, FiniteStateMachine<e_STATES> fsm)
+    {
+
+        Player plist = new Player();
+        Enemy eList = new Enemy();
+        Unit a = new Unit();
+
+
+        foreach (Unit i in uList)
         {
             if (i.Type == "Player")
             {
@@ -53,91 +65,43 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
 
         }
 
-        Console.WriteLine(sortedlist.ElementAt(0).Name + " attacks first!\n");
-
-        return sortedlist;
-    }
-
-    //Function used for the fighting between objects
-    public void Timetofight(bool b, List<Unit> uList, FiniteStateMachine<e_STATES> fsm)
-    {
-        //bool check = false;
-        char input;
-        Player plist = new Player();
-        Enemy eList = new Enemy();
-        Unit a = new Unit();
-
-
         for (int i = 0; i < uList.Count; i++)
         {
-            if(uList.ElementAt(i).Type == "Player")
+            if (uList[i].Life == true)
             {
-                Console.Write("Do You Want To Attack or Guard? A or G: \n");
-                input = (char)Console.Read();
+                Console.WriteLine("It is " + uList[i].Name + "'s turn!\n");
+            }
 
-                if(input == 'a' || input == 'A')
+            if (uList[i].Type == "Player" && uList[i].Life == true)
+            {
+
+                uList[i].ChooseWhoToAttack(eList.EnemyParty);
+                uList[i].Attack(uList[i].Target);
+
+            }
+            if (uList[i].Type == "Enemy" && uList[i].Life == true)
+            {
+                // so much accessing
+                // simplify code clarity by accessing what you want
+
+                Unit Defender = uList[i].EnemyRandomTarget(plist.Party);
+                Unit Attacker = uList[i];
+
+                //use your boolean checks to determine if you should break the loop
+                if (!Attacker.Attack(Defender))
                 {
-                    //a.ChooseWhoToAttack(eList.EnemyParty);
-                    if (uList.ElementAt(i).Attack(a.ChooseWhoToAttack(eList.EnemyParty)) == true)
-                    {
-                        //Next unit in the lists turn
-                        break;
-                    }
+                    break;
                 }
+                   
 
             }
-            else if (uList.ElementAt(i).Type == "Enemy")
-            {
-
-            }
-            ////If b returned true then its a players turn 
-            //if (b == true)
-            //{
-            //    Console.Write("Do You Want To Attack or Guard? A or G: \n");
-            //    input = (char)Console.Read();
 
 
-                //    if (input == 'a' || input == 'A')
-                //    {
-                //        a.ChooseWhoToAttack(eList.EnemyParty);
-                //        if (uList.ElementAt(i).Attack(a.ChooseWhoToAttack(eList.EnemyParty)) == true)
-                //        {//Call function again with a value set to false so the other object can have its turn
-                //            Timetofight(false, uList, fsm);
+        }
 
-                //        }
-                //        //If attack function returns false that means enemy is dead
-                //        else
-                //        {
-
-                //            fsm.ChangeStates(e_STATES.DEAD);
-                //            // break;
-                //        }
-                //    }
-                //    Console.WriteLine(plist.Party.ElementAt(i).Name + " attacked!");
-
-                //}
-
-                ////if b is false
-                //else
-                //{
-
-                //    //Call attack function on the player object and if it returns true
-                //    if (uList.ElementAt(i).Attack(a.EnemyRandomTarget(plist.Party)) == true)
-                //    {//Call function again with a value set to true so the other object can have its turn
-                //        Timetofight(true, uList, fsm);
-                //    }
-                //    //If attack function returns false that means the player is dead
-                //    else
-                //    {
-
-                //        break;
-                //        //if (Checkforvictory(check, plist.Party, eList.EnemyParty) == true)
-                //        //{
-                //        //    fsm.ChangeStates(e_STATES.DEAD);
-                //        //}
-
-                //    }
-                //}
+        if (Checkforvictory(plist.Party, eList.EnemyParty) == true)
+        {
+            fsm.ChangeStates(e_STATES.GAMEOVER);
         }
 
     }
@@ -148,7 +112,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
         //Print current stats
         Console.WriteLine("\nPlayer Stats:\n");
 
-        for(int i = 0; i < ulist.Count; i++)
+        for (int i = 0; i < ulist.Count; i++)
         {
             //Print player object name
             Console.WriteLine(ulist.ElementAt(i).Name + " Stats: \n");
@@ -157,38 +121,42 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
         }
     }
 
-    public bool Checkforvictory(bool b, List<Player> plist, List<Enemy> elist)
+    public bool Checkforvictory(List<Player> plist, List<Enemy> elist)
     {
-        int count = 0;
-        int counts = 0;
-        foreach(Player p in plist)
+        int pcount = 0;
+        int ecount = 0;
+
+        foreach (Player p in plist)
         {
-            if(p.Life == false)
+            if (p.Life == false)
             {
-                count++;
-                if(plist.Count == count)
+                pcount++;
+                if (plist.Count == pcount)
                 {//No players alive in party
-                    b = true;
-                    //return b;
+                    Console.WriteLine("Game Over! Enemy Wins!\n");
+                    return true;
+
                 }
             }
         }
 
-       foreach(Enemy e in elist)
+        foreach (Enemy e in elist)
         {
-            
-            if(e.Life == false)
+
+            if (e.Life == false)
             {
-                counts++;
-                if (elist.Count == count)
+                ecount++;
+                if (elist.Count == ecount)
                 {//No enemies alive in party
-                    b = true;
-                    //return b;
+                    Console.WriteLine("Game Over! You Win!\n");
+                    return true;
+
                 }
             }
         }
 
-        return b;
+        return false;
     }
+
 }
 

@@ -20,7 +20,6 @@ public interface IStats
     int Speed { get; set; }
     int Defense { get; set; }
     int Experience { get; set; }
-    bool Turn { get; set; }
     string Type { get; set; }
     string Name { get; set; }
 }
@@ -28,9 +27,9 @@ public interface IStats
 public interface IManage<T, U, V, W>
 {
     List<Unit> sortBySpeed(T u);
-    void Timetofight(bool b, T u, W f);
+    void Timetofight(T u, W f);
     void Statsofobjects(T u);
-    bool Checkforvictory(bool b, U p, V e);
+    bool Checkforvictory(U p, V e);
 }
 
 

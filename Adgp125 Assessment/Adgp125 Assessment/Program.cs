@@ -12,7 +12,7 @@ public enum e_STATES
     //The current turn
     BATTLE,
     //Out of health
-    DEAD
+    GAMEOVER
 
 }
 
@@ -28,13 +28,13 @@ namespace Adgp125_Assessment
             fsm.AddStates(e_STATES.INIT);
             fsm.AddStates(e_STATES.SEARCH);
             fsm.AddStates(e_STATES.BATTLE);
-            fsm.AddStates(e_STATES.DEAD);
+            fsm.AddStates(e_STATES.GAMEOVER);
 
             fsm.Addtransition(e_STATES.INIT, e_STATES.SEARCH);
             fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
-            fsm.Addtransition(e_STATES.BATTLE, e_STATES.DEAD);
+            fsm.Addtransition(e_STATES.BATTLE, e_STATES.GAMEOVER);
 
-            bool readytofight = true;
+            //bool readytofight = true;
          
             GameManager manager = GameManager.instance;
 
@@ -43,11 +43,11 @@ namespace Adgp125_Assessment
             Player plist = new Player();
             Enemy eList = new Enemy();
 
-            Player Cloud = new Player("Cloud", 200, 10, 10, 30, "Player");
-            Player Tifa= new Player("Tifa", 200, 10, 10, 35, "Player");
+            Player Cloud = new Player("Cloud", 10, 10, 10, 30, "Player");
+            Player Tifa= new Player("Tifa", 10, 10, 10, 35, "Player");
 
-            Enemy Ghost = new Enemy("Ghost", 20, 10, 10, 15, "Enemy");
-            Enemy Spook = new Enemy("Spook", 20, 10, 10, 6, "Enemy");
+            Enemy Ghost = new Enemy("1", 20, 100, 10, 15, "Enemy");
+            Enemy Spook = new Enemy("2", 20, 100, 10, 6, "Enemy");
 
            
             a.Participants.Add(Cloud);
@@ -71,10 +71,10 @@ namespace Adgp125_Assessment
                         break;
 
                     case e_STATES.BATTLE:
-                        manager.Timetofight(readytofight, BattleGroup, fsm);
+                        manager.Timetofight(BattleGroup, fsm);
                         break;
 
-                    case e_STATES.DEAD:
+                    case e_STATES.GAMEOVER:
                         manager.Statsofobjects(a.Participants);
                         gameLoop = false;
                         break;

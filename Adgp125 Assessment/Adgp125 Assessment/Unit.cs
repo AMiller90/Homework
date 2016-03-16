@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 
 
-public class Unit : IStats , IActions<Unit>
+public class Unit : IStats, IActions<Unit>
 {
-    
+
     private int m_uDefense;
     private int m_uExperience;
     private int m_uHealth;
     private int m_uLevel;
     private int m_uSpeed;
     private int m_uStrength;
-    private bool m_uTurn;
     private string m_uType;
     private string m_uName;
     private Unit m_uTarget;
@@ -26,7 +25,7 @@ public class Unit : IStats , IActions<Unit>
 
     public Unit()
     {
-    
+
 
     }
 
@@ -79,7 +78,7 @@ public class Unit : IStats , IActions<Unit>
 
         set
         {
-           m_uExperience = value;
+            m_uExperience = value;
         }
     }
 
@@ -135,19 +134,6 @@ public class Unit : IStats , IActions<Unit>
         }
     }
 
-    public bool Turn
-    {
-        get
-        {
-            return m_uTurn;
-        }
-
-        set
-        {
-            m_uTurn = value;
-        }
-    }
-
     public string Type
     {
         get
@@ -188,43 +174,61 @@ public class Unit : IStats , IActions<Unit>
 
     public bool Attack(Unit u)
     {
-
-        if(this.Type != u.Type)
+        //is it null?
+        //it could be because we return null from EnemyRandomTarget
+        if (u == null)
         {
+            return false;
+        }
+          
             if (u.Health > 0)
             {
 
-                //Create a perc float variable that will contain the result of the enemies defense multiplied by 0.1
+                //Create a perc float variable that will contain the result of the enemies defense multiplied by 0.25
                 float perc = u.Defense * 0.25f;
                 //Set the enemies health to the players' attacking strength mulitplied by the perc value
-                u.Health -= this.Strength * (int)perc;
-                Console.WriteLine(u.Name + " took " + this.Strength * (int)perc + " damage!");
+                int actualDamage = this.Strength - (int)perc;
+                u.Health -= actualDamage;
+                Console.WriteLine("\n" + this.Name + " Attacked " + u.Name + "\n");
+                Console.WriteLine(u.Name + " took " + actualDamage + " damage!");
+
+                if (u.Health <= 0)
+                {
+                    Console.WriteLine(u.Name + " has been killed!");
+                    u.Life = false;
+
+                    if (this.Type == "Player")
+                    {
+                        //Give player experience points equal to the amount of experience points of the enemy
+                        this.Experience += u.Experience;
+                        //Check if player has enough experience point to level up
+                        this.LevelUp();
+                    }
+                    return false;
+                }
+
                 return true;
+
 
             }
             else
             {
-
                 Console.WriteLine(u.Name + " has been killed!");
                 u.Life = false;
 
-                if(this.Type == "Player")
+                if (this.Type == "Player")
                 {
                     //Give player experience points equal to the amount of experience points of the enemy
                     this.Experience += u.Experience;
                     //Check if player has enough experience point to level up
                     this.LevelUp();
                 }
-               
 
                 return false;
+
+
             }
-        }
-        else
-        {
-            //Console.WriteLine("Can't Attack Own Party Member");
-            return false;
-        }
+        
 
     }
 
@@ -236,6 +240,7 @@ public class Unit : IStats , IActions<Unit>
             Console.Write("Level Up!\n");
             this.Level++;
             this.Experience = 0;
+            this.Health = m_uHealth;
             this.Health += 10;
             this.Strength += 5;
             this.Defense += 5;
@@ -246,58 +251,89 @@ public class Unit : IStats , IActions<Unit>
 
     public Unit ChooseWhoToAttack(List<Enemy> eParty)
     {
-        string Input;
-        
-        Console.WriteLine("Who Do You Want To Attack? Type in the Name of target: \n");
+
+        Console.WriteLine("Who Do You Want To Attack? Type in the Number of target: \n");
         for (int i = 0; i < eParty.Count; i++)
         {
-            Console.WriteLine(eParty.ElementAt(i).Name);
+            Console.WriteLine(eParty[i].Name);
         }
 
-        
-        Input = Console.ReadLine();
+        Console.Write("\n");
+        string input;
+        input = Console.ReadLine();
+
+
         for (int i = 0; i < eParty.Count; i++)
         {
-            if (Input == eParty.ElementAt(i).Name && eParty.ElementAt(i).Life == true)
+            if (input == eParty[i].Name && eParty[i].Life == true)
             {
-               Target = eParty.ElementAt(i);
-
+                m_uTarget = eParty[i];
+                return m_uTarget;
             }
-            else if(Input == eParty.ElementAt(i).Name && eParty.ElementAt(i).Life == false)
+            else if (input == eParty[i].Name && eParty[i].Life == false)
             {
-                Console.WriteLine(eParty.ElementAt(i).Name + " is already dead!\n");
+                Console.WriteLine(eParty[i].Name + " is already dead!\n");
                 ChooseWhoToAttack(eParty);
-
             }
-            
+
         }
 
-        return Target;
+        return null;
+    }
+
+    /// <summary>
+    /// override the previous enemyrandomtarget function with a recursive base case
+    /// 
+    /// </summary>
+    /// <param name="party"></param>
+    /// <param name="dead"></param>
+    /// <returns></returns>
+    /// 
+    public Unit EnemyRandomTarget(List<Player> party, int dead)
+    {
+        dead++;
+        //dis is bad
+        //you will only ever roll an enemy attack for however many members are in the group
+        //figure it out
+        //recursive calls must have a base case that they use to break out
+        //can either use tail recursion or head recursion
+        //you do not know what those are... can look it up or alternatively just keep track of how many
+        //party members are dead and break when that count is equal to the number of party members
+        if (dead >= party.Count)
+        {
+            return null;
+        }
+            
+        else
+        {
+            EnemyRandomTarget(party, dead);
+        }
+            
+
+        return null;
+
     }
 
     public Unit EnemyRandomTarget(List<Player> party)
     {
+        int deadCount = 0;
         Random r = new Random();
-
-        int index = r.Next(0, party.Count);
         
-        for (int i = 0; i < party.Count; i++)
+        int index = r.Next(0, party.Count);
+        Unit defender = party[index];
+
+        if (defender.Life)
         {
-            if (index == party.IndexOf(party.ElementAt(i)) && party.ElementAt(i).Life == true)
-            {
-                Target = party.ElementAt(i);
-
-            }
-            else if (index == party.IndexOf(party.ElementAt(i)) && party.ElementAt(i).Life == false)
-            {
-                Console.WriteLine(party.ElementAt(i).Name + " is already dead!\n");
-                EnemyRandomTarget(party);
-
-            }
+            return defender;
 
         }
+        else
+        {
+            EnemyRandomTarget(party, deadCount);
+            
+        }
 
-        return m_uTarget;
+        return null;
     }
 
 }
