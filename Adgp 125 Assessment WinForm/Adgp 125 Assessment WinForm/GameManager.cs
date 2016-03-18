@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 //Gamemanager class - Made into a singleton pattern - sealed does not allow class to be inherited from
 public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>, FiniteStateMachine<e_STATES>>
 {
+    public FiniteStateMachine<e_STATES> fsm = new FiniteStateMachine<e_STATES>();
+
     //Default constructor
     private GameManager() { }
 
@@ -36,7 +38,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
 
         sortedlist = List.OrderByDescending(u => u.Speed).ToList<Unit>();
 
-        Console.WriteLine(sortedlist.ElementAt(0).Name + " attacks first!\n");
+        //Console.WriteLine(sortedlist.ElementAt(0).Name + " attacks first!\n");
 
         return sortedlist;
     }

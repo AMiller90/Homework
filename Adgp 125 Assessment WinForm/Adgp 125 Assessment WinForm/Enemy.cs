@@ -10,7 +10,7 @@ public class Enemy : Unit
     
     
     private int m_elevel = 1;
-    private int m_exp = 50;
+    //private int m_exp = 50;
     private List<Enemy> m_Enemyparty = new List<Enemy>();
 
     public Enemy()
@@ -18,7 +18,7 @@ public class Enemy : Unit
 
     }
 
-    public Enemy(string name, int hp, int strength, int defense, int speed, string type)
+    public Enemy(string name, int hp, int strength, int defense, int speed, int exp, string type)
     {
         Name = name;
         Health = hp;
@@ -26,7 +26,7 @@ public class Enemy : Unit
         Defense = defense;
         Speed = speed;
         Level = m_elevel;
-        Experience = m_exp;
+        Experience = exp;
         Life = true;
         Type = type;
     }
