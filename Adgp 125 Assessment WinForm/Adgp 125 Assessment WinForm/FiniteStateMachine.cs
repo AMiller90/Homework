@@ -111,31 +111,39 @@ public class FiniteStateMachine<T>
         //Dynamic variable used to store current state at runtime
         dynamic cstate = _currentState;
 
-        //If the key exists
-        //Loop through each transition in the current key of the dictionary
-        foreach (Transition t in Transitiontable[_currentState])
-        {//If the transitions to variable is equal to the passed in variable
-            if (t.to.Equals(a))
-            {
-                //It has the valid transition
-                //Print current state transitioned from
-                //Console.Write("\nTransitioned from " + _currentState);
-                //Set current state to passed into new state
-                _currentState = a;
-                //Print the current state transitioned to
-                //Console.WriteLine(" to " + a + ".");
-                //Print out the current state
-                //Console.WriteLine("\nCurrent State: " + _currentState);
-                break;
+        if(!Transitiontable.ContainsKey(_currentState))
+        {
+            Console.WriteLine("That state does not exist!\n");
+        }
+        else
+        {
+            //If the key exists
+            //Loop through each transition in the current key of the dictionary
+            foreach (Transition t in Transitiontable[_currentState])
+            {//If the transitions to variable is equal to the passed in variable
+                if (t.to.Equals(a))
+                {
+                    //It has the valid transition
+                    //Print current state transitioned from
+                    //Console.Write("\nTransitioned from " + _currentState);
+                    //Set current state to passed into new state
+                    _currentState = a;
+                    //Print the current state transitioned to
+                    //Console.WriteLine(" to " + a + ".");
+                    //Print out the current state
+                    //Console.WriteLine("\nCurrent State: " + _currentState);
+                    break;
+
+                }
 
             }
-
+            //If the variable is equal to the current state
+            if (cstate == _currentState)
+            {//Print invalid transition
+                Console.WriteLine("invalid transition");
+            }
         }
-        //If the variable is equal to the current state
-        if (cstate == _currentState)
-        {//Print invalid transition
-            Console.WriteLine("invalid transition");
-        }
+       
 
 
 

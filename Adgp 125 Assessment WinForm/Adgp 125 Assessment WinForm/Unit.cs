@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 public class Unit : IStats, IActions<Unit>
 {
-
+    public string stuffText;
     private int m_uDefense;
     private int m_uExperience;
     private int m_uHealth;
@@ -189,12 +189,12 @@ public class Unit : IStats, IActions<Unit>
                 //Set the enemies health to the players' attacking strength mulitplied by the perc value
                 int actualDamage = this.Strength - (int)perc;
                 u.Health -= actualDamage;
-                Console.WriteLine("\n" + this.Name + " Attacked " + u.Name + "\n");
-                Console.WriteLine(u.Name + " took " + actualDamage + " damage!");
+                stuffText += "\n" + this.Name + " Attacked " + u.Name + "\n";
+                stuffText += u.Name + " took " + actualDamage + " damage!\n\n";
 
                 if (u.Health <= 0)
                 {
-                    Console.WriteLine(u.Name + " has been killed!");
+                    stuffText += u.Name + " has been killed!\n";
                     u.Life = false;
 
                     if (this.Type == "Player")
@@ -213,7 +213,7 @@ public class Unit : IStats, IActions<Unit>
             }
             else
             {
-                Console.WriteLine(u.Name + " has been killed!");
+                stuffText += u.Name + " has been killed!\n";
                 u.Life = false;
 
                 if (this.Type == "Player")

@@ -31,6 +31,8 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
         }
     }
 
+    public string winText;
+
     //Function used to check the which object goes first based on higher speed stat
     public List<Unit> sortBySpeed(List<Unit> List)
     {
@@ -38,7 +40,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
 
         sortedlist = List.OrderByDescending(u => u.Speed).ToList<Unit>();
 
-        //Console.WriteLine(sortedlist.ElementAt(0).Name + " attacks first!\n");
+        Console.WriteLine(sortedlist.ElementAt(0).Name + " attacks first!\n");
 
         return sortedlist;
     }
@@ -49,35 +51,38 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
 
         Player plist = new Player();
         Enemy eList = new Enemy();
-        Unit a = new Unit();
-
+        List<Player> currentParty = new List<Player>();
+        List<Enemy> enemyParty = new List<Enemy>();
+        //Unit a = new Unit();
 
         foreach (Unit i in uList)
         {
             if (i.Type == "Player")
             {
-                plist.Party.Add((Player)i);
-
+                currentParty.Add((Player)i);
 
             }
             if (i.Type == "Enemy")
             {
-                eList.EnemyParty.Add((Enemy)i);
+                enemyParty.Add((Enemy)i);
             }
 
         }
+
+
 
         for (int i = 0; i < uList.Count; i++)
         {
             if (uList[i].Life == true)
             {
                 Console.WriteLine("It is " + uList[i].Name + "'s turn!\n");
+                
             }
 
             if (uList[i].Type == "Player" && uList[i].Life == true)
             {
 
-                uList[i].ChooseWhoToAttack(eList.EnemyParty);
+                uList[i].ChooseWhoToAttack(enemyParty);
                 uList[i].Attack(uList[i].Target);
 
             }
@@ -86,7 +91,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
                 // so much accessing
                 // simplify code clarity by accessing what you want
 
-                Unit Defender = uList[i].EnemyRandomTarget(plist.Party);
+                Unit Defender = uList[i].EnemyRandomTarget(currentParty);
                 Unit Attacker = uList[i];
 
                 //use your boolean checks to determine if you should break the loop
@@ -101,9 +106,10 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
 
         }
 
-        if (Checkforvictory(plist.Party, eList.EnemyParty) == true)
+        if (Checkforvictory(currentParty, enemyParty) == true)
         {
-            fsm.ChangeStates(e_STATES.GAMEOVER);
+            fsm.ChangeStates(e_STATES.EXIT);
+
             
         }
 
@@ -136,7 +142,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
                 pcount++;
                 if (plist.Count == pcount)
                 {//No players alive in party
-                    Console.WriteLine("Game Over! Enemy Wins!\n");
+                    winText = "Game Over! Enemy Wins!\n";
                     return true;
 
                 }
@@ -151,7 +157,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
                 ecount++;
                 if (elist.Count == ecount)
                 {//No enemies alive in party
-                    Console.WriteLine("Game Over! You Win!\n");
+                    winText = "Game Over! You Win!\n";
                     return true;
 
                 }

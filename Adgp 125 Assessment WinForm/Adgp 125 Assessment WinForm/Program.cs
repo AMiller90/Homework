@@ -7,10 +7,12 @@ using System.Windows.Forms;
 public enum e_STATES
 {
     INIT,
-    STARTGAME,
+    START,
     SEARCH,
     BATTLE,
-    GAMEOVER
+    PLAYERTURN,
+    ENEMYTURN,
+    EXIT
 
 }
 

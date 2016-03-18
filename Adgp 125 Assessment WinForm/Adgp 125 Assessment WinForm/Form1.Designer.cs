@@ -385,6 +385,7 @@
             this.Location = new System.Drawing.Point(10, 10);
             this.Name = "Form1";
             this.Text = " Turn-Based RPG";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

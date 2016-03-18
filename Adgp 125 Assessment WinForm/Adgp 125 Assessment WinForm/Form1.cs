@@ -13,7 +13,7 @@ namespace Adgp_125_Assessment_WinForm
     public partial class Form1 : Form
     {
         public GameManager manager = GameManager.instance;
-        public Unit a = new Unit();
+        public Unit u = new Unit();
         public string player1name;
         public string player2name;
         public string player3name;
@@ -23,23 +23,8 @@ namespace Adgp_125_Assessment_WinForm
 
         public Form1()
         {
-
             InitializeComponent();
-
-            manager.fsm.AddStates(e_STATES.INIT);
-            manager.fsm.AddStates(e_STATES.STARTGAME);
-            manager.fsm.AddStates(e_STATES.SEARCH);
-            manager.fsm.AddStates(e_STATES.BATTLE);
-            manager.fsm.AddStates(e_STATES.GAMEOVER);
-
-            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.STARTGAME);
-            manager.fsm.Addtransition(e_STATES.STARTGAME, e_STATES.SEARCH);
-            manager.fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
-            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.GAMEOVER);
-
-            manager.fsm.ChangeStates(e_STATES.STARTGAME);
-            textBox1.Text = manager.fsm.state.ToString();
-
+          
         }
 
         private void GenerateParty_Button_Click(object sender, EventArgs e)
@@ -48,11 +33,12 @@ namespace Adgp_125_Assessment_WinForm
             Player p = new Player();
             //Create empty enemy object
             Enemy en = new Enemy();
+
             //Create a new list to store all of the player and enemy objects into
             List<Unit> NewParty = CreateObjects();
 
             //Loop through the sorted party 
-            foreach(Unit i in NewParty)
+            foreach (Unit i in NewParty)
             {//Check if current unit is a player
                 if (i.Type == "Player")
                 {//If true then add to player party
@@ -81,6 +67,7 @@ namespace Adgp_125_Assessment_WinForm
             {
                 Form2 BattleScene = new Form2(this);
                 BattleScene.ShowDialog();
+
             }
         }
 
@@ -89,6 +76,7 @@ namespace Adgp_125_Assessment_WinForm
         {
 
             //Unit a = new Unit();
+            List<Unit> AllObjects = new List<Unit>();
 
             Player Cloud = new Player("Cloud", 150, 12, 12, 6, "Player");
             Player Barret = new Player("Barret", 220, 15, 13, 5, "Player");
@@ -111,31 +99,33 @@ namespace Adgp_125_Assessment_WinForm
             Enemy MasterTonberry = new Enemy("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
             Enemy Behemoth = new Enemy("Behemoth", 300, 35, 14, 4, 100, "Enemy");
 
-            a.Participants.Add(Cloud);
-            a.Participants.Add(Barret);
-            a.Participants.Add(Tifa);
-            a.Participants.Add(Aeris);
-            a.Participants.Add(RedXIII);
-            a.Participants.Add(Cait);
-            a.Participants.Add(Cid);
-            a.Participants.Add(Yuffie);
-            a.Participants.Add(Vincent);
+            AllObjects.Add(Cloud);
+            AllObjects.Add(Barret);
+            AllObjects.Add(Tifa);
+            AllObjects.Add(Aeris);
+            AllObjects.Add(RedXIII);
+            AllObjects.Add(Cait);
+            AllObjects.Add(Cid);
+            AllObjects.Add(Yuffie);
+            AllObjects.Add(Vincent);
 
-            a.Participants.Add(TwoFaced);
-            a.Participants.Add(AncientDragon);
-            a.Participants.Add(Ghost);
-            a.Participants.Add(IceGolem);
-            a.Participants.Add(Zuu);
-            a.Participants.Add(ToxicFrog);
-            a.Participants.Add(DeathClaw);
-            a.Participants.Add(MasterTonberry);
-            a.Participants.Add(Behemoth);
+            AllObjects.Add(TwoFaced);
+            AllObjects.Add(AncientDragon);
+            AllObjects.Add(Ghost);
+            AllObjects.Add(IceGolem);
+            AllObjects.Add(Zuu);
+            AllObjects.Add(ToxicFrog);
+            AllObjects.Add(DeathClaw);
+            AllObjects.Add(MasterTonberry);
+            AllObjects.Add(Behemoth);
 
-            return a.Participants;
+            return AllObjects;
         }
 
         private void RandomizeAllParties(List<Player> p, List <Enemy> e)
      {
+            
+            //Unit u = new Unit();
             //Create random class instance
             Random r = new Random();
 
@@ -175,8 +165,42 @@ namespace Adgp_125_Assessment_WinForm
             enemy1name = e[e1].Name;
             enemy2name= e[e2].Name;
             enemy3name = e[e3].Name;
+
+           
+            u.Participants.Add(p[p1]);
+            u.Participants.Add(p[p2]);
+            u.Participants.Add(p[p3]);
+
+            u.Participants.Add(e[e1]);
+            u.Participants.Add(e[e2]);
+            u.Participants.Add(e[e3]);
+
+
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            manager.fsm.AddStates(e_STATES.INIT);
+            manager.fsm.AddStates(e_STATES.START);
+            manager.fsm.AddStates(e_STATES.SEARCH);
+            manager.fsm.AddStates(e_STATES.BATTLE);
+            manager.fsm.AddStates(e_STATES.PLAYERTURN);
+            manager.fsm.AddStates(e_STATES.ENEMYTURN);
+            manager.fsm.AddStates(e_STATES.EXIT);
 
+            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.START);
+            manager.fsm.Addtransition(e_STATES.START, e_STATES.SEARCH);
+            manager.fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
+            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.PLAYERTURN);
+            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.ENEMYTURN);
+            manager.fsm.Addtransition(e_STATES.PLAYERTURN, e_STATES.BATTLE);
+            manager.fsm.Addtransition(e_STATES.ENEMYTURN, e_STATES.BATTLE);
+            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.EXIT);
+
+
+            manager.fsm.ChangeStates(e_STATES.START);
+
+            textBox1.Text = manager.fsm.state.ToString();
+        }
     }
 }
