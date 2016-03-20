@@ -14,6 +14,7 @@ namespace Adgp_125_Assessment_WinForm
     {
         public GameManager manager = GameManager.instance;
         public Unit u = new Unit();
+        public List<Unit> BattleReadyParty = new List<Unit>();
         public string player1name;
         public string player2name;
         public string player3name;
@@ -29,31 +30,34 @@ namespace Adgp_125_Assessment_WinForm
 
         private void GenerateParty_Button_Click(object sender, EventArgs e)
         {
-            //Create empty player object
-            Player p = new Player();
-            //Create empty enemy object
-            Enemy en = new Enemy();
+            ////Create empty Unit object
+            //Unit p = new Unit();
+            ////Create empty Unit object
+            //Unit E = new Unit();
 
-            //Create a new list to store all of the player and enemy objects into
+            //Create a new list to store all of the objects into
             List<Unit> NewParty = CreateObjects();
 
-            //Loop through the sorted party 
+            List<Unit> players = new List<Unit>();
+            List<Unit> enemies = new List<Unit>();
+
+            //Loop through the party 
             foreach (Unit i in NewParty)
-            {//Check if current unit is a player
+            {//Check if current unit is a player type
                 if (i.Type == "Player")
                 {//If true then add to player party
-                    p.Party.Add((Player)i);
+                    players.Add(i);
 
 
                 }
                 //Check if current unit is an enemy
                 if (i.Type == "Enemy")
                 {//If true then add to enemy party
-                    en.EnemyParty.Add((Enemy)i);
+                    enemies.Add(i);
                 }
             }
 
-            RandomizeAllParties(p.Party, en.EnemyParty);
+            RandomizeAllParties(players, enemies);
 
 
 
@@ -74,30 +78,28 @@ namespace Adgp_125_Assessment_WinForm
         //Create Possible Players
         private List<Unit> CreateObjects()
         {
-
-            //Unit a = new Unit();
             List<Unit> AllObjects = new List<Unit>();
 
-            Player Cloud = new Player("Cloud", 150, 12, 12, 6, "Player");
-            Player Barret = new Player("Barret", 220, 15, 13, 5, "Player");
-            Player Tifa = new Player("Tifa", 215, 11, 11, 7, "Player");
-            Player Aeris = new Player("Aeris", 170, 10, 11, 5, "Player");
-            Player RedXIII = new Player("Red XIII", 220, 10, 12, 10, "Player");
-            Player Cait = new Player("Cait Sith", 220, 10, 11, 5, "Player");
-            Player Cid = new Player("Cid", 220, 12, 12, 6, "Player");
-            Player Yuffie = new Player("Yuffie", 150, 10, 10, 8, "Player");
-            Player Vincent = new Player("Vincent", 170, 9, 10, 5, "Player");
+            Unit Cloud = new Unit("Cloud", 150, 12, 12, 6, 0,"Player");
+            Unit Barret = new Unit("Barret", 220, 15, 13, 5, 0,"Player");
+            Unit Tifa = new Unit("Tifa", 215, 11, 11, 7, 0,"Player");
+            Unit Aeris = new Unit("Aeris", 170, 10, 11, 5, 0, "Player");
+            Unit RedXIII = new Unit("Red XIII", 220, 10, 12, 10, 0, "Player");
+            Unit Cait = new Unit("Cait Sith", 220, 10, 11, 5, 0, "Player");
+            Unit Cid = new Unit("Cid", 220, 12, 12, 6, 0, "Player");
+            Unit Yuffie = new Unit("Yuffie", 150, 10, 10, 8, 0, "Player");
+            Unit Vincent = new Unit("Vincent", 170, 9, 10, 5, 0, "Player");
 
 
-            Enemy TwoFaced = new Enemy("2Faced", 100, 20, 15, 5, 25, "Enemy");
-            Enemy AncientDragon = new Enemy("Ancient Dragon", 200, 30, 12, 4, 50, "Enemy");
-            Enemy Ghost = new Enemy("Ghost", 80, 20, 15, 5, 20, "Enemy");
-            Enemy IceGolem = new Enemy("Ice Golem", 150, 25, 15, 5, 35, "Enemy");
-            Enemy Zuu = new Enemy("Zuu", 1200, 15, 10, 5, 20, "Enemy");
-            Enemy ToxicFrog = new Enemy("Toxic Frog", 180, 22, 12, 5, 30, "Enemy");
-            Enemy DeathClaw = new Enemy("Death Claw", 140, 25, 18, 7, 40, "Enemy");
-            Enemy MasterTonberry = new Enemy("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
-            Enemy Behemoth = new Enemy("Behemoth", 300, 35, 14, 4, 100, "Enemy");
+            Unit TwoFaced = new Unit("2Faced", 100, 20, 15, 5, 25, "Enemy");
+            Unit AncientDragon = new Unit("Ancient Dragon", 200, 30, 12, 4, 50, "Enemy");
+            Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 20, "Enemy");
+            Unit IceGolem = new Unit("Ice Golem", 150, 25, 15, 5, 35, "Enemy");
+            Unit Zuu = new Unit("Zuu", 1200, 15, 10, 5, 20, "Enemy");
+            Unit ToxicFrog = new Unit("Toxic Frog", 180, 22, 12, 5, 30, "Enemy");
+            Unit DeathClaw = new Unit("Death Claw", 140, 25, 18, 7, 40, "Enemy");
+            Unit MasterTonberry = new Unit("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
+            Unit Behemoth = new Unit("Behemoth", 300, 35, 14, 4, 100, "Enemy");
 
             AllObjects.Add(Cloud);
             AllObjects.Add(Barret);
@@ -122,39 +124,53 @@ namespace Adgp_125_Assessment_WinForm
             return AllObjects;
         }
 
-        private void RandomizeAllParties(List<Player> p, List <Enemy> e)
+        private void RandomizeAllParties(List<Unit> p, List <Unit> e)
      {
-            
+            List<Unit> empty = new List<Unit>();
+            BattleReadyParty.RemoveRange(0, BattleReadyParty.Count);
+
             //Unit u = new Unit();
             //Create random class instance
             Random r = new Random();
 
             //call Next() 3 times giving random selection for party members
-            int p1 = r.Next(0, p.Count);
-            int p2 = r.Next(0, p.Count);
-            int p3 = r.Next(0, p.Count);
+            int p1 = r.Next(0, p.Count - 1);
+            int p2 = r.Next(0, p.Count - 1);
+            int p3 = r.Next(0, p.Count - 1);
 
+            if (p1 != p2 && p1 != p3)
+            {
+                P1NameBox.Text = p[p1].Name;
+                player1name = p[p1].Name;
+                P1HealthBox.Text = p[p1].Health.ToString();
+                P1StrengthBox.Text = p[p1].Strength.ToString();
+                P1DefenseBox.Text = p[p1].Defense.ToString();
+                P1SpeedBox.Text = p[p1].Speed.ToString();
+                BattleReadyParty.Add(p[p1]);
+            }
 
-            P1NameBox.Text = p[p1].Name;
-            player1name = p[p1].Name;
-            P1HealthBox.Text = p[p1].Health.ToString();
-            P1StrengthBox.Text = p[p1].Strength.ToString();
-            P1DefenseBox.Text = p[p1].Defense.ToString();
-            P1SpeedBox.Text = p[p1].Speed.ToString();
+            if (p2 != p3 && p2 != p1)
+            {
+                P2NameBox.Text = p[p2].Name;
+                player2name = p[p2].Name;
+                P2HealthBox.Text = p[p2].Health.ToString();
+                P2StrengthBox.Text = p[p2].Strength.ToString();
+                P2DefenseBox.Text = p[p2].Defense.ToString();
+                P2SpeedBox.Text = p[p2].Speed.ToString();
+                BattleReadyParty.Add(p[p2]);
+            }
 
-            P2NameBox.Text = p[p2].Name;
-            player2name = p[p2].Name;
-            P2HealthBox.Text = p[p2].Health.ToString();
-            P2StrengthBox.Text = p[p2].Strength.ToString();
-            P2DefenseBox.Text = p[p2].Defense.ToString();
-            P2SpeedBox.Text = p[p2].Speed.ToString();
-
-            P3NameBox.Text = p[p3].Name;
-            player3name = p[p3].Name;
-            P3HealthBox.Text = p[p3].Health.ToString();
-            P3StrengthBox.Text = p[p3].Strength.ToString();
-            P3DefenseBox.Text = p[p3].Defense.ToString();
-            P3SpeedBox.Text = p[p3].Speed.ToString();
+            if (p3 != p2 && p3 != p1)
+            {
+                P3NameBox.Text = p[p3].Name;
+                player3name = p[p3].Name;
+                P3HealthBox.Text = p[p3].Health.ToString();
+                P3StrengthBox.Text = p[p3].Strength.ToString();
+                P3DefenseBox.Text = p[p3].Defense.ToString();
+                P3SpeedBox.Text = p[p3].Speed.ToString();
+                BattleReadyParty.Add(p[p3]);
+            }
+           
 
             Random a = new Random();
 
@@ -166,16 +182,12 @@ namespace Adgp_125_Assessment_WinForm
             enemy2name= e[e2].Name;
             enemy3name = e[e3].Name;
 
-           
-            u.Participants.Add(p[p1]);
-            u.Participants.Add(p[p2]);
-            u.Participants.Add(p[p3]);
 
-            u.Participants.Add(e[e1]);
-            u.Participants.Add(e[e2]);
-            u.Participants.Add(e[e3]);
+            BattleReadyParty.Add(e[e1]);
+            BattleReadyParty.Add(e[e2]);
+            BattleReadyParty.Add(e[e3]);
 
-
+        
         }
 
         private void Form1_Load(object sender, EventArgs e)

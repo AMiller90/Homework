@@ -29,6 +29,18 @@ public class Unit : IStats, IActions<Unit>
 
     }
 
+    public Unit(string name, int hp, int strength, int defense, int speed, int exp, string type)
+    {
+        m_uName = name;
+        m_uHealth = hp;
+        m_uStrength = strength;
+        m_uDefense = defense;
+        m_uSpeed = speed;
+        m_uExperience = exp;
+        m_uType = type;
+        m_Life = true;
+    }
+
     public List<Unit> Participants
     {
         get
@@ -152,11 +164,6 @@ public class Unit : IStats, IActions<Unit>
         {
             return m_uName;
         }
-
-        set
-        {
-            m_uName = value;
-        }
     }
 
     public Unit Target
@@ -249,7 +256,7 @@ public class Unit : IStats, IActions<Unit>
         }
     }
 
-    public Unit ChooseWhoToAttack(List<Enemy> eParty)
+    public Unit ChooseWhoToAttack(List<Unit> eParty)
     {
 
         Console.WriteLine("Who Do You Want To Attack? Type in the Number of target: \n");
@@ -289,7 +296,7 @@ public class Unit : IStats, IActions<Unit>
     /// <param name="dead"></param>
     /// <returns></returns>
     /// 
-    public Unit EnemyRandomTarget(List<Player> party, int dead)
+    public Unit EnemyRandomTarget(List<Unit> party, int dead)
     {
         dead++;
         //dis is bad
@@ -314,7 +321,7 @@ public class Unit : IStats, IActions<Unit>
 
     }
 
-    public Unit EnemyRandomTarget(List<Player> party)
+    public Unit EnemyRandomTarget(List<Unit> party)
     {
         int deadCount = 0;
         Random r = new Random();

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //Gamemanager class - Made into a singleton pattern - sealed does not allow class to be inherited from
-public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>, FiniteStateMachine<e_STATES>>
+public sealed class GameManager : IManage<List<Unit>, FiniteStateMachine<e_STATES>>
 {
     public FiniteStateMachine<e_STATES> fsm = new FiniteStateMachine<e_STATES>();
 
@@ -49,93 +49,93 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
     public void Timetofight(List<Unit> uList, FiniteStateMachine<e_STATES> fsm)
     {
 
-        Player plist = new Player();
-        Enemy eList = new Enemy();
-        List<Player> currentParty = new List<Player>();
-        List<Enemy> enemyParty = new List<Enemy>();
-        //Unit a = new Unit();
+    //    Player plist = new Player();
+    //    Enemy eList = new Enemy();
+    //    List<Player> currentParty = new List<Player>();
+    //    List<Enemy> enemyParty = new List<Enemy>();
+    //    //Unit a = new Unit();
 
-        foreach (Unit i in uList)
-        {
-            if (i.Type == "Player")
-            {
-                currentParty.Add((Player)i);
+    //    foreach (Unit i in uList)
+    //    {
+    //        if (i.Type == "Player")
+    //        {
+    //            currentParty.Add((Player)i);
 
-            }
-            if (i.Type == "Enemy")
-            {
-                enemyParty.Add((Enemy)i);
-            }
+    //        }
+    //        if (i.Type == "Enemy")
+    //        {
+    //            enemyParty.Add((Enemy)i);
+    //        }
 
-        }
+       }
 
 
 
-        for (int i = 0; i < uList.Count; i++)
-        {
-            if (uList[i].Life == true)
-            {
-                Console.WriteLine("It is " + uList[i].Name + "'s turn!\n");
+    //    for (int i = 0; i < uList.Count; i++)
+    //    {
+    //        if (uList[i].Life == true)
+    //        {
+    //            Console.WriteLine("It is " + uList[i].Name + "'s turn!\n");
                 
-            }
+    //        }
 
-            if (uList[i].Type == "Player" && uList[i].Life == true)
-            {
+    //        if (uList[i].Type == "Player" && uList[i].Life == true)
+    //        {
 
-                uList[i].ChooseWhoToAttack(enemyParty);
-                uList[i].Attack(uList[i].Target);
+    //            uList[i].ChooseWhoToAttack(enemyParty);
+    //            uList[i].Attack(uList[i].Target);
 
-            }
-            if (uList[i].Type == "Enemy" && uList[i].Life == true)
-            {
-                // so much accessing
-                // simplify code clarity by accessing what you want
+    //        }
+    //        if (uList[i].Type == "Enemy" && uList[i].Life == true)
+    //        {
+    //            // so much accessing
+    //            // simplify code clarity by accessing what you want
 
-                Unit Defender = uList[i].EnemyRandomTarget(currentParty);
-                Unit Attacker = uList[i];
+    //            Unit Defender = uList[i].EnemyRandomTarget(currentParty);
+    //            Unit Attacker = uList[i];
 
-                //use your boolean checks to determine if you should break the loop
-                if (!Attacker.Attack(Defender))
-                {
-                    break;
-                }
+    //            //use your boolean checks to determine if you should break the loop
+    //            if (!Attacker.Attack(Defender))
+    //            {
+    //                break;
+    //            }
                    
 
-            }
+    //        }
 
 
-        }
+    //    }
 
-        if (Checkforvictory(currentParty, enemyParty) == true)
-        {
-            fsm.ChangeStates(e_STATES.EXIT);
+    //    if (Checkforvictory(currentParty, enemyParty) == true)
+    //    {
+    //        fsm.ChangeStates(e_STATES.EXIT);
 
             
-        }
+    //    }
 
-    }
+    
 
-    //Function used to print out the current stats of all objects
-    public void Statsofobjects(List<Unit> ulist)
+//Function used to print out the current stats of all objects
+public void Statsofobjects(List<Unit> ulist)
+{
+    //Print current stats
+    Console.WriteLine("\nPlayer Stats:\n");
+
+    for (int i = 0; i < ulist.Count; i++)
     {
-        //Print current stats
-        Console.WriteLine("\nPlayer Stats:\n");
-
-        for (int i = 0; i < ulist.Count; i++)
-        {
-            //Print player object name
-            Console.WriteLine(ulist.ElementAt(i).Name + " Stats: \n");
-            //Print player level, health, strength, defense, speed and experience
-            Console.WriteLine("Level: " + ulist.ElementAt(i).Level + " Health: " + ulist.ElementAt(i).Health + " Strength: " + ulist.ElementAt(i).Strength + " Defense: " + ulist.ElementAt(i).Defense + " Speed: " + ulist.ElementAt(i).Speed + " Exp: " + ulist.ElementAt(i).Experience + "\n");
-        }
+        //Print player object name
+        Console.WriteLine(ulist.ElementAt(i).Name + " Stats: \n");
+        //Print player level, health, strength, defense, speed and experience
+        Console.WriteLine("Level: " + ulist.ElementAt(i).Level + " Health: " + ulist.ElementAt(i).Health + " Strength: " + ulist.ElementAt(i).Strength + " Defense: " + ulist.ElementAt(i).Defense + " Speed: " + ulist.ElementAt(i).Speed + " Exp: " + ulist.ElementAt(i).Experience + "\n");
     }
+}
 
-    public bool Checkforvictory(List<Player> plist, List<Enemy> elist)
+public bool Checkforvictory(List<Unit> plist, List<Unit> elist)
     {
         int pcount = 0;
         int ecount = 0;
 
-        foreach (Player p in plist)
+        foreach (Unit p in plist)
         {
             if (p.Life == false)
             {
@@ -149,7 +149,7 @@ public sealed class GameManager : IManage<List<Unit>, List<Player>, List<Enemy>,
             }
         }
 
-        foreach (Enemy e in elist)
+        foreach (Unit e in elist)
         {
 
             if (e.Life == false)

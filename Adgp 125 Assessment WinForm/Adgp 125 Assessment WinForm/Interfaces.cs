@@ -21,15 +21,15 @@ public interface IStats
     int Defense { get; set; }
     int Experience { get; set; }
     string Type { get; set; }
-    string Name { get; set; }
+    string Name { get; }
 }
 
-public interface IManage<T, U, V, W>
+public interface IManage<T, W>
 {
     List<Unit> sortBySpeed(T u);
     void Timetofight(T u, W f);
     void Statsofobjects(T u);
-    bool Checkforvictory(U p, V e);
+    bool Checkforvictory(T p, T e);
 }
 
 
