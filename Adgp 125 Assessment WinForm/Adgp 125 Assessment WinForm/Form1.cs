@@ -83,7 +83,7 @@ namespace Adgp_125_Assessment_WinForm
             Unit Cloud = new Unit("Cloud", 150, 12, 12, 6, 0,"Player");
             Unit Barret = new Unit("Barret", 220, 15, 13, 5, 0,"Player");
             Unit Tifa = new Unit("Tifa", 215, 11, 11, 7, 0,"Player");
-            Unit Aeris = new Unit("Aeris", 170, 10, 11, 5, 0, "Player");
+            Unit Aerith = new Unit("Aerith", 170, 10, 11, 5, 0, "Player");
             Unit RedXIII = new Unit("Red XIII", 220, 10, 12, 10, 0, "Player");
             Unit Cait = new Unit("Cait Sith", 220, 10, 11, 5, 0, "Player");
             Unit Cid = new Unit("Cid", 220, 12, 12, 6, 0, "Player");
@@ -93,9 +93,9 @@ namespace Adgp_125_Assessment_WinForm
 
             Unit TwoFaced = new Unit("2Faced", 100, 20, 15, 5, 25, "Enemy");
             Unit AncientDragon = new Unit("Ancient Dragon", 200, 30, 12, 4, 50, "Enemy");
-            Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 20, "Enemy");
+            Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 50, "Enemy");
             Unit IceGolem = new Unit("Ice Golem", 150, 25, 15, 5, 35, "Enemy");
-            Unit Zuu = new Unit("Zuu", 1200, 15, 10, 5, 20, "Enemy");
+            Unit Zuu = new Unit("Zuu", 120, 15, 10, 5, 20, "Enemy");
             Unit ToxicFrog = new Unit("Toxic Frog", 180, 22, 12, 5, 30, "Enemy");
             Unit DeathClaw = new Unit("Death Claw", 140, 25, 18, 7, 40, "Enemy");
             Unit MasterTonberry = new Unit("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
@@ -104,7 +104,7 @@ namespace Adgp_125_Assessment_WinForm
             AllObjects.Add(Cloud);
             AllObjects.Add(Barret);
             AllObjects.Add(Tifa);
-            AllObjects.Add(Aeris);
+            AllObjects.Add(Aerith);
             AllObjects.Add(RedXIII);
             AllObjects.Add(Cait);
             AllObjects.Add(Cid);
@@ -213,6 +213,12 @@ namespace Adgp_125_Assessment_WinForm
             manager.fsm.ChangeStates(e_STATES.START);
 
             textBox1.Text = manager.fsm.state.ToString();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+           
+
         }
     }
 }

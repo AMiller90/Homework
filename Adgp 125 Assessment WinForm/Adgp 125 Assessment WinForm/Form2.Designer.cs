@@ -42,12 +42,25 @@
             this.Enemy3Button = new System.Windows.Forms.Button();
             this.ProcessEnemyAttack = new System.Windows.Forms.Button();
             this.BattleOrderTextBox = new System.Windows.Forms.RichTextBox();
+            this.StatsBox = new System.Windows.Forms.RichTextBox();
+            this.p1PictureBox = new System.Windows.Forms.PictureBox();
+            this.p2PictureBox = new System.Windows.Forms.PictureBox();
+            this.p3PictureBox = new System.Windows.Forms.PictureBox();
+            this.e1PictureBox = new System.Windows.Forms.PictureBox();
+            this.e2PictureBox = new System.Windows.Forms.PictureBox();
+            this.e3PictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.p1PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p3PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e1PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e2PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e3PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // Enemy1Label
             // 
             this.Enemy1Label.AutoSize = true;
-            this.Enemy1Label.Location = new System.Drawing.Point(344, 84);
+            this.Enemy1Label.Location = new System.Drawing.Point(353, 127);
             this.Enemy1Label.Name = "Enemy1Label";
             this.Enemy1Label.Size = new System.Drawing.Size(35, 13);
             this.Enemy1Label.TabIndex = 0;
@@ -56,7 +69,7 @@
             // Enemy2Label
             // 
             this.Enemy2Label.AutoSize = true;
-            this.Enemy2Label.Location = new System.Drawing.Point(541, 84);
+            this.Enemy2Label.Location = new System.Drawing.Point(527, 127);
             this.Enemy2Label.Name = "Enemy2Label";
             this.Enemy2Label.Size = new System.Drawing.Size(35, 13);
             this.Enemy2Label.TabIndex = 1;
@@ -65,7 +78,7 @@
             // Enemy3Label
             // 
             this.Enemy3Label.AutoSize = true;
-            this.Enemy3Label.Location = new System.Drawing.Point(731, 84);
+            this.Enemy3Label.Location = new System.Drawing.Point(697, 127);
             this.Enemy3Label.Name = "Enemy3Label";
             this.Enemy3Label.Size = new System.Drawing.Size(35, 13);
             this.Enemy3Label.TabIndex = 2;
@@ -74,7 +87,7 @@
             // Player1Label
             // 
             this.Player1Label.AutoSize = true;
-            this.Player1Label.Location = new System.Drawing.Point(328, 520);
+            this.Player1Label.Location = new System.Drawing.Point(353, 580);
             this.Player1Label.Name = "Player1Label";
             this.Player1Label.Size = new System.Drawing.Size(35, 13);
             this.Player1Label.TabIndex = 3;
@@ -83,7 +96,7 @@
             // Player2Label
             // 
             this.Player2Label.AutoSize = true;
-            this.Player2Label.Location = new System.Drawing.Point(541, 520);
+            this.Player2Label.Location = new System.Drawing.Point(527, 580);
             this.Player2Label.Name = "Player2Label";
             this.Player2Label.Size = new System.Drawing.Size(35, 13);
             this.Player2Label.TabIndex = 4;
@@ -92,7 +105,7 @@
             // Player3Label
             // 
             this.Player3Label.AutoSize = true;
-            this.Player3Label.Location = new System.Drawing.Point(744, 520);
+            this.Player3Label.Location = new System.Drawing.Point(697, 580);
             this.Player3Label.Name = "Player3Label";
             this.Player3Label.Size = new System.Drawing.Size(35, 13);
             this.Player3Label.TabIndex = 5;
@@ -100,7 +113,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(502, 12);
+            this.textBox1.Location = new System.Drawing.Point(12, 15);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 6;
@@ -109,7 +122,7 @@
             // 
             this.BattleText.Location = new System.Drawing.Point(331, 191);
             this.BattleText.Name = "BattleText";
-            this.BattleText.Size = new System.Drawing.Size(448, 270);
+            this.BattleText.Size = new System.Drawing.Size(422, 270);
             this.BattleText.TabIndex = 8;
             this.BattleText.Text = "";
             // 
@@ -125,7 +138,7 @@
             // 
             // Enemy1Button
             // 
-            this.Enemy1Button.Location = new System.Drawing.Point(331, 114);
+            this.Enemy1Button.Location = new System.Drawing.Point(340, 162);
             this.Enemy1Button.Name = "Enemy1Button";
             this.Enemy1Button.Size = new System.Drawing.Size(62, 23);
             this.Enemy1Button.TabIndex = 10;
@@ -135,7 +148,7 @@
             // 
             // Enemy2Button
             // 
-            this.Enemy2Button.Location = new System.Drawing.Point(524, 114);
+            this.Enemy2Button.Location = new System.Drawing.Point(512, 162);
             this.Enemy2Button.Name = "Enemy2Button";
             this.Enemy2Button.Size = new System.Drawing.Size(62, 23);
             this.Enemy2Button.TabIndex = 11;
@@ -145,7 +158,7 @@
             // 
             // Enemy3Button
             // 
-            this.Enemy3Button.Location = new System.Drawing.Point(717, 114);
+            this.Enemy3Button.Location = new System.Drawing.Point(682, 162);
             this.Enemy3Button.Name = "Enemy3Button";
             this.Enemy3Button.Size = new System.Drawing.Size(62, 23);
             this.Enemy3Button.TabIndex = 12;
@@ -155,7 +168,7 @@
             // 
             // ProcessEnemyAttack
             // 
-            this.ProcessEnemyAttack.Location = new System.Drawing.Point(493, 567);
+            this.ProcessEnemyAttack.Location = new System.Drawing.Point(502, 610);
             this.ProcessEnemyAttack.Name = "ProcessEnemyAttack";
             this.ProcessEnemyAttack.Size = new System.Drawing.Size(121, 23);
             this.ProcessEnemyAttack.TabIndex = 13;
@@ -171,12 +184,75 @@
             this.BattleOrderTextBox.TabIndex = 14;
             this.BattleOrderTextBox.Text = "Order Of Battle:";
             // 
+            // StatsBox
+            // 
+            this.StatsBox.Location = new System.Drawing.Point(954, 191);
+            this.StatsBox.Name = "StatsBox";
+            this.StatsBox.Size = new System.Drawing.Size(212, 270);
+            this.StatsBox.TabIndex = 15;
+            this.StatsBox.Text = "";
+            // 
+            // p1PictureBox
+            // 
+            this.p1PictureBox.Location = new System.Drawing.Point(331, 467);
+            this.p1PictureBox.Name = "p1PictureBox";
+            this.p1PictureBox.Size = new System.Drawing.Size(80, 110);
+            this.p1PictureBox.TabIndex = 16;
+            this.p1PictureBox.TabStop = false;
+            // 
+            // p2PictureBox
+            // 
+            this.p2PictureBox.Location = new System.Drawing.Point(502, 467);
+            this.p2PictureBox.Name = "p2PictureBox";
+            this.p2PictureBox.Size = new System.Drawing.Size(80, 110);
+            this.p2PictureBox.TabIndex = 17;
+            this.p2PictureBox.TabStop = false;
+            // 
+            // p3PictureBox
+            // 
+            this.p3PictureBox.Location = new System.Drawing.Point(673, 467);
+            this.p3PictureBox.Name = "p3PictureBox";
+            this.p3PictureBox.Size = new System.Drawing.Size(80, 110);
+            this.p3PictureBox.TabIndex = 18;
+            this.p3PictureBox.TabStop = false;
+            // 
+            // e1PictureBox
+            // 
+            this.e1PictureBox.Location = new System.Drawing.Point(331, 15);
+            this.e1PictureBox.Name = "e1PictureBox";
+            this.e1PictureBox.Size = new System.Drawing.Size(80, 110);
+            this.e1PictureBox.TabIndex = 19;
+            this.e1PictureBox.TabStop = false;
+            // 
+            // e2PictureBox
+            // 
+            this.e2PictureBox.Location = new System.Drawing.Point(502, 15);
+            this.e2PictureBox.Name = "e2PictureBox";
+            this.e2PictureBox.Size = new System.Drawing.Size(80, 110);
+            this.e2PictureBox.TabIndex = 20;
+            this.e2PictureBox.TabStop = false;
+            // 
+            // e3PictureBox
+            // 
+            this.e3PictureBox.Location = new System.Drawing.Point(673, 15);
+            this.e3PictureBox.Name = "e3PictureBox";
+            this.e3PictureBox.Size = new System.Drawing.Size(80, 110);
+            this.e3PictureBox.TabIndex = 21;
+            this.e3PictureBox.TabStop = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1178, 645);
+            this.Controls.Add(this.e3PictureBox);
+            this.Controls.Add(this.e2PictureBox);
+            this.Controls.Add(this.e1PictureBox);
+            this.Controls.Add(this.p3PictureBox);
+            this.Controls.Add(this.p2PictureBox);
+            this.Controls.Add(this.p1PictureBox);
+            this.Controls.Add(this.StatsBox);
             this.Controls.Add(this.BattleOrderTextBox);
             this.Controls.Add(this.ProcessEnemyAttack);
             this.Controls.Add(this.Enemy3Button);
@@ -193,6 +269,12 @@
             this.Controls.Add(this.Enemy1Label);
             this.Name = "Form2";
             this.Text = "Turn-Based RPG";
+            ((System.ComponentModel.ISupportInitialize)(this.p1PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p3PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e1PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e2PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e3PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +296,12 @@
         private System.Windows.Forms.Button Enemy3Button;
         private System.Windows.Forms.Button ProcessEnemyAttack;
         private System.Windows.Forms.RichTextBox BattleOrderTextBox;
+        private System.Windows.Forms.RichTextBox StatsBox;
+        private System.Windows.Forms.PictureBox p1PictureBox;
+        private System.Windows.Forms.PictureBox p2PictureBox;
+        private System.Windows.Forms.PictureBox p3PictureBox;
+        private System.Windows.Forms.PictureBox e1PictureBox;
+        private System.Windows.Forms.PictureBox e2PictureBox;
+        private System.Windows.Forms.PictureBox e3PictureBox;
     }
 }

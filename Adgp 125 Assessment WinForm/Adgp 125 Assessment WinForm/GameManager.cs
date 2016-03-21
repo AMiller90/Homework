@@ -33,6 +33,8 @@ public sealed class GameManager : IManage<List<Unit>, FiniteStateMachine<e_STATE
 
     public string winText;
 
+    public string statsText;
+
     //Function used to check the which object goes first based on higher speed stat
     public List<Unit> sortBySpeed(List<Unit> List)
     {
@@ -116,17 +118,13 @@ public sealed class GameManager : IManage<List<Unit>, FiniteStateMachine<e_STATE
     
 
 //Function used to print out the current stats of all objects
+
 public void Statsofobjects(List<Unit> ulist)
 {
-    //Print current stats
-    Console.WriteLine("\nPlayer Stats:\n");
-
     for (int i = 0; i < ulist.Count; i++)
     {
-        //Print player object name
-        Console.WriteLine(ulist.ElementAt(i).Name + " Stats: \n");
         //Print player level, health, strength, defense, speed and experience
-        Console.WriteLine("Level: " + ulist.ElementAt(i).Level + " Health: " + ulist.ElementAt(i).Health + " Strength: " + ulist.ElementAt(i).Strength + " Defense: " + ulist.ElementAt(i).Defense + " Speed: " + ulist.ElementAt(i).Speed + " Exp: " + ulist.ElementAt(i).Experience + "\n");
+        statsText += ulist[i].Name + " Stats: \n" + "Level: " + ulist[i].Level + " Health: " + ulist[i].Health + " Strength: " + ulist[i].Strength + " Defense: " + ulist[i].Defense + " Speed: " + ulist[i].Speed + " Exp: " + ulist[i].Experience + "\n";
     }
 }
 

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 
 
-
 public class Unit : IStats, IActions<Unit>
 {
+   
     public string stuffText;
     private int m_uDefense;
     private int m_uExperience;
@@ -39,6 +40,7 @@ public class Unit : IStats, IActions<Unit>
         m_uExperience = exp;
         m_uType = type;
         m_Life = true;
+        m_uLevel = 1;
     }
 
     public List<Unit> Participants
@@ -196,7 +198,7 @@ public class Unit : IStats, IActions<Unit>
                 //Set the enemies health to the players' attacking strength mulitplied by the perc value
                 int actualDamage = this.Strength - (int)perc;
                 u.Health -= actualDamage;
-                stuffText += "\n" + this.Name + " Attacked " + u.Name + "\n";
+                stuffText =  this.Name + " Attacked " + u.Name + "\n";
                 stuffText += u.Name + " took " + actualDamage + " damage!\n\n";
 
                 if (u.Health <= 0)
@@ -244,7 +246,7 @@ public class Unit : IStats, IActions<Unit>
     {
         if (this.Experience == 50)
         {
-            Console.Write("Level Up!\n");
+            stuffText += "\n" + this.Name + " Leveled Up!\n";
             this.Level++;
             this.Experience = 0;
             this.Health = m_uHealth;
