@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 
-
+[Serializable]
 public class Unit : IStats, IActions<Unit>
 {
    
@@ -21,6 +20,7 @@ public class Unit : IStats, IActions<Unit>
     private string m_uName;
     private Unit m_uTarget;
     private bool m_Life;
+
     private List<Unit> m_Participants = new List<Unit>();
 
 
@@ -43,56 +43,30 @@ public class Unit : IStats, IActions<Unit>
         m_uLevel = 1;
     }
 
-    public List<Unit> Participants
+    public string Name
     {
         get
         {
-            return m_Participants;
+            return m_uName;
         }
 
         set
         {
-            m_Participants = value;
+            m_uName = value;
         }
-
+        
     }
 
-    public bool Life
+    public int Level
     {
         get
         {
-            return m_Life;
+            return m_uLevel;
         }
 
         set
         {
-            m_Life = value;
-        }
-    }
-
-    public int Defense
-    {
-        get
-        {
-            return m_uDefense;
-        }
-
-        set
-        {
-            m_uDefense = value;
-        }
-    }
-
-    public int Experience
-    {
-        get
-        {
-            return m_uExperience;
-        }
-
-        set
-        {
-            m_uExperience = value;
+            m_uLevel = value;
         }
     }
 
@@ -109,16 +83,29 @@ public class Unit : IStats, IActions<Unit>
         }
     }
 
-    public int Level
+    public int Strength
     {
         get
         {
-            return m_uLevel;
+            return m_uStrength;
         }
 
         set
         {
-            m_uLevel = value;
+            m_uStrength = value;
+        }
+    }
+
+    public int Defense
+    {
+        get
+        {
+            return m_uDefense;
+        }
+
+        set
+        {
+            m_uDefense = value;
         }
     }
 
@@ -135,16 +122,16 @@ public class Unit : IStats, IActions<Unit>
         }
     }
 
-    public int Strength
+    public int Experience
     {
         get
         {
-            return m_uStrength;
+            return m_uExperience;
         }
 
         set
         {
-            m_uStrength = value;
+            m_uExperience = value;
         }
     }
 
@@ -160,11 +147,29 @@ public class Unit : IStats, IActions<Unit>
         }
     }
 
-    public string Name
+    public bool Life
     {
         get
         {
-            return m_uName;
+            return m_Life;
+        }
+
+        set
+        {
+            m_Life = value;
+        }
+    }
+
+    public List<Unit> Participants
+    {
+        get
+        {
+            return m_Participants;
+        }
+
+        set
+        {
+            m_Participants = value;
         }
     }
 
@@ -257,7 +262,7 @@ public class Unit : IStats, IActions<Unit>
 
         }
     }
-
+    
     public Unit ChooseWhoToAttack(List<Unit> eParty)
     {
 

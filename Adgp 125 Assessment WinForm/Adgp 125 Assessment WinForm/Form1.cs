@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Soap;
+using System.Xml.Serialization;
+using System.IO;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -7,14 +10,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Adgp_125_Assessment_WinForm
 {
     public partial class Form1 : Form
     {
+        FileIO _Save = new FileIO();
+
         public GameManager manager = GameManager.instance;
         public Unit u = new Unit();
+        
         public List<Unit> BattleReadyParty = new List<Unit>();
+
         public string player1name;
         public string player2name;
         public string player3name;
@@ -30,11 +38,7 @@ namespace Adgp_125_Assessment_WinForm
 
         private void GenerateParty_Button_Click(object sender, EventArgs e)
         {
-            ////Create empty Unit object
-            //Unit p = new Unit();
-            ////Create empty Unit object
-            //Unit E = new Unit();
-
+            SaveButton.Enabled = true;
             //Create a new list to store all of the objects into
             List<Unit> NewParty = CreateObjects();
 
@@ -65,14 +69,22 @@ namespace Adgp_125_Assessment_WinForm
 
         private void LockInPartyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            DialogResult = MessageBox.Show("Is this Party good?\n", "Confirm", MessageBoxButtons.YesNo);
-
-            if (DialogResult == DialogResult.Yes)
+            if(LockInPartyCheckBox.Checked == true)
             {
-                Form2 BattleScene = new Form2(this);
-                BattleScene.ShowDialog();
+                DialogResult = MessageBox.Show("Is this Party good?\n", "Confirm", MessageBoxButtons.YesNo);
 
+                if (DialogResult == DialogResult.Yes)
+                {
+                    Form2 BattleScene = new Form2(this);
+                    BattleScene.ShowDialog();
+
+                }
+                else
+                {
+                    LockInPartyCheckBox.Checked = false;
+                }
             }
+           
         }
 
         //Create Possible Players
@@ -147,6 +159,7 @@ namespace Adgp_125_Assessment_WinForm
                 P1DefenseBox.Text = p[p1].Defense.ToString();
                 P1SpeedBox.Text = p[p1].Speed.ToString();
                 BattleReadyParty.Add(p[p1]);
+                
             }
 
             if (p2 != p3 && p2 != p1)
@@ -170,7 +183,8 @@ namespace Adgp_125_Assessment_WinForm
                 P3SpeedBox.Text = p[p3].Speed.ToString();
                 BattleReadyParty.Add(p[p3]);
             }
-           
+
+            previewImages(BattleReadyParty);
 
             Random a = new Random();
 
@@ -187,7 +201,7 @@ namespace Adgp_125_Assessment_WinForm
             BattleReadyParty.Add(e[e2]);
             BattleReadyParty.Add(e[e3]);
 
-        
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -212,13 +226,184 @@ namespace Adgp_125_Assessment_WinForm
 
             manager.fsm.ChangeStates(e_STATES.START);
 
+            SaveButton.Enabled = false;
             textBox1.Text = manager.fsm.state.ToString();
+
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            Party party = new Party();
            
 
+            foreach (Unit i in BattleReadyParty)
+            {
+                if (i.Type == "Player")
+                {
+                    party.units.Add(i);
+                }
+            }
+
+          
+            _Save.Serialize("Party", party);
+
+
+
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            
+            Party loadedunits;
+
+            OpenFileDialog DialogWindow = new OpenFileDialog();
+       
+            DialogWindow.InitialDirectory = @"..\SavedParties\";
+            DialogWindow.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            DialogWindow.FilterIndex = 2;
+            DialogWindow.RestoreDirectory = true;
+
+            if (DialogWindow.ShowDialog() == DialogResult.OK)
+            {
+
+                string chosenFile = DialogWindow.FileName;
+                loadedunits = _Save.Deserialize<Party>(chosenFile);
+
+                P1NameBox.Text = loadedunits.units[0].Name;
+                //P1HealthBox.Text = loadedunits[0].Health.ToString();
+                //P1StrengthBox.Text = loadedunits[0].Strength.ToString();
+                //P1SpeedBox.Text = loadedunits[0].Speed.ToString();
+                //P1DefenseBox.Text = loadedunits[0].Defense.ToString();
+
+                //P2NameBox.Text = loadedunits[1].Name;
+                //P2HealthBox.Text = loadedunits[1].Health.ToString();
+                //P2StrengthBox.Text = loadedunits[1].Strength.ToString();
+                //P2SpeedBox.Text = loadedunits[1].Speed.ToString();
+                //P2DefenseBox.Text = loadedunits[1].Defense.ToString();
+
+                //P3NameBox.Text = loadedunits[2].Name;
+                //P3HealthBox.Text = loadedunits[2].Health.ToString();
+                //P3StrengthBox.Text = loadedunits[2].Strength.ToString();
+                //P3SpeedBox.Text = loadedunits[2].Speed.ToString();
+                //P3DefenseBox.Text = loadedunits[2].Defense.ToString();
+
+            }
+
+        }
+
+        private void previewImages(List<Unit> units)
+        {
+            for (int i = 0; i < units.Count; i++)
+            {
+                //Player Images
+                if (units[i].Name == P1NameBox.Text)
+                {
+                    switch (units[i].Name)
+                    {
+                        case "Cloud":
+                            pictureBox1.Image = Properties.Resources.Cloud;
+                            break;
+                        case "Barret":
+                            pictureBox1.Image = Properties.Resources.Barrett;
+                            break;
+                        case "Cait Sith":
+                            pictureBox1.Image = Properties.Resources.Cait_Sith;
+                            break;
+                        case "Aerith":
+                            pictureBox1.Image = Properties.Resources.Aerith;
+                            break;
+                        case "Yuffie":
+                            pictureBox1.Image = Properties.Resources.Yuffie;
+                            break;
+                        case "Vincent":
+                            pictureBox1.Image = Properties.Resources.Vincent;
+                            break;
+                        case "Cid":
+                            pictureBox1.Image = Properties.Resources.Cid;
+                            break;
+                        case "Red XIII":
+                            pictureBox1.Image = Properties.Resources.Red_XIII;
+                            break;
+                        case "Tifa":
+                            pictureBox1.Image = Properties.Resources.Tifa;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (units[i].Name == P2NameBox.Text)
+                {
+                    switch (units[i].Name)
+                    {
+                        case "Cloud":
+                            pictureBox2.Image = Properties.Resources.Cloud;
+                            break;
+                        case "Barret":
+                            pictureBox2.Image = Properties.Resources.Barrett;
+                            break;
+                        case "Cait Sith":
+                            pictureBox2.Image = Properties.Resources.Cait_Sith;
+                            break;
+                        case "Aerith":
+                            pictureBox2.Image = Properties.Resources.Aerith;
+                            break;
+                        case "Yuffie":
+                            pictureBox2.Image = Properties.Resources.Yuffie;
+                            break;
+                        case "Vincent":
+                            pictureBox2.Image = Properties.Resources.Vincent;
+                            break;
+                        case "Cid":
+                            pictureBox2.Image = Properties.Resources.Cid;
+                            break;
+                        case "Red XIII":
+                            pictureBox2.Image = Properties.Resources.Red_XIII;
+                            break;
+                        case "Tifa":
+                            pictureBox2.Image = Properties.Resources.Tifa;
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                if (units[i].Name == P3NameBox.Text)
+                {
+                    switch (units[i].Name)
+                    {
+                        case "Cloud":
+                            pictureBox3.Image = Properties.Resources.Cloud;
+                            break;
+                        case "Barret":
+                            pictureBox3.Image = Properties.Resources.Barrett;
+                            break;
+                        case "Cait Sith":
+                            pictureBox3.Image = Properties.Resources.Cait_Sith;
+                            break;
+                        case "Aerith":
+                            pictureBox3.Image = Properties.Resources.Aerith;
+                            break;
+                        case "Yuffie":
+                            pictureBox3.Image = Properties.Resources.Yuffie;
+                            break;
+                        case "Vincent":
+                            pictureBox3.Image = Properties.Resources.Vincent;
+                            break;
+                        case "Cid":
+                            pictureBox3.Image = Properties.Resources.Cid;
+                            break;
+                        case "Red XIII":
+                            pictureBox3.Image = Properties.Resources.Red_XIII;
+                            break;
+                        case "Tifa":
+                            pictureBox3.Image = Properties.Resources.Tifa;
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
         }
     }
 }

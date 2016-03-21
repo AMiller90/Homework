@@ -21,7 +21,7 @@ public interface IStats
     int Defense { get; set; }
     int Experience { get; set; }
     string Type { get; set; }
-    string Name { get; }
+    string Name { get; set; }
 }
 
 public interface IManage<T, W>

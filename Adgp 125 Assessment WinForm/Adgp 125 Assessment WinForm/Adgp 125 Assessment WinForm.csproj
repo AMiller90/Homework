@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enemy.cs" />
+    <Compile Include="FileIO.cs" />
     <Compile Include="FiniteStateMachine.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -63,6 +64,7 @@
     </Compile>
     <Compile Include="GameManager.cs" />
     <Compile Include="Interfaces.cs" />
+    <Compile Include="Party.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -49,25 +49,32 @@ namespace Adgp_125_Assessment_WinForm
         {
             refer.manager.fsm.ChangeStates(e_STATES.SEARCH);
 
-            //Battle party sorted by speed to produce attack order 
-            refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
-
-            for (int i = 0; i < refer.u.Participants.Count; i++)
+            if (refer.manager.fsm.state == e_STATES.SEARCH)
             {
-                BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+                //Battle party sorted by speed to produce attack order 
+                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+
+                for (int i = 0; i < refer.u.Participants.Count; i++)
+                {
+                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+                }
+
+                setImages(refer.u.Participants);
+
+                BeginButton.Enabled = false;
+
+                refer.manager.Statsofobjects(refer.u.Participants);
+
+                StatsBox.Text = refer.manager.statsText;
+
+                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+
+                if (refer.manager.fsm.state == e_STATES.BATTLE)
+                {
+                    FirstAttack(refer.u.Participants, refer.manager.fsm);
+                }
+
             }
-
-            setImages(refer.u.Participants);
-
-            refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
-
-            refer.manager.Statsofobjects(refer.u.Participants);
-
-            StatsBox.Text = refer.manager.statsText;
-
-            BeginButton.Enabled = false;
-
-            FirstAttack(refer.u.Participants, refer.manager.fsm);
 
             textBox1.Text = refer.manager.fsm.state.ToString();
         }
@@ -162,18 +169,27 @@ namespace Adgp_125_Assessment_WinForm
             if (uList[index].Type == "Enemy" && uList[index].Life == true)
             {
                 refer.manager.fsm.ChangeStates(e_STATES.ENEMYTURN);
-                //Enable button so enemy can attack
-                ProcessEnemyAttack.Enabled = true;
+
+                if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
+                {
+                    //Enable button so enemy can attack
+                    ProcessEnemyAttack.Enabled = true;
+                }
 
             }
 
             if (uList[index].Type == "Player" && uList[index].Life == true)
             {
                 refer.manager.fsm.ChangeStates(e_STATES.PLAYERTURN);
-                //Enable buttons so player can attack an enemy
-                Enemy1Button.Enabled = true;
-                Enemy2Button.Enabled = true;
-                Enemy3Button.Enabled = true;
+
+                if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
+                {
+                    //Enable buttons so player can attack an enemy
+                    Enemy1Button.Enabled = true;
+                    Enemy2Button.Enabled = true;
+                    Enemy3Button.Enabled = true;
+                }
+
 
             }
 
@@ -205,8 +221,18 @@ namespace Adgp_125_Assessment_WinForm
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
-                refer.manager.fsm.ChangeStates(e_STATES.EXIT);
-                textBox1.Text = refer.manager.fsm.state.ToString();
+
+                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+
+                if(refer.manager.fsm.state == e_STATES.BATTLE)
+                {
+                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                }
+                if (refer.manager.fsm.state == e_STATES.EXIT)
+                {
+                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    //Application.Exit();
+                }
 
             }
 
@@ -241,8 +267,18 @@ namespace Adgp_125_Assessment_WinForm
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
-                refer.manager.fsm.ChangeStates(e_STATES.EXIT);
-                textBox1.Text = refer.manager.fsm.state.ToString();
+
+                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+
+                if (refer.manager.fsm.state == e_STATES.BATTLE)
+                {
+                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                }
+                if (refer.manager.fsm.state == e_STATES.EXIT)
+                {
+                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    //Application.Exit();
+                }
 
             }
             processTurn(index);
@@ -275,8 +311,18 @@ namespace Adgp_125_Assessment_WinForm
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
-                refer.manager.fsm.ChangeStates(e_STATES.EXIT);
-                textBox1.Text = refer.manager.fsm.state.ToString();
+
+                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+
+                if (refer.manager.fsm.state == e_STATES.BATTLE)
+                {
+                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                }
+                if (refer.manager.fsm.state == e_STATES.EXIT)
+                {
+                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    //Application.Exit();
+                }
 
             }
             processTurn(index);
@@ -323,9 +369,19 @@ namespace Adgp_125_Assessment_WinForm
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
-                refer.manager.fsm.ChangeStates(e_STATES.EXIT);
-                textBox1.Text = refer.manager.fsm.state.ToString();
-                Application.Exit();
+
+                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+
+                if (refer.manager.fsm.state == e_STATES.BATTLE)
+                {
+                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                }
+                if (refer.manager.fsm.state == e_STATES.EXIT)
+                {
+                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    //Application.Exit();
+                }
+
             }
 
             processTurn(index);
@@ -335,55 +391,69 @@ namespace Adgp_125_Assessment_WinForm
         {
             refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
 
-            refer.manager.statsText = "";
-
-            refer.manager.Statsofobjects(refer.u.Participants);
-
-            StatsBox.Text = refer.manager.statsText;
-
-            if (number == refer.u.Participants.Count)
+            if (refer.manager.fsm.state == e_STATES.BATTLE)
             {
-                number = 0;
-                index = 0;
-            }
+                refer.manager.statsText = "";
+                refer.manager.Statsofobjects(refer.u.Participants);
 
-            if (refer.u.Participants[number].Type == "Player" && refer.u.Participants[number].Life == true)
-            {
-                refer.manager.fsm.ChangeStates(e_STATES.PLAYERTURN);
-                BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
-                Enemy1Button.Enabled = true;
-                Enemy2Button.Enabled = true;
-                Enemy3Button.Enabled = true;
-                ProcessEnemyAttack.Enabled = false;
+                StatsBox.Text = refer.manager.statsText;
 
-                textBox1.Text = refer.manager.fsm.state.ToString();
-            }
-            else if (refer.u.Participants[number].Type == "Enemy" && refer.u.Participants[number].Life == true)
-            {
-                refer.manager.fsm.ChangeStates(e_STATES.ENEMYTURN);
-                BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
-                Enemy1Button.Enabled = false;
-                Enemy2Button.Enabled = false;
-                Enemy3Button.Enabled = false;
-                ProcessEnemyAttack.Enabled = true;
+                if (number == refer.u.Participants.Count)
+                {
+                    number = 0;
+                    index = 0;
+                }
 
-                textBox1.Text = refer.manager.fsm.state.ToString();
+
+                if (refer.u.Participants[number].Type == "Player" && refer.u.Participants[number].Life == true)
+                {
+                    refer.manager.fsm.ChangeStates(e_STATES.PLAYERTURN);
+
+                    if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
+                    {
+                        BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
+                        Enemy1Button.Enabled = true;
+                        Enemy2Button.Enabled = true;
+                        Enemy3Button.Enabled = true;
+                        ProcessEnemyAttack.Enabled = false;
+
+                        textBox1.Text = refer.manager.fsm.state.ToString();
+                    }
+
+                }
+                else if (refer.u.Participants[number].Type == "Enemy" && refer.u.Participants[number].Life == true)
+                {
+                    refer.manager.fsm.ChangeStates(e_STATES.ENEMYTURN);
+
+                    if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
+                    {
+                        BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
+                        Enemy1Button.Enabled = false;
+                        Enemy2Button.Enabled = false;
+                        Enemy3Button.Enabled = false;
+                        ProcessEnemyAttack.Enabled = true;
+
+                        textBox1.Text = refer.manager.fsm.state.ToString();
+                    }
+
+                }
+                else
+                {
+                    index += 1;
+                    processTurn(index);
+                }
+
             }
-            else
-            {
-                index += 1;
-                processTurn(index);
-            }
-          }
+        }
 
         private void setImages(List<Unit> units)
         {
             for (int i = 0; i < units.Count; i++)
             {
                 //Player Images
-                if(units[i].Name == Player1Label.Text)
-                { 
-                   switch(units[i].Name)
+                if (units[i].Name == Player1Label.Text)
+                {
+                    switch (units[i].Name)
                     {
                         case "Cloud":
                             p1PictureBox.Image = Properties.Resources.Cloud;
@@ -601,6 +671,6 @@ namespace Adgp_125_Assessment_WinForm
 
         }
 
-
-        }
-    } 
+        
+    }
+}
