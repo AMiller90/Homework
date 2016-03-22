@@ -34,7 +34,7 @@
             this.Player1Label = new System.Windows.Forms.Label();
             this.Player2Label = new System.Windows.Forms.Label();
             this.Player3Label = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CurrentStateBox = new System.Windows.Forms.TextBox();
             this.BattleText = new System.Windows.Forms.RichTextBox();
             this.BeginButton = new System.Windows.Forms.Button();
             this.Enemy1Button = new System.Windows.Forms.Button();
@@ -112,12 +112,12 @@
             this.Player3Label.TabIndex = 5;
             this.Player3Label.Text = "label3";
             // 
-            // textBox1
+            // CurrentStateBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.CurrentStateBox.Location = new System.Drawing.Point(12, 15);
+            this.CurrentStateBox.Name = "CurrentStateBox";
+            this.CurrentStateBox.Size = new System.Drawing.Size(100, 20);
+            this.CurrentStateBox.TabIndex = 6;
             // 
             // BattleText
             // 
@@ -272,7 +272,7 @@
             this.Controls.Add(this.Enemy1Button);
             this.Controls.Add(this.BeginButton);
             this.Controls.Add(this.BattleText);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CurrentStateBox);
             this.Controls.Add(this.Player3Label);
             this.Controls.Add(this.Player2Label);
             this.Controls.Add(this.Player1Label);
@@ -281,6 +281,7 @@
             this.Controls.Add(this.Enemy1Label);
             this.Name = "Form2";
             this.Text = "Turn-Based RPG";
+            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.p1PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p3PictureBox)).EndInit();
@@ -300,7 +301,7 @@
         private System.Windows.Forms.Label Player1Label;
         private System.Windows.Forms.Label Player2Label;
         private System.Windows.Forms.Label Player3Label;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CurrentStateBox;
         private System.Windows.Forms.RichTextBox BattleText;
         private System.Windows.Forms.Button BeginButton;
         private System.Windows.Forms.Button Enemy1Button;

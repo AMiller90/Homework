@@ -16,9 +16,23 @@ namespace Adgp_125_Assessment_WinForm
 
         public void Serialize<T>(string s, T t)
         {
-            using (FileStream fs = File.Create(@"..\SavedParties\" + s + ".xml"))
+            using (FileStream fs = File.Create(@"..\Saved Parties\" + s + ".xml"))
+            { 
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+                serializer.Serialize(fs, t);
+
+
+                fs.Close();
+            }
+
+        }
+
+        public void SerializeToSave<T>(string s, T t)
+        {
+            using (FileStream fs = File.Create(@"..\Game Saves\" + s + ".xml"))
             {
-                //SoapFormatter serializer = new SoapFormatter();
+
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
 
                 serializer.Serialize(fs, t);

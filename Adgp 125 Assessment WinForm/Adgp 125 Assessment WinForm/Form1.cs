@@ -18,6 +18,7 @@ namespace Adgp_125_Assessment_WinForm
     {
         FileIO _Save = new FileIO();
 
+        Form2 BattleScene;
         public GameManager manager = GameManager.instance;
         public Unit u = new Unit();
 
@@ -34,7 +35,7 @@ namespace Adgp_125_Assessment_WinForm
         public Form1()
         {
             InitializeComponent();
-          
+            BattleScene = new Form2(this);
         }
 
         private void GenerateParty_Button_Click(object sender, EventArgs e)
@@ -76,9 +77,9 @@ namespace Adgp_125_Assessment_WinForm
 
                 if (DialogResult == DialogResult.Yes)
                 {
-                    Form2 BattleScene = new Form2(this);
+                    //BattleScene = new Form2(this);
                     BattleScene.ShowDialog();
-
+                    
                 }
                 else
                 {
@@ -224,6 +225,8 @@ namespace Adgp_125_Assessment_WinForm
             manager.fsm.Addtransition(e_STATES.INIT, e_STATES.ENEMYTURN);
             manager.fsm.Addtransition(e_STATES.INIT, e_STATES.SEARCH);
             manager.fsm.Addtransition(e_STATES.START, e_STATES.SEARCH);
+            //manager.fsm.Addtransition(e_STATES.START, e_STATES.PLAYERTURN);
+            manager.fsm.Addtransition(e_STATES.START, e_STATES.ENEMYTURN);
             manager.fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
             manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.PLAYERTURN);
             manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.ENEMYTURN);
@@ -262,9 +265,9 @@ namespace Adgp_125_Assessment_WinForm
             
             Party loadedunits;
 
+
             OpenFileDialog DialogWindow = new OpenFileDialog();
-       
-            DialogWindow.InitialDirectory = @"..\SavedParties\";
+            DialogWindow.InitialDirectory = @"..\SavedParties";
             DialogWindow.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             DialogWindow.FilterIndex = 2;
             DialogWindow.RestoreDirectory = true;
@@ -446,6 +449,59 @@ namespace Adgp_125_Assessment_WinForm
 
                 }
             }
+        }
+
+        private void LoadGameButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog LoadWindow = new OpenFileDialog();
+            LoadWindow.InitialDirectory = @"..\Game Saves";
+            LoadWindow.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            LoadWindow.FilterIndex = 2;
+            LoadWindow.RestoreDirectory = true;
+
+            Party EnemyE = new Party();
+            Party PlayerP = new Party();
+
+            if(LoadWindow.ShowDialog() == DialogResult.OK)
+            {
+                PlayerP = _Save.Deserialize<Party>(@"..\Game Saves\PartyData.xml");
+
+                player1name = PlayerP.units[0].Name;
+
+                player2name = PlayerP.units[1].Name;
+           
+                player3name = PlayerP.units[2].Name;
+
+                BattleReadyParty.Add(PlayerP.units[0]);
+                BattleReadyParty.Add(PlayerP.units[1]);
+                BattleReadyParty.Add(PlayerP.units[2]);
+            }
+
+            if (LoadWindow.ShowDialog() == DialogResult.OK)
+            {
+                EnemyE = _Save.Deserialize<Party>(@"..\Game Saves\EnemyParty.xml");
+
+                enemy1name = EnemyE.units[0].Name;
+
+                enemy2name = EnemyE.units[1].Name;
+
+                enemy3name = EnemyE.units[2].Name;
+
+                BattleReadyParty.Add(EnemyE.units[0]);
+                BattleReadyParty.Add(EnemyE.units[1]);
+                BattleReadyParty.Add(EnemyE.units[2]);
+            }
+
+            if (LoadWindow.ShowDialog() == DialogResult.OK)
+            {
+
+                manager.fsm.ChangeStates(_Save.Deserialize<e_STATES>(@"..\Game Saves\GameData.xml"));
+
+            }
+
+            BattleScene.ShowDialog();
+
+
         }
     }
 }

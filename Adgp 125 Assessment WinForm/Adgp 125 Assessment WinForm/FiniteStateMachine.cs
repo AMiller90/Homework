@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 //FSM Class<T> - Generic
+[Serializable]
 public class FiniteStateMachine<T>
 {
     //Transition Class
-    public class Transition
+    private class Transition
     {
         //Transition from
         public T from;
@@ -28,9 +29,9 @@ public class FiniteStateMachine<T>
     //Current state
     private T _currentState;
     //List of states
-    private List<T> _states;
+    [NonSerialized]private List<T> _states;
     //Dictionary containing Generic keys and List of transitions for values
-    private Dictionary<T, List<Transition>> Transitiontable;
+    [NonSerialized]private Dictionary<T, List<Transition>> Transitiontable;
 
     //Property used to get the current state outside of the FSM and prevent from being modified from the outside
     public T state

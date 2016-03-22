@@ -72,6 +72,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.P2LevelBox = new System.Windows.Forms.TextBox();
             this.P1LevelBox = new System.Windows.Forms.TextBox();
+            this.LoadGameButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -357,7 +358,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(263, 533);
+            this.SaveButton.Location = new System.Drawing.Point(172, 504);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 1;
@@ -437,6 +438,16 @@
             this.P1LevelBox.Size = new System.Drawing.Size(29, 20);
             this.P1LevelBox.TabIndex = 44;
             // 
+            // LoadGameButton
+            // 
+            this.LoadGameButton.Location = new System.Drawing.Point(696, 183);
+            this.LoadGameButton.Name = "LoadGameButton";
+            this.LoadGameButton.Size = new System.Drawing.Size(179, 74);
+            this.LoadGameButton.TabIndex = 45;
+            this.LoadGameButton.Text = "Load Game";
+            this.LoadGameButton.UseVisualStyleBackColor = true;
+            this.LoadGameButton.Click += new System.EventHandler(this.LoadGameButton_Click);
+            // 
             // Form1
             // 
             this.AccessibleName = "";
@@ -444,6 +455,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(993, 568);
+            this.Controls.Add(this.LoadGameButton);
             this.Controls.Add(this.P1LevelBox);
             this.Controls.Add(this.P2LevelBox);
             this.Controls.Add(this.label18);
@@ -546,6 +558,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox P2LevelBox;
         private System.Windows.Forms.TextBox P1LevelBox;
+        private System.Windows.Forms.Button LoadGameButton;
     }
 }
 

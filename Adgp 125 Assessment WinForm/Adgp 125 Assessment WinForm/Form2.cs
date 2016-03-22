@@ -19,37 +19,23 @@ namespace Adgp_125_Assessment_WinForm
         List<Unit> enemyParty = new List<Unit>();
 
         public Form1 refer;
+
         public Form2(Form1 parent)
         {
             refer = parent;
             parent.Visible = false;
 
             InitializeComponent();
-
-            ProcessEnemyAttack.Enabled = false;
-            Enemy1Button.Enabled = false;
-            Enemy2Button.Enabled = false;
-            Enemy3Button.Enabled = false;
-            BattleOrderTextBox.Enabled = false;
-
-            count = refer.u.Participants.Count - 1;
-            index = 0;
-            Enemy1Label.Text = parent.enemy1name;
-            Enemy2Label.Text = parent.enemy2name;
-            Enemy3Label.Text = parent.enemy3name;
-            Player1Label.Text = parent.player1name;
-            Player2Label.Text = parent.player2name;
-            Player3Label.Text = parent.player3name;
-
-            textBox1.Text = refer.manager.fsm.state.ToString();
         }
 
         private void BeginButton_Click(object sender, EventArgs e)
         {
+            //SaveGameButton.Enabled = true;
             refer.manager.fsm.ChangeStates(e_STATES.SEARCH);
 
             if (refer.manager.fsm.state == e_STATES.SEARCH)
             {
+
                 //Battle party sorted by speed to produce attack order 
                 refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
 
@@ -75,7 +61,7 @@ namespace Adgp_125_Assessment_WinForm
 
             }
 
-            textBox1.Text = refer.manager.fsm.state.ToString();
+            CurrentStateBox.Text = refer.manager.fsm.state.ToString();
         }
 
         // private void Fight(List<Unit> uList, FiniteStateMachine<e_STATES> fsm)
@@ -236,7 +222,7 @@ namespace Adgp_125_Assessment_WinForm
                     Enemy1Button.Enabled = false;
                     Enemy2Button.Enabled = false;
                     Enemy3Button.Enabled = false;
-                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
 
                     DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
 
@@ -313,7 +299,7 @@ namespace Adgp_125_Assessment_WinForm
                     Enemy1Button.Enabled = false;
                     Enemy2Button.Enabled = false;
                     Enemy3Button.Enabled = false;
-                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
 
                     DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
 
@@ -386,7 +372,7 @@ namespace Adgp_125_Assessment_WinForm
                     Enemy1Button.Enabled = false;
                     Enemy2Button.Enabled = false;
                     Enemy3Button.Enabled = false;
-                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
 
                     DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
 
@@ -458,7 +444,7 @@ namespace Adgp_125_Assessment_WinForm
                     Enemy3Button.Enabled = false;
 
                    
-                    textBox1.Text = refer.manager.fsm.state.ToString();
+                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
                     //Application.Exit();
                 }
 
@@ -497,7 +483,7 @@ namespace Adgp_125_Assessment_WinForm
                         Enemy3Button.Enabled = true;
                         ProcessEnemyAttack.Enabled = false;
 
-                        textBox1.Text = refer.manager.fsm.state.ToString();
+                        CurrentStateBox.Text = refer.manager.fsm.state.ToString();
                     }
 
                 }
@@ -513,7 +499,7 @@ namespace Adgp_125_Assessment_WinForm
                         Enemy3Button.Enabled = false;
                         ProcessEnemyAttack.Enabled = true;
 
-                        textBox1.Text = refer.manager.fsm.state.ToString();
+                        CurrentStateBox.Text = refer.manager.fsm.state.ToString();
                     }
 
                 }
@@ -753,7 +739,51 @@ namespace Adgp_125_Assessment_WinForm
 
         private void SaveGameButton_Click(object sender, EventArgs e)
         {
+            Party a = new Party();
+            Party b = new Party();
+            List<Party> pList = new List<Party>();
 
+            a.units = playerParty;
+            b.units = enemyParty;
+
+
+
+            //Needs to save:
+            //Current State
+            ///CurrentStateBox info
+            //Both Parties
+            ///BattleOrderTextBox info
+            ///BattleText
+            ///StatsBox info
+
+            _Save.SerializeToSave("GameData", refer.manager.fsm.state);
+
+            _Save.SerializeToSave("PartyData", a);
+
+            _Save.SerializeToSave("EnemyParty", b);
+            
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            ProcessEnemyAttack.Enabled = false;
+            Enemy1Button.Enabled = false;
+            Enemy2Button.Enabled = false;
+            Enemy3Button.Enabled = false;
+            BattleOrderTextBox.Enabled = false;
+            //SaveGameButton.Enabled = false;
+
+            count = refer.u.Participants.Count - 1;
+            index = 0;
+            Enemy1Label.Text = refer.enemy1name;
+            Enemy2Label.Text = refer.enemy2name;
+            Enemy3Label.Text = refer.enemy3name;
+            Player1Label.Text = refer.player1name;
+            Player2Label.Text = refer.player2name;
+            Player3Label.Text = refer.player3name;
+
+            CurrentStateBox.Text = refer.manager.fsm.state.ToString();
         }
     }
 }
