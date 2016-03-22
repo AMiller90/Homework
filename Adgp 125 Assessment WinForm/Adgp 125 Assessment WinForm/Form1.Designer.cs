@@ -66,6 +66,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.P3LevelBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.P2LevelBox = new System.Windows.Forms.TextBox();
+            this.P1LevelBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -73,7 +79,7 @@
             // 
             // GenerateParty_Button
             // 
-            this.GenerateParty_Button.Location = new System.Drawing.Point(65, 488);
+            this.GenerateParty_Button.Location = new System.Drawing.Point(65, 533);
             this.GenerateParty_Button.Name = "GenerateParty_Button";
             this.GenerateParty_Button.Size = new System.Drawing.Size(87, 23);
             this.GenerateParty_Button.TabIndex = 0;
@@ -163,35 +169,35 @@
             // 
             // P2SpeedBox
             // 
-            this.P2SpeedBox.Location = new System.Drawing.Point(61, 247);
+            this.P2SpeedBox.Location = new System.Drawing.Point(61, 280);
             this.P2SpeedBox.Name = "P2SpeedBox";
             this.P2SpeedBox.Size = new System.Drawing.Size(29, 20);
             this.P2SpeedBox.TabIndex = 22;
             // 
             // P2DefenseBox
             // 
-            this.P2DefenseBox.Location = new System.Drawing.Point(61, 221);
+            this.P2DefenseBox.Location = new System.Drawing.Point(61, 254);
             this.P2DefenseBox.Name = "P2DefenseBox";
             this.P2DefenseBox.Size = new System.Drawing.Size(29, 20);
             this.P2DefenseBox.TabIndex = 21;
             // 
             // P2StrengthBox
             // 
-            this.P2StrengthBox.Location = new System.Drawing.Point(61, 195);
+            this.P2StrengthBox.Location = new System.Drawing.Point(61, 228);
             this.P2StrengthBox.Name = "P2StrengthBox";
             this.P2StrengthBox.Size = new System.Drawing.Size(29, 20);
             this.P2StrengthBox.TabIndex = 20;
             // 
             // P2HealthBox
             // 
-            this.P2HealthBox.Location = new System.Drawing.Point(61, 169);
+            this.P2HealthBox.Location = new System.Drawing.Point(61, 202);
             this.P2HealthBox.Name = "P2HealthBox";
             this.P2HealthBox.Size = new System.Drawing.Size(29, 20);
             this.P2HealthBox.TabIndex = 19;
             // 
             // P2NameBox
             // 
-            this.P2NameBox.Location = new System.Drawing.Point(61, 143);
+            this.P2NameBox.Location = new System.Drawing.Point(61, 176);
             this.P2NameBox.Name = "P2NameBox";
             this.P2NameBox.Size = new System.Drawing.Size(79, 20);
             this.P2NameBox.TabIndex = 18;
@@ -199,7 +205,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 254);
+            this.label6.Location = new System.Drawing.Point(8, 287);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 17;
@@ -208,7 +214,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 228);
+            this.label7.Location = new System.Drawing.Point(8, 261);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 16;
@@ -217,7 +223,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 202);
+            this.label8.Location = new System.Drawing.Point(8, 235);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 15;
@@ -226,7 +232,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 176);
+            this.label9.Location = new System.Drawing.Point(8, 209);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 14;
@@ -235,7 +241,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 150);
+            this.label10.Location = new System.Drawing.Point(8, 183);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 13);
             this.label10.TabIndex = 13;
@@ -243,35 +249,35 @@
             // 
             // P3SpeedBox
             // 
-            this.P3SpeedBox.Location = new System.Drawing.Point(61, 387);
+            this.P3SpeedBox.Location = new System.Drawing.Point(61, 447);
             this.P3SpeedBox.Name = "P3SpeedBox";
             this.P3SpeedBox.Size = new System.Drawing.Size(29, 20);
             this.P3SpeedBox.TabIndex = 32;
             // 
             // P3DefenseBox
             // 
-            this.P3DefenseBox.Location = new System.Drawing.Point(61, 361);
+            this.P3DefenseBox.Location = new System.Drawing.Point(61, 421);
             this.P3DefenseBox.Name = "P3DefenseBox";
             this.P3DefenseBox.Size = new System.Drawing.Size(29, 20);
             this.P3DefenseBox.TabIndex = 31;
             // 
             // P3StrengthBox
             // 
-            this.P3StrengthBox.Location = new System.Drawing.Point(61, 335);
+            this.P3StrengthBox.Location = new System.Drawing.Point(61, 395);
             this.P3StrengthBox.Name = "P3StrengthBox";
             this.P3StrengthBox.Size = new System.Drawing.Size(29, 20);
             this.P3StrengthBox.TabIndex = 30;
             // 
             // P3HealthBox
             // 
-            this.P3HealthBox.Location = new System.Drawing.Point(61, 309);
+            this.P3HealthBox.Location = new System.Drawing.Point(61, 369);
             this.P3HealthBox.Name = "P3HealthBox";
             this.P3HealthBox.Size = new System.Drawing.Size(29, 20);
             this.P3HealthBox.TabIndex = 29;
             // 
             // P3NameBox
             // 
-            this.P3NameBox.Location = new System.Drawing.Point(61, 283);
+            this.P3NameBox.Location = new System.Drawing.Point(61, 343);
             this.P3NameBox.Name = "P3NameBox";
             this.P3NameBox.Size = new System.Drawing.Size(79, 20);
             this.P3NameBox.TabIndex = 28;
@@ -279,7 +285,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 394);
+            this.label11.Location = new System.Drawing.Point(8, 447);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 13);
             this.label11.TabIndex = 27;
@@ -288,7 +294,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 368);
+            this.label12.Location = new System.Drawing.Point(8, 421);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 13);
             this.label12.TabIndex = 26;
@@ -297,7 +303,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 342);
+            this.label13.Location = new System.Drawing.Point(8, 395);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 25;
@@ -306,7 +312,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 316);
+            this.label14.Location = new System.Drawing.Point(8, 372);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(38, 13);
             this.label14.TabIndex = 24;
@@ -315,7 +321,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 290);
+            this.label15.Location = new System.Drawing.Point(8, 350);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 13);
             this.label15.TabIndex = 23;
@@ -331,7 +337,7 @@
             // LockInPartyCheckBox
             // 
             this.LockInPartyCheckBox.AutoSize = true;
-            this.LockInPartyCheckBox.Location = new System.Drawing.Point(65, 465);
+            this.LockInPartyCheckBox.Location = new System.Drawing.Point(65, 510);
             this.LockInPartyCheckBox.Name = "LockInPartyCheckBox";
             this.LockInPartyCheckBox.Size = new System.Drawing.Size(57, 17);
             this.LockInPartyCheckBox.TabIndex = 34;
@@ -341,7 +347,7 @@
             // 
             // LoadButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(172, 488);
+            this.LoadButton.Location = new System.Drawing.Point(172, 533);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(75, 23);
             this.LoadButton.TabIndex = 35;
@@ -351,7 +357,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(263, 488);
+            this.SaveButton.Location = new System.Drawing.Point(263, 533);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 1;
@@ -361,7 +367,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(172, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(167, 35);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(80, 110);
             this.pictureBox1.TabIndex = 36;
@@ -369,7 +375,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(172, 143);
+            this.pictureBox2.Location = new System.Drawing.Point(167, 202);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(80, 110);
             this.pictureBox2.TabIndex = 37;
@@ -377,11 +383,59 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(172, 283);
+            this.pictureBox3.Location = new System.Drawing.Point(167, 369);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(80, 110);
             this.pictureBox3.TabIndex = 38;
             this.pictureBox3.TabStop = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(8, 473);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(33, 13);
+            this.label16.TabIndex = 39;
+            this.label16.Text = "Level";
+            // 
+            // P3LevelBox
+            // 
+            this.P3LevelBox.Location = new System.Drawing.Point(61, 473);
+            this.P3LevelBox.Name = "P3LevelBox";
+            this.P3LevelBox.Size = new System.Drawing.Size(29, 20);
+            this.P3LevelBox.TabIndex = 40;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(8, 142);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(33, 13);
+            this.label17.TabIndex = 41;
+            this.label17.Text = "Level";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(8, 313);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(33, 13);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "Level";
+            // 
+            // P2LevelBox
+            // 
+            this.P2LevelBox.Location = new System.Drawing.Point(61, 306);
+            this.P2LevelBox.Name = "P2LevelBox";
+            this.P2LevelBox.Size = new System.Drawing.Size(29, 20);
+            this.P2LevelBox.TabIndex = 43;
+            // 
+            // P1LevelBox
+            // 
+            this.P1LevelBox.Location = new System.Drawing.Point(61, 135);
+            this.P1LevelBox.Name = "P1LevelBox";
+            this.P1LevelBox.Size = new System.Drawing.Size(29, 20);
+            this.P1LevelBox.TabIndex = 44;
             // 
             // Form1
             // 
@@ -390,6 +444,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(993, 568);
+            this.Controls.Add(this.P1LevelBox);
+            this.Controls.Add(this.P2LevelBox);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.P3LevelBox);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -480,6 +540,12 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox P3LevelBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox P2LevelBox;
+        private System.Windows.Forms.TextBox P1LevelBox;
     }
 }
 

@@ -15,6 +15,7 @@ public interface IActions<T>
 public interface IStats
 {
     int Level { get; set; }
+    int MaxHp { get; }
     int Health { get; set; }
     int Strength { get; set; }
     int Speed { get; set; }

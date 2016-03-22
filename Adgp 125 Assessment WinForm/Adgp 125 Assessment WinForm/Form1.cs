@@ -20,7 +20,8 @@ namespace Adgp_125_Assessment_WinForm
 
         public GameManager manager = GameManager.instance;
         public Unit u = new Unit();
-        
+
+        public List<Unit> Enemies = new List<Unit>();
         public List<Unit> BattleReadyParty = new List<Unit>();
 
         public string player1name;
@@ -43,7 +44,7 @@ namespace Adgp_125_Assessment_WinForm
             List<Unit> NewParty = CreateObjects();
 
             List<Unit> players = new List<Unit>();
-            List<Unit> enemies = new List<Unit>();
+            //List<Unit> enemies = new List<Unit>();
 
             //Loop through the party 
             foreach (Unit i in NewParty)
@@ -57,11 +58,11 @@ namespace Adgp_125_Assessment_WinForm
                 //Check if current unit is an enemy
                 if (i.Type == "Enemy")
                 {//If true then add to enemy party
-                    enemies.Add(i);
+                    Enemies.Add(i);
                 }
             }
 
-            RandomizeAllParties(players, enemies);
+            RandomizeAllParties(players, Enemies);
 
 
 
@@ -158,6 +159,7 @@ namespace Adgp_125_Assessment_WinForm
                 P1StrengthBox.Text = p[p1].Strength.ToString();
                 P1DefenseBox.Text = p[p1].Defense.ToString();
                 P1SpeedBox.Text = p[p1].Speed.ToString();
+                P1LevelBox.Text = p[p1].Level.ToString();
                 BattleReadyParty.Add(p[p1]);
                 
             }
@@ -170,6 +172,7 @@ namespace Adgp_125_Assessment_WinForm
                 P2StrengthBox.Text = p[p2].Strength.ToString();
                 P2DefenseBox.Text = p[p2].Defense.ToString();
                 P2SpeedBox.Text = p[p2].Speed.ToString();
+                P2LevelBox.Text = p[p2].Level.ToString();
                 BattleReadyParty.Add(p[p2]);
             }
 
@@ -181,6 +184,7 @@ namespace Adgp_125_Assessment_WinForm
                 P3StrengthBox.Text = p[p3].Strength.ToString();
                 P3DefenseBox.Text = p[p3].Defense.ToString();
                 P3SpeedBox.Text = p[p3].Speed.ToString();
+                P3LevelBox.Text = p[p3].Level.ToString();
                 BattleReadyParty.Add(p[p3]);
             }
 
@@ -215,6 +219,10 @@ namespace Adgp_125_Assessment_WinForm
             manager.fsm.AddStates(e_STATES.EXIT);
 
             manager.fsm.Addtransition(e_STATES.INIT, e_STATES.START);
+            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.BATTLE);
+            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.PLAYERTURN);
+            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.ENEMYTURN);
+            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.SEARCH);
             manager.fsm.Addtransition(e_STATES.START, e_STATES.SEARCH);
             manager.fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
             manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.PLAYERTURN);
@@ -234,7 +242,6 @@ namespace Adgp_125_Assessment_WinForm
         private void SaveButton_Click(object sender, EventArgs e)
         {
             Party party = new Party();
-           
 
             foreach (Unit i in BattleReadyParty)
             {
@@ -244,7 +251,6 @@ namespace Adgp_125_Assessment_WinForm
                 }
             }
 
-          
             _Save.Serialize("Party", party);
 
 
@@ -270,23 +276,59 @@ namespace Adgp_125_Assessment_WinForm
                 loadedunits = _Save.Deserialize<Party>(chosenFile);
 
                 P1NameBox.Text = loadedunits.units[0].Name;
-                //P1HealthBox.Text = loadedunits[0].Health.ToString();
-                //P1StrengthBox.Text = loadedunits[0].Strength.ToString();
-                //P1SpeedBox.Text = loadedunits[0].Speed.ToString();
-                //P1DefenseBox.Text = loadedunits[0].Defense.ToString();
+                P1HealthBox.Text = loadedunits.units[0].Health.ToString();
+                P1StrengthBox.Text = loadedunits.units[0].Strength.ToString();
+                P1SpeedBox.Text = loadedunits.units[0].Speed.ToString();
+                P1DefenseBox.Text = loadedunits.units[0].Defense.ToString();
+                P1LevelBox.Text = loadedunits.units[0].Level.ToString();
 
-                //P2NameBox.Text = loadedunits[1].Name;
-                //P2HealthBox.Text = loadedunits[1].Health.ToString();
-                //P2StrengthBox.Text = loadedunits[1].Strength.ToString();
-                //P2SpeedBox.Text = loadedunits[1].Speed.ToString();
-                //P2DefenseBox.Text = loadedunits[1].Defense.ToString();
+                P2NameBox.Text = loadedunits.units[1].Name;
+                P2HealthBox.Text = loadedunits.units[1].Health.ToString();
+                P2StrengthBox.Text = loadedunits.units[1].Strength.ToString();
+                P2SpeedBox.Text = loadedunits.units[1].Speed.ToString();
+                P2DefenseBox.Text = loadedunits.units[1].Defense.ToString();
+                P2LevelBox.Text = loadedunits.units[1].Level.ToString();
 
-                //P3NameBox.Text = loadedunits[2].Name;
-                //P3HealthBox.Text = loadedunits[2].Health.ToString();
-                //P3StrengthBox.Text = loadedunits[2].Strength.ToString();
-                //P3SpeedBox.Text = loadedunits[2].Speed.ToString();
-                //P3DefenseBox.Text = loadedunits[2].Defense.ToString();
+                P3NameBox.Text = loadedunits.units[2].Name;
+                P3HealthBox.Text = loadedunits.units[2].Health.ToString();
+                P3StrengthBox.Text = loadedunits.units[2].Strength.ToString();
+                P3SpeedBox.Text = loadedunits.units[2].Speed.ToString();
+                P3DefenseBox.Text = loadedunits.units[2].Defense.ToString();
+                P3LevelBox.Text = loadedunits.units[2].Level.ToString();
 
+                foreach (Unit i in loadedunits.units)
+                {
+                    BattleReadyParty.Add(i);
+                }
+
+                List<Unit> tempParty = new List<Unit>();
+
+                tempParty = CreateObjects();
+
+                foreach(Unit i in tempParty)
+                {
+                    if(i.Type == "Enemy")
+                    {
+                        Enemies.Add(i);
+                    }
+                    
+                }
+                Random a = new Random();
+
+                int e1 = a.Next(0, Enemies.Count);
+                int e2 = a.Next(0, Enemies.Count);
+                int e3 = a.Next(0, Enemies.Count);
+
+                enemy1name = Enemies[e1].Name;
+                enemy2name = Enemies[e2].Name;
+                enemy3name = Enemies[e3].Name;
+
+
+                BattleReadyParty.Add(Enemies[e1]);
+                BattleReadyParty.Add(Enemies[e2]);
+                BattleReadyParty.Add(Enemies[e3]);
+
+                previewImages(loadedunits.units);
             }
 
         }

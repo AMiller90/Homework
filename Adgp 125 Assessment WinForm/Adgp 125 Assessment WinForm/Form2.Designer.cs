@@ -49,6 +49,7 @@
             this.e1PictureBox = new System.Windows.Forms.PictureBox();
             this.e2PictureBox = new System.Windows.Forms.PictureBox();
             this.e3PictureBox = new System.Windows.Forms.PictureBox();
+            this.SaveGameButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.p1PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p3PictureBox)).BeginInit();
@@ -240,12 +241,23 @@
             this.e3PictureBox.TabIndex = 21;
             this.e3PictureBox.TabStop = false;
             // 
+            // SaveGameButton
+            // 
+            this.SaveGameButton.Location = new System.Drawing.Point(1091, 610);
+            this.SaveGameButton.Name = "SaveGameButton";
+            this.SaveGameButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveGameButton.TabIndex = 22;
+            this.SaveGameButton.Text = "Save Game";
+            this.SaveGameButton.UseVisualStyleBackColor = true;
+            this.SaveGameButton.Click += new System.EventHandler(this.SaveGameButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1178, 645);
+            this.Controls.Add(this.SaveGameButton);
             this.Controls.Add(this.e3PictureBox);
             this.Controls.Add(this.e2PictureBox);
             this.Controls.Add(this.e1PictureBox);
@@ -303,5 +315,6 @@
         private System.Windows.Forms.PictureBox e1PictureBox;
         private System.Windows.Forms.PictureBox e2PictureBox;
         private System.Windows.Forms.PictureBox e3PictureBox;
+        private System.Windows.Forms.Button SaveGameButton;
     }
 }

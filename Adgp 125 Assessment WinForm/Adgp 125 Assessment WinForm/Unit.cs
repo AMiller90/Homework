@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 [Serializable]
 public class Unit : IStats, IActions<Unit>
 {
-   
-    public string stuffText;
+    [NonSerialized]public string stuffText;
     private int m_uDefense;
     private int m_uExperience;
     private int m_uHealth;
@@ -20,6 +19,7 @@ public class Unit : IStats, IActions<Unit>
     private string m_uName;
     private Unit m_uTarget;
     private bool m_Life;
+    private int m_uMaxHp;
 
     private List<Unit> m_Participants = new List<Unit>();
 
@@ -33,7 +33,7 @@ public class Unit : IStats, IActions<Unit>
     public Unit(string name, int hp, int strength, int defense, int speed, int exp, string type)
     {
         m_uName = name;
-        m_uHealth = hp;
+        m_uMaxHp = hp;
         m_uStrength = strength;
         m_uDefense = defense;
         m_uSpeed = speed;
@@ -41,6 +41,8 @@ public class Unit : IStats, IActions<Unit>
         m_uType = type;
         m_Life = true;
         m_uLevel = 1;
+
+        m_uHealth = m_uMaxHp;
     }
 
     public string Name
@@ -67,6 +69,14 @@ public class Unit : IStats, IActions<Unit>
         set
         {
             m_uLevel = value;
+        }
+    }
+
+    public int MaxHp
+    {
+        get
+        {
+            return m_uMaxHp;
         }
     }
 
@@ -192,6 +202,7 @@ public class Unit : IStats, IActions<Unit>
         //it could be because we return null from EnemyRandomTarget
         if (u == null)
         {
+            stuffText += this.Name + "Attack Missed!\n";
             return false;
         }
           
@@ -211,7 +222,9 @@ public class Unit : IStats, IActions<Unit>
                     stuffText += u.Name + " has been killed!\n";
                     u.Life = false;
 
-                    if (this.Type == "Player")
+                    u.Health = 0;
+
+                   if (this.Type == "Player")
                     {
                         //Give player experience points equal to the amount of experience points of the enemy
                         this.Experience += u.Experience;
@@ -227,6 +240,7 @@ public class Unit : IStats, IActions<Unit>
             }
             else
             {
+            
                 stuffText += u.Name + " has been killed!\n";
                 u.Life = false;
 
@@ -238,7 +252,12 @@ public class Unit : IStats, IActions<Unit>
                     this.LevelUp();
                 }
 
-                return false;
+            if (u.Health < 0)
+            {
+                u.Health = 0;
+            }
+
+            return false;
 
 
             }
@@ -254,83 +273,17 @@ public class Unit : IStats, IActions<Unit>
             stuffText += "\n" + this.Name + " Leveled Up!\n";
             this.Level++;
             this.Experience = 0;
-            this.Health = m_uHealth;
-            this.Health += 10;
+            this.m_uMaxHp += 20;
+            this.Health = m_uMaxHp;
             this.Strength += 5;
             this.Defense += 5;
             this.Speed += 2;
 
         }
     }
-    
-    public Unit ChooseWhoToAttack(List<Unit> eParty)
-    {
-
-        Console.WriteLine("Who Do You Want To Attack? Type in the Number of target: \n");
-        for (int i = 0; i < eParty.Count; i++)
-        {
-            Console.WriteLine(eParty[i].Name);
-        }
-
-        Console.Write("\n");
-        string input;
-        input = Console.ReadLine();
-
-
-        for (int i = 0; i < eParty.Count; i++)
-        {
-            if (input == eParty[i].Name && eParty[i].Life == true)
-            {
-                m_uTarget = eParty[i];
-                return m_uTarget;
-            }
-            else if (input == eParty[i].Name && eParty[i].Life == false)
-            {
-                Console.WriteLine(eParty[i].Name + " is already dead!\n");
-                ChooseWhoToAttack(eParty);
-            }
-
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// override the previous enemyrandomtarget function with a recursive base case
-    /// 
-    /// </summary>
-    /// <param name="party"></param>
-    /// <param name="dead"></param>
-    /// <returns></returns>
-    /// 
-    public Unit EnemyRandomTarget(List<Unit> party, int dead)
-    {
-        dead++;
-        //dis is bad
-        //you will only ever roll an enemy attack for however many members are in the group
-        //figure it out
-        //recursive calls must have a base case that they use to break out
-        //can either use tail recursion or head recursion
-        //you do not know what those are... can look it up or alternatively just keep track of how many
-        //party members are dead and break when that count is equal to the number of party members
-        if (dead >= party.Count)
-        {
-            return null;
-        }
-            
-        else
-        {
-            EnemyRandomTarget(party, dead);
-        }
-            
-
-        return null;
-
-    }
 
     public Unit EnemyRandomTarget(List<Unit> party)
     {
-        int deadCount = 0;
         Random r = new Random();
         
         int index = r.Next(0, party.Count);
@@ -343,7 +296,8 @@ public class Unit : IStats, IActions<Unit>
         }
         else
         {
-            EnemyRandomTarget(party, deadCount);
+            //stuffText = this.Name + " attack Missed!\n";
+            //EnemyRandomTarget(party);
             
         }
 
