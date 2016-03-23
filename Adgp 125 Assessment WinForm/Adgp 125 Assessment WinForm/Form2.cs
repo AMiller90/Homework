@@ -13,6 +13,7 @@ namespace Adgp_125_Assessment_WinForm
     public partial class Form2 : Form
     {
         FileIO _Save = new FileIO();
+        
         int index;
         int count;
         List<Unit> playerParty = new List<Unit>();
@@ -30,9 +31,87 @@ namespace Adgp_125_Assessment_WinForm
 
         private void BeginButton_Click(object sender, EventArgs e)
         {
-            //SaveGameButton.Enabled = true;
-            refer.manager.fsm.ChangeStates(e_STATES.SEARCH);
 
+            if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
+            {
+                index = refer.currentUnitIndex;
+
+                //Battle party sorted by speed to produce attack order 
+                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+
+                for (int i = 0; i < refer.u.Participants.Count; i++)
+                {
+                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+                }
+
+                setImages(refer.u.Participants);
+
+                BeginButton.Enabled = false;
+
+                refer.manager.Statsofobjects(refer.u.Participants);
+
+                StatsBox.Text = refer.manager.statsText;
+
+                foreach (Unit i in refer.u.Participants)
+                {
+                    if (i.Type == "Player")
+                    {
+                        playerParty.Add(i);
+
+                    }
+                    if (i.Type == "Enemy")
+                    {
+                        enemyParty.Add(i);
+
+                    }
+
+                }
+
+                //Enable buttons so player can attack an enemy
+                Enemy1Button.Enabled = true;
+                Enemy2Button.Enabled = true;
+                Enemy3Button.Enabled = true;
+            }
+
+            if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
+            {
+                index = refer.currentUnitIndex;
+
+                //Battle party sorted by speed to produce attack order 
+                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+
+                for (int i = 0; i < refer.u.Participants.Count; i++)
+                {
+                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+                }
+
+                setImages(refer.u.Participants);
+
+                BeginButton.Enabled = false;
+
+                refer.manager.Statsofobjects(refer.u.Participants);
+
+                StatsBox.Text = refer.manager.statsText;
+
+                foreach (Unit i in refer.u.Participants)
+                {
+                    if (i.Type == "Player")
+                    {
+                        playerParty.Add(i);
+
+                    }
+                    if (i.Type == "Enemy")
+                    {
+                        enemyParty.Add(i);
+                    }
+
+                }
+
+                ProcessEnemyAttack.Enabled = true;
+
+            }
+
+            //SaveGameButton.Enabled = true;
             if (refer.manager.fsm.state == e_STATES.SEARCH)
             {
 
@@ -60,6 +139,10 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
             }
+
+            Enemy1Label.Text = enemyParty[0].Name;
+            Enemy2Label.Text = enemyParty[1].Name;
+            Enemy3Label.Text = enemyParty[2].Name;
 
             CurrentStateBox.Text = refer.manager.fsm.state.ToString();
         }
@@ -184,25 +267,42 @@ namespace Adgp_125_Assessment_WinForm
         private void Enemy1Button_Click(object sender, EventArgs e)
         {
             Unit a = refer.u.Participants[index];
-            foreach (Unit i in enemyParty)
+
+            if (enemyParty[0].Name == Enemy1Label.Text && enemyParty[0].Life == true)
             {
-                if (i.Name == Enemy1Label.Text && i.Life == true)
+                BattleText.Text += a.Name + " is about to attack\n";
+                a.Attack(enemyParty[0]);
+                BattleText.Text = a.stuffText;
+
+                if (index == count)
                 {
-                    a.Attack(i);
-                    BattleText.Text = a.stuffText;
-
-                    if (index == count)
-                    {
-                        index = 0;
-                    }
-                    else
-                    {
-                        index += 1;
-                    }
-                    break;
+                    index = 0;
                 }
-
+                else
+                {
+                    index += 1;
+                }
             }
+            //Unit a = refer.u.Participants[index];
+            //foreach (Unit i in enemyParty)
+            //{
+            //    if (i.Name == Enemy1Label.Text && i.Life == true)
+            //    {
+            //        a.Attack(i);
+            //        BattleText.Text = a.stuffText;
+
+            //        if (index == count)
+            //        {
+            //            index = 0;
+            //        }
+            //        else
+            //        {
+            //            index += 1;
+            //        }
+            //        break;
+            //    }
+
+            //}
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
@@ -215,6 +315,14 @@ namespace Adgp_125_Assessment_WinForm
                 }
                 if (refer.manager.fsm.state == e_STATES.EXIT)
                 {
+                    Party party = new Party();
+
+                    party.units = playerParty;
+
+                    foreach (Unit u in party.units)
+                    {//Reset health
+                        u.Health = u.MaxHp;
+                    }
                     refer.manager.statsText = "";
                     refer.manager.Statsofobjects(refer.u.Participants);
                     StatsBox.Text = refer.manager.statsText;
@@ -228,26 +336,10 @@ namespace Adgp_125_Assessment_WinForm
 
                     if (DialogResult == DialogResult.Yes)
                     {
-                        Party party = new Party();
-
-                        party.units = playerParty;
-
-                        foreach (Unit u in party.units)
-                        {//Reset health
-                            u.Health = u.MaxHp;
-                        }
-
-                        
-
                         _Save.Serialize("Party", party);
+                        Application.Exit();
 
-                        
                     }
-                    else
-                    {
-                        //Application.Exit();
-                    }
-                    //Application.Exit();
                 }
 
             }
@@ -259,27 +351,43 @@ namespace Adgp_125_Assessment_WinForm
         private void Enemy2Button_Click(object sender, EventArgs e)
         {
             Unit a = refer.u.Participants[index];
-            foreach (Unit i in enemyParty)
+
+            if(enemyParty[1].Name == Enemy2Label.Text && enemyParty[1].Life == true)
             {
-                if (i.Name == Enemy2Label.Text)
+                BattleText.Text += a.Name + " is about to attack\n";
+                a.Attack(enemyParty[1]);
+                BattleText.Text = a.stuffText;
+
+                if (index == count)
                 {
-                    //BattleText.Text += a.Name + " is about to attack\n";
-                    a.Attack(i);
-                    BattleText.Text = a.stuffText;
-
-                    if (index == count)
-                    {
-                        index = 0;
-                    }
-                    else
-                    {
-                        index += 1;
-                    }
-
-                    break;
+                    index = 0;
                 }
-
+                else
+                {
+                    index += 1;
+                }
             }
+            //foreach (Unit i in enemyParty)
+            //{
+            //    if (i.Name == Enemy2Label.Text)
+            //    {
+            //        //BattleText.Text += a.Name + " is about to attack\n";
+            //        a.Attack(i);
+            //        BattleText.Text = a.stuffText;
+
+            //        if (index == count)
+            //        {
+            //            index = 0;
+            //        }
+            //        else
+            //        {
+            //            index += 1;
+            //        }
+
+            //        break;
+            //    }
+
+            //}
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
@@ -292,6 +400,15 @@ namespace Adgp_125_Assessment_WinForm
                 }
                 if (refer.manager.fsm.state == e_STATES.EXIT)
                 {
+                    Party party = new Party();
+
+                    party.units = playerParty;
+
+                    foreach (Unit u in party.units)
+                    {//Reset health
+                        u.Health = u.MaxHp;
+                    }
+
                     refer.manager.statsText = "";
                     refer.manager.Statsofobjects(refer.u.Participants);
                     StatsBox.Text = refer.manager.statsText;
@@ -305,23 +422,9 @@ namespace Adgp_125_Assessment_WinForm
 
                     if (DialogResult == DialogResult.Yes)
                     {
-                        Party party = new Party();
-
-                        party.units = playerParty;
-
-                        foreach (Unit u in party.units)
-                        {//Reset health
-                            u.Health = u.MaxHp;
-                        }
-
                         _Save.Serialize("Party", party);
-
+                        Application.Exit();
                     }
-                    else
-                    {
-                        //Application.Exit();
-                    }
-                    //Application.Exit();
                 }
 
             }
@@ -330,28 +433,47 @@ namespace Adgp_125_Assessment_WinForm
 
         private void Enemy3Button_Click(object sender, EventArgs e)
         {
+
             Unit a = refer.u.Participants[index];
-            foreach (Unit i in enemyParty)
+
+            if (enemyParty[2].Name == Enemy3Label.Text && enemyParty[2].Life == true)
             {
-                if (i.Name == Enemy3Label.Text)
+                BattleText.Text += a.Name + " is about to attack\n";
+                a.Attack(enemyParty[2]);
+                BattleText.Text = a.stuffText;
+
+                if (index == count)
                 {
-                    //BattleText.Text += a.Name + " is about to attack\n";
-                    a.Attack(i);
-                    BattleText.Text = a.stuffText;
-
-                    if (index == count)
-                    {
-                        index = 0;
-                    }
-                    else
-                    {
-                        index += 1;
-                    }
-
-                    break;
+                    index = 0;
                 }
-
+                else
+                {
+                    index += 1;
+                }
             }
+
+            //Unit a = refer.u.Participants[index];
+            //foreach (Unit i in enemyParty)
+            //{
+            //    if (i.Name == Enemy3Label.Text)
+            //    {
+            //        //BattleText.Text += a.Name + " is about to attack\n";
+            //        a.Attack(i);
+            //        BattleText.Text = a.stuffText;
+
+            //        if (index == count)
+            //        {
+            //            index = 0;
+            //        }
+            //        else
+            //        {
+            //            index += 1;
+            //        }
+
+            //        break;
+            //    }
+
+            //}
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
@@ -364,6 +486,16 @@ namespace Adgp_125_Assessment_WinForm
                 }
                 if (refer.manager.fsm.state == e_STATES.EXIT)
                 {
+
+                    Party party = new Party();
+
+                    party.units = playerParty;
+
+                    foreach (Unit u in party.units)
+                    {//Reset health
+                        u.Health = u.MaxHp;
+                    }
+
                     refer.manager.statsText = "";
                     refer.manager.Statsofobjects(refer.u.Participants);
                     StatsBox.Text = refer.manager.statsText;
@@ -378,23 +510,10 @@ namespace Adgp_125_Assessment_WinForm
 
                     if (DialogResult == DialogResult.Yes)
                     {
-                        Party party = new Party();
-
-                        party.units = playerParty;
-
-                        foreach (Unit u in party.units)
-                        {//Reset health
-                            u.Health = u.MaxHp;
-                        }
-
                         _Save.Serialize("Party", party);
+                        Application.Exit();
 
                     }
-                    else
-                    {
-                        //Application.Exit();
-                    }
-                    //Application.Exit();
 
                 }
 
@@ -743,26 +862,17 @@ namespace Adgp_125_Assessment_WinForm
             Party b = new Party();
             List<Party> pList = new List<Party>();
 
+            int number = index;
             a.units = playerParty;
             b.units = enemyParty;
-
-
-
-            //Needs to save:
-            //Current State
-            ///CurrentStateBox info
-            //Both Parties
-            ///BattleOrderTextBox info
-            ///BattleText
-            ///StatsBox info
 
             _Save.SerializeToSave("GameData", refer.manager.fsm.state);
 
             _Save.SerializeToSave("PartyData", a);
 
             _Save.SerializeToSave("EnemyParty", b);
-            
 
+            _Save.SerializeToSave("CurrentAttacker", number);
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -782,6 +892,8 @@ namespace Adgp_125_Assessment_WinForm
             Player1Label.Text = refer.player1name;
             Player2Label.Text = refer.player2name;
             Player3Label.Text = refer.player3name;
+
+            refer.manager.fsm.ChangeStates(e_STATES.SEARCH);
 
             CurrentStateBox.Text = refer.manager.fsm.state.ToString();
         }

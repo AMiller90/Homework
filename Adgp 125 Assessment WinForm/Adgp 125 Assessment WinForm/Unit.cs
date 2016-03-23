@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 [Serializable]
 public class Unit : IStats, IActions<Unit>
 {
-    [NonSerialized]public string stuffText;
+    
     private int m_uDefense;
     private int m_uExperience;
     private int m_uHealth;
@@ -22,7 +22,7 @@ public class Unit : IStats, IActions<Unit>
     private int m_uMaxHp;
 
     private List<Unit> m_Participants = new List<Unit>();
-
+    public string stuffText;
 
     public Unit()
     {
@@ -41,8 +41,7 @@ public class Unit : IStats, IActions<Unit>
         m_uType = type;
         m_Life = true;
         m_uLevel = 1;
-
-        m_uHealth = m_uMaxHp;
+        m_uHealth = hp;
     }
 
     public string Name
@@ -77,6 +76,11 @@ public class Unit : IStats, IActions<Unit>
         get
         {
             return m_uMaxHp;
+        }
+
+        set
+        {
+            m_uMaxHp = value;
         }
     }
 
@@ -196,6 +200,7 @@ public class Unit : IStats, IActions<Unit>
         }
     }
 
+
     public bool Attack(Unit u)
     {
         //is it null?
@@ -268,7 +273,10 @@ public class Unit : IStats, IActions<Unit>
     //Level up
     public void LevelUp()
     {
-        if (this.Experience == 50)
+        //Algorithm
+
+        int xpGoalToLevelUp = this.Level * 50;
+        if (this.Experience >= xpGoalToLevelUp)
         {
             stuffText += "\n" + this.Name + " Leveled Up!\n";
             this.Level++;

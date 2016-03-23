@@ -181,6 +181,7 @@
             // 
             this.BattleOrderTextBox.Location = new System.Drawing.Point(12, 191);
             this.BattleOrderTextBox.Name = "BattleOrderTextBox";
+            this.BattleOrderTextBox.ReadOnly = true;
             this.BattleOrderTextBox.Size = new System.Drawing.Size(181, 270);
             this.BattleOrderTextBox.TabIndex = 14;
             this.BattleOrderTextBox.Text = "Order Of Battle:";
@@ -189,6 +190,7 @@
             // 
             this.StatsBox.Location = new System.Drawing.Point(954, 191);
             this.StatsBox.Name = "StatsBox";
+            this.StatsBox.ReadOnly = true;
             this.StatsBox.Size = new System.Drawing.Size(212, 270);
             this.StatsBox.TabIndex = 15;
             this.StatsBox.Text = "";

@@ -28,7 +28,6 @@ public interface IStats
 public interface IManage<T, W>
 {
     List<Unit> sortBySpeed(T u);
-    void Timetofight(T u, W f);
     void Statsofobjects(T u);
     bool Checkforvictory(T p, T e);
 }

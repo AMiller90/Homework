@@ -31,7 +31,8 @@ namespace Adgp_125_Assessment_WinForm
         public string enemy1name;
         public string enemy2name;
         public string enemy3name;
-
+        public int currentUnitIndex;
+    
         public Form1()
         {
             InitializeComponent();
@@ -106,14 +107,14 @@ namespace Adgp_125_Assessment_WinForm
 
 
             Unit TwoFaced = new Unit("2Faced", 100, 20, 15, 5, 25, "Enemy");
-            Unit AncientDragon = new Unit("Ancient Dragon", 200, 30, 12, 4, 50, "Enemy");
-            Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 50, "Enemy");
+            Unit AncientDragon = new Unit("Ancient Dragon", 200, 30, 12, 4, 100, "Enemy");
+            Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 30, "Enemy");
             Unit IceGolem = new Unit("Ice Golem", 150, 25, 15, 5, 35, "Enemy");
             Unit Zuu = new Unit("Zuu", 120, 15, 10, 5, 20, "Enemy");
             Unit ToxicFrog = new Unit("Toxic Frog", 180, 22, 12, 5, 30, "Enemy");
-            Unit DeathClaw = new Unit("Death Claw", 140, 25, 18, 7, 40, "Enemy");
+            Unit DeathClaw = new Unit("Death Claw", 140, 25, 18, 7, 50, "Enemy");
             Unit MasterTonberry = new Unit("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
-            Unit Behemoth = new Unit("Behemoth", 300, 35, 14, 4, 100, "Enemy");
+            Unit Behemoth = new Unit("Behemoth", 200, 35, 14, 4, 100, "Enemy");
 
             AllObjects.Add(Cloud);
             AllObjects.Add(Barret);
@@ -197,11 +198,6 @@ namespace Adgp_125_Assessment_WinForm
             int e2 = a.Next(0, e.Count);
             int e3 = a.Next(0, e.Count);
 
-            enemy1name = e[e1].Name;
-            enemy2name= e[e2].Name;
-            enemy3name = e[e3].Name;
-
-
             BattleReadyParty.Add(e[e1]);
             BattleReadyParty.Add(e[e2]);
             BattleReadyParty.Add(e[e3]);
@@ -225,7 +221,7 @@ namespace Adgp_125_Assessment_WinForm
             manager.fsm.Addtransition(e_STATES.INIT, e_STATES.ENEMYTURN);
             manager.fsm.Addtransition(e_STATES.INIT, e_STATES.SEARCH);
             manager.fsm.Addtransition(e_STATES.START, e_STATES.SEARCH);
-            //manager.fsm.Addtransition(e_STATES.START, e_STATES.PLAYERTURN);
+            manager.fsm.Addtransition(e_STATES.START, e_STATES.PLAYERTURN);
             manager.fsm.Addtransition(e_STATES.START, e_STATES.ENEMYTURN);
             manager.fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
             manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.PLAYERTURN);
@@ -453,12 +449,14 @@ namespace Adgp_125_Assessment_WinForm
 
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
+            
             OpenFileDialog LoadWindow = new OpenFileDialog();
             LoadWindow.InitialDirectory = @"..\Game Saves";
             LoadWindow.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             LoadWindow.FilterIndex = 2;
             LoadWindow.RestoreDirectory = true;
 
+            Visible = false;
             Party EnemyE = new Party();
             Party PlayerP = new Party();
 
@@ -494,13 +492,18 @@ namespace Adgp_125_Assessment_WinForm
 
             if (LoadWindow.ShowDialog() == DialogResult.OK)
             {
+                e_STATES state;
+                state =_Save.Deserialize<e_STATES>(@"..\Game Saves\GameData.xml");
 
-                manager.fsm.ChangeStates(_Save.Deserialize<e_STATES>(@"..\Game Saves\GameData.xml"));
+                manager.fsm.ChangeStates(state);
+            }
 
+            if (LoadWindow.ShowDialog() == DialogResult.OK)
+            {
+                currentUnitIndex = _Save.Deserialize<int>(@"..\Game Saves\currentAttacker.xml");
             }
 
             BattleScene.ShowDialog();
-
 
         }
     }
