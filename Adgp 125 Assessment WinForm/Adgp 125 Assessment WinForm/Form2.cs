@@ -268,8 +268,9 @@ namespace Adgp_125_Assessment_WinForm
         {
             Unit a = refer.u.Participants[index];
 
-            if (enemyParty[0].Name == Enemy1Label.Text && enemyParty[0].Life == true)
+            if (enemyParty[0].Life == true)
             {
+
                 BattleText.Text += a.Name + " is about to attack\n";
                 a.Attack(enemyParty[0]);
                 BattleText.Text = a.stuffText;
@@ -282,7 +283,23 @@ namespace Adgp_125_Assessment_WinForm
                 {
                     index += 1;
                 }
+
             }
+            //if (enemyParty[0].Name == Enemy1Label.Text && enemyParty[0].Life == true)
+            //{
+            //    BattleText.Text += a.Name + " is about to attack\n";
+            //    a.Attack(enemyParty[0]);
+            //    BattleText.Text = a.stuffText;
+
+            //    if (index == count)
+            //    {
+            //        index = 0;
+            //    }
+            //    else
+            //    {
+            //        index += 1;
+            //    }
+            //}
             //Unit a = refer.u.Participants[index];
             //foreach (Unit i in enemyParty)
             //{
@@ -352,8 +369,10 @@ namespace Adgp_125_Assessment_WinForm
         {
             Unit a = refer.u.Participants[index];
 
-            if(enemyParty[1].Name == Enemy2Label.Text && enemyParty[1].Life == true)
+
+            if (enemyParty[1].Life == true)
             {
+
                 BattleText.Text += a.Name + " is about to attack\n";
                 a.Attack(enemyParty[1]);
                 BattleText.Text = a.stuffText;
@@ -366,7 +385,23 @@ namespace Adgp_125_Assessment_WinForm
                 {
                     index += 1;
                 }
+
             }
+            //if(enemyParty[1].Name == Enemy2Label.Text && enemyParty[1].Life == true)
+            //{
+            //    BattleText.Text += a.Name + " is about to attack\n";
+            //    a.Attack(enemyParty[1]);
+            //    BattleText.Text = a.stuffText;
+
+            //    if (index == count)
+            //    {
+            //        index = 0;
+            //    }
+            //    else
+            //    {
+            //        index += 1;
+            //    }
+            //}
             //foreach (Unit i in enemyParty)
             //{
             //    if (i.Name == Enemy2Label.Text)
@@ -436,8 +471,10 @@ namespace Adgp_125_Assessment_WinForm
 
             Unit a = refer.u.Participants[index];
 
-            if (enemyParty[2].Name == Enemy3Label.Text && enemyParty[2].Life == true)
+
+            if (enemyParty[2].Life == true)
             {
+
                 BattleText.Text += a.Name + " is about to attack\n";
                 a.Attack(enemyParty[2]);
                 BattleText.Text = a.stuffText;
@@ -450,7 +487,24 @@ namespace Adgp_125_Assessment_WinForm
                 {
                     index += 1;
                 }
+
             }
+
+            //if (enemyParty[2].Name == Enemy3Label.Text && enemyParty[2].Life == true)
+            //{
+            //    BattleText.Text += a.Name + " is about to attack\n";
+            //    a.Attack(enemyParty[2]);
+            //    BattleText.Text = a.stuffText;
+
+            //    if (index == count)
+            //    {
+            //        index = 0;
+            //    }
+            //    else
+            //    {
+            //        index += 1;
+            //    }
+            //}
 
             //Unit a = refer.u.Participants[index];
             //foreach (Unit i in enemyParty)
