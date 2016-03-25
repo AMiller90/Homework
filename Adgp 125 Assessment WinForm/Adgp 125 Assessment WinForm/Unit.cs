@@ -207,7 +207,7 @@ public class Unit : IStats, IActions<Unit>
         //it could be because we return null from EnemyRandomTarget
         if (u == null)
         {
-            stuffText += this.Name + "Attack Missed!\n";
+            stuffText = this.Name + "Attack Missed!\n";
             return false;
         }
           

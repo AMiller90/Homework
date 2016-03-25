@@ -78,7 +78,7 @@ namespace Adgp_125_Assessment_WinForm
 
                 if (DialogResult == DialogResult.Yes)
                 {
-                    //BattleScene = new Form2(this);
+                    this.Visible = false;
                     BattleScene.ShowDialog();
                     
                 }
@@ -153,6 +153,17 @@ namespace Adgp_125_Assessment_WinForm
             int p2 = r.Next(0, p.Count - 1);
             int p3 = r.Next(0, p.Count - 1);
 
+            while (p1 == p2)
+            {
+                p2 = r.Next(0, p.Count - 1);
+            }
+
+            while(p1 == p3)
+            {
+                p3 = r.Next(0, p.Count - 1);
+            }
+
+
             if (p1 != p2 && p1 != p3)
             {
                 P1NameBox.Text = p[p1].Name;
@@ -166,6 +177,16 @@ namespace Adgp_125_Assessment_WinForm
                 
             }
 
+            while(p2 == p1)
+            {
+                p2 = r.Next(0, p.Count - 1);
+            }
+
+            while(p2 == p3)
+            {
+                p3 = r.Next(0, p.Count - 1);
+            }
+
             if (p2 != p3 && p2 != p1)
             {
                 P2NameBox.Text = p[p2].Name;
@@ -177,6 +198,17 @@ namespace Adgp_125_Assessment_WinForm
                 P2LevelBox.Text = p[p2].Level.ToString();
                 BattleReadyParty.Add(p[p2]);
             }
+
+            while(p3 == p1)
+            {
+                p3 = r.Next(0, p.Count - 1);
+
+                while (p3 == p2)
+                {
+                    p3 = r.Next(0, p.Count - 1);
+                }
+            }
+            
 
             if (p3 != p2 && p3 != p1)
             {
@@ -194,12 +226,35 @@ namespace Adgp_125_Assessment_WinForm
 
             Random a = new Random();
 
-            int e1 = a.Next(0, e.Count);
-            int e2 = a.Next(0, e.Count);
-            int e3 = a.Next(0, e.Count);
+            int e1 = a.Next(0, e.Count - 1);
+            int e2 = a.Next(0, e.Count - 1);
+            int e3 = a.Next(0, e.Count - 1);
+           
+            while(e1 == e2)
+            {
+                e2 = a.Next(0, e.Count - 1);
+            }
+
+            while(e2 == e3)
+            {
+                e3 = a.Next(0, e.Count - 1);
+            }
+
+            while(e3 == e1)
+            {
+                e1 = a.Next(0, e.Count - 1);
+
+                while (e1 == e2)
+                {
+                    e1 = a.Next(0, e.Count - 1);
+
+                }
+            }
 
             BattleReadyParty.Add(e[e1]);
+
             BattleReadyParty.Add(e[e2]);
+
             BattleReadyParty.Add(e[e3]);
 
             
@@ -233,7 +288,6 @@ namespace Adgp_125_Assessment_WinForm
 
             manager.fsm.ChangeStates(e_STATES.START);
 
-            SaveButton.Enabled = false;
             textBox1.Text = manager.fsm.state.ToString();
 
         }
@@ -263,7 +317,8 @@ namespace Adgp_125_Assessment_WinForm
 
 
             OpenFileDialog DialogWindow = new OpenFileDialog();
-            DialogWindow.InitialDirectory = @"..\SavedParties";
+            string path = @"..\Saved Parties";
+            DialogWindow.InitialDirectory = path;
             DialogWindow.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             DialogWindow.FilterIndex = 2;
             DialogWindow.RestoreDirectory = true;
@@ -275,6 +330,7 @@ namespace Adgp_125_Assessment_WinForm
                 loadedunits = _Save.Deserialize<Party>(chosenFile);
 
                 P1NameBox.Text = loadedunits.units[0].Name;
+                player1name = loadedunits.units[0].Name;
                 P1HealthBox.Text = loadedunits.units[0].Health.ToString();
                 P1StrengthBox.Text = loadedunits.units[0].Strength.ToString();
                 P1SpeedBox.Text = loadedunits.units[0].Speed.ToString();
@@ -282,6 +338,7 @@ namespace Adgp_125_Assessment_WinForm
                 P1LevelBox.Text = loadedunits.units[0].Level.ToString();
 
                 P2NameBox.Text = loadedunits.units[1].Name;
+                player2name = loadedunits.units[1].Name;
                 P2HealthBox.Text = loadedunits.units[1].Health.ToString();
                 P2StrengthBox.Text = loadedunits.units[1].Strength.ToString();
                 P2SpeedBox.Text = loadedunits.units[1].Speed.ToString();
@@ -289,6 +346,7 @@ namespace Adgp_125_Assessment_WinForm
                 P2LevelBox.Text = loadedunits.units[1].Level.ToString();
 
                 P3NameBox.Text = loadedunits.units[2].Name;
+                player3name = loadedunits.units[2].Name;
                 P3HealthBox.Text = loadedunits.units[2].Health.ToString();
                 P3StrengthBox.Text = loadedunits.units[2].Strength.ToString();
                 P3SpeedBox.Text = loadedunits.units[2].Speed.ToString();
@@ -318,6 +376,27 @@ namespace Adgp_125_Assessment_WinForm
                 int e2 = a.Next(0, Enemies.Count);
                 int e3 = a.Next(0, Enemies.Count);
 
+
+                while (e1 == e2)
+                {
+                    e2 = a.Next(0, Enemies.Count - 1);
+                }
+
+                while (e2 == e3)
+                {
+                    e3 = a.Next(0, Enemies.Count - 1);
+                }
+
+                while (e3 == e1)
+                {
+                    e1 = a.Next(0, Enemies.Count - 1);
+
+                    while (e1 == e2)
+                    {
+                        e1 = a.Next(0, Enemies.Count - 1);
+
+                    }
+                }
                 enemy1name = Enemies[e1].Name;
                 enemy2name = Enemies[e2].Name;
                 enemy3name = Enemies[e3].Name;
@@ -449,9 +528,12 @@ namespace Adgp_125_Assessment_WinForm
 
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
-            
+            NewGameButton.Enabled = false;
+
             OpenFileDialog LoadWindow = new OpenFileDialog();
-            LoadWindow.InitialDirectory = @"..\Game Saves";
+            string path = @"..\Game Saves";
+            LoadWindow.Multiselect = true;
+            LoadWindow.InitialDirectory = path;
             LoadWindow.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             LoadWindow.FilterIndex = 2;
             LoadWindow.RestoreDirectory = true;
@@ -473,10 +555,7 @@ namespace Adgp_125_Assessment_WinForm
                 BattleReadyParty.Add(PlayerP.units[0]);
                 BattleReadyParty.Add(PlayerP.units[1]);
                 BattleReadyParty.Add(PlayerP.units[2]);
-            }
 
-            if (LoadWindow.ShowDialog() == DialogResult.OK)
-            {
                 EnemyE = _Save.Deserialize<Party>(@"..\Game Saves\EnemyParty.xml");
 
                 enemy1name = EnemyE.units[0].Name;
@@ -488,23 +567,28 @@ namespace Adgp_125_Assessment_WinForm
                 BattleReadyParty.Add(EnemyE.units[0]);
                 BattleReadyParty.Add(EnemyE.units[1]);
                 BattleReadyParty.Add(EnemyE.units[2]);
-            }
 
-            if (LoadWindow.ShowDialog() == DialogResult.OK)
-            {
                 e_STATES state;
-                state =_Save.Deserialize<e_STATES>(@"..\Game Saves\GameData.xml");
+                state = _Save.Deserialize<e_STATES>(@"..\Game Saves\GameData.xml");
 
                 manager.fsm.ChangeStates(state);
-            }
 
-            if (LoadWindow.ShowDialog() == DialogResult.OK)
-            {
                 currentUnitIndex = _Save.Deserialize<int>(@"..\Game Saves\currentAttacker.xml");
             }
 
             BattleScene.ShowDialog();
 
+        }
+
+        private void NewGameButton_Click(object sender, EventArgs e)
+        {
+            NewGameButton.Enabled = false;
+            LoadGameButton.Enabled = false;
+
+            LockInPartyCheckBox.Enabled = true;
+            GenerateParty_Button.Enabled = true;
+            SaveButton.Enabled = true;
+            LoadButton.Enabled = true;
         }
     }
 }

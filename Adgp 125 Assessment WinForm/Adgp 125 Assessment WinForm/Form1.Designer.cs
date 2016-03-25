@@ -73,6 +73,7 @@
             this.P2LevelBox = new System.Windows.Forms.TextBox();
             this.P1LevelBox = new System.Windows.Forms.TextBox();
             this.LoadGameButton = new System.Windows.Forms.Button();
+            this.NewGameButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -80,6 +81,7 @@
             // 
             // GenerateParty_Button
             // 
+            this.GenerateParty_Button.Enabled = false;
             this.GenerateParty_Button.Location = new System.Drawing.Point(65, 533);
             this.GenerateParty_Button.Name = "GenerateParty_Button";
             this.GenerateParty_Button.Size = new System.Drawing.Size(87, 23);
@@ -135,6 +137,7 @@
             // 
             // P1NameBox
             // 
+            this.P1NameBox.Enabled = false;
             this.P1NameBox.Location = new System.Drawing.Point(61, 2);
             this.P1NameBox.Name = "P1NameBox";
             this.P1NameBox.Size = new System.Drawing.Size(79, 20);
@@ -142,6 +145,7 @@
             // 
             // P1HealthBox
             // 
+            this.P1HealthBox.Enabled = false;
             this.P1HealthBox.Location = new System.Drawing.Point(61, 28);
             this.P1HealthBox.Name = "P1HealthBox";
             this.P1HealthBox.Size = new System.Drawing.Size(29, 20);
@@ -149,6 +153,7 @@
             // 
             // P1StrengthBox
             // 
+            this.P1StrengthBox.Enabled = false;
             this.P1StrengthBox.Location = new System.Drawing.Point(61, 54);
             this.P1StrengthBox.Name = "P1StrengthBox";
             this.P1StrengthBox.Size = new System.Drawing.Size(29, 20);
@@ -156,6 +161,7 @@
             // 
             // P1DefenseBox
             // 
+            this.P1DefenseBox.Enabled = false;
             this.P1DefenseBox.Location = new System.Drawing.Point(61, 80);
             this.P1DefenseBox.Name = "P1DefenseBox";
             this.P1DefenseBox.Size = new System.Drawing.Size(29, 20);
@@ -163,6 +169,7 @@
             // 
             // P1SpeedBox
             // 
+            this.P1SpeedBox.Enabled = false;
             this.P1SpeedBox.Location = new System.Drawing.Point(61, 106);
             this.P1SpeedBox.Name = "P1SpeedBox";
             this.P1SpeedBox.Size = new System.Drawing.Size(29, 20);
@@ -170,6 +177,7 @@
             // 
             // P2SpeedBox
             // 
+            this.P2SpeedBox.Enabled = false;
             this.P2SpeedBox.Location = new System.Drawing.Point(61, 280);
             this.P2SpeedBox.Name = "P2SpeedBox";
             this.P2SpeedBox.Size = new System.Drawing.Size(29, 20);
@@ -177,6 +185,7 @@
             // 
             // P2DefenseBox
             // 
+            this.P2DefenseBox.Enabled = false;
             this.P2DefenseBox.Location = new System.Drawing.Point(61, 254);
             this.P2DefenseBox.Name = "P2DefenseBox";
             this.P2DefenseBox.Size = new System.Drawing.Size(29, 20);
@@ -184,6 +193,7 @@
             // 
             // P2StrengthBox
             // 
+            this.P2StrengthBox.Enabled = false;
             this.P2StrengthBox.Location = new System.Drawing.Point(61, 228);
             this.P2StrengthBox.Name = "P2StrengthBox";
             this.P2StrengthBox.Size = new System.Drawing.Size(29, 20);
@@ -191,6 +201,7 @@
             // 
             // P2HealthBox
             // 
+            this.P2HealthBox.Enabled = false;
             this.P2HealthBox.Location = new System.Drawing.Point(61, 202);
             this.P2HealthBox.Name = "P2HealthBox";
             this.P2HealthBox.Size = new System.Drawing.Size(29, 20);
@@ -198,6 +209,7 @@
             // 
             // P2NameBox
             // 
+            this.P2NameBox.Enabled = false;
             this.P2NameBox.Location = new System.Drawing.Point(61, 176);
             this.P2NameBox.Name = "P2NameBox";
             this.P2NameBox.Size = new System.Drawing.Size(79, 20);
@@ -250,6 +262,7 @@
             // 
             // P3SpeedBox
             // 
+            this.P3SpeedBox.Enabled = false;
             this.P3SpeedBox.Location = new System.Drawing.Point(61, 447);
             this.P3SpeedBox.Name = "P3SpeedBox";
             this.P3SpeedBox.Size = new System.Drawing.Size(29, 20);
@@ -257,6 +270,7 @@
             // 
             // P3DefenseBox
             // 
+            this.P3DefenseBox.Enabled = false;
             this.P3DefenseBox.Location = new System.Drawing.Point(61, 421);
             this.P3DefenseBox.Name = "P3DefenseBox";
             this.P3DefenseBox.Size = new System.Drawing.Size(29, 20);
@@ -264,6 +278,7 @@
             // 
             // P3StrengthBox
             // 
+            this.P3StrengthBox.Enabled = false;
             this.P3StrengthBox.Location = new System.Drawing.Point(61, 395);
             this.P3StrengthBox.Name = "P3StrengthBox";
             this.P3StrengthBox.Size = new System.Drawing.Size(29, 20);
@@ -271,6 +286,7 @@
             // 
             // P3HealthBox
             // 
+            this.P3HealthBox.Enabled = false;
             this.P3HealthBox.Location = new System.Drawing.Point(61, 369);
             this.P3HealthBox.Name = "P3HealthBox";
             this.P3HealthBox.Size = new System.Drawing.Size(29, 20);
@@ -278,6 +294,7 @@
             // 
             // P3NameBox
             // 
+            this.P3NameBox.Enabled = false;
             this.P3NameBox.Location = new System.Drawing.Point(61, 343);
             this.P3NameBox.Name = "P3NameBox";
             this.P3NameBox.Size = new System.Drawing.Size(79, 20);
@@ -330,6 +347,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(775, 9);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
@@ -338,6 +356,7 @@
             // LockInPartyCheckBox
             // 
             this.LockInPartyCheckBox.AutoSize = true;
+            this.LockInPartyCheckBox.Enabled = false;
             this.LockInPartyCheckBox.Location = new System.Drawing.Point(65, 510);
             this.LockInPartyCheckBox.Name = "LockInPartyCheckBox";
             this.LockInPartyCheckBox.Size = new System.Drawing.Size(57, 17);
@@ -348,6 +367,7 @@
             // 
             // LoadButton
             // 
+            this.LoadButton.Enabled = false;
             this.LoadButton.Location = new System.Drawing.Point(172, 533);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(75, 23);
@@ -358,6 +378,7 @@
             // 
             // SaveButton
             // 
+            this.SaveButton.Enabled = false;
             this.SaveButton.Location = new System.Drawing.Point(172, 504);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
@@ -401,6 +422,7 @@
             // 
             // P3LevelBox
             // 
+            this.P3LevelBox.Enabled = false;
             this.P3LevelBox.Location = new System.Drawing.Point(61, 473);
             this.P3LevelBox.Name = "P3LevelBox";
             this.P3LevelBox.Size = new System.Drawing.Size(29, 20);
@@ -426,6 +448,7 @@
             // 
             // P2LevelBox
             // 
+            this.P2LevelBox.Enabled = false;
             this.P2LevelBox.Location = new System.Drawing.Point(61, 306);
             this.P2LevelBox.Name = "P2LevelBox";
             this.P2LevelBox.Size = new System.Drawing.Size(29, 20);
@@ -433,6 +456,7 @@
             // 
             // P1LevelBox
             // 
+            this.P1LevelBox.Enabled = false;
             this.P1LevelBox.Location = new System.Drawing.Point(61, 135);
             this.P1LevelBox.Name = "P1LevelBox";
             this.P1LevelBox.Size = new System.Drawing.Size(29, 20);
@@ -440,13 +464,23 @@
             // 
             // LoadGameButton
             // 
-            this.LoadGameButton.Location = new System.Drawing.Point(696, 183);
+            this.LoadGameButton.Location = new System.Drawing.Point(417, 256);
             this.LoadGameButton.Name = "LoadGameButton";
             this.LoadGameButton.Size = new System.Drawing.Size(179, 74);
             this.LoadGameButton.TabIndex = 45;
             this.LoadGameButton.Text = "Load Game";
             this.LoadGameButton.UseVisualStyleBackColor = true;
             this.LoadGameButton.Click += new System.EventHandler(this.LoadGameButton_Click);
+            // 
+            // NewGameButton
+            // 
+            this.NewGameButton.Location = new System.Drawing.Point(417, 152);
+            this.NewGameButton.Name = "NewGameButton";
+            this.NewGameButton.Size = new System.Drawing.Size(179, 74);
+            this.NewGameButton.TabIndex = 46;
+            this.NewGameButton.Text = "New Game";
+            this.NewGameButton.UseVisualStyleBackColor = true;
+            this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click);
             // 
             // Form1
             // 
@@ -455,6 +489,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(993, 568);
+            this.Controls.Add(this.NewGameButton);
             this.Controls.Add(this.LoadGameButton);
             this.Controls.Add(this.P1LevelBox);
             this.Controls.Add(this.P2LevelBox);
@@ -559,6 +594,7 @@
         private System.Windows.Forms.TextBox P2LevelBox;
         private System.Windows.Forms.TextBox P1LevelBox;
         private System.Windows.Forms.Button LoadGameButton;
+        private System.Windows.Forms.Button NewGameButton;
     }
 }
 

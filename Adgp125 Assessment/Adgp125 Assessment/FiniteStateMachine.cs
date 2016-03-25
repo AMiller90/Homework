@@ -48,29 +48,32 @@ public class FiniteStateMachine<T>
         Transitiontable = new Dictionary<T, List<Transition>>();
         //Initialize List
         _states = new List<T>();
-
+        //Store States in list 
+        AddStates();
+        
     }
 
-    //Add states to the machine
-    public bool AddStates(T e)
-    {
-        //Check if list contains state already
-        if (_states.Contains(e))
-        {//If it does then prompt user that the state is already added
-            Console.WriteLine("Cannot add the " + e + " state because it already exists\n");
-            return false;
-        }
-        else
-        {//If the state is not in the list then add it and add it as a new key to the dictionary
-            _states.Add(e);
-            Transitiontable.Add(e, new List<Transition>());
-            return true;
-        }
+    ////Add states to the machine
+    //public bool AddStates(T e)
+    //{
+    //    //Check if list contains state already
+    //    if (_states.Contains(e))
+    //    {//If it does then prompt user that the state is already added
+    //        Console.WriteLine("Cannot add the " + e + " state because it already exists\n");
+    //        return false;
+    //    }
+    //    else
+    //    {//If the state is not in the list then add it and add it as a new key to the dictionary
+    //        _states.Add(e);
+    //        Transitiontable.Add(e, new List<Transition>());
+    //        return true;
+    //    }
 
-    }
+    //}
 
     //Add transitions to list 
     //Add keys and values to dictionary
+
     public void Addtransition(T f, T t)
     {
         //If key exists
@@ -78,7 +81,11 @@ public class FiniteStateMachine<T>
         {
             //Add a new transition to the current list at that key
             Transitiontable[f].Add(new Transition(f, t));
-
+            Console.WriteLine("Transition : " + f.ToString() + " to " + t.ToString() + " has been added");
+        }
+        else
+        {
+            Console.WriteLine("Key Does Not Exist! Transition Cannot Be Added");
         }
 
     }
@@ -142,4 +149,24 @@ public class FiniteStateMachine<T>
 
     }
 
+    //Add States
+    public void AddStates()
+    {
+        if(typeof(T).IsEnum)
+        {
+            foreach(T state in Enum.GetValues(typeof(T)))
+            {
+                _states.Add(state);
+                Transitiontable.Add(state, new List<Transition>());
+            }
+            //Initialize current state to first state in list at creation of fsm
+            _currentState = _states[0];
+        }
+        else
+        {
+            Console.WriteLine("Error! " + typeof(T) + " is not of type Enum");
+        }
+        
+        
+    }
 }

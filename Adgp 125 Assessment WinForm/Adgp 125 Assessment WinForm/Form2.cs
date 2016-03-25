@@ -123,6 +123,28 @@ namespace Adgp_125_Assessment_WinForm
                     BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
                 }
 
+                foreach (Unit i in refer.u.Participants)
+                {
+                    if (i.Type == "Player")
+                    {
+                        playerParty.Add(i);
+
+                    }
+                    if (i.Type == "Enemy")
+                    {
+                        enemyParty.Add(i);
+                    }
+
+                }
+
+
+                    Enemy1Label.Text = enemyParty[0].Name;
+
+                    Enemy2Label.Text = enemyParty[1].Name;
+
+                    Enemy3Label.Text = enemyParty[2].Name;
+
+
                 setImages(refer.u.Participants);
 
                 BeginButton.Enabled = false;
@@ -218,19 +240,6 @@ namespace Adgp_125_Assessment_WinForm
 
         private void FirstAttack(List<Unit> uList)
         {
-            foreach (Unit i in uList)
-            {
-                if (i.Type == "Player")
-                {
-                    playerParty.Add(i);
-
-                }
-                if (i.Type == "Enemy")
-                {
-                    enemyParty.Add(i);
-                }
-
-            }
 
             BattleText.Text += "It is " + uList[index].Name + "'s turn!\n";
 
@@ -271,7 +280,7 @@ namespace Adgp_125_Assessment_WinForm
             if (enemyParty[0].Life == true)
             {
 
-                BattleText.Text += a.Name + " is about to attack\n";
+                //BattleText.Text += a.Name + " is about to attack\n";
                 a.Attack(enemyParty[0]);
                 BattleText.Text = a.stuffText;
 
@@ -285,41 +294,6 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
             }
-            //if (enemyParty[0].Name == Enemy1Label.Text && enemyParty[0].Life == true)
-            //{
-            //    BattleText.Text += a.Name + " is about to attack\n";
-            //    a.Attack(enemyParty[0]);
-            //    BattleText.Text = a.stuffText;
-
-            //    if (index == count)
-            //    {
-            //        index = 0;
-            //    }
-            //    else
-            //    {
-            //        index += 1;
-            //    }
-            //}
-            //Unit a = refer.u.Participants[index];
-            //foreach (Unit i in enemyParty)
-            //{
-            //    if (i.Name == Enemy1Label.Text && i.Life == true)
-            //    {
-            //        a.Attack(i);
-            //        BattleText.Text = a.stuffText;
-
-            //        if (index == count)
-            //        {
-            //            index = 0;
-            //        }
-            //        else
-            //        {
-            //            index += 1;
-            //        }
-            //        break;
-            //    }
-
-            //}
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
@@ -339,6 +313,8 @@ namespace Adgp_125_Assessment_WinForm
                     foreach (Unit u in party.units)
                     {//Reset health
                         u.Health = u.MaxHp;
+                        //Bring life to true 
+                        u.Life = true;
                     }
                     refer.manager.statsText = "";
                     refer.manager.Statsofobjects(refer.u.Participants);
@@ -373,7 +349,7 @@ namespace Adgp_125_Assessment_WinForm
             if (enemyParty[1].Life == true)
             {
 
-                BattleText.Text += a.Name + " is about to attack\n";
+                //BattleText.Text += a.Name + " is about to attack\n";
                 a.Attack(enemyParty[1]);
                 BattleText.Text = a.stuffText;
 
@@ -387,42 +363,7 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
             }
-            //if(enemyParty[1].Name == Enemy2Label.Text && enemyParty[1].Life == true)
-            //{
-            //    BattleText.Text += a.Name + " is about to attack\n";
-            //    a.Attack(enemyParty[1]);
-            //    BattleText.Text = a.stuffText;
-
-            //    if (index == count)
-            //    {
-            //        index = 0;
-            //    }
-            //    else
-            //    {
-            //        index += 1;
-            //    }
-            //}
-            //foreach (Unit i in enemyParty)
-            //{
-            //    if (i.Name == Enemy2Label.Text)
-            //    {
-            //        //BattleText.Text += a.Name + " is about to attack\n";
-            //        a.Attack(i);
-            //        BattleText.Text = a.stuffText;
-
-            //        if (index == count)
-            //        {
-            //            index = 0;
-            //        }
-            //        else
-            //        {
-            //            index += 1;
-            //        }
-
-            //        break;
-            //    }
-
-            //}
+           
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
@@ -442,6 +383,8 @@ namespace Adgp_125_Assessment_WinForm
                     foreach (Unit u in party.units)
                     {//Reset health
                         u.Health = u.MaxHp;
+                        //Bring life to true 
+                        u.Life = true;
                     }
 
                     refer.manager.statsText = "";
@@ -475,7 +418,7 @@ namespace Adgp_125_Assessment_WinForm
             if (enemyParty[2].Life == true)
             {
 
-                BattleText.Text += a.Name + " is about to attack\n";
+                //BattleText.Text += a.Name + " is about to attack\n";
                 a.Attack(enemyParty[2]);
                 BattleText.Text = a.stuffText;
 
@@ -490,44 +433,7 @@ namespace Adgp_125_Assessment_WinForm
 
             }
 
-            //if (enemyParty[2].Name == Enemy3Label.Text && enemyParty[2].Life == true)
-            //{
-            //    BattleText.Text += a.Name + " is about to attack\n";
-            //    a.Attack(enemyParty[2]);
-            //    BattleText.Text = a.stuffText;
-
-            //    if (index == count)
-            //    {
-            //        index = 0;
-            //    }
-            //    else
-            //    {
-            //        index += 1;
-            //    }
-            //}
-
-            //Unit a = refer.u.Participants[index];
-            //foreach (Unit i in enemyParty)
-            //{
-            //    if (i.Name == Enemy3Label.Text)
-            //    {
-            //        //BattleText.Text += a.Name + " is about to attack\n";
-            //        a.Attack(i);
-            //        BattleText.Text = a.stuffText;
-
-            //        if (index == count)
-            //        {
-            //            index = 0;
-            //        }
-            //        else
-            //        {
-            //            index += 1;
-            //        }
-
-            //        break;
-            //    }
-
-            //}
+           
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
@@ -548,6 +454,8 @@ namespace Adgp_125_Assessment_WinForm
                     foreach (Unit u in party.units)
                     {//Reset health
                         u.Health = u.MaxHp;
+                        //Bring life to true 
+                        u.Life = true;
                     }
 
                     refer.manager.statsText = "";
@@ -935,7 +843,6 @@ namespace Adgp_125_Assessment_WinForm
             Enemy1Button.Enabled = false;
             Enemy2Button.Enabled = false;
             Enemy3Button.Enabled = false;
-            BattleOrderTextBox.Enabled = false;
             //SaveGameButton.Enabled = false;
 
             count = refer.u.Participants.Count - 1;
