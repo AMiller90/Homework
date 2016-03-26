@@ -4,169 +4,204 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//State class used for creating a state object
+public class State
+{
+    //Name of the Enum
+    public Enum name;
+
+    //Create a delegate for storing functions 
+    public Delegate del;
+
+    //Default constructor
+    public State()
+    {
+
+    }
+
+    //State constructor - (Enum - used for naming the state, Delegate - Parameter user can use to pass in a delegate to the state object)
+    public State(Enum stateName, Delegate stateHandler)
+    {//Set name equal to passed in enum
+        name = stateName;
+        //Set delegate equal to the passed in delegate
+        del = stateHandler;
+    }
+ 
+    //Public function used to handle functionality of a delegate
+    public bool Handler()
+    {//If the delegate is not equal to null..
+        if (del != null)
+        {//Create a handler object
+            Handler h;
+            //Set the h variable to the class delegate type casted as a Handler object
+            h = del as Handler;
+            //Call the delegate and activate functions
+            h();
+            //return true
+            return true;
+        }
+        //return false
+        return false;
+    }
+
+}
+
+//Transition Class used for creating transition objects
+public class Transition
+{
+    //Public string variable used for the input to activate a transition
+    public string input
+    {
+        get;
+        private set;
+    }
+
+    //Public state variable that will be used for the destination state to transition to
+    public State destination
+    {
+        get;
+        private set;
+    }
+
+    //Transition constructor - (string - variable used for the input to transition, State - state to transition to 
+    public Transition(string token, State t)
+    {
+        //Set input variable to passed in string variable
+        input = token;
+        //Set destination to passed in state
+        destination = t;
+    }
+
+}
 //FSM Class<T> - Generic
 public class FiniteStateMachine<T>
 {
-    //Transition Class
-    public class Transition
-    {
-        //Transition from
-        public T from;
-        //Transition to
-        public T to;
-
-        //Transition constructor
-        public Transition(T f, T t)
-        {
-
-            from = f;
-            to = t;
-        }
-
-    }
-
     //Current state
-    private T _currentState;
-    //List of states
-    private List<T> _states;
-    //Dictionary containing Generic keys and List of transitions for values
-    private Dictionary<T, List<Transition>> Transitiontable;
-
-    //Property used to get the current state outside of the FSM and prevent from being modified from the outside
-    public T state
+    private State currentState
     {
-        get
-        {
-            return _currentState;
-        }
+        get;
+        set;
     }
+
+    //List of states
+    private List<State> _states;
+
+    //Dictionary containing Generic keys and List of transitions for values
+    private Dictionary<Enum, List<Transition>> Transitiontable;
 
     //Constructor
     public FiniteStateMachine()
     {
         //Initialize dictionary
-        Transitiontable = new Dictionary<T, List<Transition>>();
+        Transitiontable = new Dictionary<Enum, List<Transition>>();
         //Initialize List
-        _states = new List<T>();
-        //Store States in list 
+        _states = new List<State>();
+
+        //Store States in list and dictionary
         AddStates();
         
     }
-
-    ////Add states to the machine
-    //public bool AddStates(T e)
-    //{
-    //    //Check if list contains state already
-    //    if (_states.Contains(e))
-    //    {//If it does then prompt user that the state is already added
-    //        Console.WriteLine("Cannot add the " + e + " state because it already exists\n");
-    //        return false;
-    //    }
-    //    else
-    //    {//If the state is not in the list then add it and add it as a new key to the dictionary
-    //        _states.Add(e);
-    //        Transitiontable.Add(e, new List<Transition>());
-    //        return true;
-    //    }
-
-    //}
-
-    //Add transitions to list 
-    //Add keys and values to dictionary
-
-    public void Addtransition(T f, T t)
-    {
-        //If key exists
-        if (Transitiontable.ContainsKey(f))
-        {
-            //Add a new transition to the current list at that key
-            Transitiontable[f].Add(new Transition(f, t));
-            Console.WriteLine("Transition : " + f.ToString() + " to " + t.ToString() + " has been added");
-        }
-        else
-        {
-            Console.WriteLine("Key Does Not Exist! Transition Cannot Be Added");
-        }
-
-    }
-
-    //Print out info about FSM
-    public void info()
-    {
-        Console.WriteLine("FSM is comprised of ...\n");
-        int count = 1;
-        //Foreach type in the list
-        foreach (T s in _states)
-        {
-            //Print it 
-            Console.WriteLine("State " + count.ToString() + " : " + s.ToString());
-            //Add to the count
-            count++;
-        }
-
-        //Print current state
-        Console.WriteLine("\nCurrent State: " + _currentState);
-
-    }
-
-    //Changes states
-    public void ChangeStates(T a)
-    {
-        //Print the current state and the state user is wanting to change to
-        //Console.WriteLine("\n" + _currentState + "->" + a.ToString());
-
-        //Dynamic variable used to store current state at runtime
-        dynamic cstate = _currentState;
-
-        //If the key exists
-        //Loop through each transition in the current key of the dictionary
-        foreach (Transition t in Transitiontable[_currentState])
-        {//If the transitions to variable is equal to the passed in variable
-            if (t.to.Equals(a))
-            {
-                //It has the valid transition
-                //Print current state transitioned from
-                //Console.Write("\nTransitioned from " + _currentState);
-                //Set current state to passed into new state
-                _currentState = a;
-                //Print the current state transitioned to
-                //Console.WriteLine(" to " + a + ".");
-                //Print out the current state
-                //Console.WriteLine("\nCurrent State: " + _currentState);
-                break;
-
+    
+    //Function used to activate fsm functionality - Parameter takes in a generic type used to activate transitions
+    public bool Feed<V>(V token)
+    {//Loop through the transitons in the current key of the dictionary
+        foreach (Transition t in Transitiontable[currentState.name])
+        {//If the transition input variable is equal to the passed in variable 
+            if (t.input == token.ToString())
+            {//Set the current state to the destination state 
+                currentState = t.destination;
+                //Activate the functions in current state 
+                currentState.Handler();
+                //return true
+                return true;
             }
-
-        }
-        //If the variable is equal to the current state
-        if (cstate == _currentState)
-        {//Print invalid transition
-            Console.WriteLine("invalid transition");
         }
 
-
-
-
+        return false;
     }
 
-    //Add States
-    public void AddStates()
-    {
+    //Function for creating a state (T - Generic passed in variable will be the state, Delegate - passed in delegate variable)
+    public bool State(T s1, Delegate deleg)
+    {//Type cast passed in s1 variable as an enum 
+        Enum nState = s1 as Enum;
+        //Create an instance of an empty state object
+        State newState = new State();
+       
+        //Loop through the list of states
+        foreach (State s in _states)
+        {//If the states name is the same as the passed in variable 
+            if(s.name.ToString() == nState.ToString())
+            {//Then set the state to the newState object that was created
+                newState = s;
+                //Then break out of loop because we only need the first match
+                break;
+            }
+        }
+        //Set the states delegate to the passed in delegate variable
+        newState.del = deleg;
+
+        return true;
+    }
+
+    //Function that adds states to the list and dictionary
+    private void AddStates()
+    {//If the type of the passed in parameter to the FSM is an Enum
         if(typeof(T).IsEnum)
-        {
-            foreach(T state in Enum.GetValues(typeof(T)))
-            {
+        {//Loop through the Enums that are listed by the user
+            foreach(T states in Enum.GetValues(typeof(T)))
+            {//Create a state object and set the first paramater as a type casted enum and the second parameter to null
+                State state = new State(states as Enum, null);
+                //Add the state to the list of states
                 _states.Add(state);
-                Transitiontable.Add(state, new List<Transition>());
+                //Add the state name tothe dictionary as a key and add a new List o transitions to the key
+                Transitiontable.Add(state.name, new List<Transition>());
             }
             //Initialize current state to first state in list at creation of fsm
-            _currentState = _states[0];
+            currentState = _states[0];
         }
         else
-        {
+        {//Print out that the type is not an enum
             Console.WriteLine("Error! " + typeof(T) + " is not of type Enum");
         }
         
         
+    }
+
+    //Function that adds the transition from and to a state by an input - (Generic parameter for form state, Generic parameter for to state, and Generic type for input of how to transition)
+    public bool AddTransition<V>(T from, T to, V input)
+    {
+        //Type cast the from variable and store it into a new Enum variable
+        Enum f = from as Enum;
+        //Type cast the to variable and store it into a new Enum variable
+        Enum t = to as Enum;
+
+        //Create an instance of an empty state object
+        State destination = new State();
+
+        //Loop through the list of states
+        foreach (State s in _states)
+        {//If the states name is the same as the passed in variable 
+            if (s.name.ToString() == t.ToString())
+            {//Then set the state to the newState object that was created
+                destination = s;
+                //Then break out of loop because we only need the first match
+                break;
+            }
+        }
+        //If the dictionary contains the key
+        if (Transitiontable.ContainsKey(f))
+        {//Create a new transition with the input parameter passed in and the destination parameter set to the passed in to variable
+            Transition transition = new Transition(input.ToString(), destination);
+            //Add the transition to the key in the dictionary
+            Transitiontable[f].Add(transition);
+        }
+        //If the dictionary does not contain the key
+        else
+        {//Print out the state does not exist
+            Console.WriteLine("State does not exist!");
+
+        }
+        //return true
+        return true;
     }
 }
