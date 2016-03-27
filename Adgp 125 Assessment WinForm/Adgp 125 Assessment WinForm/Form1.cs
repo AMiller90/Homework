@@ -262,33 +262,40 @@ namespace Adgp_125_Assessment_WinForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            manager.fsm.AddStates(e_STATES.INIT);
-            manager.fsm.AddStates(e_STATES.START);
-            manager.fsm.AddStates(e_STATES.SEARCH);
-            manager.fsm.AddStates(e_STATES.BATTLE);
-            manager.fsm.AddStates(e_STATES.PLAYERTURN);
-            manager.fsm.AddStates(e_STATES.ENEMYTURN);
-            manager.fsm.AddStates(e_STATES.EXIT);
+            Handler loadHandler = BattleScene.LoadGame;
+            Handler searchHandler = BattleScene.SearchPhase;
+            Handler battleHandler = BattleScene.BattlePhase;
+            Handler playerturnHandler = BattleScene.PlayerTurn;
+            Handler enemyturnHandler = BattleScene.EnemyTurn;
+            Handler exitHandler = BattleScene.ExitPhase;
 
-            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.START);
-            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.BATTLE);
-            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.PLAYERTURN);
-            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.ENEMYTURN);
-            manager.fsm.Addtransition(e_STATES.INIT, e_STATES.SEARCH);
-            manager.fsm.Addtransition(e_STATES.START, e_STATES.SEARCH);
-            manager.fsm.Addtransition(e_STATES.START, e_STATES.PLAYERTURN);
-            manager.fsm.Addtransition(e_STATES.START, e_STATES.ENEMYTURN);
-            manager.fsm.Addtransition(e_STATES.SEARCH, e_STATES.BATTLE);
-            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.PLAYERTURN);
-            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.ENEMYTURN);
-            manager.fsm.Addtransition(e_STATES.PLAYERTURN, e_STATES.BATTLE);
-            manager.fsm.Addtransition(e_STATES.ENEMYTURN, e_STATES.BATTLE);
-            manager.fsm.Addtransition(e_STATES.BATTLE, e_STATES.EXIT);
+            manager.fsm.State(e_STATES.START, null);
+            manager.fsm.State(e_STATES.LOAD, loadHandler);
+            manager.fsm.State(e_STATES.SEARCH, searchHandler);
+            manager.fsm.State(e_STATES.BATTLE, battleHandler);
+            manager.fsm.State(e_STATES.PLAYERTURN, playerturnHandler);
+            manager.fsm.State(e_STATES.ENEMYTURN, enemyturnHandler);
+            manager.fsm.State(e_STATES.EXIT, exitHandler);
 
+            manager.fsm.AddTransition(e_STATES.INIT, e_STATES.START, "auto");
+            manager.fsm.AddTransition(e_STATES.START, e_STATES.LOAD, "loadgame");
+            manager.fsm.AddTransition(e_STATES.LOAD, e_STATES.PLAYERTURN, "load");
+            manager.fsm.AddTransition(e_STATES.LOAD, e_STATES.ENEMYTURN, "load");
+            manager.fsm.AddTransition(e_STATES.START, e_STATES.SEARCH, "search");
+            manager.fsm.AddTransition(e_STATES.START, e_STATES.PLAYERTURN, "loadtoplayer");
+            manager.fsm.AddTransition(e_STATES.START, e_STATES.ENEMYTURN, "loadtoenemy");
+            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.PLAYERTURN, "playerturn");
+            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.ENEMYTURN, "enemyturn");
+            manager.fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.BATTLE, "battle");
+            manager.fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.BATTLE, "battle");
+            manager.fsm.AddTransition(e_STATES.BATTLE, e_STATES.PLAYERTURN, "battletoplayer");
+            manager.fsm.AddTransition(e_STATES.BATTLE, e_STATES.ENEMYTURN, "battletoenemy");
+            manager.fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.EXIT, "playertoexit");
+            manager.fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.EXIT, "enemytoexit");
 
-            manager.fsm.ChangeStates(e_STATES.START);
+            manager.fsm.Feed("auto");
 
-            textBox1.Text = manager.fsm.state.ToString();
+            textBox1.Text = manager.fsm.currentState.name.ToString();
 
         }
 
@@ -568,12 +575,27 @@ namespace Adgp_125_Assessment_WinForm
                 BattleReadyParty.Add(EnemyE.units[1]);
                 BattleReadyParty.Add(EnemyE.units[2]);
 
-                e_STATES state;
-                state = _Save.Deserialize<e_STATES>(@"..\Game Saves\GameData.xml");
-
-                manager.fsm.ChangeStates(state);
-
                 currentUnitIndex = _Save.Deserialize<int>(@"..\Game Saves\currentAttacker.xml");
+
+
+                string state;
+                state  = _Save.Deserialize<string>(@"..\Game Saves\GameData.xml");
+
+                manager.fsm.Feed("loadgame");
+
+                switch (state)
+                {
+                    case "PLAYERTURN":
+                        manager.fsm.Feed("load");
+                        break;
+
+                    case "ENEMYTURN":
+                        manager.fsm.Feed("load");
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
             BattleScene.ShowDialog();

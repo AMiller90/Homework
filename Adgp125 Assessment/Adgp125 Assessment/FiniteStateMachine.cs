@@ -98,7 +98,7 @@ public class FiniteStateMachine<T>
         _states = new List<State>();
 
         //Store States in list and dictionary
-        AddStates();
+        //AddStates();
         
     }
     

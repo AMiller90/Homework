@@ -32,141 +32,141 @@ namespace Adgp_125_Assessment_WinForm
         private void BeginButton_Click(object sender, EventArgs e)
         {
 
-            if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
-            {
-                index = refer.currentUnitIndex;
+            //if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
+            //{
+            //    index = refer.currentUnitIndex;
 
-                //Battle party sorted by speed to produce attack order 
-                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+            //    //Battle party sorted by speed to produce attack order 
+            //    refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
 
-                for (int i = 0; i < refer.u.Participants.Count; i++)
-                {
-                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
-                }
+            //    for (int i = 0; i < refer.u.Participants.Count; i++)
+            //    {
+            //        BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+            //    }
 
-                setImages(refer.u.Participants);
+            //    setImages(refer.u.Participants);
 
-                BeginButton.Enabled = false;
+            //    BeginButton.Enabled = false;
 
-                refer.manager.Statsofobjects(refer.u.Participants);
+            //    refer.manager.Statsofobjects(refer.u.Participants);
 
-                StatsBox.Text = refer.manager.statsText;
+            //    StatsBox.Text = refer.manager.statsText;
 
-                foreach (Unit i in refer.u.Participants)
-                {
-                    if (i.Type == "Player")
-                    {
-                        playerParty.Add(i);
+            //    foreach (Unit i in refer.u.Participants)
+            //    {
+            //        if (i.Type == "Player")
+            //        {
+            //            playerParty.Add(i);
 
-                    }
-                    if (i.Type == "Enemy")
-                    {
-                        enemyParty.Add(i);
+            //        }
+            //        if (i.Type == "Enemy")
+            //        {
+            //            enemyParty.Add(i);
 
-                    }
+            //        }
 
-                }
+            //    }
 
-                //Enable buttons so player can attack an enemy
-                Enemy1Button.Enabled = true;
-                Enemy2Button.Enabled = true;
-                Enemy3Button.Enabled = true;
-            }
+            //    //Enable buttons so player can attack an enemy
+            //    Enemy1Button.Enabled = true;
+            //    Enemy2Button.Enabled = true;
+            //    Enemy3Button.Enabled = true;
+            //}
 
-            if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
-            {
-                index = refer.currentUnitIndex;
+            //if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
+            //{
+            //    index = refer.currentUnitIndex;
 
-                //Battle party sorted by speed to produce attack order 
-                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+            //    //Battle party sorted by speed to produce attack order 
+            //    refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
 
-                for (int i = 0; i < refer.u.Participants.Count; i++)
-                {
-                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
-                }
+            //    for (int i = 0; i < refer.u.Participants.Count; i++)
+            //    {
+            //        BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+            //    }
 
-                setImages(refer.u.Participants);
+            //    setImages(refer.u.Participants);
 
-                BeginButton.Enabled = false;
+            //    BeginButton.Enabled = false;
 
-                refer.manager.Statsofobjects(refer.u.Participants);
+            //    refer.manager.Statsofobjects(refer.u.Participants);
 
-                StatsBox.Text = refer.manager.statsText;
+            //    StatsBox.Text = refer.manager.statsText;
 
-                foreach (Unit i in refer.u.Participants)
-                {
-                    if (i.Type == "Player")
-                    {
-                        playerParty.Add(i);
+            //    foreach (Unit i in refer.u.Participants)
+            //    {
+            //        if (i.Type == "Player")
+            //        {
+            //            playerParty.Add(i);
 
-                    }
-                    if (i.Type == "Enemy")
-                    {
-                        enemyParty.Add(i);
-                    }
+            //        }
+            //        if (i.Type == "Enemy")
+            //        {
+            //            enemyParty.Add(i);
+            //        }
 
-                }
+            //    }
 
-                ProcessEnemyAttack.Enabled = true;
+            //    ProcessEnemyAttack.Enabled = true;
 
-            }
+            //}
 
             //SaveGameButton.Enabled = true;
-            if (refer.manager.fsm.state == e_STATES.SEARCH)
-            {
+            //if (refer.manager.fsm.state == e_STATES.SEARCH)
+            //{
 
-                //Battle party sorted by speed to produce attack order 
-                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+            //    //Battle party sorted by speed to produce attack order 
+            //    refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
 
-                for (int i = 0; i < refer.u.Participants.Count; i++)
-                {
-                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
-                }
+            //    for (int i = 0; i < refer.u.Participants.Count; i++)
+            //    {
+            //        BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+            //    }
 
-                foreach (Unit i in refer.u.Participants)
-                {
-                    if (i.Type == "Player")
-                    {
-                        playerParty.Add(i);
+            //    foreach (Unit i in refer.u.Participants)
+            //    {
+            //        if (i.Type == "Player")
+            //        {
+            //            playerParty.Add(i);
 
-                    }
-                    if (i.Type == "Enemy")
-                    {
-                        enemyParty.Add(i);
-                    }
+            //        }
+            //        if (i.Type == "Enemy")
+            //        {
+            //            enemyParty.Add(i);
+            //        }
 
-                }
-
-
-                    Enemy1Label.Text = enemyParty[0].Name;
-
-                    Enemy2Label.Text = enemyParty[1].Name;
-
-                    Enemy3Label.Text = enemyParty[2].Name;
+            //    }
 
 
-                setImages(refer.u.Participants);
+            //        Enemy1Label.Text = enemyParty[0].Name;
 
-                BeginButton.Enabled = false;
+            //        Enemy2Label.Text = enemyParty[1].Name;
 
-                refer.manager.Statsofobjects(refer.u.Participants);
+            //        Enemy3Label.Text = enemyParty[2].Name;
 
-                StatsBox.Text = refer.manager.statsText;
 
-                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+            //    setImages(refer.u.Participants);
 
-                if (refer.manager.fsm.state == e_STATES.BATTLE)
-                {
-                    FirstAttack(refer.u.Participants);
-                }
+            //    BeginButton.Enabled = false;
 
-            }
+            //    refer.manager.Statsofobjects(refer.u.Participants);
+
+            //    StatsBox.Text = refer.manager.statsText;
+
+            //    refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+
+            //    if (refer.manager.fsm.state == e_STATES.BATTLE)
+            //    {
+            //        FirstAttack(refer.u.Participants);
+            //    }
+
+            //}
 
             Enemy1Label.Text = enemyParty[0].Name;
             Enemy2Label.Text = enemyParty[1].Name;
             Enemy3Label.Text = enemyParty[2].Name;
 
-            CurrentStateBox.Text = refer.manager.fsm.state.ToString();
+            CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
         }
 
         // private void Fight(List<Unit> uList, FiniteStateMachine<e_STATES> fsm)
@@ -245,29 +245,13 @@ namespace Adgp_125_Assessment_WinForm
 
             if (uList[index].Type == "Enemy" && uList[index].Life == true)
             {
-                refer.manager.fsm.ChangeStates(e_STATES.ENEMYTURN);
-
-                if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
-                {
-                    //Enable button so enemy can attack
-                    ProcessEnemyAttack.Enabled = true;
-                }
+                refer.manager.fsm.Feed("enemyturn");
 
             }
 
             if (uList[index].Type == "Player" && uList[index].Life == true)
             {
-                refer.manager.fsm.ChangeStates(e_STATES.PLAYERTURN);
-
-                if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
-                {
-                    //Enable buttons so player can attack an enemy
-                    Enemy1Button.Enabled = true;
-                    Enemy2Button.Enabled = true;
-                    Enemy3Button.Enabled = true;
-                }
-
-
+                refer.manager.fsm.Feed("playerturn");
             }
 
             StatsBox.Text = refer.manager.statsText;
@@ -298,42 +282,36 @@ namespace Adgp_125_Assessment_WinForm
             {
                 BattleText.Text += refer.manager.winText;
 
-                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+                Party party = new Party();
 
-                if(refer.manager.fsm.state == e_STATES.BATTLE)
-                {
-                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                party.units = playerParty;
+
+                foreach (Unit u in party.units)
+                {//Reset health
+                    u.Health = u.MaxHp;
+                    //Bring life to true 
+                    u.Life = true;
                 }
-                if (refer.manager.fsm.state == e_STATES.EXIT)
+                refer.manager.statsText = "";
+                refer.manager.Statsofobjects(refer.u.Participants);
+                StatsBox.Text = refer.manager.statsText;
+                ProcessEnemyAttack.Enabled = false;
+                Enemy1Button.Enabled = false;
+                Enemy2Button.Enabled = false;
+                Enemy3Button.Enabled = false;
+                CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+
+                DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
+
+                if (DialogResult == DialogResult.Yes)
                 {
-                    Party party = new Party();
+                    _Save.Serialize("Party", party);
+                    Application.Exit();
 
-                    party.units = playerParty;
-
-                    foreach (Unit u in party.units)
-                    {//Reset health
-                        u.Health = u.MaxHp;
-                        //Bring life to true 
-                        u.Life = true;
-                    }
-                    refer.manager.statsText = "";
-                    refer.manager.Statsofobjects(refer.u.Participants);
-                    StatsBox.Text = refer.manager.statsText;
-                    ProcessEnemyAttack.Enabled = false;
-                    Enemy1Button.Enabled = false;
-                    Enemy2Button.Enabled = false;
-                    Enemy3Button.Enabled = false;
-                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
-
-                    DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
-
-                    if (DialogResult == DialogResult.Yes)
-                    {
-                        _Save.Serialize("Party", party);
-                        Application.Exit();
-
-                    }
                 }
+
+
+                refer.manager.fsm.Feed("playertoexit");
 
             }
 
@@ -363,47 +341,40 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
             }
-           
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
 
-                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+                Party party = new Party();
 
-                if (refer.manager.fsm.state == e_STATES.BATTLE)
-                {
-                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                party.units = playerParty;
+
+                foreach (Unit u in party.units)
+                {//Reset health
+                    u.Health = u.MaxHp;
+                    //Bring life to true 
+                    u.Life = true;
                 }
-                if (refer.manager.fsm.state == e_STATES.EXIT)
+                refer.manager.statsText = "";
+                refer.manager.Statsofobjects(refer.u.Participants);
+                StatsBox.Text = refer.manager.statsText;
+                ProcessEnemyAttack.Enabled = false;
+                Enemy1Button.Enabled = false;
+                Enemy2Button.Enabled = false;
+                Enemy3Button.Enabled = false;
+                CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+
+                DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
+
+                if (DialogResult == DialogResult.Yes)
                 {
-                    Party party = new Party();
+                    _Save.Serialize("Party", party);
+                    Application.Exit();
 
-                    party.units = playerParty;
-
-                    foreach (Unit u in party.units)
-                    {//Reset health
-                        u.Health = u.MaxHp;
-                        //Bring life to true 
-                        u.Life = true;
-                    }
-
-                    refer.manager.statsText = "";
-                    refer.manager.Statsofobjects(refer.u.Participants);
-                    StatsBox.Text = refer.manager.statsText;
-                    ProcessEnemyAttack.Enabled = false;
-                    Enemy1Button.Enabled = false;
-                    Enemy2Button.Enabled = false;
-                    Enemy3Button.Enabled = false;
-                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
-
-                    DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
-
-                    if (DialogResult == DialogResult.Yes)
-                    {
-                        _Save.Serialize("Party", party);
-                        Application.Exit();
-                    }
                 }
+
+
+                refer.manager.fsm.Feed("playertoexit");
 
             }
             processTurn(index);
@@ -432,52 +403,37 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
             }
-
-           
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
             {
                 BattleText.Text += refer.manager.winText;
 
-                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+                Party party = new Party();
 
-                if (refer.manager.fsm.state == e_STATES.BATTLE)
-                {
-                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
+                party.units = playerParty;
+
+                foreach (Unit u in party.units)
+                {//Reset health
+                    u.Health = u.MaxHp;
+                    //Bring life to true 
+                    u.Life = true;
                 }
-                if (refer.manager.fsm.state == e_STATES.EXIT)
+                refer.manager.statsText = "";
+                refer.manager.Statsofobjects(refer.u.Participants);
+                StatsBox.Text = refer.manager.statsText;
+                ProcessEnemyAttack.Enabled = false;
+                Enemy1Button.Enabled = false;
+                Enemy2Button.Enabled = false;
+                Enemy3Button.Enabled = false;
+                CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+
+                DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
+
+                if (DialogResult == DialogResult.Yes)
                 {
-
-                    Party party = new Party();
-
-                    party.units = playerParty;
-
-                    foreach (Unit u in party.units)
-                    {//Reset health
-                        u.Health = u.MaxHp;
-                        //Bring life to true 
-                        u.Life = true;
-                    }
-
-                    refer.manager.statsText = "";
-                    refer.manager.Statsofobjects(refer.u.Participants);
-                    StatsBox.Text = refer.manager.statsText;
-
-                    ProcessEnemyAttack.Enabled = false;
-                    Enemy1Button.Enabled = false;
-                    Enemy2Button.Enabled = false;
-                    Enemy3Button.Enabled = false;
-                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
-
-                    DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
-
-                    if (DialogResult == DialogResult.Yes)
-                    {
-                        _Save.Serialize("Party", party);
-                        Application.Exit();
-
-                    }
-
+                    _Save.Serialize("Party", party);
                 }
+
+                refer.manager.fsm.Feed("playertoexit");
 
             }
             processTurn(index);
@@ -508,80 +464,53 @@ namespace Adgp_125_Assessment_WinForm
             {
                 BattleText.Text += refer.manager.winText;
 
-                refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
+                refer.manager.statsText = "";
+                refer.manager.Statsofobjects(refer.u.Participants);
+                StatsBox.Text = refer.manager.statsText;
+                ProcessEnemyAttack.Enabled = false;
+                Enemy1Button.Enabled = false;
+                Enemy2Button.Enabled = false;
+                Enemy3Button.Enabled = false;
 
-                if (refer.manager.fsm.state == e_STATES.BATTLE)
-                {
-                    refer.manager.fsm.ChangeStates(e_STATES.EXIT);
-                }
-                if (refer.manager.fsm.state == e_STATES.EXIT)
-                {
-                    refer.manager.statsText = "";
-                    refer.manager.Statsofobjects(refer.u.Participants);
-                    StatsBox.Text = refer.manager.statsText;
-                    ProcessEnemyAttack.Enabled = false;
-                    Enemy1Button.Enabled = false;
-                    Enemy2Button.Enabled = false;
-                    Enemy3Button.Enabled = false;
 
-                   
-                    CurrentStateBox.Text = refer.manager.fsm.state.ToString();
-                    //Application.Exit();
-                }
+                CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+
+                refer.manager.fsm.Feed("enemytoexit");
 
             }
-
             processTurn(index);
         }
 
         private void processTurn(int number)
         {
-            refer.manager.fsm.ChangeStates(e_STATES.BATTLE);
-
-            if (refer.manager.fsm.state == e_STATES.BATTLE)
+            if (number == refer.u.Participants.Count)
             {
-                refer.manager.statsText = "";
-                refer.manager.Statsofobjects(refer.u.Participants);
+                number = 0;
+                index = 0;
+            }
 
-                StatsBox.Text = refer.manager.statsText;
+            Enum state = e_STATES.BATTLE as Enum;
 
-                if (number == refer.u.Participants.Count)
+            if(refer.manager.fsm.currentState.name != state)
+            {
+                refer.manager.fsm.Feed("battle");
+            }
+           
+
+            if (refer.u.Participants[number].Type == "Player" && refer.u.Participants[number].Life == true)
                 {
-                    number = 0;
-                    index = 0;
-                }
 
+                BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
 
-                if (refer.u.Participants[number].Type == "Player" && refer.u.Participants[number].Life == true)
-                {
-                    refer.manager.fsm.ChangeStates(e_STATES.PLAYERTURN);
-
-                    if (refer.manager.fsm.state == e_STATES.PLAYERTURN)
-                    {
-                        BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
-                        Enemy1Button.Enabled = true;
-                        Enemy2Button.Enabled = true;
-                        Enemy3Button.Enabled = true;
-                        ProcessEnemyAttack.Enabled = false;
-
-                        CurrentStateBox.Text = refer.manager.fsm.state.ToString();
-                    }
+                refer.manager.fsm.Feed("battletoplayer");
 
                 }
                 else if (refer.u.Participants[number].Type == "Enemy" && refer.u.Participants[number].Life == true)
                 {
-                    refer.manager.fsm.ChangeStates(e_STATES.ENEMYTURN);
 
-                    if (refer.manager.fsm.state == e_STATES.ENEMYTURN)
-                    {
-                        BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
-                        Enemy1Button.Enabled = false;
-                        Enemy2Button.Enabled = false;
-                        Enemy3Button.Enabled = false;
-                        ProcessEnemyAttack.Enabled = true;
+                BattleText.Text += "It is " + refer.u.Participants[number].Name + "'s turn!\n";
 
-                        CurrentStateBox.Text = refer.manager.fsm.state.ToString();
-                    }
+                refer.manager.fsm.Feed("battletoenemy");
 
                 }
                 else
@@ -590,7 +519,7 @@ namespace Adgp_125_Assessment_WinForm
                     processTurn(index);
                 }
 
-            }
+            
         }
 
         private void setImages(List<Unit> units)
@@ -828,7 +757,8 @@ namespace Adgp_125_Assessment_WinForm
             a.units = playerParty;
             b.units = enemyParty;
 
-            _Save.SerializeToSave("GameData", refer.manager.fsm.state);
+            //Enum state = refer.manager.fsm.
+            _Save.SerializeToSave("GameData", refer.manager.fsm.currentState.name.ToString());
 
             _Save.SerializeToSave("PartyData", a);
 
@@ -854,9 +784,170 @@ namespace Adgp_125_Assessment_WinForm
             Player2Label.Text = refer.player2name;
             Player3Label.Text = refer.player3name;
 
-            refer.manager.fsm.ChangeStates(e_STATES.SEARCH);
+            refer.manager.fsm.Feed("search");
 
-            CurrentStateBox.Text = refer.manager.fsm.state.ToString();
+            CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+        }
+
+        //Load to player
+        public void LoadGame()
+        {
+                index = refer.currentUnitIndex;
+
+                //Battle party sorted by speed to produce attack order 
+                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+
+                for (int i = 0; i < refer.u.Participants.Count; i++)
+                {
+                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+                }
+
+                setImages(refer.u.Participants);
+
+                BeginButton.Enabled = false;
+
+                refer.manager.Statsofobjects(refer.u.Participants);
+
+                StatsBox.Text = refer.manager.statsText;
+
+                foreach (Unit i in refer.u.Participants)
+                {
+                    if (i.Type == "Player")
+                    {
+                        playerParty.Add(i);
+
+                    }
+                    if (i.Type == "Enemy")
+                    {
+                        enemyParty.Add(i);
+                    }
+
+                }
+
+                //ProcessEnemyAttack.Enabled = true;
+
+        }
+
+        //Load to enemy
+        //public void LoadToPlayerTurn()
+        //{
+        //        index = refer.currentUnitIndex;
+
+        //        //Battle party sorted by speed to produce attack order 
+        //        refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+
+        //        for (int i = 0; i < refer.u.Participants.Count; i++)
+        //        {
+        //            BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+        //        }
+
+        //        setImages(refer.u.Participants);
+
+        //        BeginButton.Enabled = false;
+
+        //        refer.manager.Statsofobjects(refer.u.Participants);
+
+        //        StatsBox.Text = refer.manager.statsText;
+
+        //        foreach (Unit i in refer.u.Participants)
+        //        {
+        //            if (i.Type == "Player")
+        //            {
+        //                playerParty.Add(i);
+
+        //            }
+        //            if (i.Type == "Enemy")
+        //            {
+        //                enemyParty.Add(i);
+
+        //            }
+
+        //        }
+
+        //        //Enable buttons so player can attack an enemy
+        //        //Enemy1Button.Enabled = true;
+        //        //Enemy2Button.Enabled = true;
+        //        //Enemy3Button.Enabled = true;
+        //    }
+
+        //Battle to enemy
+        public void EnemyTurn()
+        {
+
+            Enemy1Button.Enabled = false;
+            Enemy2Button.Enabled = false;
+            Enemy3Button.Enabled = false;
+            ProcessEnemyAttack.Enabled = true;
+
+            CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+        }
+
+        //Battle to player
+        public void PlayerTurn()
+        {
+            Enemy1Button.Enabled = true;
+            Enemy2Button.Enabled = true;
+            Enemy3Button.Enabled = true;
+            ProcessEnemyAttack.Enabled = false;
+
+            CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+        }
+
+        public void BattlePhase()
+        {
+            refer.manager.statsText = "";
+            refer.manager.Statsofobjects(refer.u.Participants);
+
+            StatsBox.Text = refer.manager.statsText;
+
+        }
+
+        public void SearchPhase()
+        {
+                //Battle party sorted by speed to produce attack order 
+                refer.u.Participants = refer.manager.sortBySpeed(refer.BattleReadyParty);
+
+                for (int i = 0; i < refer.u.Participants.Count; i++)
+                {
+                    BattleOrderTextBox.Text += "\n" + refer.u.Participants[i].Name + "\n";
+                }
+
+                foreach (Unit i in refer.u.Participants)
+                {
+                    if (i.Type == "Player")
+                    {
+                        playerParty.Add(i);
+
+                    }
+                    if (i.Type == "Enemy")
+                    {
+                        enemyParty.Add(i);
+                    }
+
+                }
+
+
+                Enemy1Label.Text = enemyParty[0].Name;
+
+                Enemy2Label.Text = enemyParty[1].Name;
+
+                Enemy3Label.Text = enemyParty[2].Name;
+
+
+                setImages(refer.u.Participants);
+
+                BeginButton.Enabled = false;
+
+                refer.manager.Statsofobjects(refer.u.Participants);
+
+                StatsBox.Text = refer.manager.statsText;
+
+                FirstAttack(refer.u.Participants);
+            }
+
+        public void ExitPhase()
+        {
+            Application.Exit();
         }
     }
 }

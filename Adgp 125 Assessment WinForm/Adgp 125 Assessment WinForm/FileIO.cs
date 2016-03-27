@@ -13,7 +13,6 @@ namespace Adgp_125_Assessment_WinForm
     {
         //Serialize<T>(string s , T t)
         //then your new xmlserializer(typeof T)
-
         public void Serialize<T>(string s, T t)
         {
             using (FileStream fs = File.Create(@"..\Saved Parties\" + s + ".xml"))

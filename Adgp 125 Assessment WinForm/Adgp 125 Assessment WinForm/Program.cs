@@ -7,6 +7,7 @@ using System.Windows.Forms;
 public enum e_STATES
 {
     INIT,
+    LOAD,
     START,
     SEARCH,
     BATTLE,
@@ -15,7 +16,6 @@ public enum e_STATES
     EXIT
 
 }
-
 
 namespace Adgp_125_Assessment_WinForm
 {
@@ -32,11 +32,6 @@ namespace Adgp_125_Assessment_WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-            
-
-
-
         }
     }
 }
