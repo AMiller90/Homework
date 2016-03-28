@@ -13,40 +13,54 @@ using System.Windows.Forms;
 using System.Collections;
 
 namespace Adgp_125_Assessment_WinForm
-{
+{//public class used for forms
     public partial class Form1 : Form
-    {
+    {//Create an instance of the FileIO class
         FileIO _Save = new FileIO();
-
+        //Create a Form2 Object
         Form2 BattleScene;
+        //Create a public reference to the GameManager singleton object
         public GameManager manager = GameManager.instance;
+        //Create a public empty unit object
         public Unit u = new Unit();
-
+        //Create a public List<Unit> for enemy units
         public List<Unit> Enemies = new List<Unit>();
+        //Create a public List<Unit> for all units ready for battle
         public List<Unit> BattleReadyParty = new List<Unit>();
-
+        //public string variable used for player 1 name in party
         public string player1name;
+        //public string variable used for player 2 name in party
         public string player2name;
+        //public string variable used for player 3 name in party
         public string player3name;
+        //public string variable used for enemy 1 name in party
         public string enemy1name;
+        //public string variable used for enemy 2 name in party
         public string enemy2name;
+        //public string variable used for enemy 3 name in party
         public string enemy3name;
-        public int currentUnitIndex;
-    
+        //public string used to store the deserialized state of the machine
+        public string deserializedState;
+        //public int use to store the current unit index that was deserialized 
+        public int currentUnitIndex = 0;
+        //private string variable used to store the fileName the user wishes to name the save party file
+        private string fileName;
+        //public constructor
         public Form1()
-        {
+        {//Initialize form
             InitializeComponent();
+            //Set instance of a new form with this form passed as a parameter
             BattleScene = new Form2(this);
         }
 
+        //Function used to generate a random party
         private void GenerateParty_Button_Click(object sender, EventArgs e)
-        {
+        {//Enable the save button so party can be saved
             SaveButton.Enabled = true;
             //Create a new list to store all of the objects into
             List<Unit> NewParty = CreateObjects();
-
+            //Create List<Unit> of player units
             List<Unit> players = new List<Unit>();
-            //List<Unit> enemies = new List<Unit>();
 
             //Loop through the party 
             foreach (Unit i in NewParty)
@@ -54,8 +68,6 @@ namespace Adgp_125_Assessment_WinForm
                 if (i.Type == "Player")
                 {//If true then add to player party
                     players.Add(i);
-
-
                 }
                 //Check if current unit is an enemy
                 if (i.Type == "Enemy")
@@ -63,27 +75,30 @@ namespace Adgp_125_Assessment_WinForm
                     Enemies.Add(i);
                 }
             }
-
+            //Call RandomizeAllParties function with the player list and Enemies list passed in a parameters
             RandomizeAllParties(players, Enemies);
 
 
 
         }
-
+        
+        //Event function activated on Check box changed
         private void LockInPartyCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
+        {//If the check box is checked
             if(LockInPartyCheckBox.Checked == true)
-            {
+            {//Create a Message box (Ask user if party is good, Confirm - Title of message box, Displaye yes no buttons)
                 DialogResult = MessageBox.Show("Is this Party good?\n", "Confirm", MessageBoxButtons.YesNo);
-
+                //Yes button is clicked
                 if (DialogResult == DialogResult.Yes)
-                {
+                {//Set current form invisible
                     this.Visible = false;
+                    //Show the new form
                     BattleScene.ShowDialog();
                     
                 }
+                //If the user clicks no button
                 else
-                {
+                {//Set the Check box to false
                     LockInPartyCheckBox.Checked = false;
                 }
             }
@@ -262,6 +277,7 @@ namespace Adgp_125_Assessment_WinForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            saveFileName.Visible = false;
             Handler loadHandler = BattleScene.LoadGame;
             Handler searchHandler = BattleScene.SearchPhase;
             Handler battleHandler = BattleScene.BattlePhase;
@@ -270,7 +286,6 @@ namespace Adgp_125_Assessment_WinForm
             Handler exitHandler = BattleScene.ExitPhase;
 
             manager.fsm.State(e_STATES.START, null);
-            manager.fsm.State(e_STATES.LOAD, loadHandler);
             manager.fsm.State(e_STATES.SEARCH, searchHandler);
             manager.fsm.State(e_STATES.BATTLE, battleHandler);
             manager.fsm.State(e_STATES.PLAYERTURN, playerturnHandler);
@@ -278,14 +293,9 @@ namespace Adgp_125_Assessment_WinForm
             manager.fsm.State(e_STATES.EXIT, exitHandler);
 
             manager.fsm.AddTransition(e_STATES.INIT, e_STATES.START, "auto");
-            manager.fsm.AddTransition(e_STATES.START, e_STATES.LOAD, "loadgame");
-            manager.fsm.AddTransition(e_STATES.LOAD, e_STATES.PLAYERTURN, "load");
-            manager.fsm.AddTransition(e_STATES.LOAD, e_STATES.ENEMYTURN, "load");
             manager.fsm.AddTransition(e_STATES.START, e_STATES.SEARCH, "search");
-            manager.fsm.AddTransition(e_STATES.START, e_STATES.PLAYERTURN, "loadtoplayer");
-            manager.fsm.AddTransition(e_STATES.START, e_STATES.ENEMYTURN, "loadtoenemy");
-            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.PLAYERTURN, "playerturn");
-            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.ENEMYTURN, "enemyturn");
+            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.PLAYERTURN, "PLAYERTURN");
+            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.ENEMYTURN, "ENEMYTURN");
             manager.fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.BATTLE, "battle");
             manager.fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.BATTLE, "battle");
             manager.fsm.AddTransition(e_STATES.BATTLE, e_STATES.PLAYERTURN, "battletoplayer");
@@ -301,27 +311,15 @@ namespace Adgp_125_Assessment_WinForm
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            Party party = new Party();
+            saveFileName.Visible = true;
 
-            foreach (Unit i in BattleReadyParty)
-            {
-                if (i.Type == "Player")
-                {
-                    party.units.Add(i);
-                }
-            }
-
-            _Save.Serialize("Party", party);
-
-
-
+         
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
             
             Party loadedunits;
-
 
             OpenFileDialog DialogWindow = new OpenFileDialog();
             string path = @"..\Saved Parties";
@@ -359,6 +357,13 @@ namespace Adgp_125_Assessment_WinForm
                 P3SpeedBox.Text = loadedunits.units[2].Speed.ToString();
                 P3DefenseBox.Text = loadedunits.units[2].Defense.ToString();
                 P3LevelBox.Text = loadedunits.units[2].Level.ToString();
+
+
+                if(BattleReadyParty.Count >= 1)
+                {
+                    BattleReadyParty.RemoveRange(0, BattleReadyParty.Count);
+                }
+                
 
                 foreach (Unit i in loadedunits.units)
                 {
@@ -577,25 +582,10 @@ namespace Adgp_125_Assessment_WinForm
 
                 currentUnitIndex = _Save.Deserialize<int>(@"..\Game Saves\currentAttacker.xml");
 
+                deserializedState  = _Save.Deserialize<string>(@"..\Game Saves\GameData.xml");
 
-                string state;
-                state  = _Save.Deserialize<string>(@"..\Game Saves\GameData.xml");
 
-                manager.fsm.Feed("loadgame");
-
-                switch (state)
-                {
-                    case "PLAYERTURN":
-                        manager.fsm.Feed("load");
-                        break;
-
-                    case "ENEMYTURN":
-                        manager.fsm.Feed("load");
-                        break;
-
-                    default:
-                        break;
-                }
+                BattleScene.LoadGame();
             }
 
             BattleScene.ShowDialog();
@@ -609,8 +599,38 @@ namespace Adgp_125_Assessment_WinForm
 
             LockInPartyCheckBox.Enabled = true;
             GenerateParty_Button.Enabled = true;
-            SaveButton.Enabled = true;
             LoadButton.Enabled = true;
+        }
+
+        private void saveFileName_Click(object sender, EventArgs e)
+        {
+            saveFileName.Text = "";
+        }
+
+        private void saveFileName_TextChanged(object sender, EventArgs e)
+        {
+            fileName = saveFileName.Text;
+        }
+
+        private void saveFileName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                Party party = new Party();
+
+                foreach (Unit i in BattleReadyParty)
+                {
+                    if (i.Type == "Player")
+                    {
+                        party.units.Add(i);
+                    }
+                }
+                _Save.Serialize(fileName, party);
+
+                MessageBox.Show("Party Saved!");
+
+                saveFileName.Visible = false;
+            }
         }
     }
 }

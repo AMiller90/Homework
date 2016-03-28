@@ -36,7 +36,6 @@
             this.Player3Label = new System.Windows.Forms.Label();
             this.CurrentStateBox = new System.Windows.Forms.TextBox();
             this.BattleText = new System.Windows.Forms.RichTextBox();
-            this.BeginButton = new System.Windows.Forms.Button();
             this.Enemy1Button = new System.Windows.Forms.Button();
             this.Enemy2Button = new System.Windows.Forms.Button();
             this.Enemy3Button = new System.Windows.Forms.Button();
@@ -126,16 +125,6 @@
             this.BattleText.Size = new System.Drawing.Size(422, 270);
             this.BattleText.TabIndex = 8;
             this.BattleText.Text = "";
-            // 
-            // BeginButton
-            // 
-            this.BeginButton.Location = new System.Drawing.Point(12, 610);
-            this.BeginButton.Name = "BeginButton";
-            this.BeginButton.Size = new System.Drawing.Size(75, 23);
-            this.BeginButton.TabIndex = 9;
-            this.BeginButton.Text = "Start Battle";
-            this.BeginButton.UseVisualStyleBackColor = true;
-            this.BeginButton.Click += new System.EventHandler(this.BeginButton_Click);
             // 
             // Enemy1Button
             // 
@@ -272,7 +261,6 @@
             this.Controls.Add(this.Enemy3Button);
             this.Controls.Add(this.Enemy2Button);
             this.Controls.Add(this.Enemy1Button);
-            this.Controls.Add(this.BeginButton);
             this.Controls.Add(this.BattleText);
             this.Controls.Add(this.CurrentStateBox);
             this.Controls.Add(this.Player3Label);
@@ -305,7 +293,6 @@
         private System.Windows.Forms.Label Player3Label;
         private System.Windows.Forms.TextBox CurrentStateBox;
         private System.Windows.Forms.RichTextBox BattleText;
-        private System.Windows.Forms.Button BeginButton;
         private System.Windows.Forms.Button Enemy1Button;
         private System.Windows.Forms.Button Enemy2Button;
         private System.Windows.Forms.Button Enemy3Button;

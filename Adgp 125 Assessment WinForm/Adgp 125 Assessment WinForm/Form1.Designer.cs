@@ -74,6 +74,7 @@
             this.P1LevelBox = new System.Windows.Forms.TextBox();
             this.LoadGameButton = new System.Windows.Forms.Button();
             this.NewGameButton = new System.Windows.Forms.Button();
+            this.saveFileName = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -482,6 +483,17 @@
             this.NewGameButton.UseVisualStyleBackColor = true;
             this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click);
             // 
+            // saveFileName
+            // 
+            this.saveFileName.Location = new System.Drawing.Point(430, 54);
+            this.saveFileName.Name = "saveFileName";
+            this.saveFileName.Size = new System.Drawing.Size(147, 31);
+            this.saveFileName.TabIndex = 47;
+            this.saveFileName.Text = "Enter Save File Name Here: ";
+            this.saveFileName.Click += new System.EventHandler(this.saveFileName_Click);
+            this.saveFileName.TextChanged += new System.EventHandler(this.saveFileName_TextChanged);
+            this.saveFileName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.saveFileName_KeyDown);
+            // 
             // Form1
             // 
             this.AccessibleName = "";
@@ -489,6 +501,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(993, 568);
+            this.Controls.Add(this.saveFileName);
             this.Controls.Add(this.NewGameButton);
             this.Controls.Add(this.LoadGameButton);
             this.Controls.Add(this.P1LevelBox);
@@ -595,6 +608,7 @@
         private System.Windows.Forms.TextBox P1LevelBox;
         private System.Windows.Forms.Button LoadGameButton;
         private System.Windows.Forms.Button NewGameButton;
+        private System.Windows.Forms.RichTextBox saveFileName;
     }
 }
 

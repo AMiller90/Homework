@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Public enum of states in game
 public enum e_STATES
 {
     INIT,
-    LOAD,
     START,
     SEARCH,
     BATTLE,
