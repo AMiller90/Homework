@@ -45,18 +45,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Test.cs" />
+     <Compile Include="Assets\Scripts\GameFlow.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="FiniteStateMachine">
- <HintPath>C:/Users/HeavensGate/Desktop/Adgp 125 Assessment/Assets/DLLs/FiniteStateMachine.dll</HintPath>
- </Reference>
  <Reference Include="Adgp125 Assessment Library">
- <HintPath>C:/Users/HeavensGate/Desktop/Adgp 125 Assessment/Assets/DLLs/Adgp125 Assessment Library.dll</HintPath>
+ <HintPath>C:/Users/HeavensGate/Desktop/Homework/Adgp 125 Assessment/Assets/DLLs/Adgp125 Assessment Library.dll</HintPath>
+ </Reference>
+ <Reference Include="FileIO">
+ <HintPath>C:/Users/HeavensGate/Desktop/Homework/Adgp 125 Assessment/Assets/DLLs/FileIO.dll</HintPath>
+ </Reference>
+ <Reference Include="FiniteStateMachine">
+ <HintPath>C:/Users/HeavensGate/Desktop/Homework/Adgp 125 Assessment/Assets/DLLs/FiniteStateMachine.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
