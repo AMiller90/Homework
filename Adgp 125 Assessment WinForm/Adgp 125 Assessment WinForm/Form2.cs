@@ -171,7 +171,7 @@ namespace Adgp_125_Assessment_WinForm
                 refer.manager.statsText = "";
                 refer.manager.Statsofobjects(refer.u.Participants);
                 StatsBox.Text = refer.manager.statsText;
-                ProcessEnemyAttack.Enabled = false;
+
                 Enemy1Button.Enabled = false;
                 Enemy2Button.Enabled = false;
                 Enemy3Button.Enabled = false;
@@ -234,7 +234,7 @@ namespace Adgp_125_Assessment_WinForm
                 refer.manager.statsText = "";
                 refer.manager.Statsofobjects(refer.u.Participants);
                 StatsBox.Text = refer.manager.statsText;
-                ProcessEnemyAttack.Enabled = false;
+
                 Enemy1Button.Enabled = false;
                 Enemy2Button.Enabled = false;
                 Enemy3Button.Enabled = false;
@@ -296,7 +296,7 @@ namespace Adgp_125_Assessment_WinForm
                 refer.manager.statsText = "";
                 refer.manager.Statsofobjects(refer.u.Participants);
                 StatsBox.Text = refer.manager.statsText;
-                ProcessEnemyAttack.Enabled = false;
+
                 Enemy1Button.Enabled = false;
                 Enemy2Button.Enabled = false;
                 Enemy3Button.Enabled = false;
@@ -310,48 +310,6 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
                 refer.manager.fsm.Feed("playertoexit");
-
-            }
-            processTurn(index);
-        }
-
-        private void ProcessEnemyAttack_Click(object sender, EventArgs e)
-        {
-            if (refer.u.Participants[index].Type == "Enemy" && refer.u.Participants[index].Life == true)
-            {
-                Unit Attacker = refer.u.Participants[index];
-                Unit Defender = Attacker.EnemyRandomTarget(playerParty);
-
-
-                Attacker.Attack(Defender);
-
-                BattleText.Text = Attacker.stuffText;
-                if (index == count)
-                {
-                    index = 0;
-                }
-                else
-                {
-                    index += 1;
-                }
-            }
-
-            if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
-            {
-                BattleText.Text += refer.manager.winText;
-
-                refer.manager.statsText = "";
-                refer.manager.Statsofobjects(refer.u.Participants);
-                StatsBox.Text = refer.manager.statsText;
-                ProcessEnemyAttack.Enabled = false;
-                Enemy1Button.Enabled = false;
-                Enemy2Button.Enabled = false;
-                Enemy3Button.Enabled = false;
-
-
-                CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
-
-                //refer.manager.fsm.Feed("enemytoexit");
 
             }
             processTurn(index);
@@ -646,7 +604,7 @@ namespace Adgp_125_Assessment_WinForm
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            ProcessEnemyAttack.Enabled = false;
+
             Enemy1Button.Enabled = false;
             Enemy2Button.Enabled = false;
             Enemy3Button.Enabled = false;
@@ -706,13 +664,52 @@ namespace Adgp_125_Assessment_WinForm
         //Battle to enemy
         public void EnemyTurn()
         {
-
             Enemy1Button.Enabled = false;
             Enemy2Button.Enabled = false;
             Enemy3Button.Enabled = false;
-            ProcessEnemyAttack.Enabled = true;
 
+            BattleText.Text += refer.manager.fsm.currentState.name.ToString() + " STATE \n";
             CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+
+            if (refer.u.Participants[index].Type == "Enemy" && refer.u.Participants[index].Life == true)
+            {
+                Unit Attacker = refer.u.Participants[index];
+                Unit Defender = Attacker.EnemyRandomTarget(playerParty);
+
+
+                Attacker.Attack(Defender);
+                
+                BattleText.Text += Attacker.stuffText;
+                if (index == count)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index += 1;
+                }
+            }
+
+            if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
+            {
+                BattleText.Text += refer.manager.winText;
+
+                refer.manager.statsText = "";
+                refer.manager.Statsofobjects(refer.u.Participants);
+                StatsBox.Text = refer.manager.statsText;
+
+                Enemy1Button.Enabled = false;
+                Enemy2Button.Enabled = false;
+                Enemy3Button.Enabled = false;
+
+
+                CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+
+                //refer.manager.fsm.Feed("enemytoexit");
+
+            }
+            processTurn(index);
+
         }
 
         //Battle to player
@@ -721,7 +718,6 @@ namespace Adgp_125_Assessment_WinForm
             Enemy1Button.Enabled = true;
             Enemy2Button.Enabled = true;
             Enemy3Button.Enabled = true;
-            ProcessEnemyAttack.Enabled = false;
 
             CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
         }

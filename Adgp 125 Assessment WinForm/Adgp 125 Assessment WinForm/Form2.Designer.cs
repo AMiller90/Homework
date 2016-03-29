@@ -39,7 +39,6 @@
             this.Enemy1Button = new System.Windows.Forms.Button();
             this.Enemy2Button = new System.Windows.Forms.Button();
             this.Enemy3Button = new System.Windows.Forms.Button();
-            this.ProcessEnemyAttack = new System.Windows.Forms.Button();
             this.BattleOrderTextBox = new System.Windows.Forms.RichTextBox();
             this.StatsBox = new System.Windows.Forms.RichTextBox();
             this.p1PictureBox = new System.Windows.Forms.PictureBox();
@@ -156,16 +155,6 @@
             this.Enemy3Button.UseVisualStyleBackColor = true;
             this.Enemy3Button.Click += new System.EventHandler(this.Enemy3Button_Click);
             // 
-            // ProcessEnemyAttack
-            // 
-            this.ProcessEnemyAttack.Location = new System.Drawing.Point(502, 610);
-            this.ProcessEnemyAttack.Name = "ProcessEnemyAttack";
-            this.ProcessEnemyAttack.Size = new System.Drawing.Size(121, 23);
-            this.ProcessEnemyAttack.TabIndex = 13;
-            this.ProcessEnemyAttack.Text = "Process Enemy Turn";
-            this.ProcessEnemyAttack.UseVisualStyleBackColor = true;
-            this.ProcessEnemyAttack.Click += new System.EventHandler(this.ProcessEnemyAttack_Click);
-            // 
             // BattleOrderTextBox
             // 
             this.BattleOrderTextBox.Location = new System.Drawing.Point(12, 191);
@@ -257,7 +246,6 @@
             this.Controls.Add(this.p1PictureBox);
             this.Controls.Add(this.StatsBox);
             this.Controls.Add(this.BattleOrderTextBox);
-            this.Controls.Add(this.ProcessEnemyAttack);
             this.Controls.Add(this.Enemy3Button);
             this.Controls.Add(this.Enemy2Button);
             this.Controls.Add(this.Enemy1Button);
@@ -296,7 +284,6 @@
         private System.Windows.Forms.Button Enemy1Button;
         private System.Windows.Forms.Button Enemy2Button;
         private System.Windows.Forms.Button Enemy3Button;
-        private System.Windows.Forms.Button ProcessEnemyAttack;
         private System.Windows.Forms.RichTextBox BattleOrderTextBox;
         private System.Windows.Forms.RichTextBox StatsBox;
         private System.Windows.Forms.PictureBox p1PictureBox;
