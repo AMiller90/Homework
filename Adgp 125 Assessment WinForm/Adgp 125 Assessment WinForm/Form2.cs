@@ -186,7 +186,6 @@ namespace Adgp_125_Assessment_WinForm
 
                 }
 
-
                 refer.manager.fsm.Feed("playertoexit");
 
             }

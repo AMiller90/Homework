@@ -153,8 +153,8 @@ namespace Adgp125_Assessment_Library
         private int m_uMaxHp;
         //private list<Unit>
         private List<Unit> m_Participants = new List<Unit>();
-        //private string stuffText - Any text involved in battling other than stats 
-        private string stuffText;
+        //public string stuffText - Any text involved in battling other than stats 
+        public string stuffText;
 
         //public Constructor
         public Unit()
