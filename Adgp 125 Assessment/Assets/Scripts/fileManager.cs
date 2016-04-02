@@ -26,6 +26,7 @@ public class fileManager : MonoBehaviour
     {
         game = GetComponent<GameFlow>();
     }
+
     public static fileManager Instance
     {
         get

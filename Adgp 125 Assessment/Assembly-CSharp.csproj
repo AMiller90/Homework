@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\fileGUI.cs" />
      <Compile Include="Assets\Scripts\fileManager.cs" />
      <None Include="Assets\GameData\PlayerParty\p.xml" />
+     <None Include="Assets\GameData\VictoryParty\Winning.xml" />
      <None Include="Assets\GameData\State\s.xml" />
      <None Include="Assets\GameData\index.xml" />
      <None Include="Assets\GameData\EnemyParty\e.xml" />

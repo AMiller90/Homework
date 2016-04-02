@@ -4,7 +4,7 @@ using UnityEditor;
 using System.Collections;
 using Adgp125_Assessment_Library;
 using System.Collections.Generic;
-
+using FileIO;
 public class CanvasScript : MonoBehaviour {
 
     ImagesScript imageList;
@@ -216,21 +216,21 @@ public class CanvasScript : MonoBehaviour {
 
         while (e1 == e2)
         {
-            e2 = r.Next(0, e.Count - 1);
+            e2 = a.Next(0, e.Count - 1);
         }
 
         while (e2 == e3)
         {
-            e3 = r.Next(0, e.Count - 1);
+            e3 = a.Next(0, e.Count - 1);
         }
 
         while (e3 == e1)
         {
-            e1 = r.Next(0, e.Count - 1);
+            e1 = a.Next(0, e.Count - 1);
 
             while (e1 == e2)
             {
-                e1 = r.Next(0, e.Count - 1);
+                e1 = a.Next(0, e.Count - 1);
             }
         }
 
@@ -238,6 +238,106 @@ public class CanvasScript : MonoBehaviour {
         BattleReadyParty.Add(e[e2]);
         BattleReadyParty.Add(e[e3]);
 
+    }
+
+    public void loadParty()
+    {
+        FileIOS File = new FileIOS();
+        Party Team = new Party();
+
+        if (BattleReadyParty.Count >= 1)
+        {
+            BattleReadyParty.RemoveRange(0, BattleReadyParty.Count);
+        }
+
+        string victoryParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/VictoryParty", "xml");
+        Team = File.Deserialize<Party>(victoryParty);
+
+        p1Name.text = Team.units[0].Name;
+        player1Name.text = Team.units[0].Name;
+        p1Health.text = Team.units[0].Health.ToString();
+        p1Strength.text = Team.units[0].Strength.ToString();
+        p1Defense.text = Team.units[0].Defense.ToString();
+        p1Speed.text = Team.units[0].Speed.ToString();
+        p1Level.text = Team.units[0].Level.ToString();
+
+        BattleReadyParty.Add(Team.units[0]);
+
+        p2Name.text = Team.units[1].Name;
+        player2Name.text = Team.units[1].Name;
+        p2Health.text = Team.units[1].Health.ToString();
+        p2Strength.text = Team.units[1].Strength.ToString();
+        p2Defense.text = Team.units[1].Defense.ToString();
+        p2Speed.text = Team.units[1].Speed.ToString();
+        p2Level.text = Team.units[1].Level.ToString();
+
+        BattleReadyParty.Add(Team.units[1]);
+
+        p3Name.text = Team.units[2].Name;
+        player3Name.text = Team.units[2].Name;
+        p3Health.text = Team.units[2].Health.ToString();
+        p3Strength.text = Team.units[2].Strength.ToString();
+        p3Defense.text = Team.units[2].Defense.ToString();
+        p3Speed.text = Team.units[2].Speed.ToString();
+        p3Level.text = Team.units[2].Level.ToString();
+
+        BattleReadyParty.Add(Team.units[2]);
+
+        setImages(BattleReadyParty);
+
+        Unit TwoFaced = new Unit("2Faced", 100, 20, 15, 5, 25, "Enemy");
+        Unit AncientDragon = new Unit("Ancient Dragon", 200, 30, 12, 4, 100, "Enemy");
+        Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 30, "Enemy");
+        Unit IceGolem = new Unit("Ice Golem", 150, 25, 15, 5, 35, "Enemy");
+        Unit Zuu = new Unit("Zuu", 120, 15, 10, 5, 20, "Enemy");
+        Unit ToxicFrog = new Unit("Toxic Frog", 180, 22, 12, 5, 30, "Enemy");
+        Unit DeathClaw = new Unit("Death Claw", 140, 25, 18, 7, 50, "Enemy");
+        Unit MasterTonberry = new Unit("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
+        Unit Behemoth = new Unit("Behemoth", 200, 35, 14, 4, 100, "Enemy");
+
+        List<Unit> e = new List<Unit>();
+
+        e.Add(TwoFaced);
+        e.Add(AncientDragon);
+        e.Add(Ghost);
+        e.Add(IceGolem);
+        e.Add(Zuu);
+        e.Add(ToxicFrog);
+        e.Add(DeathClaw);
+        e.Add(MasterTonberry);
+        e.Add(Behemoth);
+
+        System.Random a = new System.Random();
+
+        int e1 = a.Next(0, e.Count - 1);
+        int e2 = a.Next(0, e.Count - 1);
+        int e3 = a.Next(0, e.Count - 1);
+
+        while (e1 == e2)
+        {
+            e2 = a.Next(0, e.Count - 1);
+        }
+
+        while (e2 == e3)
+        {
+            e3 = a.Next(0, e.Count - 1);
+        }
+
+        while (e3 == e1)
+        {
+            e1 = a.Next(0, e.Count - 1);
+
+            while (e1 == e2)
+            {
+                e1 = a.Next(0, e.Count - 1);
+            }
+        }
+
+        BattleReadyParty.Add(e[e1]);
+        BattleReadyParty.Add(e[e2]);
+        BattleReadyParty.Add(e[e3]);
+
+        PlayButton.enabled = true;
     }
 
     public void LoadedGameImages(List<Unit> units)
