@@ -11,8 +11,8 @@ namespace FileIO
     {//Function used to serialize data (string - variable used to for naming the save file, T - passed in any arguement)
         public void Serialize<T>(string s, T t)
         {
-            //Use the filestream to create a folder at the given directory(s - with the passed in file name and xml extension)
-            using (FileStream fs = File.Create(@"..\Saved Parties\" + s + ".xml"))
+            //Use the filestream to create a folder at the given directory(s - with the passed in file name)
+            using (FileStream fs = File.Create(s))
             { //Create instance of serializer object
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 //Call serialize function
@@ -20,22 +20,6 @@ namespace FileIO
                 //Close the file
                 fs.Close();
             }
-        }
-
-        //This function will be used for saving data to a different directory
-        //Function used to serialize data (string - variable used to for naming the save file, T - passed in any arguement)
-        public void SerializeToSave<T>(string s, T t)
-        { //Use the filestream to create a folder at the given directory(s - with the passed in file name and xml extension)
-            using (FileStream fs = File.Create(@"..\Game Saves\" + s + ".xml"))
-            {
-                //Create instance of an Xml serializer object
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-                //Call serialize function
-                serializer.Serialize(fs, t);
-                //Close the filestream
-                fs.Close();
-            }
-
         }
 
         //Function will be used for deserialization of data

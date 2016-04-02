@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Party xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Party>
+    <Unit>
+      <Name>Toxic Frog</Name>
+      <Level>1</Level>
+      <MaxHp>180</MaxHp>
+      <Health>19</Health>
+      <Strength>22</Strength>
+      <Defense>12</Defense>
+      <Speed>5</Speed>
+      <Experience>30</Experience>
+      <Type>Enemy</Type>
+      <Life>true</Life>
+      <Participants />
+    </Unit>
+    <Unit>
+      <Name>Ghost</Name>
+      <Level>1</Level>
+      <MaxHp>80</MaxHp>
+      <Health>0</Health>
+      <Strength>20</Strength>
+      <Defense>15</Defense>
+      <Speed>5</Speed>
+      <Experience>30</Experience>
+      <Type>Enemy</Type>
+      <Life>false</Life>
+      <Participants />
+    </Unit>
+    <Unit>
+      <Name>Ancient Dragon</Name>
+      <Level>1</Level>
+      <MaxHp>200</MaxHp>
+      <Health>0</Health>
+      <Strength>30</Strength>
+      <Defense>12</Defense>
+      <Speed>4</Speed>
+      <Experience>100</Experience>
+      <Type>Enemy</Type>
+      <Life>false</Life>
+      <Participants />
+    </Unit>
+  </Party>
+</Party>

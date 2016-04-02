@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using Adgp125_Assessment_Library;
 using FileIO;
 using System.Linq;
 using System.IO;
+using System.Xml.Serialization;
 
 public enum e_GameStates
 {
@@ -23,14 +25,14 @@ public enum e_GameStates
     EXIT
 }
 
-[Serializable]
+//[Serializable()]
 public class GameFlow : MonoBehaviour {
 
-    Files _Save;
-    GameManager manager = GameManager.instance;
-    int index;
+    public GameManager manager = GameManager.instance;
+
+    public int index;
     int count;
-    Unit a = new Unit();
+    public Unit a = new Unit();
     public CanvasScript canvasScript;
     public Canvas canvas;
     public Canvas BattleCanvas;
@@ -43,21 +45,24 @@ public class GameFlow : MonoBehaviour {
     public Canvas SaveMenu;
     public Button YesButton;
     public Button NoButton;
-
+    public Button NewGameButton;
+    public Button LoadGameButton;
     
     public FiniteStateMachine<e_GameStates> fsm = new FiniteStateMachine<e_GameStates>();
 
-    private List<Unit> enemyParty;
-    private List<Unit> playerParty;
+    public List<Unit> enemyParty;
+    public List<Unit> playerParty;
 
 	// Use this for initialization
 	void Start ()
     {
         index = 0;
-        count = a.Participants.Count - 1;
         enemyParty = new List<Unit>();
         playerParty = new List<Unit>();
+        count = a.Participants.Count - 1;
+
         SaveMenu.enabled = false;
+        Handler startHandler = startState;
         Handler searchHandler = searchState;
         Handler battleHandler = battleState;
         Handler playerturnHandler = playerState;
@@ -65,7 +70,7 @@ public class GameFlow : MonoBehaviour {
         Handler exitHandler = exitState;
 
         fsm.State(e_GameStates.INIT, null);
-        fsm.State(e_GameStates.START, null);
+        fsm.State(e_GameStates.START, startHandler);
         fsm.State(e_GameStates.SEARCH, searchHandler);
         fsm.State(e_GameStates.BATTLE, battleHandler);
         fsm.State(e_GameStates.PLAYERTURN, playerturnHandler);
@@ -74,14 +79,16 @@ public class GameFlow : MonoBehaviour {
 
         fsm.AddTransition(e_GameStates.INIT, e_GameStates.START, "auto");
         fsm.AddTransition(e_GameStates.START, e_GameStates.SEARCH, "search");
+        fsm.AddTransition(e_GameStates.START, e_GameStates.PLAYERTURN, "PLAYERTURN");
+        fsm.AddTransition(e_GameStates.START, e_GameStates.EXIT, "exit");
         fsm.AddTransition(e_GameStates.SEARCH, e_GameStates.PLAYERTURN, "PLAYERTURN");
         fsm.AddTransition(e_GameStates.SEARCH, e_GameStates.ENEMYTURN, "ENEMYTURN");
         fsm.AddTransition(e_GameStates.BATTLE, e_GameStates.PLAYERTURN, "battletoplayer");
         fsm.AddTransition(e_GameStates.BATTLE, e_GameStates.ENEMYTURN, "battletoenemy");
         fsm.AddTransition(e_GameStates.PLAYERTURN, e_GameStates.BATTLE, "battle");
         fsm.AddTransition(e_GameStates.ENEMYTURN, e_GameStates.BATTLE, "battle");
-        fsm.AddTransition(e_GameStates.PLAYERTURN, e_GameStates.EXIT, "playertoexit");
-        fsm.AddTransition(e_GameStates.ENEMYTURN, e_GameStates.EXIT, "enemytoexit");
+        fsm.AddTransition(e_GameStates.PLAYERTURN, e_GameStates.START, "playertostart");
+        fsm.AddTransition(e_GameStates.ENEMYTURN, e_GameStates.START, "enemytostart");
 
         Enemy1Button.enabled = false;
         Enemy2Button.enabled = false;
@@ -105,6 +112,29 @@ public class GameFlow : MonoBehaviour {
         sortedlist = List.OrderByDescending(u => u.Speed).ToList<Unit>();
         //Return the new sorted list
         return sortedlist;
+    }
+
+    private void startState()
+    {
+        index = 0; 
+
+        if (a.Participants.Count >= 1)
+        {
+            a.Participants.RemoveRange(0, enemyParty.Count);
+        }
+        if (enemyParty.Count >= 1)
+        {
+            enemyParty.RemoveRange(0, enemyParty.Count);
+        }
+        if (playerParty.Count >= 1)
+        {
+            playerParty.RemoveRange(0, playerParty.Count);
+        }
+
+        battleBox.text = "";
+        BattleOrderText.text = "Battle Order:";
+        manager.statsText = "";
+
     }
 
     private void searchState()
@@ -140,7 +170,8 @@ public class GameFlow : MonoBehaviour {
         canvasScript.enemy2Name.text = enemyParty[1].Name;
         canvasScript.enemy3Name.text = enemyParty[2].Name;
 
-        canvasScript.setImages(a.Participants);
+        canvasScript.LoadedGameImages(a.Participants);
+
 
         manager.Statsofobjects(a.Participants);
         StatsField.text = manager.statsText;
@@ -157,16 +188,7 @@ public class GameFlow : MonoBehaviour {
         manager.statsText = "";
         manager.Statsofobjects(a.Participants);
         StatsField.text = manager.statsText;
-        //if (a.Participants[index].Type == "Enemy" && a.Participants[index].Life == true)
-        //{
-        //    fsm.Feed("battletoenemy");
-
-        //}
-
-        //if (a.Participants[index].Type == "Player" && a.Participants[index].Life == true)
-        //{
-        //    fsm.Feed("battletoplayer");
-        //}
+       
     }
 
     private void playerState()
@@ -219,7 +241,7 @@ public class GameFlow : MonoBehaviour {
 
             Debug.Log(fsm.currentState.name.ToString());
 
-            fsm.Feed("enemytoexit");
+            fsm.Feed("enemytostart");
 
         }
         processTurn(index);
@@ -231,6 +253,12 @@ public class GameFlow : MonoBehaviour {
         canvas.enabled = false;
         //Then switch states
         fsm.Feed("search");
+    }
+
+    public void ExitGame()
+    {
+        fsm.Feed("exit");
+        Debug.Log(fsm.currentState.name.ToString());
     }
 
     private void processTurn(int number)
@@ -291,23 +319,6 @@ public class GameFlow : MonoBehaviour {
         {
             battleBox.text = manager.winText;
 
-            //Party party = new Party();
-
-            // party.units = playerParty;
-
-            //foreach (Unit u in party.units)
-            //{//Reset health
-            //    u.Health = u.MaxHp;
-            //    //Bring life to true 
-            //    u.Life = true;
-            //}
-            foreach (Unit u in playerParty)
-            {//Reset health
-                u.Health = u.MaxHp;
-                //Bring life to true 
-                u.Life = true;
-            }
-
             manager.statsText = "";
             manager.Statsofobjects(a.Participants);
             StatsField.text = manager.statsText;
@@ -317,16 +328,8 @@ public class GameFlow : MonoBehaviour {
             Enemy3Button.enabled = false;
             Debug.Log(fsm.currentState.name.ToString());
 
-            //DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
-
-            //if (DialogResult == DialogResult.Yes)
-            //{
-            //    _Save.Serialize("Party", party);
-            //    Application.Exit();
-
-            //}
-
             SaveMenu.enabled = true;
+
         }
 
         processTurn(index);
@@ -352,23 +355,7 @@ public class GameFlow : MonoBehaviour {
         {
             battleBox.text = manager.winText;
 
-            //Party party = new Party();
-
-            // party.units = playerParty;
-
-            //foreach (Unit u in party.units)
-            //{//Reset health
-            //    u.Health = u.MaxHp;
-            //    //Bring life to true 
-            //    u.Life = true;
-            //}
-            foreach (Unit u in playerParty)
-            {//Reset health
-                u.Health = u.MaxHp;
-                //Bring life to true 
-                u.Life = true;
-            }
-
+           
             manager.statsText = "";
             manager.Statsofobjects(a.Participants);
             StatsField.text = manager.statsText;
@@ -377,15 +364,6 @@ public class GameFlow : MonoBehaviour {
             Enemy2Button.enabled = false;
             Enemy3Button.enabled = false;
             Debug.Log(fsm.currentState.name.ToString());
-
-            //DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
-
-            //if (DialogResult == DialogResult.Yes)
-            //{
-            //    _Save.Serialize("Party", party);
-            //    Application.Exit();
-
-            //}
 
             SaveMenu.enabled = true;
 
@@ -414,23 +392,6 @@ public class GameFlow : MonoBehaviour {
         {
             battleBox.text = manager.winText;
 
-            //Party party = new Party();
-
-            // party.units = playerParty;
-
-            //foreach (Unit u in party.units)
-            //{//Reset health
-            //    u.Health = u.MaxHp;
-            //    //Bring life to true 
-            //    u.Life = true;
-            //}
-            foreach (Unit u in playerParty)
-            {//Reset health
-                u.Health = u.MaxHp;
-                //Bring life to true 
-                u.Life = true;
-            }
-
             manager.statsText = "";
             manager.Statsofobjects(a.Participants);
             StatsField.text = manager.statsText;
@@ -440,16 +401,6 @@ public class GameFlow : MonoBehaviour {
             Enemy3Button.enabled = false;
             Debug.Log(fsm.currentState.name.ToString());
 
-            //DialogResult = MessageBox.Show("Would you like to save your current party?\n", "Save Party", MessageBoxButtons.YesNo);
-
-            //if (DialogResult == DialogResult.Yes)
-            //{
-            //    _Save.Serialize("Party", party);
-            //    Application.Exit();
-
-            //}
-
-
             SaveMenu.enabled = true;
 
         }
@@ -457,7 +408,7 @@ public class GameFlow : MonoBehaviour {
         processTurn(index);
     }
 
-    private void FirstAttack(List<Unit> uList)
+    public void FirstAttack(List<Unit> uList)
     {
         battleBox.text += "It is " + uList[index].Name + "'s turn!\n";
 
@@ -477,18 +428,69 @@ public class GameFlow : MonoBehaviour {
 
     private void exitState()
     {
-        Debug.Log(fsm.currentState.name.ToString());
+        NewGameButton.enabled = false;
+        LoadGameButton.enabled = false;
+
         Application.Quit();
     }
 
     public void ClickYes()
     {
-        //_Save.Serialize();
-        //_Save.SerializeToSave("GameData", fsm.currentState.ToString());
+        Party party = new Party();
+        party.units = playerParty;
+
+        foreach (Unit u in party.units)
+        {//Reset health
+            u.Health = u.MaxHp;
+            //Bring life to true 
+            u.Life = true;
+        }
+
+        FileIOS File = new FileIOS();
+
+        string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/VictoryParty", "Enter a filename here for your party", "xml");
+        File.Serialize(ppartyfile, party);
+
+        canvasScript.gameCanvas.enabled = true;
+        canvasScript.battleCanvas.enabled = false;
         SaveMenu.enabled = false;
+
+        if (a.Participants.Count >= 1)
+        {
+            a.Participants = null;
+            a.Participants = new List<Unit>();
+        }
+        if (enemyParty.Count >= 1)
+        {
+            enemyParty = null;
+            enemyParty = new List<Unit>();
+            //enemyParty.RemoveRange(0, enemyParty.Count);
+        }
+        if (playerParty.Count >= 1)
+        {
+            playerParty = null;
+            playerParty = new List<Unit>();
+            //playerParty.RemoveRange(0, playerParty.Count);
+        }
+
+        battleBox.text = "";
+        BattleOrderText.text = "";
+        StatsField.text = " ";
+        Debug.Log(fsm.currentState.name.ToString());
+
+        fsm.Feed("playertostart");
+
     }
+
     public void ClickNo()
     {
-        fsm.Feed("playertoexit");
+        canvasScript.gameCanvas.enabled = true;
+        canvasScript.battleCanvas.enabled = false;
+        SaveMenu.enabled = false;
+
+        
+
+        fsm.Feed("playertostart");
+        Debug.Log(fsm.currentState.name.ToString());
     }
 }

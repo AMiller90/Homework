@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using System.Collections;
 using Adgp125_Assessment_Library;
 using System.Collections.Generic;
@@ -73,11 +74,6 @@ public class CanvasScript : MonoBehaviour {
     {
         gameCanvas.enabled = false;
         generatePartyCanvas.enabled = true;
-    }
-
-    public void loadGame()
-    {
-
     }
 
     public void GenerateParty()
@@ -180,6 +176,7 @@ public class CanvasScript : MonoBehaviour {
         }
 
         p1Name.text = p[p1].Name;
+        player1Name.text = p[p1].Name;
         p1Health.text = p[p1].Health.ToString();
         p1Strength.text = p[p1].Strength.ToString();
         p1Defense.text = p[p1].Defense.ToString();
@@ -189,6 +186,7 @@ public class CanvasScript : MonoBehaviour {
         BattleReadyParty.Add(p[p1]);
 
         p2Name.text = p[p2].Name;
+        player2Name.text = p[p2].Name;
         p2Health.text = p[p2].Health.ToString();
         p2Strength.text = p[p2].Strength.ToString();
         p2Defense.text = p[p2].Defense.ToString();
@@ -198,6 +196,7 @@ public class CanvasScript : MonoBehaviour {
         BattleReadyParty.Add(p[p2]);
 
         p3Name.text = p[p3].Name;
+        player3Name.text = p[p3].Name;
         p3Health.text = p[p3].Health.ToString();
         p3Strength.text = p[p3].Strength.ToString();
         p3Defense.text = p[p3].Defense.ToString();
@@ -235,26 +234,242 @@ public class CanvasScript : MonoBehaviour {
             }
         }
 
-        //player1Name.text = p[p1].Name;
-        //player2Name.text = p[p2].Name;
-        //player3Name.text = p[p3].Name;
-
-        //enemy1Name.text = e[e1].Name;
-        //enemy2Name.text = e[e2].Name;
-        //enemy3Name.text = e[e3].Name;
-
         BattleReadyParty.Add(e[e1]);
         BattleReadyParty.Add(e[e2]);
         BattleReadyParty.Add(e[e3]);
 
     }
 
+    public void LoadedGameImages(List<Unit> units)
+    {
+        for (int i = 0; i < units.Count; i++)
+        {
+            //Player Images
+            if (units[i].Name == player1Name.text)
+            {
+                switch (units[i].Name)
+                {
+                    case "Cloud":
+                        p1.texture = imageList.Cloud;
+                        break;
+                    case "Barret":
+                        p1.texture = imageList.Barrett;
+                        break;
+                    case "Cait Sith":
+                        p1.texture = imageList.CaitSith;
+                        break;
+                    case "Aerith":
+                        p1.texture = imageList.Aerith;
+                        break;
+                    case "Yuffie":
+                        p1.texture = imageList.Yuffie;
+                        break;
+                    case "Vincent":
+                        p1.texture = imageList.Vincent;
+                        break;
+                    case "Cid":
+                        p1.texture = imageList.Cid;
+                        break;
+                    case "Red XIII":
+                        p1.texture = imageList.RedXIII;
+                        break;
+                    case "Tifa":
+                        p1.texture = imageList.Tifa;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (units[i].Name == player2Name.text)
+            {
+                switch (units[i].Name)
+                {
+                    case "Cloud":
+                        p2.texture = imageList.Cloud;
+                        break;
+                    case "Barret":
+                        p2.texture = imageList.Barrett;
+                        break;
+                    case "Cait Sith":
+                        p2.texture = imageList.CaitSith;
+                        break;
+                    case "Aerith":
+                        p2.texture = imageList.Aerith;
+                        break;
+                    case "Yuffie":
+                        p2.texture = imageList.Yuffie;
+                        break;
+                    case "Vincent":
+                        p2.texture = imageList.Vincent;
+                        break;
+                    case "Cid":
+                        p2.texture = imageList.Cid;
+                        break;
+                    case "Red XIII":
+                        p2.texture = imageList.RedXIII;
+                        break;
+                    case "Tifa":
+                        p2.texture = imageList.Tifa;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (units[i].Name == player3Name.text)
+            {
+                switch (units[i].Name)
+                {
+                    case "Cloud":
+                        p3.texture = imageList.Cloud;
+                        break;
+                    case "Barret":
+                        p3.texture = imageList.Barrett;
+                        break;
+                    case "Cait Sith":
+                        p3.texture = imageList.CaitSith;
+                        break;
+                    case "Aerith":
+                        p3.texture = imageList.Aerith;
+                        break;
+                    case "Yuffie":
+                        p3.texture = imageList.Yuffie;
+                        break;
+                    case "Vincent":
+                        p3.texture = imageList.Vincent;
+                        break;
+                    case "Cid":
+                        p3.texture = imageList.Cid;
+                        break;
+                    case "Red XIII":
+                        p3.texture = imageList.RedXIII;
+                        break;
+                    case "Tifa":
+                        p3.texture = imageList.Tifa;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+            //Enemy Images
+                    if (units[i].Name == enemy1Name.text)
+            {
+                switch (units[i].Name)
+                {
+                    case "2Faced":
+                        e1.texture = imageList.TwoFaced;
+                        break;
+                    case "Ice Golem":
+                        e1.texture = imageList.IceGolem;
+                        break;
+                    case "Ancient Dragon":
+                        e1.texture = imageList.AncientDragon;
+                        break;
+                    case "Behemoth":
+                        e1.texture = imageList.Behemoth;
+                        break;
+                    case "Death Claw":
+                        e1.texture = imageList.DeathClaw;
+                        break;
+                    case "Master Tonberry":
+                        e1.texture = imageList.MasterTonberry;
+                        break;
+                    case "Toxic Frog":
+                        e1.texture = imageList.ToxicFrog;
+                        break;
+                    case "Zuu":
+                        e1.texture = imageList.Zuu;
+                        break;
+                    case "Ghost":
+                        e1.texture = imageList.Ghost;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (units[i].Name == enemy2Name.text)
+            {
+                switch (units[i].Name)
+                {
+                    case "2Faced":
+                        e2.texture = imageList.TwoFaced;
+                        break;
+                    case "Ice Golem":
+                        e2.texture = imageList.IceGolem;
+                        break;
+                    case "Ancient Dragon":
+                        e2.texture = imageList.AncientDragon;
+                        break;
+                    case "Behemoth":
+                        e2.texture = imageList.Behemoth;
+                        break;
+                    case "Death Claw":
+                        e2.texture = imageList.DeathClaw;
+                        break;
+                    case "Master Tonberry":
+                        e2.texture = imageList.MasterTonberry;
+                        break;
+                    case "Toxic Frog":
+                        e2.texture = imageList.ToxicFrog;
+                        break;
+                    case "Zuu":
+                        e2.texture = imageList.Zuu;
+                        break;
+                    case "Ghost":
+                        e2.texture = imageList.Ghost;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            if (units[i].Name == enemy3Name.text)
+            {
+                switch (units[i].Name)
+                {
+                    case "2Faced":
+                        e3.texture = imageList.TwoFaced;
+                        break;
+                    case "Ice Golem":
+                        e3.texture = imageList.IceGolem;
+                        break;
+                    case "Ancient Dragon":
+                        e3.texture = imageList.AncientDragon;
+                        break;
+                    case "Behemoth":
+                        e3.texture = imageList.Behemoth;
+                        break;
+                    case "Death Claw":
+                        e3.texture = imageList.DeathClaw;
+                        break;
+                    case "Master Tonberry":
+                        e3.texture = imageList.MasterTonberry;
+                        break;
+                    case "Toxic Frog":
+                        e3.texture = imageList.ToxicFrog;
+                        break;
+                    case "Zuu":
+                        e3.texture = imageList.Zuu;
+                        break;
+                    case "Ghost":
+                        e3.texture = imageList.Ghost;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+    }
+    
     public void setImages(List<Unit> units)
     {
         for (int i = 0; i < units.Count; i++)
         {
             //Player Images
-            if (units[i].Name == p1Name.text)
+            if (units[i].Name == player1Name.text)
             {
                 switch (units[i].Name)
                 {
@@ -298,7 +513,7 @@ public class CanvasScript : MonoBehaviour {
                         break;
                 }
             }
-            if (units[i].Name == p2Name.text)
+            if (units[i].Name == player2Name.text)
             {
                 switch (units[i].Name)
                 {
@@ -343,7 +558,7 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
 
-            if (units[i].Name == p3Name.text)
+            if (units[i].Name == player3Name.text)
             {
                 switch (units[i].Name)
                 {
@@ -390,7 +605,7 @@ public class CanvasScript : MonoBehaviour {
             }
 
             //Enemy Images
-                    if (units[i].Name == enemy1Name.text)
+            if (units[i].Name == enemy1Name.text)
             {
                 switch (units[i].Name)
                 {

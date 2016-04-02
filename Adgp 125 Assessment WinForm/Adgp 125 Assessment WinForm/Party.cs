@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace Adgp_125_Assessment_WinForm
 {
     [Serializable]
-    //[XmlRoot("Party")]
+    [XmlRoot("Party")]
     //Public class used for containing units
     public class Party
     {//Public constructor

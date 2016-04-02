@@ -46,9 +46,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CanvasScript.cs" />
-     <Compile Include="Assets\Scripts\Files.cs" />
      <Compile Include="Assets\Scripts\GameFlow.cs" />
      <Compile Include="Assets\Scripts\ImagesScript.cs" />
+     <Compile Include="Assets\Scripts\fileGUI.cs" />
+     <Compile Include="Assets\Scripts\fileManager.cs" />
+     <None Include="Assets\GameData\PlayerParty\p.xml" />
+     <None Include="Assets\GameData\State\s.xml" />
+     <None Include="Assets\GameData\index.xml" />
+     <None Include="Assets\GameData\EnemyParty\e.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

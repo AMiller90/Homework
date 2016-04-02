@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Adgp125_Assessment_Library
 {
@@ -154,6 +155,7 @@ namespace Adgp125_Assessment_Library
         //private list<Unit>
         private List<Unit> m_Participants = new List<Unit>();
         //public string stuffText - Any text involved in battling other than stats 
+        [XmlIgnoreAttribute]
         public string stuffText;
 
         //public Constructor
@@ -453,6 +455,34 @@ namespace Adgp125_Assessment_Library
 
     }
 
-   
+    //Public class used for containing units
+    [XmlRoot("Party")]
+    public class Party
+    {//Public constructor
+        public Party()
+        {//Initialize a unit list with each instance of a party object
+            _units = new List<Unit>();
+
+        }
+        //Private list of units variable
+        private List<Unit> _units;
+
+        //Sets the name of the Array to party, Sets the items in the array as Unit type and gives the element name as Unit
+        [XmlArray("Party"), XmlArrayItem(typeof(Unit), ElementName = "Unit")]
+        //Public List<Unit> property
+        public List<Unit> units
+        {
+            get
+            {//return units variable
+                return _units;
+            }
+
+            set
+            {//give the units variable a value
+                _units = value;
+            }
+        }
+
+    }
 
 }

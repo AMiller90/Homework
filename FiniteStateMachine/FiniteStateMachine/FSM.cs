@@ -8,7 +8,7 @@ namespace FiniteStateMachine
     public delegate void Handler();
 
     //State class used for creating a state object
-    [Serializable]
+    //[Serializable]
     public class State
     {
         //Name of the Enum
