@@ -107,9 +107,10 @@ namespace Adgp_125_Assessment_WinForm
 
         //Create Possible Players
         private List<Unit> CreateObjects()
-        {
+        {   //Create a new list for holding all the created unit objects
             List<Unit> AllObjects = new List<Unit>();
 
+            //Create all "player" unit objects
             Unit Cloud = new Unit("Cloud", 150, 12, 12, 6, 0,"Player");
             Unit Barret = new Unit("Barret", 220, 15, 13, 5, 0,"Player");
             Unit Tifa = new Unit("Tifa", 215, 11, 11, 7, 0,"Player");
@@ -120,7 +121,7 @@ namespace Adgp_125_Assessment_WinForm
             Unit Yuffie = new Unit("Yuffie", 150, 10, 10, 8, 0, "Player");
             Unit Vincent = new Unit("Vincent", 170, 9, 10, 5, 0, "Player");
 
-
+            //Create all "enemy" unit objects
             Unit TwoFaced = new Unit("2Faced", 100, 20, 15, 5, 25, "Enemy");
             Unit AncientDragon = new Unit("Ancient Dragon", 200, 30, 12, 4, 100, "Enemy");
             Unit Ghost = new Unit("Ghost", 80, 20, 15, 5, 30, "Enemy");
@@ -131,6 +132,7 @@ namespace Adgp_125_Assessment_WinForm
             Unit MasterTonberry = new Unit("Master Tonberry", 170, 20, 15, 5, 50, "Enemy");
             Unit Behemoth = new Unit("Behemoth", 200, 35, 14, 4, 100, "Enemy");
 
+            //Add all the "player" unit objects to the list
             AllObjects.Add(Cloud);
             AllObjects.Add(Barret);
             AllObjects.Add(Tifa);
@@ -141,6 +143,7 @@ namespace Adgp_125_Assessment_WinForm
             AllObjects.Add(Yuffie);
             AllObjects.Add(Vincent);
 
+            //Add all the "enemy" unit objects to the list
             AllObjects.Add(TwoFaced);
             AllObjects.Add(AncientDragon);
             AllObjects.Add(Ghost);
@@ -151,15 +154,18 @@ namespace Adgp_125_Assessment_WinForm
             AllObjects.Add(MasterTonberry);
             AllObjects.Add(Behemoth);
 
+            //Return the populated list 
             return AllObjects;
         }
 
+          //Function that randomizes both the player and enemy parties
         private void RandomizeAllParties(List<Unit> p, List <Unit> e)
-     {
+     {      //Create a new list of unit
             List<Unit> empty = new List<Unit>();
+            //Remove all elements of the current BattleReadyParty list
             BattleReadyParty.RemoveRange(0, BattleReadyParty.Count);
 
-            //Unit u = new Unit();
+     
             //Create random class instance
             Random r = new Random();
 
@@ -168,130 +174,174 @@ namespace Adgp_125_Assessment_WinForm
             int p2 = r.Next(0, p.Count - 1);
             int p3 = r.Next(0, p.Count - 1);
 
+            //while p1 is equal to p2
             while (p1 == p2)
-            {
+            {//randomize p2
                 p2 = r.Next(0, p.Count - 1);
             }
-
+             
+            //While p1 is equal to p3
             while(p1 == p3)
-            {
+            {//Randomize p3
                 p3 = r.Next(0, p.Count - 1);
             }
 
-
+            //If p1 is not equal to p2 and p1 is not equal to p3
             if (p1 != p2 && p1 != p3)
-            {
+            {//Set the P1NameBox.Text to the units name in the player party at the specified index
                 P1NameBox.Text = p[p1].Name;
+                //Set the Player1name to the units name in the player party at the specified index
                 player1name = p[p1].Name;
+                //Set the P1HealthBox.Text to the units health in the player party at the specified index
                 P1HealthBox.Text = p[p1].Health.ToString();
+                //Set the P1StrengthBox.Text to the units strength in the player party at the specified index
                 P1StrengthBox.Text = p[p1].Strength.ToString();
+                //Set the P1DefenseBox.Text to the units defense in the player party at the specified index
                 P1DefenseBox.Text = p[p1].Defense.ToString();
+                //Set the P1SpeedBox.Text to the units speed in the player party at the specified index
                 P1SpeedBox.Text = p[p1].Speed.ToString();
+                //Set the P1LevelBox.Text to the units level in the player party at the specified index
                 P1LevelBox.Text = p[p1].Level.ToString();
+                //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(p[p1]);
                 
             }
-
+            
+            //while p2 is equal to p1
             while(p2 == p1)
-            {
+            {//Randomize p2
                 p2 = r.Next(0, p.Count - 1);
             }
-
+            //while p2 is equal to p3
             while(p2 == p3)
-            {
+            {//Randomize p3
                 p3 = r.Next(0, p.Count - 1);
             }
-
+            //If p2 is not equal to p3 and p2 is not equal to p1
             if (p2 != p3 && p2 != p1)
-            {
+            {//Set the P2NameBox.Text to the units name in the player party at the specified index
                 P2NameBox.Text = p[p2].Name;
+                //Set the Player2name to the units name in the player party at the specified index
                 player2name = p[p2].Name;
+                //Set the P2HealthBox.Text to the units health in the player party at the specified index
                 P2HealthBox.Text = p[p2].Health.ToString();
+                //Set the P2StrengthBox.Text to the units strength in the player party at the specified index
                 P2StrengthBox.Text = p[p2].Strength.ToString();
+                //Set the P2DefenseBox.Text to the units defense in the player party at the specified index
                 P2DefenseBox.Text = p[p2].Defense.ToString();
+                //Set the P2SpeedBox.Text to the units speed in the player party at the specified index
                 P2SpeedBox.Text = p[p2].Speed.ToString();
+                //Set the P2LevelBox.Text to the units level in the player party at the specified index
                 P2LevelBox.Text = p[p2].Level.ToString();
+                //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(p[p2]);
             }
 
+            //while p3 is equal to p1
             while(p3 == p1)
-            {
+            {//Randomize p3
                 p3 = r.Next(0, p.Count - 1);
-
+                //While p3 is equal to p2
                 while (p3 == p2)
-                {
+                {//Randomize p3
                     p3 = r.Next(0, p.Count - 1);
                 }
             }
             
-
+            //If p3 is not equal to p2 and p3 is not equal to p1
             if (p3 != p2 && p3 != p1)
-            {
+            {//Set the P3NameBox.Text to the units name in the player party at the specified index
                 P3NameBox.Text = p[p3].Name;
+                //Set the player3name to the units name in the player party at the specified index
                 player3name = p[p3].Name;
+                //Set the P3HealthBox.Text to the units health in the player party at the specified index
                 P3HealthBox.Text = p[p3].Health.ToString();
+                //Set the P3StrengthBox.Text to the units strength in the player party at the specified index
                 P3StrengthBox.Text = p[p3].Strength.ToString();
+                //Set the P3DefenseBox.Text to the units defense in the player party at the specified index
                 P3DefenseBox.Text = p[p3].Defense.ToString();
+                //Set the P2SpeedBox.Text to the units speed in the player party at the specified index
                 P3SpeedBox.Text = p[p3].Speed.ToString();
+                //Set the P3LevelBox.Text to the units level in the player party at the specified index
                 P3LevelBox.Text = p[p3].Level.ToString();
+                //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(p[p3]);
             }
-
+            //Call previewImages function to set the images of the current players in the BattlePartyReady list
             previewImages(BattleReadyParty);
 
+            //Create an instance of the random object
             Random a = new Random();
 
+            //call Next() 3 times giving random selection for enemy members
             int e1 = a.Next(0, e.Count - 1);
             int e2 = a.Next(0, e.Count - 1);
             int e3 = a.Next(0, e.Count - 1);
            
+            //while e1 is equal to e2
             while(e1 == e2)
-            {
+            {//Randomize e2
                 e2 = a.Next(0, e.Count - 1);
             }
-
+            //while e2 is equal to e3
             while(e2 == e3)
-            {
+            {//Randomize e3 
                 e3 = a.Next(0, e.Count - 1);
             }
-
+            //while e3 is equal to e1
             while(e3 == e1)
-            {
+            {//Randomize e1
                 e1 = a.Next(0, e.Count - 1);
-
+                //while e1 is equal to e2
                 while (e1 == e2)
-                {
+                {//Randomize e1
                     e1 = a.Next(0, e.Count - 1);
 
                 }
             }
-
+            //Add the specified unit to the BattlePartyReady list
             BattleReadyParty.Add(e[e1]);
-
+            //Add the specified unit to the BattlePartyReady list
             BattleReadyParty.Add(e[e2]);
-
+            //Add the specified unit to the BattlePartyReady list
             BattleReadyParty.Add(e[e3]);
 
             
         }
-
+        
+        //Function called on event of form1 loading
         private void Form1_Load(object sender, EventArgs e)
-        {
+        {//Set the saveFileName box visibility to false
             saveFileName.Visible = false;
+            //Create a handler delegate and store a function in it 
             Handler loadHandler = BattleScene.LoadGame;
+            //Create a handler delegate and store a function in it
             Handler searchHandler = BattleScene.SearchPhase;
+            //Create a handler delegate and store a function in it
             Handler battleHandler = BattleScene.BattlePhase;
+            //Create a handler delegate and store a function in it
             Handler playerturnHandler = BattleScene.PlayerTurn;
+            //Create a handler delegate and store a function in it
             Handler enemyturnHandler = BattleScene.EnemyTurn;
+            //Create a handler delegate and store a function in it
             Handler exitHandler = BattleScene.ExitPhase;
 
+            //reference the FSM in the manager class and add a new state to the FSM(state, function)
             manager.fsm.State(e_STATES.START, null);
+            //Add new state(Search, searchHandler). searchHandler function will be called when search state is current state
             manager.fsm.State(e_STATES.SEARCH, searchHandler);
+            //Add new state(Battle, battleHandler). battleHandler function will be called when battle state is current state
             manager.fsm.State(e_STATES.BATTLE, battleHandler);
+            //Add new state(Playerturn, playerturnHandler). playerturnHandler function will be called when playerturn state is  
+            //current state
             manager.fsm.State(e_STATES.PLAYERTURN, playerturnHandler);
+             //Add new state(Enemyturn, enemyturnHandler). enemyturnHandler function will be called when enemyturn state is  
+            //current state
             manager.fsm.State(e_STATES.ENEMYTURN, enemyturnHandler);
+            //Add new state(Exit, exitHandler). exitHandler function will be called when exit state is current state
             manager.fsm.State(e_STATES.EXIT, exitHandler);
 
+            //Add a new tranisition to the FSM. (From state, to state, string that gives command to transition)
             manager.fsm.AddTransition(e_STATES.INIT, e_STATES.START, "auto");
             manager.fsm.AddTransition(e_STATES.START, e_STATES.SEARCH, "search");
             manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.PLAYERTURN, "PLAYERTURN");
@@ -302,20 +352,21 @@ namespace Adgp_125_Assessment_WinForm
             manager.fsm.AddTransition(e_STATES.BATTLE, e_STATES.ENEMYTURN, "battletoenemy");
             manager.fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.EXIT, "playertoexit");
             manager.fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.EXIT, "enemytoexit");
-
+            //Call feed function with "auto" passed into transition from init state to start state
             manager.fsm.Feed("auto");
 
+            //Set the textBox1.Text to the name of the currenstate as a string
             textBox1.Text = manager.fsm.currentState.name.ToString();
 
         }
-
+        //When the save button is clicked
         private void SaveButton_Click(object sender, EventArgs e)
-        {
+        {//saveFileName box becomes visible 
             saveFileName.Visible = true;
 
          
         }
-
+        
         private void LoadButton_Click(object sender, EventArgs e)
         {
             
