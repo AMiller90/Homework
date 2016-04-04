@@ -48,6 +48,7 @@
             this.e2PictureBox = new System.Windows.Forms.PictureBox();
             this.e3PictureBox = new System.Windows.Forms.PictureBox();
             this.SaveGameButton = new System.Windows.Forms.Button();
+            this.MainMenuButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.p1PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p3PictureBox)).BeginInit();
@@ -223,7 +224,7 @@
             // 
             // SaveGameButton
             // 
-            this.SaveGameButton.Location = new System.Drawing.Point(1091, 610);
+            this.SaveGameButton.Location = new System.Drawing.Point(12, 610);
             this.SaveGameButton.Name = "SaveGameButton";
             this.SaveGameButton.Size = new System.Drawing.Size(75, 23);
             this.SaveGameButton.TabIndex = 22;
@@ -231,12 +232,23 @@
             this.SaveGameButton.UseVisualStyleBackColor = true;
             this.SaveGameButton.Click += new System.EventHandler(this.SaveGameButton_Click);
             // 
+            // MainMenuButton
+            // 
+            this.MainMenuButton.Location = new System.Drawing.Point(1091, 610);
+            this.MainMenuButton.Name = "MainMenuButton";
+            this.MainMenuButton.Size = new System.Drawing.Size(75, 23);
+            this.MainMenuButton.TabIndex = 23;
+            this.MainMenuButton.Text = "Main Menu";
+            this.MainMenuButton.UseVisualStyleBackColor = true;
+            this.MainMenuButton.Click += new System.EventHandler(this.MainMenuButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1178, 645);
+            this.Controls.Add(this.MainMenuButton);
             this.Controls.Add(this.SaveGameButton);
             this.Controls.Add(this.e3PictureBox);
             this.Controls.Add(this.e2PictureBox);
@@ -293,5 +305,6 @@
         private System.Windows.Forms.PictureBox e2PictureBox;
         private System.Windows.Forms.PictureBox e3PictureBox;
         private System.Windows.Forms.Button SaveGameButton;
+        private System.Windows.Forms.Button MainMenuButton;
     }
 }

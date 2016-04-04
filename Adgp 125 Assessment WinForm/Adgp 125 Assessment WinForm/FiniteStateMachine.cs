@@ -122,7 +122,7 @@ public class FiniteStateMachine<T>
                 return true;
             }
         }
-
+        //return false
         return false;
     }
 
@@ -145,7 +145,7 @@ public class FiniteStateMachine<T>
         }
         //Set the states delegate to the passed in delegate variable
         newState.del = deleg;
-
+        //return true
         return true;
     }
 

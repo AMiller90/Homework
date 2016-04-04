@@ -32,6 +32,7 @@ public class GameFlow : MonoBehaviour {
 
     FileIOS File = new FileIOS();
 
+    bool isDone = false;
     public int index;
     int count;
     public Unit a = new Unit();
@@ -123,7 +124,7 @@ public class GameFlow : MonoBehaviour {
 
         if (a.Participants.Count >= 1)
         {
-            a.Participants.RemoveRange(0, enemyParty.Count);
+            a.Participants.RemoveRange(0, a.Participants.Count);
         }
         if (enemyParty.Count >= 1)
         {
@@ -209,6 +210,7 @@ public class GameFlow : MonoBehaviour {
 
     private void enemyState()
     {
+        bool isDone = false;
         Debug.Log(fsm.currentState.name.ToString());
 
         Enemy1Button.enabled = false;
@@ -244,13 +246,17 @@ public class GameFlow : MonoBehaviour {
             manager.Statsofobjects(a.Participants);
             StatsField.text = manager.statsText;
 
-            Debug.Log(fsm.currentState.name.ToString());
+            canvasScript.gameCanvas.enabled = true;
+            canvasScript.battleCanvas.enabled = false;
 
+            isDone = true;
             fsm.Feed("enemytostart");
 
         }
-        processTurn(index);
-
+        if (isDone == false)
+        {
+            processTurn(index);
+        }
     }
 
     public void Play()
@@ -268,14 +274,7 @@ public class GameFlow : MonoBehaviour {
 
     private void processTurn(int number)
     {
-        if (manager.Checkforvictory(playerParty, enemyParty) == true)
-        {
-            //number = 0;
-            //index = 0;
-            fsm.Feed("battletostart");
-
-        }
-            if (number == a.Participants.Count)
+        if (number == a.Participants.Count)
         {
             number = 0;
             index = 0;
@@ -332,18 +331,6 @@ public class GameFlow : MonoBehaviour {
         {
             battleBox.text = manager.winText;
 
-
-            Party party = new Party();
-            party.units = playerParty;
-
-            foreach (Unit u in party.units)
-            {//Reset health
-                u.Health = u.MaxHp;
-                //Bring life to true 
-                u.Life = true;
-            }
-
-
             manager.statsText = "";
             manager.Statsofobjects(a.Participants);
             StatsField.text = manager.statsText;
@@ -351,22 +338,22 @@ public class GameFlow : MonoBehaviour {
             Enemy1Button.enabled = false;
             Enemy2Button.enabled = false;
             Enemy3Button.enabled = false;
-            Debug.Log(fsm.currentState.name.ToString());
 
-            string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/VictoryParty", "Enter a filename here for your party", "xml");
-            File.Serialize(ppartyfile, party);
-
-            canvasScript.gameCanvas.enabled = true;
-            canvasScript.battleCanvas.enabled = false;
-
-            Debug.Log(fsm.currentState.name.ToString());
+            SaveMenu.enabled = true;
+           
+            isDone = true;
+           
         }
-
-        processTurn(index);
+        if(isDone == false)
+        {
+            processTurn(index);
+        }
+        
     }
 
     public void AttackEnemy2()
     {
+        bool isDone = false;
         if (enemyParty[1].Life == true)
         {
             a.Participants[index].Attack(enemyParty[1]);
@@ -383,16 +370,7 @@ public class GameFlow : MonoBehaviour {
         }
         if (manager.Checkforvictory(playerParty, enemyParty) == true)
         {
-            Party party = new Party();
-            party.units = playerParty;
-
-            foreach (Unit u in party.units)
-            {//Reset health
-                u.Health = u.MaxHp;
-                //Bring life to true 
-                u.Life = true;
-            }
-
+            battleBox.text = manager.winText;
 
             manager.statsText = "";
             manager.Statsofobjects(a.Participants);
@@ -401,23 +379,21 @@ public class GameFlow : MonoBehaviour {
             Enemy1Button.enabled = false;
             Enemy2Button.enabled = false;
             Enemy3Button.enabled = false;
-            Debug.Log(fsm.currentState.name.ToString());
 
-            string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/VictoryParty", "Enter a filename here for your party", "xml");
-            File.Serialize(ppartyfile, party);
+            SaveMenu.enabled = true;
 
-            canvasScript.gameCanvas.enabled = true;
-            canvasScript.battleCanvas.enabled = false;
-
-            Debug.Log(fsm.currentState.name.ToString());
+            isDone = true;
 
         }
-
-        processTurn(index);
+        if (isDone == false)
+        {
+            processTurn(index);
+        }
     }
 
     public void AttackEnemy3()
     {
+        bool isDone = false;
         if (enemyParty[2].Life == true)
         {
             a.Participants[index].Attack(enemyParty[2]);
@@ -434,16 +410,7 @@ public class GameFlow : MonoBehaviour {
         }
         if (manager.Checkforvictory(playerParty, enemyParty) == true)
         {
-            Party party = new Party();
-            party.units = playerParty;
-
-            foreach (Unit u in party.units)
-            {//Reset health
-                u.Health = u.MaxHp;
-                //Bring life to true 
-                u.Life = true;
-            }
-
+            battleBox.text = manager.winText;
 
             manager.statsText = "";
             manager.Statsofobjects(a.Participants);
@@ -452,19 +419,16 @@ public class GameFlow : MonoBehaviour {
             Enemy1Button.enabled = false;
             Enemy2Button.enabled = false;
             Enemy3Button.enabled = false;
-            Debug.Log(fsm.currentState.name.ToString());
 
-            string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/VictoryParty", "Enter a filename here for your party", "xml");
-            File.Serialize(ppartyfile, party);
+            SaveMenu.enabled = true;
 
-            canvasScript.gameCanvas.enabled = true;
-            canvasScript.battleCanvas.enabled = false;
-
-            Debug.Log(fsm.currentState.name.ToString());
+            isDone = true;
 
         }
-
-        processTurn(index);
+        if (isDone == false)
+        {
+            processTurn(index);
+        }
     }
 
     public void FirstAttack(List<Unit> uList)
@@ -493,4 +457,33 @@ public class GameFlow : MonoBehaviour {
         Application.Quit();
     }
 
+    public void ClickYes()
+    {
+        SaveMenu.enabled = false;
+        Party party = new Party();
+        party.units = playerParty;
+
+        foreach (Unit u in party.units)
+        {//Reset health
+            u.Health = u.MaxHp;
+            //Bring life to true 
+            u.Life = true;
+        }
+
+        string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/VictoryParty", "Enter a filename here for your party", "xml");
+        File.Serialize(ppartyfile, party);
+
+        canvasScript.gameCanvas.enabled = true;
+        canvasScript.battleCanvas.enabled = false;
+
+        fsm.Feed("playertostart");
+    }
+
+    public void ClickNo()
+    {
+        SaveMenu.enabled = false;
+        canvasScript.gameCanvas.enabled = true;
+        canvasScript.battleCanvas.enabled = false;
+        fsm.Feed("playertostart");
+    }
 }

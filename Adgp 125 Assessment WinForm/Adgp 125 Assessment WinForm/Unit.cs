@@ -252,8 +252,9 @@ public class Unit : IStats, IActions<Unit>
 
 
             }
-            else
-            {
+        //If the passed in units health is less than or equal to 0
+        else
+        {
             //Add The Passed in units name has been killed with a new line to the stuffText variable
             stuffText += u.Name + " has been killed!\n";
             //Set the passed in units life to false

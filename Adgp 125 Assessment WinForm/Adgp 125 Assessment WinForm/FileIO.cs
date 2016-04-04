@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Soap;
+//Namespace for using xml serilizer and deserilaizer
 using System.Xml.Serialization;
+//Namespace for using the FileStream
 using System.IO;
 using System.Linq;
 using System.Text;

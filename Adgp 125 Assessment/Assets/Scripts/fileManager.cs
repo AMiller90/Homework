@@ -289,6 +289,11 @@ public class fileManager : MonoBehaviour
         string state = File.Deserialize<string>(currentstate);
         game.index = File.Deserialize<int>(currentUnit);
 
+        if (game.canvasScript.BattleReadyParty.Count >= 1)
+        {
+            game.canvasScript.BattleReadyParty.RemoveRange(0, game.canvasScript.BattleReadyParty.Count);
+        }
+
         game.canvasScript.BattleReadyParty.Add(PlayerP.units[0]);
         game.canvasScript.BattleReadyParty.Add(PlayerP.units[1]);
         game.canvasScript.BattleReadyParty.Add(PlayerP.units[2]);

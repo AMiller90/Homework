@@ -75,6 +75,7 @@
             this.LoadGameButton = new System.Windows.Forms.Button();
             this.NewGameButton = new System.Windows.Forms.Button();
             this.saveFileName = new System.Windows.Forms.RichTextBox();
+            this.ExitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -489,10 +490,20 @@
             this.saveFileName.Name = "saveFileName";
             this.saveFileName.Size = new System.Drawing.Size(147, 31);
             this.saveFileName.TabIndex = 47;
-            this.saveFileName.Text = "Enter Save File Name Here: ";
+            this.saveFileName.Text = "Enter Save File Name Here Then Press Enter: ";
             this.saveFileName.Click += new System.EventHandler(this.saveFileName_Click);
             this.saveFileName.TextChanged += new System.EventHandler(this.saveFileName_TextChanged);
             this.saveFileName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.saveFileName_KeyDown);
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(417, 360);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(179, 74);
+            this.ExitButton.TabIndex = 48;
+            this.ExitButton.Text = "Exit Game";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // Form1
             // 
@@ -501,6 +512,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(993, 568);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.saveFileName);
             this.Controls.Add(this.NewGameButton);
             this.Controls.Add(this.LoadGameButton);
@@ -609,6 +621,7 @@
         private System.Windows.Forms.Button LoadGameButton;
         private System.Windows.Forms.Button NewGameButton;
         private System.Windows.Forms.RichTextBox saveFileName;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 

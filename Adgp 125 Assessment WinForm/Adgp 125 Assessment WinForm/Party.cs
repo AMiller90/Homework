@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+//Namespace for using xml serilizer and deserilaizer
 using System.Xml.Serialization;
 
 namespace Adgp_125_Assessment_WinForm
