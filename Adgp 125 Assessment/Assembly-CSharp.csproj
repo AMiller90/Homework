@@ -49,8 +49,8 @@
      <Compile Include="Assets\Scripts\GameFlow.cs" />
      <Compile Include="Assets\Scripts\ImagesScript.cs" />
      <Compile Include="Assets\Scripts\fileManager.cs" />
+     <None Include="Assets\GameData\VictoryParty\WinningParty.xml" />
      <None Include="Assets\GameData\PlayerParty\p.xml" />
-     <None Include="Assets\GameData\VictoryParty\Winning.xml" />
      <None Include="Assets\GameData\State\s.xml" />
      <None Include="Assets\GameData\index.xml" />
      <None Include="Assets\GameData\EnemyParty\e.xml" />

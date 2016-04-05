@@ -2,9 +2,11 @@
 using System;
 using System.Collections;
 using System.IO;
-using UnityEditor;
+//using UnityEditor;
 using System.Xml.Serialization;
+//Namespace used to reference the FileIO class that will allow serialization and deserialization
 using FileIO;
+//Reference the library 
 using Adgp125_Assessment_Library;
 //Class used to handle the FileIOS Instance and load and save a game
 public class fileManager : MonoBehaviour
@@ -76,22 +78,30 @@ public class fileManager : MonoBehaviour
         Enemies.units = game.enemyParty;
 
         //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected currentState file into this string
-        string currentState = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/State", "Enter a filename here for state of the game", "xml");
+        //string currentState = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/State", "Enter a filename here for state of the game", "xml");
+        //Open the file path and store it in this variable
+        string currentState = Application.dataPath + "/GameData/State/s.xml";
         //Serialize the data
         File.Serialize(currentState, game.fsm.currentState.name.ToString());
 
         //Open save file panel and store the selected playerparty file into this string
-        string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/PlayerParty", "Enter a filename here for your party", "xml");
+        //string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/PlayerParty", "Enter a filename here for your party", "xml");
+        //Open the file path and store it in this variable
+        string ppartyfile = Application.dataPath + "/GameData/PlayerParty/p.xml";
         //Serialize the data
         File.Serialize(ppartyfile, Players);
 
         //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected enemyParty file into this string
-        string epartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/EnemyParty", "Enter a filename here for the enemy party", "xml");
+        //string epartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/EnemyParty", "Enter a filename here for the enemy party", "xml");
+        //Open the file path and store it in this variable
+        string epartyfile = Application.dataPath + "/GameData/EnemyParty/e.xml";
         //Serialize the data
         File.Serialize(epartyfile, Enemies);
 
         //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected currentUnitIndex file into this string
-        string currentUnitIndex = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData", "Enter a filename here for currentUnit taking turn", "xml");
+        //string currentUnitIndex = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData", "Enter a filename here for currentUnit taking turn", "xml");
+        //Open the file path and store it in this variable
+        string currentUnitIndex = Application.dataPath + "/GameData/index.xml";
         //Serialize the data
         File.Serialize(currentUnitIndex, game.index);
 
@@ -105,13 +115,21 @@ public class fileManager : MonoBehaviour
         Party PlayerP = new Party();
 
         //Open Open file panel and store the selected file into this string
-        string playerParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/PlayerParty", "xml");
+        //string playerParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/PlayerParty", "xml");
+        //Open the file path and store it in this variable
+        string playerParty = Application.dataPath + "/GameData/PlayerParty/p.xml";
         //Open Open file panel and store the selected file into this string
-        string enemyParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/EnemyParty", "xml");
+        //string enemyParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/EnemyParty", "xml");
+        //Open the file path and store it in this variable
+        string enemyParty = Application.dataPath + "/GameData/EnemyParty/e.xml";
         //Open Open file panel and store the selected file into this string
-        string currentstate = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/State", "xml");
+        //string currentstate = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/State", "xml");
+        //Open the file path and store it in this variable
+        string currentstate = Application.dataPath + "/GameData/State/s.xml";
         //Open Open file panel and store the selected file into this string
-        string currentUnit = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData", "xml");
+        //string currentUnit = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData", "xml");
+        //Open the file path and store it in this variable
+        string currentUnit = Application.dataPath + "/GameData/index.xml";
 
         //Deserialize the data as a Party object and store into this variable
         PlayerP = File.Deserialize<Party>(playerParty);
