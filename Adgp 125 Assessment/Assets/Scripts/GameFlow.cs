@@ -101,12 +101,7 @@ public class GameFlow : MonoBehaviour {
         fsm.Feed("auto");
         Debug.Log(fsm.currentState.name.ToString());
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
 
-    }
     //Function used to check which object goes first based on higher speed stat
     public List<Unit> sortBySpeed(List<Unit> List)
     {
@@ -454,6 +449,7 @@ public class GameFlow : MonoBehaviour {
         NewGameButton.enabled = false;
         LoadGameButton.enabled = false;
 
+        fileManager.Instance.OnApplicationQuit();
         Application.Quit();
     }
 

@@ -77,7 +77,7 @@ public class Unit : IStats, IActions<Unit>
         }
         
     }
-    //public int LEvel property
+    //public int Level property
     public int Level
     {
         get

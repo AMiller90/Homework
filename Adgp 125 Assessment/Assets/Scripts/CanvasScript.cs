@@ -66,10 +66,6 @@ public class CanvasScript : MonoBehaviour {
         PlayButton.enabled = false;
     }
 	
-	// Update is called once per frame
-	void Update () {
-	}
-
     public void newGame()
     {
         gameCanvas.enabled = false;

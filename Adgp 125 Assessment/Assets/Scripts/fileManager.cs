@@ -6,10 +6,11 @@ using UnityEditor;
 using System.Xml.Serialization;
 using FileIO;
 using Adgp125_Assessment_Library;
-
+//Class used to handle the FileIOS Instance and load and save a game
 public class fileManager : MonoBehaviour
-{
+{//Create an instance of the FileIOS class
     FileIOS File = new FileIOS();
+    //Create an instance of the GameFlow class
     GameFlow game;
 
     //Instance of the fileManager
@@ -17,334 +18,186 @@ public class fileManager : MonoBehaviour
     //Holds the application path
     private string path;
 
+    //Default Constructor
     fileManager()
     {
 
     }
 
+    //On Start
     void Start()
-    {
+    {//Get the proper component
         game = GetComponent<GameFlow>();
     }
 
+    //Property to create or get and instance of fileManager
     public static fileManager Instance
     {
         get
-        {
+        {//If instance is null
             if (instance == null)
-            {
+            {//Create an instance
                 instance = new fileManager();
             }
-
+            //else just return the instance
             return instance;
         }
     }
-
+    
+    //When application quits 
     public void OnApplicationQuit()
-    {
+    {//Destory the instance
         destroyInstance();
     }
 
+    //Destroy the instance
     public void destroyInstance()
-    {
+    {//Set instance to null
         instance = null;
     }
 
+    //Initialize the fileManager
     public void initialize()
     {
 
-        //print("file manager initialized");
+        //Set path to the current directory
         path = Application.dataPath;
     }
 
-    //private bool checkDirectory(string directory)
-    //{
-    //    if (Directory.Exists(path + "/" + directory))
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
-
-    //private void createDirectory(string directory)
-    //{
-    //    if (checkDirectory(directory) == false)
-    //    {
-    //        print("Creating a directory: " + directory);
-    //        Directory.CreateDirectory(path + "/" + directory);
-    //    }
-    //    else
-    //    {
-    //        print("Error: You are trying to create the directory " + directory + " but it already exists!");
-    //    }
-
-
-    //}
-
-    //private void deleteDirectory(string directory)
-    //{
-    //    if (checkDirectory(directory) == true)
-    //    {
-    //        print("Deleting directory: " + directory);
-    //        Directory.Delete(path + "/" + directory, true);
-    //    }
-    //    else
-    //    {
-    //        print("Error: You are trying to delete the directory " + directory + " but it does not exist!");
-
-    //    }
-    //}
-
-    //private void moveDirectory(string originalD, string newD)
-    //{
-    //    if (checkDirectory(originalD) == true && checkDirectory(newD) == false)
-    //    {
-    //        print("Moving directory: " + originalD);
-    //        Directory.Move(path + "/" + originalD, path + "/" + newD);
-    //    }
-    //    else
-    //    {
-    //        print("Error: You are trying to move a directory but it either does not exist or a folder of the same name already exists");
-    //    }
-    //}
-
-    //public string[] findSubDirectories(string directory)
-    //{
-    //    print("Checking directoy: " + directory + " for sub directories");
-    //    string[] subdirectoryList = Directory.GetDirectories(path + "/" + directory);
-    //    return subdirectoryList;
-    //}
-
-    //public string[] findFiles(string directory)
-    //{
-    //    print("Checking directoy: " + directory + " for files");
-    //    string[] fileList = Directory.GetFiles(path + "/" + directory);
-    //    return fileList;
-    //}
-
-    //public bool checkFile(string filePath)
-    //{
-    //    if (File.Exists(path + "/" + filePath))
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
-
-    //public void createFile(string directory, string filename, string filetype, string fileData)
-    //{
-    //    print("Creating " + directory + "/" + filename + "/" + filetype);
-    //    if (checkDirectory(directory) == true)
-    //    {
-    //        if (checkFile(directory + "/" + filename + "." + filetype) == false)
-    //        {
-    //            //Create the file
-    //            File.WriteAllText(path + "/" + directory + "/" + filename + "." + filetype, fileData);
-    //        }
-    //        else
-    //        {
-    //            print("The file " + filename + " akready exists in " + path + "/" + directory);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        print("Unable to create the file as the directory " + directory + " does not exist");
-
-    //    }
-
-
-    //}
-
-    //public string readFile(string directory, string filename, string filetype)
-    //{
-    //    print("Reading " + directory + "/" + filename + "." + filetype);
-
-    //    if (checkDirectory(directory) == true)
-    //    {
-    //        if (checkFile(directory + "/" + filename + "." + filetype) == true)
-    //        {
-    //            //Read the file
-    //            string fileContents = File.ReadAllText(path + "/" + directory + "/" + filename + "." + filetype);
-    //            return fileContents;
-    //        }
-    //        else
-    //        {
-    //            print("The file " + filename + " does not exist in " + path + "/" + directory);
-    //            return null;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        print("Unable to read the file as the directory " + directory + " does not exist");
-    //        return null;
-    //    }
-    //}
-
-    //public void deleteFile(string filePath)
-    //{
-    //    if (File.Exists(path + "/" + filePath))
-    //    {
-    //        File.Delete(path + "/" + filePath);
-    //    }
-    //    else
-    //    {
-    //        print("Unable to delete file as it does not exist");
-    //    }
-    //}
-
-    //public void updateFile(string directory, string filename, string filetype, string fileData, string mode)
-    //{
-    //    print("Updating " + directory + "/" + filename + "." + filetype);
-
-    //    if (checkDirectory(directory) == true)
-    //    {
-    //        if (checkFile(directory + "/" + filename + "." + filetype) == true)
-    //        {
-    //            if (mode == "replace")
-    //            {
-    //                File.WriteAllText(path + "/" + directory + "/" + filename + "." + filetype, fileData);
-    //            }
-    //            if (mode == "append")
-    //            {
-    //                File.AppendAllText(path + "/" + directory + "/" + filename + "." + filetype, fileData);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            print("The file " + filename + " does not exist in " + path + "/" + directory);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        print("Unable to create the file as the directory " + directory + " does not exist");
-    //    }
-    //}
-
-    //public void processFile(string filepath)
-    //{
-    //    print("processing " + filepath);
-
-    //    string fileContents = File.ReadAllText(filepath);
-
-    //    print("Read file which contains: " + fileContents);
-
-    //}
-
-    //public void createXMLFile(string directory, string filename, string filetype, string fileData, string mode)
-    //{
-    //    if (checkDirectory(directory) == true)
-    //    {
-    //        if (mode == "plaintext")
-    //        {
-    //            File.WriteAllText(path + "/" + directory + "/" + filename + "." + filetype, fileData);
-
-    //        }
-    //    }
-    //    else
-    //    {
-    //        print("Unable to create file as the directory " + directory + " does not exist");
-    //    }
-    //}
-
+    //Save a game to an xml file
     public void SaveGame()
-    {
+    {//Create a Party instance
         Party Players = new Party();
+        //Create a Party instance
         Party Enemies = new Party();
+        //Add playerParty to new Players Party units 
         Players.units = game.playerParty;
+        //Add enemyParty to new Enemies units 
         Enemies.units = game.enemyParty;
- 
 
+        //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected currentState file into this string
         string currentState = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/State", "Enter a filename here for state of the game", "xml");
+        //Serialize the data
         File.Serialize(currentState, game.fsm.currentState.name.ToString());
 
+        //Open save file panel and store the selected playerparty file into this string
         string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/PlayerParty", "Enter a filename here for your party", "xml");
+        //Serialize the data
         File.Serialize(ppartyfile, Players);
 
+        //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected enemyParty file into this string
         string epartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/EnemyParty", "Enter a filename here for the enemy party", "xml");
+        //Serialize the data
         File.Serialize(epartyfile, Enemies);
 
+        //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected currentUnitIndex file into this string
         string currentUnitIndex = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData", "Enter a filename here for currentUnit taking turn", "xml");
+        //Serialize the data
         File.Serialize(currentUnitIndex, game.index);
 
     }
 
+    //Load a game from an xml file
     public void LoadGame()
-    {
+    {//Create a Party instance
         Party EnemyE = new Party();
+        //Create a Party instance
         Party PlayerP = new Party();
 
+        //Open Open file panel and store the selected file into this string
         string playerParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/PlayerParty", "xml");
+        //Open Open file panel and store the selected file into this string
         string enemyParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/EnemyParty", "xml");
+        //Open Open file panel and store the selected file into this string
         string currentstate = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/State", "xml");
+        //Open Open file panel and store the selected file into this string
         string currentUnit = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData", "xml");
 
+        //Deserialize the data as a Party object and store into this variable
         PlayerP = File.Deserialize<Party>(playerParty);
+        //Deserialize the data as a Party object and store into this variable
         EnemyE = File.Deserialize<Party>(enemyParty);
+        //Deserialize the data as a string object and store into this variable
         string state = File.Deserialize<string>(currentstate);
+        //Deserialize the data as an int object and store into this variable
         game.index = File.Deserialize<int>(currentUnit);
 
+        //If the BattleReadyPartys count is greater than or equal to 1
         if (game.canvasScript.BattleReadyParty.Count >= 1)
-        {
+        {//Remove all elements from the list
             game.canvasScript.BattleReadyParty.RemoveRange(0, game.canvasScript.BattleReadyParty.Count);
         }
 
+        //Add the specified unit to the BattlePartyReady list
         game.canvasScript.BattleReadyParty.Add(PlayerP.units[0]);
+        //Add the specified unit to the BattlePartyReady list
         game.canvasScript.BattleReadyParty.Add(PlayerP.units[1]);
+        //Add the specified unit to the BattlePartyReady list
         game.canvasScript.BattleReadyParty.Add(PlayerP.units[2]);
 
+        //Add the specified unit to the BattlePartyReady list
         game.canvasScript.BattleReadyParty.Add(EnemyE.units[0]);
+        //Add the specified unit to the BattlePartyReady list
         game.canvasScript.BattleReadyParty.Add(EnemyE.units[1]);
+        //Add the specified unit to the BattlePartyReady list
         game.canvasScript.BattleReadyParty.Add(EnemyE.units[2]);
-
+        //Call Function to print out the stats of all objects in battle
         game.a.Participants = game.sortBySpeed(game.canvasScript.BattleReadyParty);
-
+        //Loop through the list
         for (int i = 0; i < game.a.Participants.Count; i++)
-        {
+        {//Set the BattleOrderTextBox text to a newline with the current units name
             game.BattleOrderText.text += "\n" + game.a.Participants[i].Name;
         }
-
+        //Foreach unit in the list
         foreach (Unit i in game.a.Participants)
-        {
+        {//If the current unit is of type Player
             if (i.Type == "Player")
-            {
+            {//Add the unit to this party
                 game.playerParty.Add(i);
 
             }
+            //If the current unit is of type Enemy
             if (i.Type == "Enemy")
-            {
+            {//Add the unit to this party
                 game.enemyParty.Add(i);
             }
 
         }
+        //Set the player1Name text to the given index of the PlayerP list
         game.canvasScript.player1Name.text = PlayerP.units[0].Name;
+        //Set the player2Name text to the given index of the PlayerP list
         game.canvasScript.player2Name.text = PlayerP.units[1].Name;
+        //Set the player3Name text to the given index of the PlayerP list
         game.canvasScript.player3Name.text = PlayerP.units[2].Name;
 
+        //Set the enemy1Name text to the given index of the EnemyE list
         game.canvasScript.enemy1Name.text = EnemyE.units[0].Name;
+        //Set the enemy2Name text to the given index of the EnemyE list
         game.canvasScript.enemy2Name.text = EnemyE.units[1].Name;
+        //Set the enemy3Name text to the given index of the EnemyE list
         game.canvasScript.enemy3Name.text = EnemyE.units[2].Name;
 
-
+        //Call the function to load in the proper images
         game.canvasScript.LoadedGameImages(game.a.Participants);
 
+        //Call Function to print out the stats of all objects in battle
         game.manager.Statsofobjects(game.a.Participants);
+        //Set the StatsField text variable to the data in the statsText variable
         game.StatsField.text = game.manager.statsText;
 
 
         //Load Battle Scene Canvas
         game.BattleCanvas.enabled = true;
+        //Disable the gameCanvas
         game.canvasScript.gameCanvas.enabled = false;
 
+        //Print out whose current turn it is
         game.battleBox.text += "It is " + game.a.Participants[game.index].Name + "'s turn!\n";
 
+        //Feed the state machine
         game.fsm.Feed(state);
         
 
     }
+
 }
