@@ -129,6 +129,8 @@ namespace Adgp_125_Assessment_WinForm
                 {//Serialize the party object to a file called "Party"
                     _Save.Serialize("Party", party);
 
+                    //Message box prompts user that the Game has been saved
+                    MessageBox.Show("Game Has Been Saved!", "Save", MessageBoxButtons.OK);
                 }
                 //Set isDone variable to true
                 isDone = true;
@@ -210,6 +212,8 @@ namespace Adgp_125_Assessment_WinForm
                 {//Serialize the party object to a file called "Party"
                     _Save.Serialize("Party", party);
 
+                    //Message box prompts user that the Game has been saved
+                    MessageBox.Show("Game Has Been Saved!", "Save", MessageBoxButtons.OK);
                 }
                 //Set isDone variable to true
                 isDone = true;
@@ -291,6 +295,9 @@ namespace Adgp_125_Assessment_WinForm
                 if (DialogResult == DialogResult.Yes)
                 {//Serialize the party object to a file called "Party"
                     _Save.Serialize("WinningParty", party);
+
+                    //Message box prompts user that the Game has been saved
+                    MessageBox.Show("Game Has Been Saved!", "Save", MessageBoxButtons.OK);
                 }
 
                 //Set isDone variable to true
@@ -673,55 +680,71 @@ namespace Adgp_125_Assessment_WinForm
 
         //Battle to enemy
         public void EnemyTurn()
-        {
+        {//Disable the Enemy1Button
             Enemy1Button.Enabled = false;
+            //Disable the Enemy2Button
             Enemy2Button.Enabled = false;
+            //Disable the Enemy3Button
             Enemy3Button.Enabled = false;
-
+            //Set the BattleText text to currentState
             BattleText.Text += refer.manager.fsm.currentState.name.ToString() + "\n";
+            //Set currentStateBox text to the currentState
             CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
 
+            //If the current unit is an enemy and alive
             if (refer.u.Participants[index].Type == "Enemy" && refer.u.Participants[index].Life == true)
-            {
+            {//Create a new unit and store current unit into it
                 Unit Attacker = refer.u.Participants[index];
+                //Create a new Unit and store the enemies target into it
                 Unit Defender = Attacker.EnemyRandomTarget(playerParty);
 
-
+                //Attack function called on target unit
                 Attacker.Attack(Defender);
-                
+                //Set BattleText to stuffText
                 BattleText.Text += Attacker.stuffText;
+                //If index is equal to count
                 if (index == count)
-                {
+                {//Set index to 0
                     index = 0;
                 }
+                //If index is not equal to 0
                 else
-                {
+                {//Increment the index by 1
                     index += 1;
                 }
             }
-
+            //If the Checkforvictory function returns true 
             if (refer.manager.Checkforvictory(playerParty, enemyParty) == true)
-            {
+            {//Set the BattleText text to the winText
                 BattleText.Text += refer.manager.winText;
 
+                //Set the statsText to ""
                 refer.manager.statsText = "";
+                //Call this function to print out the Stats of the objects in battle
                 refer.manager.Statsofobjects(refer.u.Participants);
+                //Set the StatsBox text to the statsText
                 StatsBox.Text = refer.manager.statsText;
 
+                //Disable the Enemy1Button
                 Enemy1Button.Enabled = false;
+                //Disable the Enemy2Button
                 Enemy2Button.Enabled = false;
+                //Disable the Enemy3Button
                 Enemy3Button.Enabled = false;
 
-
+                //Set currentStateBox text to the currentState
                 CurrentStateBox.Text = refer.manager.fsm.currentState.name.ToString();
+                //Set isDone to true
                 isDone = true;
+                //Message box prompting user that Enemy has won
                 MessageBox.Show("Game Over", "Enemy Has Won!");
-
+                //Feed machine
                 refer.manager.fsm.Feed("start");
 
             }
+            //If isDone is equal to false
             if (isDone == false)
-            {
+            {//Call process turn function
                 processTurn(index);
             }
 
