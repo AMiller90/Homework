@@ -2,39 +2,39 @@
 <Party xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Party>
     <Unit>
-      <Name>Cid</Name>
-      <Level>1</Level>
-      <MaxHp>220</MaxHp>
-      <Health>220</Health>
-      <Strength>12</Strength>
-      <Defense>12</Defense>
-      <Speed>6</Speed>
-      <Experience>0</Experience>
-      <Type>Player</Type>
-      <Life>true</Life>
-      <Participants />
-    </Unit>
-    <Unit>
-      <Name>Barret</Name>
-      <Level>1</Level>
-      <MaxHp>220</MaxHp>
-      <Health>198</Health>
-      <Strength>15</Strength>
-      <Defense>13</Defense>
-      <Speed>5</Speed>
-      <Experience>0</Experience>
-      <Type>Player</Type>
-      <Life>true</Life>
-      <Participants />
-    </Unit>
-    <Unit>
-      <Name>Cait Sith</Name>
+      <Name>Red XIII</Name>
       <Level>1</Level>
       <MaxHp>220</MaxHp>
       <Health>220</Health>
       <Strength>10</Strength>
+      <Defense>12</Defense>
+      <Speed>10</Speed>
+      <Experience>0</Experience>
+      <Type>Player</Type>
+      <Life>true</Life>
+      <Participants />
+    </Unit>
+    <Unit>
+      <Name>Tifa</Name>
+      <Level>1</Level>
+      <MaxHp>215</MaxHp>
+      <Health>215</Health>
+      <Strength>11</Strength>
       <Defense>11</Defense>
-      <Speed>5</Speed>
+      <Speed>7</Speed>
+      <Experience>0</Experience>
+      <Type>Player</Type>
+      <Life>true</Life>
+      <Participants />
+    </Unit>
+    <Unit>
+      <Name>Cloud</Name>
+      <Level>1</Level>
+      <MaxHp>150</MaxHp>
+      <Health>150</Health>
+      <Strength>12</Strength>
+      <Defense>12</Defense>
+      <Speed>6</Speed>
       <Experience>0</Experience>
       <Type>Player</Type>
       <Life>true</Life>

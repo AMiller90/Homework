@@ -7,6 +7,7 @@ using Adgp125_Assessment_Library;
 using System.Collections.Generic;
 //Namespace used to reference the FileIO class that will allow serialization and deserialization
 using FileIO;
+
 public class CanvasScript : MonoBehaviour {
     //Create a refernece to the ImageScript
     ImagesScript imageList;
@@ -18,7 +19,8 @@ public class CanvasScript : MonoBehaviour {
     public Canvas generatePartyCanvas;
     //Public Canvas object
     public Canvas battleCanvas;
-
+    //Public Canvas object
+    public Canvas SavedFilePrompt;
     //public Button object
     public Button PlayButton;
     //public InputField object
@@ -106,6 +108,8 @@ public class CanvasScript : MonoBehaviour {
         battleCanvas.enabled = false;
         //Disable the PlayButton
         PlayButton.enabled = false;
+        //Disable the SavedFilePrompt
+        SavedFilePrompt.enabled = false;
     }
 
     //Function called when newGame Button is clicked
@@ -950,5 +954,11 @@ public class CanvasScript : MonoBehaviour {
 
             }
         }
+    }
+
+    //Function called when the ok button is clicked on the SavedFilePrompt canvas
+    public void FileSaved()
+    {//Disable the SavedFilePrompt Canvas
+        SavedFilePrompt.enabled = false;
     }
 }

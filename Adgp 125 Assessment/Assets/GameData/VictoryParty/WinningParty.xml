@@ -15,25 +15,25 @@
       <Participants />
     </Unit>
     <Unit>
-      <Name>Barret</Name>
-      <Level>3</Level>
-      <MaxHp>260</MaxHp>
-      <Health>260</Health>
-      <Strength>25</Strength>
-      <Defense>23</Defense>
-      <Speed>9</Speed>
-      <Experience>20</Experience>
+      <Name>Cait Sith</Name>
+      <Level>1</Level>
+      <MaxHp>220</MaxHp>
+      <Health>220</Health>
+      <Strength>10</Strength>
+      <Defense>11</Defense>
+      <Speed>5</Speed>
+      <Experience>0</Experience>
       <Type>Player</Type>
       <Life>true</Life>
       <Participants />
     </Unit>
     <Unit>
-      <Name>Cait Sith</Name>
+      <Name>Barret</Name>
       <Level>2</Level>
       <MaxHp>240</MaxHp>
       <Health>240</Health>
-      <Strength>15</Strength>
-      <Defense>16</Defense>
+      <Strength>20</Strength>
+      <Defense>18</Defense>
       <Speed>7</Speed>
       <Experience>30</Experience>
       <Type>Player</Type>

@@ -2,40 +2,40 @@
 <Party xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Party>
     <Unit>
-      <Name>Death Claw</Name>
+      <Name>Zuu</Name>
       <Level>1</Level>
-      <MaxHp>140</MaxHp>
-      <Health>140</Health>
-      <Strength>25</Strength>
-      <Defense>18</Defense>
-      <Speed>7</Speed>
-      <Experience>50</Experience>
+      <MaxHp>120</MaxHp>
+      <Health>120</Health>
+      <Strength>15</Strength>
+      <Defense>10</Defense>
+      <Speed>5</Speed>
+      <Experience>20</Experience>
       <Type>Enemy</Type>
       <Life>true</Life>
       <Participants />
     </Unit>
     <Unit>
-      <Name>Toxic Frog</Name>
+      <Name>2Faced</Name>
       <Level>1</Level>
-      <MaxHp>180</MaxHp>
-      <Health>180</Health>
-      <Strength>22</Strength>
-      <Defense>12</Defense>
+      <MaxHp>100</MaxHp>
+      <Health>100</Health>
+      <Strength>20</Strength>
+      <Defense>15</Defense>
+      <Speed>5</Speed>
+      <Experience>25</Experience>
+      <Type>Enemy</Type>
+      <Life>true</Life>
+      <Participants />
+    </Unit>
+    <Unit>
+      <Name>Ghost</Name>
+      <Level>1</Level>
+      <MaxHp>80</MaxHp>
+      <Health>80</Health>
+      <Strength>20</Strength>
+      <Defense>15</Defense>
       <Speed>5</Speed>
       <Experience>30</Experience>
-      <Type>Enemy</Type>
-      <Life>true</Life>
-      <Participants />
-    </Unit>
-    <Unit>
-      <Name>Ancient Dragon</Name>
-      <Level>1</Level>
-      <MaxHp>200</MaxHp>
-      <Health>200</Health>
-      <Strength>30</Strength>
-      <Defense>12</Defense>
-      <Speed>4</Speed>
-      <Experience>100</Experience>
       <Type>Enemy</Type>
       <Life>true</Life>
       <Participants />

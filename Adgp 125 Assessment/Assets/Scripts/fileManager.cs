@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.IO;
@@ -15,6 +16,8 @@ public class fileManager : MonoBehaviour
     //Create an instance of the GameFlow class
     GameFlow game;
 
+    public Canvas canvas;
+
     //Instance of the fileManager
     private static fileManager instance;
     //Holds the application path
@@ -30,6 +33,18 @@ public class fileManager : MonoBehaviour
     void Start()
     {//Get the proper component
         game = GetComponent<GameFlow>();
+        //Disable the game saved canvas
+        canvas.enabled = false;
+        //Create a directory for the data to be stored
+        Directory.CreateDirectory(Application.dataPath + "/GameData/State");
+        //Create a directory for the data to be stored
+        Directory.CreateDirectory(Application.dataPath + "/GameData/PlayerParty");
+        //Create a directory for the data to be stored
+        Directory.CreateDirectory(Application.dataPath + "/GameData/EnemyParty");
+        //Create a directory for the data to be stored
+        Directory.CreateDirectory(Application.dataPath + "/GameData");
+        //Create a directory for the data to be stored
+        Directory.CreateDirectory(Application.dataPath + "/GameData/VictoryParty");
     }
 
     //Property to create or get and instance of fileManager
@@ -61,7 +76,6 @@ public class fileManager : MonoBehaviour
     //Initialize the fileManager
     public void initialize()
     {
-
         //Set path to the current directory
         path = Application.dataPath;
     }
@@ -72,39 +86,34 @@ public class fileManager : MonoBehaviour
         Party Players = new Party();
         //Create a Party instance
         Party Enemies = new Party();
+
         //Add playerParty to new Players Party units 
         Players.units = game.playerParty;
         //Add enemyParty to new Enemies units 
         Enemies.units = game.enemyParty;
 
-        //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected currentState file into this string
-        //string currentState = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/State", "Enter a filename here for state of the game", "xml");
         //Open the file path and store it in this variable
         string currentState = Application.dataPath + "/GameData/State/s.xml";
         //Serialize the data
         File.Serialize(currentState, game.fsm.currentState.name.ToString());
 
-        //Open save file panel and store the selected playerparty file into this string
-        //string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/PlayerParty", "Enter a filename here for your party", "xml");
         //Open the file path and store it in this variable
         string ppartyfile = Application.dataPath + "/GameData/PlayerParty/p.xml";
         //Serialize the data
         File.Serialize(ppartyfile, Players);
 
-        //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected enemyParty file into this string
-        //string epartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/EnemyParty", "Enter a filename here for the enemy party", "xml");
         //Open the file path and store it in this variable
         string epartyfile = Application.dataPath + "/GameData/EnemyParty/e.xml";
         //Serialize the data
         File.Serialize(epartyfile, Enemies);
 
-        //Open save file panel and type in a name to save the file as or click to overwrite a file then click ok and store the selected currentUnitIndex file into this string
-        //string currentUnitIndex = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData", "Enter a filename here for currentUnit taking turn", "xml");
         //Open the file path and store it in this variable
         string currentUnitIndex = Application.dataPath + "/GameData/index.xml";
         //Serialize the data
         File.Serialize(currentUnitIndex, game.index);
 
+        //Enable the game saved canvas
+        canvas.enabled = true;
     }
 
     //Load a game from an xml file
@@ -114,20 +123,15 @@ public class fileManager : MonoBehaviour
         //Create a Party instance
         Party PlayerP = new Party();
 
-        //Open Open file panel and store the selected file into this string
-        //string playerParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/PlayerParty", "xml");
         //Open the file path and store it in this variable
         string playerParty = Application.dataPath + "/GameData/PlayerParty/p.xml";
-        //Open Open file panel and store the selected file into this string
-        //string enemyParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/EnemyParty", "xml");
+
         //Open the file path and store it in this variable
         string enemyParty = Application.dataPath + "/GameData/EnemyParty/e.xml";
-        //Open Open file panel and store the selected file into this string
-        //string currentstate = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/State", "xml");
+
         //Open the file path and store it in this variable
         string currentstate = Application.dataPath + "/GameData/State/s.xml";
-        //Open Open file panel and store the selected file into this string
-        //string currentUnit = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData", "xml");
+
         //Open the file path and store it in this variable
         string currentUnit = Application.dataPath + "/GameData/index.xml";
 
@@ -218,4 +222,9 @@ public class fileManager : MonoBehaviour
 
     }
 
+    //Function called when the ok button is clicked on the SavedFilePrompt canvas
+    public void GameSaved()
+    {//Disable the SavedFilePrompt Canvas
+        canvas.enabled = false;
+    }
 }

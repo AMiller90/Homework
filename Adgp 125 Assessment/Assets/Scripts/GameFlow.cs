@@ -46,6 +46,8 @@ public class GameFlow : MonoBehaviour {
     public Canvas canvas;
     //public Canvas object
     public Canvas BattleCanvas;
+    //Public Canvas object
+    public Canvas EnemyWon;
     //public InputField object
     public InputField battleBox;
     //public InputField object
@@ -86,6 +88,8 @@ public class GameFlow : MonoBehaviour {
         //Set count to the Participants List Count - 1
         count = a.Participants.Count - 1;
 
+        //Disable the EnemyWon Canvas
+        EnemyWon.enabled = false;
         //Disable save menu
         SaveMenu.enabled = false;
         //Create Delegate object and set function to it
@@ -223,6 +227,7 @@ public class GameFlow : MonoBehaviour {
             }
 
         }
+
         //Set the player1Name text to the given index of the playerParty list
         canvasScript.player1Name.text = playerParty[0].Name;
         //Set the player2Name text to the given index of the playerParty list
@@ -330,6 +335,8 @@ public class GameFlow : MonoBehaviour {
             canvasScript.gameCanvas.enabled = true;
             //Disable the battleCanvas
             canvasScript.battleCanvas.enabled = false;
+            //Enable the EnemyWon canvas
+            EnemyWon.enabled = true;
             //Set isDone to true
             isDone = true;
             //Feed the machine
@@ -611,10 +618,13 @@ public class GameFlow : MonoBehaviour {
         canvasScript.gameCanvas.enabled = true;
         //Disable the battleCanvas
         canvasScript.battleCanvas.enabled = false;
+        //Enable the SavedFilePrompt Canvas
+        canvasScript.SavedFilePrompt.enabled = true;
         //Feed the machine
         fsm.Feed("playertostart");
     }
 
+    //Function called when the No button is clicked
     public void ClickNo()
     {//Disable the save menu
         SaveMenu.enabled = false;
@@ -625,4 +635,22 @@ public class GameFlow : MonoBehaviour {
         //Feed the machine
         fsm.Feed("playertostart");
     }
+
+    //Function called when ok button is clicked on the EnemyWon Canvas
+    public void eEnemyWon()
+    {//Disable the Enemy Won canvas
+        EnemyWon.enabled = false;
+
+    }
+
+    //Function called when the main menu button is clicked
+    public void MainMenu()
+    {//Disable the battle canvas
+        BattleCanvas.enabled = false;
+        //Enable the gameCanvas
+        canvasScript.gameCanvas.enabled = true;
+        //Feed machine
+        fsm.Feed("playertostart");
+    }
+    
 }
