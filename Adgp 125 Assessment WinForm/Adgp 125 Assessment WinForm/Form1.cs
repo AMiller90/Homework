@@ -12,12 +12,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using FileIO;
+using Adgp125_Assessment_Library;
+using FiniteStateMachine;
 
 namespace Adgp_125_Assessment_WinForm
 {//public class used for forms
     public partial class Form1 : Form
     {//Create an instance of the FileIO class
-        FileIO _Save = new FileIO();
+        FileIOS _Save = new FileIOS();
         //Create a Form2 Object
         Form2 BattleScene;
         //Create a public reference to the GameManager singleton object
@@ -46,6 +49,8 @@ namespace Adgp_125_Assessment_WinForm
         public int currentUnitIndex = 0;
         //private string variable used to store the fileName the user wishes to name the save party file
         private string fileName;
+        //Create an instance of finite state machine with e_STATES as type
+        public FiniteStateMachine<e_STATES> fsm = new FiniteStateMachine<e_STATES>();
         //public constructor
         public Form1()
         {//Initialize form
@@ -66,12 +71,12 @@ namespace Adgp_125_Assessment_WinForm
             //Loop through the party 
             foreach (Unit i in NewParty)
             {//Check if current unit is a player type
-                if (i.Type == "Player")
+                if (i.sType == "Player")
                 {//If true then add to player party
                     players.Add(i);
                 }
                 //Check if current unit is an enemy
-                if (i.Type == "Enemy")
+                if (i.sType == "Enemy")
                 {//If true then add to enemy party
                     Enemies.Add(i);
                 }
@@ -190,19 +195,19 @@ namespace Adgp_125_Assessment_WinForm
             //If p1 is not equal to p2 and p1 is not equal to p3
             if (p1 != p2 && p1 != p3)
             {//Set the P1NameBox.Text to the units name in the player party at the specified index
-                P1NameBox.Text = p[p1].Name;
+                P1NameBox.Text = p[p1].sName;
                 //Set the Player1name to the units name in the player party at the specified index
-                player1name = p[p1].Name;
+                player1name = p[p1].sName;
                 //Set the P1HealthBox.Text to the units health in the player party at the specified index
-                P1HealthBox.Text = p[p1].Health.ToString();
+                P1HealthBox.Text = p[p1].iHealth.ToString();
                 //Set the P1StrengthBox.Text to the units strength in the player party at the specified index
-                P1StrengthBox.Text = p[p1].Strength.ToString();
+                P1StrengthBox.Text = p[p1].iStrength.ToString();
                 //Set the P1DefenseBox.Text to the units defense in the player party at the specified index
-                P1DefenseBox.Text = p[p1].Defense.ToString();
+                P1DefenseBox.Text = p[p1].iDefense.ToString();
                 //Set the P1SpeedBox.Text to the units speed in the player party at the specified index
-                P1SpeedBox.Text = p[p1].Speed.ToString();
+                P1SpeedBox.Text = p[p1].iSpeed.ToString();
                 //Set the P1LevelBox.Text to the units level in the player party at the specified index
-                P1LevelBox.Text = p[p1].Level.ToString();
+                P1LevelBox.Text = p[p1].iLevel.ToString();
                 //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(p[p1]);
                 
@@ -221,19 +226,19 @@ namespace Adgp_125_Assessment_WinForm
             //If p2 is not equal to p3 and p2 is not equal to p1
             if (p2 != p3 && p2 != p1)
             {//Set the P2NameBox.Text to the units name in the player party at the specified index
-                P2NameBox.Text = p[p2].Name;
+                P2NameBox.Text = p[p2].sName;
                 //Set the Player2name to the units name in the player party at the specified index
-                player2name = p[p2].Name;
+                player2name = p[p2].sName;
                 //Set the P2HealthBox.Text to the units health in the player party at the specified index
-                P2HealthBox.Text = p[p2].Health.ToString();
+                P2HealthBox.Text = p[p2].iHealth.ToString();
                 //Set the P2StrengthBox.Text to the units strength in the player party at the specified index
-                P2StrengthBox.Text = p[p2].Strength.ToString();
+                P2StrengthBox.Text = p[p2].iStrength.ToString();
                 //Set the P2DefenseBox.Text to the units defense in the player party at the specified index
-                P2DefenseBox.Text = p[p2].Defense.ToString();
+                P2DefenseBox.Text = p[p2].iDefense.ToString();
                 //Set the P2SpeedBox.Text to the units speed in the player party at the specified index
-                P2SpeedBox.Text = p[p2].Speed.ToString();
+                P2SpeedBox.Text = p[p2].iSpeed.ToString();
                 //Set the P2LevelBox.Text to the units level in the player party at the specified index
-                P2LevelBox.Text = p[p2].Level.ToString();
+                P2LevelBox.Text = p[p2].iLevel.ToString();
                 //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(p[p2]);
             }
@@ -252,19 +257,19 @@ namespace Adgp_125_Assessment_WinForm
             //If p3 is not equal to p2 and p3 is not equal to p1
             if (p3 != p2 && p3 != p1)
             {//Set the P3NameBox.Text to the units name in the player party at the specified index
-                P3NameBox.Text = p[p3].Name;
+                P3NameBox.Text = p[p3].sName;
                 //Set the player3name to the units name in the player party at the specified index
-                player3name = p[p3].Name;
+                player3name = p[p3].sName;
                 //Set the P3HealthBox.Text to the units health in the player party at the specified index
-                P3HealthBox.Text = p[p3].Health.ToString();
+                P3HealthBox.Text = p[p3].iHealth.ToString();
                 //Set the P3StrengthBox.Text to the units strength in the player party at the specified index
-                P3StrengthBox.Text = p[p3].Strength.ToString();
+                P3StrengthBox.Text = p[p3].iStrength.ToString();
                 //Set the P3DefenseBox.Text to the units defense in the player party at the specified index
-                P3DefenseBox.Text = p[p3].Defense.ToString();
+                P3DefenseBox.Text = p[p3].iDefense.ToString();
                 //Set the P2SpeedBox.Text to the units speed in the player party at the specified index
-                P3SpeedBox.Text = p[p3].Speed.ToString();
+                P3SpeedBox.Text = p[p3].iSpeed.ToString();
                 //Set the P3LevelBox.Text to the units level in the player party at the specified index
-                P3LevelBox.Text = p[p3].Level.ToString();
+                P3LevelBox.Text = p[p3].iLevel.ToString();
                 //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(p[p3]);
             }
@@ -330,37 +335,37 @@ namespace Adgp_125_Assessment_WinForm
             Handler startHandler = BattleScene.refer.StartPhase;
 
             //reference the FSM in the manager class and add a new state to the FSM(state, function)
-            manager.fsm.State(e_STATES.START, startHandler);
+            fsm.State(e_STATES.START, startHandler);
             //Add new state(Search, searchHandler). searchHandler function will be called when search state is current state
-            manager.fsm.State(e_STATES.SEARCH, searchHandler);
+            fsm.State(e_STATES.SEARCH, searchHandler);
             //Add new state(Battle, battleHandler). battleHandler function will be called when battle state is current state
-            manager.fsm.State(e_STATES.BATTLE, battleHandler);
+            fsm.State(e_STATES.BATTLE, battleHandler);
             //Add new state(Playerturn, playerturnHandler). playerturnHandler function will be called when playerturn state is  
             //current state
-            manager.fsm.State(e_STATES.PLAYERTURN, playerturnHandler);
+            fsm.State(e_STATES.PLAYERTURN, playerturnHandler);
              //Add new state(Enemyturn, enemyturnHandler). enemyturnHandler function will be called when enemyturn state is  
             //current state
-            manager.fsm.State(e_STATES.ENEMYTURN, enemyturnHandler);
+            fsm.State(e_STATES.ENEMYTURN, enemyturnHandler);
             //Add new state(Exit, exitHandler). exitHandler function will be called when exit state is current state
-            manager.fsm.State(e_STATES.EXIT, exitHandler);
+            fsm.State(e_STATES.EXIT, exitHandler);
 
             //Add a new tranisition to the FSM. (From state, to state, string that gives command to transition)
-            manager.fsm.AddTransition(e_STATES.INIT, e_STATES.START, "auto");
-            manager.fsm.AddTransition(e_STATES.START, e_STATES.SEARCH, "search");
-            manager.fsm.AddTransition(e_STATES.START, e_STATES.EXIT, "exit");
-            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.PLAYERTURN, "PLAYERTURN");
-            manager.fsm.AddTransition(e_STATES.SEARCH, e_STATES.ENEMYTURN, "ENEMYTURN");
-            manager.fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.BATTLE, "battle");
-            manager.fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.BATTLE, "battle");
-            manager.fsm.AddTransition(e_STATES.BATTLE, e_STATES.PLAYERTURN, "battletoplayer");
-            manager.fsm.AddTransition(e_STATES.BATTLE, e_STATES.ENEMYTURN, "battletoenemy");
-            manager.fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.START, "start");
-            manager.fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.START, "start");
+            fsm.AddTransition(e_STATES.INIT, e_STATES.START, "auto");
+            fsm.AddTransition(e_STATES.START, e_STATES.SEARCH, "search");
+            fsm.AddTransition(e_STATES.START, e_STATES.EXIT, "exit");
+            fsm.AddTransition(e_STATES.SEARCH, e_STATES.PLAYERTURN, "PLAYERTURN");
+            fsm.AddTransition(e_STATES.SEARCH, e_STATES.ENEMYTURN, "ENEMYTURN");
+            fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.BATTLE, "battle");
+            fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.BATTLE, "battle");
+            fsm.AddTransition(e_STATES.BATTLE, e_STATES.PLAYERTURN, "battletoplayer");
+            fsm.AddTransition(e_STATES.BATTLE, e_STATES.ENEMYTURN, "battletoenemy");
+            fsm.AddTransition(e_STATES.PLAYERTURN, e_STATES.START, "start");
+            fsm.AddTransition(e_STATES.ENEMYTURN, e_STATES.START, "start");
             //Call feed function with "auto" passed into transition from init state to start state
-            manager.fsm.Feed("auto");
+            fsm.Feed("auto");
 
             //Set the textBox1.Text to the name of the currenstate as a string
-            textBox1.Text = manager.fsm.currentState.name.ToString();
+            textBox1.Text = fsm.sCurrentState.eName.ToString();
 
         }
 
@@ -396,49 +401,49 @@ namespace Adgp_125_Assessment_WinForm
                 //Deserialize the chosen file as a Party Object and store into loadedunits variable
                 loadedunits = _Save.Deserialize<Party>(chosenFile);
                 //Set the P1NameBox.Text to the units name in the loadedunits party at the specified index
-                P1NameBox.Text = loadedunits.units[0].Name;
+                P1NameBox.Text = loadedunits.ulUnits[0].sName;
                 //Set the player1name to the units name in the loadedunits party at the specified index
-                player1name = loadedunits.units[0].Name;
+                player1name = loadedunits.ulUnits[0].sName;
                 //Set the P1HealthBox.Text to the units health in the loadedunits party at the specified index
-                P1HealthBox.Text = loadedunits.units[0].Health.ToString();
+                P1HealthBox.Text = loadedunits.ulUnits[0].iHealth.ToString();
                 //Set the P1strengthBox.Text to the units strength in the loadedunits party at the specified index
-                P1StrengthBox.Text = loadedunits.units[0].Strength.ToString();
+                P1StrengthBox.Text = loadedunits.ulUnits[0].iStrength.ToString();
                 //Set the P1SpeedBox.Text to the units speed in the loadedunits party at the specified index
-                P1SpeedBox.Text = loadedunits.units[0].Speed.ToString();
+                P1SpeedBox.Text = loadedunits.ulUnits[0].iSpeed.ToString();
                 //Set the P1DefenseBox.Text to the units defense in the loadedunits party at the specified index
-                P1DefenseBox.Text = loadedunits.units[0].Defense.ToString();
+                P1DefenseBox.Text = loadedunits.ulUnits[0].iDefense.ToString();
                 //Set the P1LevelBox.Text to the units level in the loadedunits party at the specified index
-                P1LevelBox.Text = loadedunits.units[0].Level.ToString();
+                P1LevelBox.Text = loadedunits.ulUnits[0].iLevel.ToString();
 
                 //Set the P2NameBox.Text to the units name in the loadedunits party at the specified index
-                P2NameBox.Text = loadedunits.units[1].Name;
+                P2NameBox.Text = loadedunits.ulUnits[1].sName;
                 //Set the player2name to the units name in the loadedunits party at the specified index
-                player2name = loadedunits.units[1].Name;
+                player2name = loadedunits.ulUnits[1].sName;
                 //Set the P2HealthBox.Text to the units health in the loadedunits party at the specified index
-                P2HealthBox.Text = loadedunits.units[1].Health.ToString();
+                P2HealthBox.Text = loadedunits.ulUnits[1].iHealth.ToString();
                 //Set the P2StrengthBox.Text to the units strength in the loadedunits party at the specified index
-                P2StrengthBox.Text = loadedunits.units[1].Strength.ToString();
+                P2StrengthBox.Text = loadedunits.ulUnits[1].iStrength.ToString();
                 //Set the P2SpeedBox.Text to the units speed in the loadedunits party at the specified index
-                P2SpeedBox.Text = loadedunits.units[1].Speed.ToString();
+                P2SpeedBox.Text = loadedunits.ulUnits[1].iSpeed.ToString();
                 //Set the P2DefenseBox.Text to the units defense in the loadedunits party at the specified index
-                P2DefenseBox.Text = loadedunits.units[1].Defense.ToString();
+                P2DefenseBox.Text = loadedunits.ulUnits[1].iDefense.ToString();
                 //Set the P2LevelBox.Text to the units level in the loadedunits party at the specified index
-                P2LevelBox.Text = loadedunits.units[1].Level.ToString();
+                P2LevelBox.Text = loadedunits.ulUnits[1].iLevel.ToString();
 
                 //Set the P3NameBox.Text to the units name in the loadedunits party at the specified index
-                P3NameBox.Text = loadedunits.units[2].Name;
+                P3NameBox.Text = loadedunits.ulUnits[2].sName;
                 //Set the player3name to the units name in the loadedunits party at the specified index
-                player3name = loadedunits.units[2].Name;
+                player3name = loadedunits.ulUnits[2].sName;
                 //Set the P3HealthBox.Text to the units health in the loadedunits party at the specified index
-                P3HealthBox.Text = loadedunits.units[2].Health.ToString();
+                P3HealthBox.Text = loadedunits.ulUnits[2].iHealth.ToString();
                 //Set the P3StrengthBox.Text to the units strength in the loadedunits party at the specified index
-                P3StrengthBox.Text = loadedunits.units[2].Strength.ToString();
+                P3StrengthBox.Text = loadedunits.ulUnits[2].iStrength.ToString();
                 //Set the P3SpeedBox.Text to the units speed in the loadedunits party at the specified index
-                P3SpeedBox.Text = loadedunits.units[2].Speed.ToString();
+                P3SpeedBox.Text = loadedunits.ulUnits[2].iSpeed.ToString();
                 //Set the P3DefenseBox.Text to the units defense in the loadedunits party at the specified index
-                P3DefenseBox.Text = loadedunits.units[2].Defense.ToString();
+                P3DefenseBox.Text = loadedunits.ulUnits[2].iDefense.ToString();
                 //Set the P3LevelBox.Text to the units level in the loadedunits party at the specified index
-                P3LevelBox.Text = loadedunits.units[2].Level.ToString();
+                P3LevelBox.Text = loadedunits.ulUnits[2].iLevel.ToString();
 
                 //If BattleReadyParty.Count is greater than or equal to 1
                 if (BattleReadyParty.Count >= 1)
@@ -447,7 +452,7 @@ namespace Adgp_125_Assessment_WinForm
                 }
                 
                 //Foreach unit in the loaddedunits.units list
-                foreach (Unit i in loadedunits.units)
+                foreach (Unit i in loadedunits.ulUnits)
                 {//Add the unit to the BattleReadyParty
                     BattleReadyParty.Add(i);
                 }
@@ -460,7 +465,7 @@ namespace Adgp_125_Assessment_WinForm
                 //Foreach unit in the new list
                 foreach(Unit i in tempParty)
                 {//If the type of the unit is Enemy
-                    if(i.Type == "Enemy")
+                    if(i.sType == "Enemy")
                     {//Add the unit to the Enemies List
                         Enemies.Add(i);
                     }
@@ -496,11 +501,11 @@ namespace Adgp_125_Assessment_WinForm
                     }
                 }
                 //Set enemy1name to the name of the object at the given index
-                enemy1name = Enemies[e1].Name;
+                enemy1name = Enemies[e1].sName;
                 //Set enemy2name to the name of the object at the given index
-                enemy2name = Enemies[e2].Name;
+                enemy2name = Enemies[e2].sName;
                 //Set enemy3name to the name of the object at the given index
-                enemy3name = Enemies[e3].Name;
+                enemy3name = Enemies[e3].sName;
 
                 //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(Enemies[e1]);
@@ -509,7 +514,7 @@ namespace Adgp_125_Assessment_WinForm
                 //Add the specified unit to the BattlePartyReady list
                 BattleReadyParty.Add(Enemies[e3]);
                 //Set images for the units in the party list
-                previewImages(loadedunits.units);
+                previewImages(loadedunits.ulUnits);
             }
 
         }
@@ -520,9 +525,9 @@ namespace Adgp_125_Assessment_WinForm
             for (int i = 0; i < units.Count; i++)
             {//If the unit at the current indexes name is the same as the P1NameBox.Text
                 //Player Images
-                if (units[i].Name == P1NameBox.Text)
+                if (units[i].sName == P1NameBox.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].Name)
+                    switch (units[i].sName)
                     {//If the name is here in a case then set the pictureBox1.Image to the proper picture
                         case "Cloud":
                             pictureBox1.Image = Properties.Resources.Cloud;
@@ -556,9 +561,9 @@ namespace Adgp_125_Assessment_WinForm
                     }
                 }
                 //If the unit at the current indexes name is the same as the P2NameBox.Text
-                if (units[i].Name == P2NameBox.Text)
+                if (units[i].sName == P2NameBox.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].Name)
+                    switch (units[i].sName)
                     {//If the name is here in a case then set the pictureBox2.Image to the proper picture
                         case "Cloud":
                             pictureBox2.Image = Properties.Resources.Cloud;
@@ -593,9 +598,9 @@ namespace Adgp_125_Assessment_WinForm
 
                 }
                 //If the unit at the current indexes name is the same as the P3NameBox.Text
-                if (units[i].Name == P3NameBox.Text)
+                if (units[i].sName == P3NameBox.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].Name)
+                    switch (units[i].sName)
                     {//If the name is here in a case then set the pictureBox3.Image to the proper picture
                         case "Cloud":
                             pictureBox3.Image = Properties.Resources.Cloud;
@@ -663,30 +668,30 @@ namespace Adgp_125_Assessment_WinForm
             {//Deserilalize the designated file name as a party object and store it into the PlayerP variable
                 PlayerP = _Save.Deserialize<Party>(@"..\Game Saves\PartyData.xml");
                 //Set the player1name to the given index of the PlayerP.unit
-                player1name = PlayerP.units[0].Name;
+                player1name = PlayerP.ulUnits[0].sName;
                 //Set the player2name to the given index of the PlayerP.unit
-                player2name = PlayerP.units[1].Name;
+                player2name = PlayerP.ulUnits[1].sName;
                 //Set the player3name to the given index of the PlayerP.unit
-                player3name = PlayerP.units[2].Name;
+                player3name = PlayerP.ulUnits[2].sName;
 
                 //Add the new units to the BattleReadyParty List
-                BattleReadyParty.Add(PlayerP.units[0]);
-                BattleReadyParty.Add(PlayerP.units[1]);
-                BattleReadyParty.Add(PlayerP.units[2]);
+                BattleReadyParty.Add(PlayerP.ulUnits[0]);
+                BattleReadyParty.Add(PlayerP.ulUnits[1]);
+                BattleReadyParty.Add(PlayerP.ulUnits[2]);
 
                 //Deserilalize the designated file name as a party object and store it into the EnemyE variable
                 EnemyE = _Save.Deserialize<Party>(@"..\Game Saves\EnemyParty.xml");
                 //Set the enemy1name to the given index of the EnemyE.unit
-                enemy1name = EnemyE.units[0].Name;
+                enemy1name = EnemyE.ulUnits[0].sName;
                 //Set the enemy1name to the given index of the EnemyE.unit
-                enemy2name = EnemyE.units[1].Name;
+                enemy2name = EnemyE.ulUnits[1].sName;
                 //Set the enemy1name to the given index of the EnemyE.unit
-                enemy3name = EnemyE.units[2].Name;
+                enemy3name = EnemyE.ulUnits[2].sName;
 
                 //Add the new units to the BattleReadyParty List
-                BattleReadyParty.Add(EnemyE.units[0]);
-                BattleReadyParty.Add(EnemyE.units[1]);
-                BattleReadyParty.Add(EnemyE.units[2]);
+                BattleReadyParty.Add(EnemyE.ulUnits[0]);
+                BattleReadyParty.Add(EnemyE.ulUnits[1]);
+                BattleReadyParty.Add(EnemyE.ulUnits[2]);
 
                 //Deserilalize the designated file name as an int object and store it into the currentUnitIndex variable
                 currentUnitIndex = _Save.Deserialize<int>(@"..\Game Saves\currentAttacker.xml");
@@ -747,9 +752,9 @@ namespace Adgp_125_Assessment_WinForm
                 //Foreach unit in the BattleReadyParty list
                 foreach (Unit i in BattleReadyParty)
                 {//If the current unit is of type Player
-                    if (i.Type == "Player")
+                    if (i.sType == "Player")
                     {//Add the current unit to the list of units in the party object
-                        party.units.Add(i);
+                        party.ulUnits.Add(i);
                     }
                 }
                 //Serialize the party object and all of its data into a file with the passed in fileName
@@ -853,7 +858,7 @@ namespace Adgp_125_Assessment_WinForm
             //If user Clicks Yes
             if(DialogResult == DialogResult.Yes)
             {//State Machine will transition to exit state and quit the game
-                manager.fsm.Feed("exit");
+                fsm.Feed("exit");
             }
             
         }
