@@ -10,179 +10,179 @@ using FileIO;
 
 public class CanvasScript : MonoBehaviour {
     //Create a refernece to the ImageScript
-    ImagesScript imageList;
+    ImagesScript iImageList;
     //Create public List<Unit>
-    public List<Unit> BattleReadyParty;
+    public List<Unit> ulBattleReadyParty;
     //Public Canvas object
-    public Canvas gameCanvas;
+    public Canvas cGameCanvas;
     //Public Canvas object
-    public Canvas generatePartyCanvas;
+    public Canvas cGeneratePartyCanvas;
     //Public Canvas object
-    public Canvas battleCanvas;
+    public Canvas cBattleCanvas;
     //Public Canvas object
-    public Canvas SavedFilePrompt;
+    public Canvas cSavedFilePrompt;
     //public Button object
-    public Button PlayButton;
+    public Button bPlayButton;
     //public InputField object
-    public InputField p1Name;
+    public InputField ifP1Name;
     //public InputField object
-    public InputField p1Health;
+    public InputField ifP1Health;
     //public InputField object
-    public InputField p1Strength;
+    public InputField ifP1Strength;
     //public InputField object
-    public InputField p1Defense;
+    public InputField ifP1Defense;
     //public InputField object
-    public InputField p1Speed;
+    public InputField ifP1Speed;
     //public InputField object
-    public InputField p1Level;
+    public InputField ifP1Level;
     //public RawImage object
-    public RawImage player1;
+    public RawImage riPlayer1;
 
     //public InputField object
-    public InputField p2Name;
+    public InputField ifP2Name;
     //public InputField object
-    public InputField p2Health;
+    public InputField ifP2Health;
     //public InputField object
-    public InputField p2Strength;
+    public InputField ifP2Strength;
     //public InputField object
-    public InputField p2Defense;
+    public InputField ifP2Defense;
     //public InputField object
-    public InputField p2Speed;
+    public InputField ifP2Speed;
     //public InputField object
-    public InputField p2Level;
+    public InputField ifP2Level;
     //public RawImage object
-    public RawImage player2;
+    public RawImage riPlayer2;
 
     //public InputField object
-    public InputField p3Name;
+    public InputField ifP3Name;
     //public InputField object
-    public InputField p3Health;
+    public InputField ifP3Health;
     //public InputField object
-    public InputField p3Strength;
+    public InputField ifP3Strength;
     //public InputField object
-    public InputField p3Defense;
+    public InputField ifP3Defense;
     //public InputField object
-    public InputField p3Speed;
+    public InputField ifP3Speed;
     //public InputField object
-    public InputField p3Level;
+    public InputField ifP3Level;
     //public RawImage object
-    public RawImage player3;
+    public RawImage riPlayer3;
 
     //public Text object
-    public Text player1Name;
+    public Text tPlayer1Name;
     //public Text object
-    public Text player2Name;
+    public Text tPlayer2Name;
     //public Text object
-    public Text player3Name;
+    public Text tPlayer3Name;
     //public RawImage object
-    public RawImage p1;
+    public RawImage riP1;
     //public RawImage object
-    public RawImage p2;
+    public RawImage riP2;
     //public RawImage object
-    public RawImage p3;
+    public RawImage riP3;
 
     //public Text object
-    public Text enemy1Name;
+    public Text tEnemy1Name;
     //public Text object
-    public Text enemy2Name;
+    public Text tEnemy2Name;
     //public Text object
-    public Text enemy3Name;
+    public Text tEnemy3Name;
     //public RawImage object
-    public RawImage e1;
+    public RawImage riE1;
     //public RawImage object
-    public RawImage e2;
+    public RawImage riE2;
     //public RawImage object
-    public RawImage e3;
+    public RawImage riE3;
 
     // Use this for initialization
     void Start ()
     {//Set List to new list
-        BattleReadyParty = new List<Unit>();
+        ulBattleReadyParty = new List<Unit>();
         //Get proper component
-        imageList = GetComponent<ImagesScript>();
-        //Enable gameCanvas
-        gameCanvas.enabled = true;
-        //Disable generatePartyCanvas
-        generatePartyCanvas.enabled = false;
-        //Disable battleCanvas
-        battleCanvas.enabled = false;
-        //Disable the PlayButton
-        PlayButton.enabled = false;
-        //Disable the SavedFilePrompt
-        SavedFilePrompt.enabled = false;
+        iImageList = GetComponent<ImagesScript>();
+        //Enable cGameCanvas
+        cGameCanvas.enabled = true;
+        //Disable cGeneratePartyCanvas
+        cGeneratePartyCanvas.enabled = false;
+        //Disable cBattleCanvas
+        cBattleCanvas.enabled = false;
+        //Disable the bPlayButton
+        bPlayButton.enabled = false;
+        //Disable the cSavedFilePrompt
+        cSavedFilePrompt.enabled = false;
     }
 
     //Function called when newGame Button is clicked
     public void newGame()
     {//Disable play button
-        PlayButton.enabled = false;
+        bPlayButton.enabled = false;
 
         //Set player textures to null
-        player1.texture = null;
-        player2.texture = null;
-        player3.texture = null;
+        riPlayer1.texture = null;
+        riPlayer2.texture = null;
+        riPlayer3.texture = null;
 
         //Set p1 name text to 
-        p1Name.text = "";
-        //Set player1name text to 
-        player1Name.text = "";
+        ifP1Name.text = "";
+        //Set riPlayer1name text to 
+        tPlayer1Name.text = "";
         //Set p1 Health text to 
-        p1Health.text = "";
+        ifP1Health.text = "";
         //Set p1 Strength text to 
-        p1Strength.text = "";
+        ifP1Strength.text = "";
         //Set p1 Defense text to 
-        p1Defense.text = "";
+        ifP1Defense.text = "";
         //Set p1 Speed text to 
-        p1Speed.text = "";
+        ifP1Speed.text = "";
         //Set p1 Level text to 
-        p1Level.text = "";
+        ifP1Level.text = "";
 
         //Set p2 name text to 
-        p2Name.text = "";
-        //Set player2name text to 
-        player2Name.text = "";
+        ifP2Name.text = "";
+        //Set ifPlayer2name text to 
+        tPlayer2Name.text = "";
         //Set p2 Health text to 
-        p2Health.text = "";
+        ifP2Health.text = "";
         //Set p2 Strength text to 
-        p2Strength.text = "";
+        ifP2Strength.text = "";
         //Set p2 Defense text to 
-        p2Defense.text = "";
+        ifP2Defense.text = "";
         //Set p2 Speed text to 
-        p2Speed.text = "";
+        ifP2Speed.text = "";
         //Set p2 Level text to 
-        p2Level.text = "";
+        ifP2Level.text = "";
 
         //Set p3 name text to 
-        p3Name.text = "";
+        ifP3Name.text = "";
         //Set player3name text to 
-        player3Name.text = "";
+        tPlayer3Name.text = "";
         //Set p3 Health text to 
-        p3Health.text = "";
+        ifP3Health.text = "";
         //Set p3 Strength text to 
-        p3Strength.text = "";
+        ifP3Strength.text = "";
         //Set p3 Defense text to 
-        p3Defense.text = "";
+        ifP3Defense.text = "";
         //Set p3 Speed text to 
-        p3Speed.text = "";
+        ifP3Speed.text = "";
         //Set p3 Level text to 
-        p3Level.text = "";
+        ifP3Level.text = "";
 
-        //Disable gameCanvas
-        gameCanvas.enabled = false;
-        //Enable generatePartyCanvas
-        generatePartyCanvas.enabled = true;
+        //Disable cGameCanvas
+        cGameCanvas.enabled = false;
+        //Enable cGeneratePartyCanvas
+        cGeneratePartyCanvas.enabled = true;
     }
 
     //Function used to generate a random party
     public void GenerateParty()
     {//Enable play button to true
-        PlayButton.enabled = true;
+        bPlayButton.enabled = true;
         //Create a new list 
-        List<Unit> AllObjects = new List<Unit>();
+        List<Unit> ulAllObjects = new List<Unit>();
         //Create a new list
-        List<Unit> players = new List<Unit>();
+        List<Unit> ulPlayers = new List<Unit>();
         //Create a new list
-        List<Unit> enemies = new List<Unit>();
+        List<Unit> ulEnemies = new List<Unit>();
 
         //Create objects
         Unit Cloud = new Unit("Cloud", 150, 12, 12, 6, 0, "Player");
@@ -207,148 +207,148 @@ public class CanvasScript : MonoBehaviour {
         Unit Behemoth = new Unit("Behemoth", 200, 35, 14, 4, 100, "Enemy");
 
         //Add objects to the list
-        AllObjects.Add(Cloud);
-        AllObjects.Add(Barret);
-        AllObjects.Add(Tifa);
-        AllObjects.Add(Aerith);
-        AllObjects.Add(RedXIII);
-        AllObjects.Add(Cait);
-        AllObjects.Add(Cid);
-        AllObjects.Add(Yuffie);
-        AllObjects.Add(Vincent);
+        ulAllObjects.Add(Cloud);
+        ulAllObjects.Add(Barret);
+        ulAllObjects.Add(Tifa);
+        ulAllObjects.Add(Aerith);
+        ulAllObjects.Add(RedXIII);
+        ulAllObjects.Add(Cait);
+        ulAllObjects.Add(Cid);
+        ulAllObjects.Add(Yuffie);
+        ulAllObjects.Add(Vincent);
 
-        AllObjects.Add(TwoFaced);
-        AllObjects.Add(AncientDragon);
-        AllObjects.Add(Ghost);
-        AllObjects.Add(IceGolem);
-        AllObjects.Add(Zuu);
-        AllObjects.Add(ToxicFrog);
-        AllObjects.Add(DeathClaw);
-        AllObjects.Add(MasterTonberry);
-        AllObjects.Add(Behemoth);
+        ulAllObjects.Add(TwoFaced);
+        ulAllObjects.Add(AncientDragon);
+        ulAllObjects.Add(Ghost);
+        ulAllObjects.Add(IceGolem);
+        ulAllObjects.Add(Zuu);
+        ulAllObjects.Add(ToxicFrog);
+        ulAllObjects.Add(DeathClaw);
+        ulAllObjects.Add(MasterTonberry);
+        ulAllObjects.Add(Behemoth);
 
         //Loop through the list
-        foreach (Unit i in AllObjects)
+        foreach (Unit i in ulAllObjects)
         {//Check if current unit is a player type
-            if (i.Type == "Player")
+            if (i.sType == "Player")
             {//If true then add to player party
-                players.Add(i);
+                ulPlayers.Add(i);
             }
             //Check if current unit is an enemy
-            if (i.Type == "Enemy")
+            if (i.sType == "Enemy")
             {//If true then add to enemy party
-                enemies.Add(i);
+                ulEnemies.Add(i);
             }
         }
         //Call function to randomize the objects
-        RandomizeAllParties(players, enemies);
+        RandomizeAllParties(ulPlayers, ulEnemies);
 
     }
 
     //Function that randomizes both the player and enemy parties
-    private void RandomizeAllParties(List<Unit> p, List<Unit> e)
-    {//If count of the BattleReadyParty is greater than or equal to 1
-        if (BattleReadyParty.Count >= 1)
-        {//Remove all elements of the current BattleReadyParty list
-            BattleReadyParty.RemoveRange(0, BattleReadyParty.Count);
+    private void RandomizeAllParties(List<Unit> ulP, List<Unit> ulE)
+    {//If count of the ulBattleReadyParty is greater than or equal to 1
+        if (ulBattleReadyParty.Count >= 1)
+        {//Remove all elements of the current ulBattleReadyParty list
+            ulBattleReadyParty.RemoveRange(0, ulBattleReadyParty.Count);
         }
 
         //Create random class instance
         System.Random r = new System.Random();
         //call Next() 3 times giving random selection for party members
-        int p1 = r.Next(0, p.Count - 1);
-        int p2 = r.Next(0, p.Count - 1);
-        int p3 = r.Next(0, p.Count - 1);
+        int p1 = r.Next(0, ulP.Count - 1);
+        int p2 = r.Next(0, ulP.Count - 1);
+        int p3 = r.Next(0, ulP.Count - 1);
 
         //while p1 is equal to p2
         while (p1 == p2)
         {//randomize p2
-            p2 = r.Next(0, p.Count - 1);
+            p2 = r.Next(0, ulP.Count - 1);
         }
         //while p2 == p3
         while (p2 == p3)
         {//randomize p3
-            p3 = r.Next(0, p.Count - 1);
+            p3 = r.Next(0, ulP.Count - 1);
         }
         //while p3 == p1
         while (p3 == p1)
         {//randomize p1
-            p1 = r.Next(0, p.Count - 1);
+            p1 = r.Next(0, ulP.Count - 1);
             //while p1 == p2
             while (p1 == p2)
             {//randomize p1
-                p1 = r.Next(0, p.Count - 1);
+                p1 = r.Next(0, ulP.Count - 1);
             }
         }
         //Set proper text variables to proper values
-        p1Name.text = p[p1].Name;
-        player1Name.text = p[p1].Name;
-        p1Health.text = p[p1].Health.ToString();
-        p1Strength.text = p[p1].Strength.ToString();
-        p1Defense.text = p[p1].Defense.ToString();
-        p1Speed.text = p[p1].Speed.ToString();
-        p1Level.text = p[p1].Level.ToString();
+        ifP1Name.text = ulP[p1].sName;
+        tPlayer1Name.text = ulP[p1].sName;
+        ifP1Health.text = ulP[p1].iHealth.ToString();
+        ifP1Strength.text = ulP[p1].iStrength.ToString();
+        ifP1Defense.text = ulP[p1].iDefense.ToString();
+        ifP1Speed.text = ulP[p1].iSpeed.ToString();
+        ifP1Level.text = ulP[p1].iLevel.ToString();
         //Add unit to list
-        BattleReadyParty.Add(p[p1]);
+        ulBattleReadyParty.Add(ulP[p1]);
 
         //Set proper text variables to proper values
-        p2Name.text = p[p2].Name;
-        player2Name.text = p[p2].Name;
-        p2Health.text = p[p2].Health.ToString();
-        p2Strength.text = p[p2].Strength.ToString();
-        p2Defense.text = p[p2].Defense.ToString();
-        p2Speed.text = p[p2].Speed.ToString();
-        p2Level.text = p[p2].Level.ToString();
+        ifP2Name.text = ulP[p2].sName;
+        tPlayer2Name.text = ulP[p2].sName;
+        ifP2Health.text = ulP[p2].iHealth.ToString();
+        ifP2Strength.text = ulP[p2].iStrength.ToString();
+        ifP2Defense.text = ulP[p2].iDefense.ToString();
+        ifP2Speed.text = ulP[p2].iSpeed.ToString();
+        ifP2Level.text = ulP[p2].iLevel.ToString();
         //Add unit to list
-        BattleReadyParty.Add(p[p2]);
+        ulBattleReadyParty.Add(ulP[p2]);
 
         //Set proper text variables to proper values
-        p3Name.text = p[p3].Name;
-        player3Name.text = p[p3].Name;
-        p3Health.text = p[p3].Health.ToString();
-        p3Strength.text = p[p3].Strength.ToString();
-        p3Defense.text = p[p3].Defense.ToString();
-        p3Speed.text = p[p3].Speed.ToString();
-        p3Level.text = p[p3].Level.ToString();
+        ifP3Name.text = ulP[p3].sName;
+        tPlayer3Name.text = ulP[p3].sName;
+        ifP3Health.text = ulP[p3].iHealth.ToString();
+        ifP3Strength.text = ulP[p3].iStrength.ToString();
+        ifP3Defense.text = ulP[p3].iDefense.ToString();
+        ifP3Speed.text = ulP[p3].iSpeed.ToString();
+        ifP3Level.text = ulP[p3].iLevel.ToString();
         //Add unit to list
-        BattleReadyParty.Add(p[p3]);
+        ulBattleReadyParty.Add(ulP[p3]);
         //Call function to setImages to the units in the list
-        setImages(BattleReadyParty);
+        setImages(ulBattleReadyParty);
 
         //Create random class instance
         System.Random a = new System.Random();
 
         //call Next() 3 times giving random selection for enemy party members
-        int e1 = a.Next(0, e.Count - 1);
-        int e2 = a.Next(0, e.Count - 1);
-        int e3 = a.Next(0, e.Count - 1);
+        int e1 = a.Next(0, ulE.Count - 1);
+        int e2 = a.Next(0, ulE.Count - 1);
+        int e3 = a.Next(0, ulE.Count - 1);
 
         //while e1 is equal to e2
         while (e1 == e2)
         {//Randomize e2
-            e2 = a.Next(0, e.Count - 1);
+            e2 = a.Next(0, ulE.Count - 1);
         }
         //while e2 is equal to e1
         while (e2 == e3)
         {//Randomize e3
-            e3 = a.Next(0, e.Count - 1);
+            e3 = a.Next(0, ulE.Count - 1);
         }
         //while e3 is equal to e1
         while (e3 == e1)
         {//Randomize e1
-            e1 = a.Next(0, e.Count - 1);
+            e1 = a.Next(0, ulE.Count - 1);
             //while e1 is equal to e2
             while (e1 == e2)
             {//Randomize e1
-                e1 = a.Next(0, e.Count - 1);
+                e1 = a.Next(0, ulE.Count - 1);
             }
         }
         //Add unit to list
-        BattleReadyParty.Add(e[e1]);
+        ulBattleReadyParty.Add(ulE[e1]);
         //Add unit to list
-        BattleReadyParty.Add(e[e2]);
+        ulBattleReadyParty.Add(ulE[e2]);
         //Add unit to list
-        BattleReadyParty.Add(e[e3]);
+        ulBattleReadyParty.Add(ulE[e3]);
 
     }
 
@@ -359,10 +359,10 @@ public class CanvasScript : MonoBehaviour {
         //Create an instance of a new Party object
         Party Team = new Party();
 
-        //If count of the BattleReadyParty is greater than or equal to 1
-        if (BattleReadyParty.Count >= 1)
-        {//Remove all elements of the current BattleReadyParty list
-            BattleReadyParty.RemoveRange(0, BattleReadyParty.Count);
+        //If count of the ulBattleReadyParty is greater than or equal to 1
+        if (ulBattleReadyParty.Count >= 1)
+        {//Remove all elements of the current ulBattleReadyParty list
+            ulBattleReadyParty.RemoveRange(0, ulBattleReadyParty.Count);
         }
 
         //string victoryParty = EditorUtility.OpenFilePanel("Open File", Application.dataPath + "/GameData/VictoryParty", "xml");
@@ -372,43 +372,43 @@ public class CanvasScript : MonoBehaviour {
         Team = File.Deserialize<Party>(victoryParty);
 
         //Set proper text variables to proper values
-        p1Name.text = Team.units[0].Name;
-        player1Name.text = Team.units[0].Name;
-        p1Health.text = Team.units[0].Health.ToString();
-        p1Strength.text = Team.units[0].Strength.ToString();
-        p1Defense.text = Team.units[0].Defense.ToString();
-        p1Speed.text = Team.units[0].Speed.ToString();
-        p1Level.text = Team.units[0].Level.ToString();
+        ifP1Name.text = Team.ulUnits[0].sName;
+        ifP1Name.text = Team.ulUnits[0].sName;
+        ifP1Health.text = Team.ulUnits[0].iHealth.ToString();
+        ifP1Strength.text = Team.ulUnits[0].iStrength.ToString();
+        ifP1Defense.text = Team.ulUnits[0].iDefense.ToString();
+        ifP1Speed.text = Team.ulUnits[0].iSpeed.ToString();
+        ifP1Level.text = Team.ulUnits[0].iLevel.ToString();
 
         //Add unit to list
-        BattleReadyParty.Add(Team.units[0]);
+        ulBattleReadyParty.Add(Team.ulUnits[0]);
 
         //Set proper text variables to proper values
-        p2Name.text = Team.units[1].Name;
-        player2Name.text = Team.units[1].Name;
-        p2Health.text = Team.units[1].Health.ToString();
-        p2Strength.text = Team.units[1].Strength.ToString();
-        p2Defense.text = Team.units[1].Defense.ToString();
-        p2Speed.text = Team.units[1].Speed.ToString();
-        p2Level.text = Team.units[1].Level.ToString();
+        ifP2Name.text = Team.ulUnits[1].sName;
+        ifP2Name.text = Team.ulUnits[1].sName;
+        ifP2Health.text = Team.ulUnits[1].iHealth.ToString();
+        ifP2Strength.text = Team.ulUnits[1].iStrength.ToString();
+        ifP2Defense.text = Team.ulUnits[1].iDefense.ToString();
+        ifP2Speed.text = Team.ulUnits[1].iSpeed.ToString();
+        ifP2Level.text = Team.ulUnits[1].iLevel.ToString();
 
         //Add unit to list
-        BattleReadyParty.Add(Team.units[1]);
+        ulBattleReadyParty.Add(Team.ulUnits[1]);
 
         //Set proper text variables to proper values
-        p3Name.text = Team.units[2].Name;
-        player3Name.text = Team.units[2].Name;
-        p3Health.text = Team.units[2].Health.ToString();
-        p3Strength.text = Team.units[2].Strength.ToString();
-        p3Defense.text = Team.units[2].Defense.ToString();
-        p3Speed.text = Team.units[2].Speed.ToString();
-        p3Level.text = Team.units[2].Level.ToString();
+        ifP3Name.text = Team.ulUnits[2].sName;
+        ifP3Name.text = Team.ulUnits[2].sName;
+        ifP3Health.text = Team.ulUnits[2].iHealth.ToString();
+        ifP3Strength.text = Team.ulUnits[2].iStrength.ToString();
+        ifP3Defense.text = Team.ulUnits[2].iDefense.ToString();
+        ifP3Speed.text = Team.ulUnits[2].iSpeed.ToString();
+        ifP3Level.text = Team.ulUnits[2].iLevel.ToString();
 
         //Add unit to list
-        BattleReadyParty.Add(Team.units[2]);
+        ulBattleReadyParty.Add(Team.ulUnits[2]);
 
         //Set images to passed in list
-        setImages(BattleReadyParty);
+        setImages(ulBattleReadyParty);
 
         //Create objects
         Unit TwoFaced = new Unit("2Faced", 100, 20, 15, 5, 25, "Enemy");
@@ -422,165 +422,165 @@ public class CanvasScript : MonoBehaviour {
         Unit Behemoth = new Unit("Behemoth", 200, 35, 14, 4, 100, "Enemy");
 
         //Create a new list
-        List<Unit> e = new List<Unit>();
+        List<Unit> ulE = new List<Unit>();
 
         //Add the Enemy Types to the list
-        e.Add(TwoFaced);
-        e.Add(AncientDragon);
-        e.Add(Ghost);
-        e.Add(IceGolem);
-        e.Add(Zuu);
-        e.Add(ToxicFrog);
-        e.Add(DeathClaw);
-        e.Add(MasterTonberry);
-        e.Add(Behemoth);
+        ulE.Add(TwoFaced);
+        ulE.Add(AncientDragon);
+        ulE.Add(Ghost);
+        ulE.Add(IceGolem);
+        ulE.Add(Zuu);
+        ulE.Add(ToxicFrog);
+        ulE.Add(DeathClaw);
+        ulE.Add(MasterTonberry);
+        ulE.Add(Behemoth);
 
         //Creat an instance of Random class
         System.Random a = new System.Random();
 
         //call Next() 3 times giving random selection for enemy party members
-        int e1 = a.Next(0, e.Count - 1);
-        int e2 = a.Next(0, e.Count - 1);
-        int e3 = a.Next(0, e.Count - 1);
+        int e1 = a.Next(0, ulE.Count - 1);
+        int e2 = a.Next(0, ulE.Count - 1);
+        int e3 = a.Next(0, ulE.Count - 1);
 
         //while e1 is equal to ee2
         while (e1 == e2)
         {//Randomize e2
-            e2 = a.Next(0, e.Count - 1);
+            e2 = a.Next(0, ulE.Count - 1);
         }
         //while e2 is equal to e3
         while (e2 == e3)
         {//Randomize e3
-            e3 = a.Next(0, e.Count - 1);
+            e3 = a.Next(0, ulE.Count - 1);
         }
         //while e3 is equal to e1
         while (e3 == e1)
         {//Randomize e1
-            e1 = a.Next(0, e.Count - 1);
+            e1 = a.Next(0, ulE.Count - 1);
             //while e1 is equal to e2
             while (e1 == e2)
             {//Randomize e1
-                e1 = a.Next(0, e.Count - 1);
+                e1 = a.Next(0, ulE.Count - 1);
             }
         }
         //Add unit to list
-        BattleReadyParty.Add(e[e1]);
+        ulBattleReadyParty.Add(ulE[e1]);
         //Add unit to list
-        BattleReadyParty.Add(e[e2]);
+        ulBattleReadyParty.Add(ulE[e2]);
         //Add unit to list
-        BattleReadyParty.Add(e[e3]);
+        ulBattleReadyParty.Add(ulE[e3]);
         //Enable play button
-        PlayButton.enabled = true;
+        bPlayButton.enabled = true;
     }
     
     //Function for setting game images to loaded in list
     public void LoadedGameImages(List<Unit> units)
     {//Loop through the number of units in the list
         for (int i = 0; i < units.Count; i++)
-        {//If the unit at the current indexes name is the same as the player1Name.Text
+        {//If the unit at the current indexes name is the same as the riPlayer1Name.Text
             //Player Images
-            if (units[i].Name == player1Name.text)
+            if (units[i].sName == tPlayer1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the p1.texture to the proper picture
                     case "Cloud":
-                        p1.texture = imageList.Cloud;
+                        riP1.texture = iImageList.tCloud;
                         break;
                     case "Barret":
-                        p1.texture = imageList.Barrett;
+                        riP1.texture = iImageList.tBarrett;
                         break;
                     case "Cait Sith":
-                        p1.texture = imageList.CaitSith;
+                        riP1.texture = iImageList.tCaitSith;
                         break;
                     case "Aerith":
-                        p1.texture = imageList.Aerith;
+                        riP1.texture = iImageList.tAerith;
                         break;
                     case "Yuffie":
-                        p1.texture = imageList.Yuffie;
+                        riP1.texture = iImageList.tYuffie;
                         break;
                     case "Vincent":
-                        p1.texture = imageList.Vincent;
+                        riP1.texture = iImageList.tVincent;
                         break;
                     case "Cid":
-                        p1.texture = imageList.Cid;
+                        riP1.texture = iImageList.tCid;
                         break;
                     case "Red XIII":
-                        p1.texture = imageList.RedXIII;
+                        riP1.texture = iImageList.tRedXIII;
                         break;
                     case "Tifa":
-                        p1.texture = imageList.Tifa;
+                        riP1.texture = iImageList.tTifa;
                         break;
                     default:
                         break;
                 }
             }
-            //If the unit at the current indexes name is the same as the player2Name.Text
-            if (units[i].Name == player2Name.text)
+            //If the unit at the current indexes name is the same as the ifPlayer2Name.Text
+            if (units[i].sName == tPlayer2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the p2.texture to the proper picture
                     case "Cloud":
-                        p2.texture = imageList.Cloud;
+                        riP2.texture = iImageList.tCloud;
                         break;
                     case "Barret":
-                        p2.texture = imageList.Barrett;
+                        riP2.texture = iImageList.tBarrett;
                         break;
                     case "Cait Sith":
-                        p2.texture = imageList.CaitSith;
+                        riP2.texture = iImageList.tCaitSith;
                         break;
                     case "Aerith":
-                        p2.texture = imageList.Aerith;
+                        riP2.texture = iImageList.tAerith;
                         break;
                     case "Yuffie":
-                        p2.texture = imageList.Yuffie;
+                        riP2.texture = iImageList.tYuffie;
                         break;
                     case "Vincent":
-                        p2.texture = imageList.Vincent;
+                        riP2.texture = iImageList.tVincent;
                         break;
                     case "Cid":
-                        p2.texture = imageList.Cid;
+                        riP2.texture = iImageList.tCid;
                         break;
                     case "Red XIII":
-                        p2.texture = imageList.RedXIII;
+                        riP2.texture = iImageList.tRedXIII;
                         break;
                     case "Tifa":
-                        p2.texture = imageList.Tifa;
+                        riP2.texture = iImageList.tTifa;
                         break;
                     default:
                         break;
                 }
             }
             //If the unit at the current indexes name is the same as the player3Name.Text
-            if (units[i].Name == player3Name.text)
+            if (units[i].sName == tPlayer3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the p3.texture to the proper picture
                     case "Cloud":
-                        p3.texture = imageList.Cloud;
+                        riP3.texture = iImageList.tCloud;
                         break;
                     case "Barret":
-                        p3.texture = imageList.Barrett;
+                        riP3.texture = iImageList.tBarrett;
                         break;
                     case "Cait Sith":
-                        p3.texture = imageList.CaitSith;
+                        riP3.texture = iImageList.tCaitSith;
                         break;
                     case "Aerith":
-                        p3.texture = imageList.Aerith;
+                        riP3.texture = iImageList.tAerith;
                         break;
                     case "Yuffie":
-                        p3.texture = imageList.Yuffie;
+                        riP3.texture = iImageList.tYuffie;
                         break;
                     case "Vincent":
-                        p3.texture = imageList.Vincent;
+                        riP3.texture = iImageList.tVincent;
                         break;
                     case "Cid":
-                        p3.texture = imageList.Cid;
+                        riP3.texture = iImageList.tCid;
                         break;
                     case "Red XIII":
-                        p3.texture = imageList.RedXIII;
+                        riP3.texture = iImageList.tRedXIII;
                         break;
                     case "Tifa":
-                        p3.texture = imageList.Tifa;
+                        riP3.texture = iImageList.tTifa;
                         break;
                     default:
                         break;
@@ -589,72 +589,72 @@ public class CanvasScript : MonoBehaviour {
             }
             //If the unit at the current indexes name is the same as the enemy1Name.Text
             //Enemy Images
-            if (units[i].Name == enemy1Name.text)
+            if (units[i].sName == tEnemy1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the e1.texture to the proper picture
                     case "2Faced":
-                        e1.texture = imageList.TwoFaced;
+                        riE1.texture = iImageList.tTwoFaced;
                         break;
                     case "Ice Golem":
-                        e1.texture = imageList.IceGolem;
+                        riE1.texture = iImageList.tIceGolem;
                         break;
                     case "Ancient Dragon":
-                        e1.texture = imageList.AncientDragon;
+                        riE1.texture = iImageList.tAncientDragon;
                         break;
                     case "Behemoth":
-                        e1.texture = imageList.Behemoth;
+                        riE1.texture = iImageList.tBehemoth;
                         break;
                     case "Death Claw":
-                        e1.texture = imageList.DeathClaw;
+                        riE1.texture = iImageList.tDeathClaw;
                         break;
                     case "Master Tonberry":
-                        e1.texture = imageList.MasterTonberry;
+                        riE1.texture = iImageList.tMasterTonberry;
                         break;
                     case "Toxic Frog":
-                        e1.texture = imageList.ToxicFrog;
+                        riE1.texture = iImageList.tToxicFrog;
                         break;
                     case "Zuu":
-                        e1.texture = imageList.Zuu;
+                        riE1.texture = iImageList.tZuu;
                         break;
                     case "Ghost":
-                        e1.texture = imageList.Ghost;
+                        riE1.texture = iImageList.tGhost;
                         break;
                     default:
                         break;
                 }
             }
             //If the unit at the current indexes name is the same as the enemy2Name.Text
-            if (units[i].Name == enemy2Name.text)
+            if (units[i].sName == tEnemy2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the e2.texture to the proper picture
                     case "2Faced":
-                        e2.texture = imageList.TwoFaced;
+                        riE2.texture = iImageList.tTwoFaced;
                         break;
                     case "Ice Golem":
-                        e2.texture = imageList.IceGolem;
+                        riE2.texture = iImageList.tIceGolem;
                         break;
                     case "Ancient Dragon":
-                        e2.texture = imageList.AncientDragon;
+                        riE2.texture = iImageList.tAncientDragon;
                         break;
                     case "Behemoth":
-                        e2.texture = imageList.Behemoth;
+                        riE2.texture = iImageList.tBehemoth;
                         break;
                     case "Death Claw":
-                        e2.texture = imageList.DeathClaw;
+                        riE2.texture = iImageList.tDeathClaw;
                         break;
                     case "Master Tonberry":
-                        e2.texture = imageList.MasterTonberry;
+                        riE2.texture = iImageList.tMasterTonberry;
                         break;
                     case "Toxic Frog":
-                        e2.texture = imageList.ToxicFrog;
+                        riE2.texture = iImageList.tToxicFrog;
                         break;
                     case "Zuu":
-                        e2.texture = imageList.Zuu;
+                        riE2.texture = iImageList.tZuu;
                         break;
                     case "Ghost":
-                        e2.texture = imageList.Ghost;
+                        riE2.texture = iImageList.tGhost;
                         break;
                     default:
                         break;
@@ -662,36 +662,36 @@ public class CanvasScript : MonoBehaviour {
 
             }
             //If the unit at the current indexes name is the same as the enemy3Name.Text
-            if (units[i].Name == enemy3Name.text)
+            if (units[i].sName == tEnemy3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the e3.texture to the proper picture
                     case "2Faced":
-                        e3.texture = imageList.TwoFaced;
+                        riE3.texture = iImageList.tTwoFaced;
                         break;
                     case "Ice Golem":
-                        e3.texture = imageList.IceGolem;
+                        riE3.texture = iImageList.tIceGolem;
                         break;
                     case "Ancient Dragon":
-                        e3.texture = imageList.AncientDragon;
+                        riE3.texture = iImageList.tAncientDragon;
                         break;
                     case "Behemoth":
-                        e3.texture = imageList.Behemoth;
+                        riE3.texture = iImageList.tBehemoth;
                         break;
                     case "Death Claw":
-                        e3.texture = imageList.DeathClaw;
+                        riE3.texture = iImageList.tDeathClaw;
                         break;
                     case "Master Tonberry":
-                        e3.texture = imageList.MasterTonberry;
+                        riE3.texture = iImageList.tMasterTonberry;
                         break;
                     case "Toxic Frog":
-                        e3.texture = imageList.ToxicFrog;
+                        riE3.texture = iImageList.tToxicFrog;
                         break;
                     case "Zuu":
-                        e3.texture = imageList.Zuu;
+                        riE3.texture = iImageList.tZuu;
                         break;
                     case "Ghost":
-                        e3.texture = imageList.Ghost;
+                        riE3.texture = iImageList.tGhost;
                         break;
                     default:
                         break;
@@ -705,137 +705,137 @@ public class CanvasScript : MonoBehaviour {
     public void setImages(List<Unit> units)
     {//Loop through the number of units in the list
         for (int i = 0; i < units.Count; i++)
-        {//If the unit at the current indexes name is the same as the player1Name.Text
+        {//If the unit at the current indexes name is the same as the riPlayer1Name.Text
             //Player Images
-            if (units[i].Name == player1Name.text)
+            if (units[i].sName == tPlayer1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
-                {//If the name is here in a case then set the player1.texture to the proper picture
+                switch (units[i].sName)
+                {//If the name is here in a case then set the riPlayer1.texture to the proper picture
                     case "Cloud":
-                        player1.texture = imageList.Cloud;
-                        p1.texture = imageList.Cloud;
+                        riPlayer1.texture = iImageList.tCloud;
+                        riP1.texture = iImageList.tCloud;
                         break;
                     case "Barret":
-                        player1.texture = imageList.Barrett;
-                        p1.texture = imageList.Barrett;
+                        riPlayer1.texture = iImageList.tBarrett;
+                        riP1.texture = iImageList.tBarrett;
                         break;
                     case "Cait Sith":
-                        player1.texture = imageList.CaitSith;
-                        p1.texture = imageList.CaitSith;
+                        riPlayer1.texture = iImageList.tCaitSith;
+                        riP1.texture = iImageList.tCaitSith;
                         break;
                     case "Aerith":
-                        player1.texture = imageList.Aerith;
-                        p1.texture = imageList.Aerith;
+                        riPlayer1.texture = iImageList.tAerith;
+                        riP1.texture = iImageList.tAerith;
                         break;
                     case "Yuffie":
-                        player1.texture = imageList.Yuffie;
-                        p1.texture = imageList.Yuffie;
+                        riPlayer1.texture = iImageList.tYuffie;
+                        riP1.texture = iImageList.tYuffie;
                         break;
                     case "Vincent":
-                        player1.texture = imageList.Vincent;
-                        p1.texture = imageList.Vincent;
+                        riPlayer1.texture = iImageList.tVincent;
+                        riP1.texture = iImageList.tVincent;
                         break;
                     case "Cid":
-                        player1.texture = imageList.Cid;
-                        p1.texture = imageList.Cid;
+                        riPlayer1.texture = iImageList.tCid;
+                        riP1.texture = iImageList.tCid;
                         break;
                     case "Red XIII":
-                        player1.texture = imageList.RedXIII;
-                        p1.texture = imageList.RedXIII;
+                        riPlayer1.texture = iImageList.tRedXIII;
+                        riP1.texture = iImageList.tRedXIII;
                         break;
                     case "Tifa":
-                        player1.texture = imageList.Tifa;
-                        p1.texture = imageList.Tifa;
+                        riPlayer1.texture = iImageList.tTifa;
+                        riP1.texture = iImageList.tTifa;
                         break;
                     default:
                         break;
                 }
             }
-            //If the unit at the current indexes name is the same as the player2Name.Text
-            if (units[i].Name == player2Name.text)
+            //If the unit at the current indexes name is the same as the ifPlayer2Name.Text
+            if (units[i].sName == tPlayer2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
-                {//If the name is here in a case then set the player2.texture to the proper picture
+                switch (units[i].sName)
+                {//If the name is here in a case then set the ifPlayer2.texture to the proper picture
                     case "Cloud":
-                        player2.texture = imageList.Cloud;
-                        p2.texture = imageList.Cloud;
+                        riPlayer2.texture = iImageList.tCloud;
+                        riP2.texture = iImageList.tCloud;
                         break;
                     case "Barret":
-                        player2.texture = imageList.Barrett;
-                        p2.texture = imageList.Barrett;
+                        riPlayer2.texture = iImageList.tBarrett;
+                        riP2.texture = iImageList.tBarrett;
                         break;
                     case "Cait Sith":
-                        player2.texture = imageList.CaitSith;
-                        p2.texture = imageList.CaitSith;
+                        riPlayer2.texture = iImageList.tCaitSith;
+                        riP2.texture = iImageList.tCaitSith;
                         break;
                     case "Aerith":
-                        player2.texture = imageList.Aerith;
-                        p2.texture = imageList.Aerith;
+                        riPlayer2.texture = iImageList.tAerith;
+                        riP2.texture = iImageList.tAerith;
                         break;
                     case "Yuffie":
-                        player2.texture = imageList.Yuffie;
-                        p2.texture = imageList.Yuffie;
+                        riPlayer2.texture = iImageList.tYuffie;
+                        riP2.texture = iImageList.tYuffie;
                         break;
                     case "Vincent":
-                        player2.texture = imageList.Vincent;
-                        p2.texture = imageList.Vincent;
+                        riPlayer2.texture = iImageList.tVincent;
+                        riP2.texture = iImageList.tVincent;
                         break;
                     case "Cid":
-                        player2.texture = imageList.Cid;
-                        p2.texture = imageList.Cid;
+                        riPlayer2.texture = iImageList.tCid;
+                        riP2.texture = iImageList.tCid;
                         break;
                     case "Red XIII":
-                        player2.texture = imageList.RedXIII;
-                        p2.texture = imageList.RedXIII;
+                        riPlayer2.texture = iImageList.tRedXIII;
+                        riP2.texture = iImageList.tRedXIII;
                         break;
                     case "Tifa":
-                        player2.texture = imageList.Tifa;
-                        p2.texture = imageList.Tifa;
+                        riPlayer2.texture = iImageList.tTifa;
+                        riP2.texture = iImageList.tTifa;
                         break;
                     default:
                         break;
                 }
             }
             //If the unit at the current indexes name is the same as the player3Name.Text
-            if (units[i].Name == player3Name.text)
+            if (units[i].sName == tPlayer3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the player3.texture to the proper picture
                     case "Cloud":
-                        player3.texture = imageList.Cloud;
-                        p3.texture = imageList.Cloud;
+                        riPlayer3.texture = iImageList.tCloud;
+                        riP3.texture = iImageList.tCloud;
                         break;
                     case "Barret":
-                        player3.texture = imageList.Barrett;
-                        p3.texture = imageList.Barrett;
+                        riPlayer3.texture = iImageList.tBarrett;
+                        riP3.texture = iImageList.tBarrett;
                         break;
                     case "Cait Sith":
-                        player3.texture = imageList.CaitSith;
-                        p3.texture = imageList.CaitSith;
+                        riPlayer3.texture = iImageList.tCaitSith;
+                        riP3.texture = iImageList.tCaitSith;
                         break;
                     case "Aerith":
-                        player3.texture = imageList.Aerith;
-                        p3.texture = imageList.Aerith;
+                        riPlayer3.texture = iImageList.tAerith;
+                        riP3.texture = iImageList.tAerith;
                         break;
                     case "Yuffie":
-                        player3.texture = imageList.Yuffie;
-                        p3.texture = imageList.Yuffie;
+                        riPlayer3.texture = iImageList.tYuffie;
+                        riP3.texture = iImageList.tYuffie;
                         break;
                     case "Vincent":
-                        player3.texture = imageList.Vincent;
-                        p3.texture = imageList.Vincent;
+                        riPlayer3.texture = iImageList.tVincent;
+                        riP3.texture = iImageList.tVincent;
                         break;
                     case "Cid":
-                        player3.texture = imageList.Cid;
-                        p3.texture = imageList.Cid;
+                        riPlayer3.texture = iImageList.tCid;
+                        riP3.texture = iImageList.tCid;
                         break;
                     case "Red XIII":
-                        player3.texture = imageList.RedXIII;
-                        p3.texture = imageList.RedXIII;
+                        riPlayer3.texture = iImageList.tRedXIII;
+                        riP3.texture = iImageList.tRedXIII;
                         break;
                     case "Tifa":
-                        player3.texture = imageList.Tifa;
-                        p3.texture = imageList.Tifa;
+                        riPlayer3.texture = iImageList.tTifa;
+                        riP3.texture = iImageList.tTifa;
                         break;
                     default:
                         break;
@@ -844,72 +844,72 @@ public class CanvasScript : MonoBehaviour {
             }
             //If the unit at the current indexes name is the same as the enemy1Name.Text
             //Enemy Images
-            if (units[i].Name == enemy1Name.text)
+            if (units[i].sName == tEnemy1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the e1.texture to the proper picture
                     case "2Faced":
-                        e1.texture = imageList.TwoFaced;
+                        riE1.texture = iImageList.tTwoFaced;
                         break;
                     case "Ice Golem":
-                        e1.texture = imageList.IceGolem;
+                        riE1.texture = iImageList.tIceGolem;
                         break;
                     case "Ancient Dragon":
-                        e1.texture = imageList.AncientDragon;
+                        riE1.texture = iImageList.tAncientDragon;
                         break;
                     case "Behemoth":
-                        e1.texture = imageList.Behemoth;
+                        riE1.texture = iImageList.tBehemoth;
                         break;
                     case "Death Claw":
-                        e1.texture = imageList.DeathClaw;
+                        riE1.texture = iImageList.tDeathClaw;
                         break;
                     case "Master Tonberry":
-                        e1.texture = imageList.MasterTonberry;
+                        riE1.texture = iImageList.tMasterTonberry;
                         break;
                     case "Toxic Frog":
-                        e1.texture = imageList.ToxicFrog;
+                        riE1.texture = iImageList.tToxicFrog;
                         break;
                     case "Zuu":
-                        e1.texture = imageList.Zuu;
+                        riE1.texture = iImageList.tZuu;
                         break;
                     case "Ghost":
-                        e1.texture = imageList.Ghost;
+                        riE1.texture = iImageList.tGhost;
                         break;
                     default:
                         break;
                 }
             }
             //If the unit at the current indexes name is the same as the enemy2Name.Text
-            if (units[i].Name == enemy2Name.text)
+            if (units[i].sName == tEnemy2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the e2.texture to the proper picture
                     case "2Faced":
-                        e2.texture = imageList.TwoFaced;
+                        riE2.texture = iImageList.tTwoFaced;
                         break;
                     case "Ice Golem":
-                        e2.texture = imageList.IceGolem;
+                        riE2.texture = iImageList.tIceGolem;
                         break;
                     case "Ancient Dragon":
-                        e2.texture = imageList.AncientDragon;
+                        riE2.texture = iImageList.tAncientDragon;
                         break;
                     case "Behemoth":
-                        e2.texture = imageList.Behemoth;
+                        riE2.texture = iImageList.tBehemoth;
                         break;
                     case "Death Claw":
-                        e2.texture = imageList.DeathClaw;
+                        riE2.texture = iImageList.tDeathClaw;
                         break;
                     case "Master Tonberry":
-                        e2.texture = imageList.MasterTonberry;
+                        riE2.texture = iImageList.tMasterTonberry;
                         break;
                     case "Toxic Frog":
-                        e2.texture = imageList.ToxicFrog;
+                        riE2.texture = iImageList.tToxicFrog;
                         break;
                     case "Zuu":
-                        e2.texture = imageList.Zuu;
+                        riE2.texture = iImageList.tZuu;
                         break;
                     case "Ghost":
-                        e2.texture = imageList.Ghost;
+                        riE2.texture = iImageList.tGhost;
                         break;
                     default:
                         break;
@@ -917,36 +917,36 @@ public class CanvasScript : MonoBehaviour {
 
             }
             //If the unit at the current indexes name is the same as the enemy3Name.Text
-            if (units[i].Name == enemy3Name.text)
+            if (units[i].sName == tEnemy3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].Name)
+                switch (units[i].sName)
                 {//If the name is here in a case then set the e3.texture to the proper picture
                     case "2Faced":
-                        e3.texture = imageList.TwoFaced;
+                        riE3.texture = iImageList.tTwoFaced;
                         break;
                     case "Ice Golem":
-                        e3.texture = imageList.IceGolem;
+                        riE3.texture = iImageList.tIceGolem;
                         break;
                     case "Ancient Dragon":
-                        e3.texture = imageList.AncientDragon;
+                        riE3.texture = iImageList.tAncientDragon;
                         break;
                     case "Behemoth":
-                        e3.texture = imageList.Behemoth;
+                        riE3.texture = iImageList.tBehemoth;
                         break;
                     case "Death Claw":
-                        e3.texture = imageList.DeathClaw;
+                        riE3.texture = iImageList.tDeathClaw;
                         break;
                     case "Master Tonberry":
-                        e3.texture = imageList.MasterTonberry;
+                        riE3.texture = iImageList.tMasterTonberry;
                         break;
                     case "Toxic Frog":
-                        e3.texture = imageList.ToxicFrog;
+                        riE3.texture = iImageList.tToxicFrog;
                         break;
                     case "Zuu":
-                        e3.texture = imageList.Zuu;
+                        riE3.texture = iImageList.tZuu;
                         break;
                     case "Ghost":
-                        e3.texture = imageList.Ghost;
+                        riE3.texture = iImageList.tGhost;
                         break;
                     default:
                         break;
@@ -956,9 +956,9 @@ public class CanvasScript : MonoBehaviour {
         }
     }
 
-    //Function called when the ok button is clicked on the SavedFilePrompt canvas
+    //Function called when the ok button is clicked on the cSavedFilePrompt canvas
     public void FileSaved()
-    {//Disable the SavedFilePrompt Canvas
-        SavedFilePrompt.enabled = false;
+    {//Disable the cSavedFilePrompt Canvas
+        cSavedFilePrompt.enabled = false;
     }
 }

@@ -33,65 +33,65 @@ public class GameFlow : MonoBehaviour {
     //Instance of the FileIOS class
     FileIOS File = new FileIOS();
     //bool variable
-    bool isDone = false;
+    bool bIsDone = false;
     //public int variable to represent the index of a given list
-    public int index;
+    public int iIndex;
     //public int variable to compare the index too
-    int count;
+    int iCount;
     //Create an instance of a Unit object
     public Unit a = new Unit();
     //public CanvasScript object
     public CanvasScript canvasScript;
     //public Canvas object
-    public Canvas canvas;
+    public Canvas cCanvas;
     //public Canvas object
-    public Canvas BattleCanvas;
+    public Canvas cBattleCanvas;
     //Public Canvas object
-    public Canvas EnemyWon;
+    public Canvas cEnemyWon;
     //public InputField object
-    public InputField battleBox;
+    public InputField ifBattleBox;
     //public InputField object
-    public InputField BattleOrderText;
+    public InputField ifBattleOrderText;
     //public InputField object
-    public InputField StatsField;
+    public InputField ifStatsField;
     //public Button object
-    public Button Enemy1Button;
+    public Button bEnemy1Button;
     //public Button object
-    public Button Enemy2Button;
+    public Button bEnemy2Button;
     //public Button object
-    public Button Enemy3Button;
+    public Button bEnemy3Button;
     //public Canvas object
-    public Canvas SaveMenu;
+    public Canvas cSaveMenu;
     //public Button object
-    public Button YesButton;
+    public Button bYesButton;
     //public Button object
-    public Button NoButton;
+    public Button bNoButton;
     //public Button object
-    public Button NewGameButton;
+    public Button bNewGameButton;
     //public Button object
-    public Button LoadGameButton;
+    public Button bLoadGameButton;
     //public FiniteStateMachine object
     public FiniteStateMachine<e_GameStates> fsm = new FiniteStateMachine<e_GameStates>();
     //public List<Unit> object
-    public List<Unit> enemyParty;
+    public List<Unit> ulEnemyParty;
     //public List<Unit> object
-    public List<Unit> playerParty;
+    public List<Unit> ulPlayerParty;
 
 	// Use this for initialization
 	void Start ()
     {//Set index to 0
-        index = 0;
+        iIndex = 0;
         //Create the new list
-        enemyParty = new List<Unit>();
+        ulEnemyParty = new List<Unit>();
         //Create the new list
-        playerParty = new List<Unit>();
+        ulPlayerParty = new List<Unit>();
         //Set count to the Participants List Count - 1
-        count = a.Participants.Count - 1;
+        iCount = a.ulParticipants.Count - 1;
 
         //Disable the EnemyWon Canvas
-        EnemyWon.enabled = false;
+        cEnemyWon.enabled = false;
         //Disable save menu
-        SaveMenu.enabled = false;
+        cSaveMenu.enabled = false;
         //Create Delegate object and set function to it
         Handler startHandler = startState;
         //Create Delegate object and set function to it
@@ -148,16 +148,16 @@ public class GameFlow : MonoBehaviour {
         fsm.AddTransition(e_GameStates.ENEMYTURN, e_GameStates.START, "enemytostart");
 
         //Disable the Enemy1Button
-        Enemy1Button.enabled = false;
+        bEnemy1Button.enabled = false;
         //Disable the Enemy2Button
-        Enemy2Button.enabled = false;
+        bEnemy2Button.enabled = false;
         //Disable the Enemy3Button
-        Enemy3Button.enabled = false;
+        bEnemy3Button.enabled = false;
 
         //Give input to the machine
         fsm.Feed("auto");
         //Print out the current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
     }
 
     //Function used to check which object goes first based on higher speed stat
@@ -166,7 +166,7 @@ public class GameFlow : MonoBehaviour {
         //Create a new list<Unit>
         List<Unit> sortedlist = new List<Unit>();
         //Set the new list to the passed in list ordered by highest speed stat first
-        sortedlist = List.OrderByDescending(u => u.Speed).ToList<Unit>();
+        sortedlist = List.OrderByDescending(u => u.iSpeed).ToList<Unit>();
         //Return the new sorted list
         return sortedlist;
     }
@@ -174,86 +174,86 @@ public class GameFlow : MonoBehaviour {
     //Function called in the start State
     private void startState()
     {//Set index to 0
-        index = 0;
+        iIndex = 0;
         //If the a.Participants list Count is greater than or equal to 1
-        if (a.Participants.Count >= 1)
+        if (a.ulParticipants.Count >= 1)
         {//Remove all elements in the List
-            a.Participants.RemoveRange(0, a.Participants.Count);
+            a.ulParticipants.RemoveRange(0, a.ulParticipants.Count);
         }
         //If the enemyParty list Count is greater than or equal to 1
-        if (enemyParty.Count >= 1)
+        if (ulEnemyParty.Count >= 1)
         {//Remove all elements in the List
-            enemyParty.RemoveRange(0, enemyParty.Count);
+            ulEnemyParty.RemoveRange(0, ulEnemyParty.Count);
         }
         //If the PlayerParty list Count is greater than or equal to 1
-        if (playerParty.Count >= 1)
+        if (ulPlayerParty.Count >= 1)
         {//Remove all elements in the List
-            playerParty.RemoveRange(0, playerParty.Count);
+            ulPlayerParty.RemoveRange(0, ulPlayerParty.Count);
         }
         //Set battle text to
-        battleBox.text = "";
+        ifBattleBox.text = "";
         //Set BattleOrderText to 
-        BattleOrderText.text = "Battle Order:";
+        ifBattleOrderText.text = "Battle Order:";
         //Set statsText to
         manager.statsText = "";
         //Print out the current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
 
     }
 
     //Function called in the search State
     private void searchState()
     {//Print out the current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
         //Battle party sorted by speed to produce attack order 
-        a.Participants = sortBySpeed(canvasScript.BattleReadyParty);
+        a.ulParticipants = sortBySpeed(canvasScript.ulBattleReadyParty);
         //Loop through the list
-        for (int i = 0; i < a.Participants.Count; i++)
+        for (int i = 0; i < a.ulParticipants.Count; i++)
         {//Set the BattleOrderTextBox text to a newline with the current units name
-            BattleOrderText.text += "\n" + a.Participants[i].Name;
+            ifBattleOrderText.text += "\n" + a.ulParticipants[i].sName;
         }
         //Foreach unit in the list
-        foreach (Unit i in a.Participants)
+        foreach (Unit i in a.ulParticipants)
         {//If the current unit is of type Player
-            if (i.Type == "Player")
+            if (i.sType == "Player")
             {//Add the unit to this party
-                playerParty.Add(i);
+                ulPlayerParty.Add(i);
 
             }
             //If the current unit is of type Enemy
-            if (i.Type == "Enemy")
+            if (i.sType == "Enemy")
             {//Add the unit to this party
-                enemyParty.Add(i);
+                ulEnemyParty.Add(i);
             }
 
         }
 
         //Set the player1Name text to the given index of the playerParty list
-        canvasScript.player1Name.text = playerParty[0].Name;
+        canvasScript.tPlayer1Name.text = ulPlayerParty[0].sName;
         //Set the player2Name text to the given index of the playerParty list
-        canvasScript.player2Name.text = playerParty[1].Name;
+        canvasScript.tPlayer2Name.text = ulPlayerParty[1].sName;
         //Set the player3Name text to the given index of the playerParty list
-        canvasScript.player3Name.text = playerParty[2].Name;
+        canvasScript.tPlayer3Name.text = ulPlayerParty[2].sName;
 
         //Set the enemy1Name text to the given index of the enemyParty list
-        canvasScript.enemy1Name.text = enemyParty[0].Name;
+        canvasScript.tEnemy1Name.text = ulEnemyParty[0].sName;
         //Set the enemy2Name text to the given index of the enemyParty list
-        canvasScript.enemy2Name.text = enemyParty[1].Name;
+        canvasScript.tEnemy2Name.text = ulEnemyParty[1].sName;
         //Set the enemy3Name text to the given index of the enemyParty list
-        canvasScript.enemy3Name.text = enemyParty[2].Name;
+        canvasScript.tEnemy3Name.text = ulEnemyParty[2].sName;
         //Set images to loaded in party
-        canvasScript.LoadedGameImages(a.Participants);
+        canvasScript.LoadedGameImages(a.ulParticipants);
 
         //Call Function to print out the stats of all objects in battle
-        manager.Statsofobjects(a.Participants);
+        manager.StatsOfObjects(a.ulParticipants);
         //Set the StatsField text variable to the data in the statsText variable
-        StatsField.text = manager.statsText;
+        ifStatsField.text = manager.statsText;
 
         //Load Battle Scene Canvas
-        BattleCanvas.enabled = true;
+        cBattleCanvas.enabled = true;
 
         //Call the FirstAttack function to get the battle started
-        FirstAttack(a.Participants);
+        FirstAttack(a.ulParticipants);
     }
 
     //Function called in the battle State
@@ -261,24 +261,24 @@ public class GameFlow : MonoBehaviour {
     {
         //Set the stats text to ""
         manager.statsText = "";
-        //Call the Statsofobjects function to print stats of objects that are in the battle
-        manager.Statsofobjects(a.Participants);
+        //Call the StatsOfObjects function to print stats of objects that are in the battle
+        manager.StatsOfObjects(a.ulParticipants);
         //StatsField text is set to the data stored in the statsText variable
-        StatsField.text = manager.statsText;
+        ifStatsField.text = manager.statsText;
        
     }
 
     //Function called in the player State
     private void playerState()
     {//Print out the current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
 
         //Enable the Enemy1Button to true
-        Enemy1Button.enabled = true;
+        bEnemy1Button.enabled = true;
         //Enable the Enemy2Button to true
-        Enemy2Button.enabled = true;
+        bEnemy2Button.enabled = true;
         //Enable the Enemy3Button to true
-        Enemy3Button.enabled = true;
+        bEnemy3Button.enabled = true;
 
 
     }
@@ -286,74 +286,74 @@ public class GameFlow : MonoBehaviour {
     //Function called in the enemy State
     private void enemyState()
     {//Set variable to false
-        isDone = false;
+        bIsDone = false;
         //Print out current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
 
         //Enable the Enemy1Button to false
-        Enemy1Button.enabled = false;
+        bEnemy1Button.enabled = false;
         //Enable the Enemy2Button to false
-        Enemy2Button.enabled = false;
+        bEnemy2Button.enabled = false;
         //Enable the Enemy3Button to false
-        Enemy3Button.enabled = false;
+        bEnemy3Button.enabled = false;
 
         //Print out current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
         //If the current enemy in the enemyParty is alive
-        if (a.Participants[index].Type == "Enemy" && a.Participants[index].Life == true)
+        if (a.ulParticipants[iIndex].sType == "Enemy" && a.ulParticipants[iIndex].bLife == true)
         {//Create a unit and set it to the current unit
-            Unit Attacker = a.Participants[index];
+            Unit Attacker = a.ulParticipants[iIndex];
             //Create a unit and set it to the target unit
-            Unit Defender = Attacker.EnemyRandomTarget(playerParty);
+            Unit Defender = Attacker.EnemyRandomTarget(ulPlayerParty);
 
             //The current unit will attack
             Attacker.Attack(Defender);
             //Set the battleBox text to stufftext data
-            battleBox.text += Attacker.stuffText;
+            ifBattleBox.text += Attacker.sStuffText;
             //If the index is equal to the count variable
-            if (index == count)
+            if (iIndex == iCount)
             {//Set index to 0
-                index = 0;
+                iIndex = 0;
             }
             //If the index is not equal to the count variable
             else
             {//Increment the index by 1
-                index += 1;
+                iIndex += 1;
             }
         }
-        //If the Checkforvictory function returns true 
-        if (manager.Checkforvictory(playerParty, enemyParty) == true)
+        //If the CheckForVictory function returns true 
+        if (manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
         {//Set the battleBox text to the winText
-            battleBox.text = manager.winText;
+            ifBattleBox.text = manager.winText;
             //Set the statsText to ""
             manager.statsText = "";
             //Call this function to print out the Stats of the objects in battle
-            manager.Statsofobjects(a.Participants);
+            manager.StatsOfObjects(a.ulParticipants);
             //Set the StatsField text to the statsText
-            StatsField.text = manager.statsText;
+            ifStatsField.text = manager.statsText;
             //Enable the gameCanvas
-            canvasScript.gameCanvas.enabled = true;
+            canvasScript.cGameCanvas.enabled = true;
             //Disable the battleCanvas
-            canvasScript.battleCanvas.enabled = false;
+            canvasScript.cBattleCanvas.enabled = false;
             //Enable the EnemyWon canvas
-            EnemyWon.enabled = true;
+            cEnemyWon.enabled = true;
             //Set isDone to true
-            isDone = true;
+            bIsDone = true;
             //Feed the machine
             fsm.Feed("enemytostart");
 
         }
         //If isDone is equal to false
-        if (isDone == false)
+        if (bIsDone == false)
         {//Call the process turn function 
-            processTurn(index);
+            processTurn(iIndex);
         }
     }
 
     //Function called when play button is clicked
     public void Play()
     {//Disable party canvas
-        canvas.enabled = false;
+        cCanvas.enabled = false;
         //Then switch states
         fsm.Feed("search");
     }
@@ -363,37 +363,37 @@ public class GameFlow : MonoBehaviour {
     {//Feed the machine
         fsm.Feed("exit");
         //Print out the current State
-        Debug.Log(fsm.currentState.name.ToString());
+        Debug.Log(fsm.sCurrentState.eName.ToString());
     }
 
     //Function called to determine the next units turn
     private void processTurn(int number)
     {//If number is equal to the count of the participants list
-        if (number == a.Participants.Count)
+        if (number == a.ulParticipants.Count)
         {//Set number to 0
             number = 0;
             //Set index to 0
-            index = 0;
+            iIndex = 0;
         }
         //if(The current states name is not the same as the BATTLE State
-        if (fsm.currentState.name != e_GameStates.BATTLE as Enum)
+        if (fsm.sCurrentState.eName != e_GameStates.BATTLE as Enum)
         {//Feed the machine
             fsm.Feed("battle");
         }
         //If the current unit is of type Player and is alive
-        if (a.Participants[number].Type == "Player" && a.Participants[number].Life == true)
+        if (a.ulParticipants[number].sType == "Player" && a.ulParticipants[number].bLife == true)
         {
             //Add It is The current units names turn! and a newline to the battleBox text
-            battleBox.text += "It is " + a.Participants[number].Name + "'s turn!\n";
+            ifBattleBox.text += "It is " + a.ulParticipants[number].sName + "'s turn!\n";
             //Feed the machine
             fsm.Feed("battletoplayer");
 
         }
         //else if the current unit is of type Enemy and is alive
-        else if (a.Participants[number].Type == "Enemy" && a.Participants[number].Life == true)
+        else if (a.ulParticipants[number].sType == "Enemy" && a.ulParticipants[number].bLife == true)
         {
             //Add It is The current units names turn! and a newline to the battleBox text
-            battleBox.text += "It is " + a.Participants[number].Name + "'s turn!\n";
+            ifBattleBox.text += "It is " + a.ulParticipants[number].sName + "'s turn!\n";
             //Feed the machine
             fsm.Feed("battletoenemy");
 
@@ -401,9 +401,9 @@ public class GameFlow : MonoBehaviour {
         //If the current unit is not of Type player or enemy or the unit is not alive
         else
         {//Increment the index by 1
-            index += 1;
+            iIndex += 1;
             //Call processTurn function again with the index passed in so the next unit can have its turn
-            processTurn(index);
+            processTurn(iIndex);
         }
 
     }
@@ -411,51 +411,52 @@ public class GameFlow : MonoBehaviour {
     //Function activated when the Enemy1Attack button is clicked - Gives user option of attacking specific unit
     public void AttackEnemy1()
     {//Set isDone to false
-        isDone = false;
+        bIsDone = false;
         //If the current enemy in the enemyParty is alive
-        if (enemyParty[0].Life == true)
+        if (ulEnemyParty[0].bLife == true)
         {//The current unit will attack that enemy
-            a.Participants[index].Attack(enemyParty[0]);
+            a.ulParticipants[iIndex].Attack(ulEnemyParty[0]);
             //Set the battleBox text to stufftext data
-            battleBox.text = a.Participants[index].stuffText;
+            ifBattleBox.text = a.ulParticipants[iIndex].sStuffText;
             //If the index is equal to the count variable
-            if (index == count)
+            if (iIndex == iCount)
             {//Set index to 0
-                index = 0;
+                iIndex = 0;
             }
             //If the index is not equal to the count variable
             else
             {//Increment the index by 1
-                index += 1;
+                iIndex += 1;
             }
         }
-        //If the Checkforvictory function returns true 
-        if (manager.Checkforvictory(playerParty, enemyParty) == true)
+
+        //If the CheckForVictory function returns true 
+        if (manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
         {//Set the battleBox text to winText data
-            battleBox.text = manager.winText;
+            ifBattleBox.text = manager.winText;
             //Set the statsText to ""
             manager.statsText = "";
             //Call this function to print out the Stats of the objects in battle
-            manager.Statsofobjects(a.Participants);
+            manager.StatsOfObjects(a.ulParticipants);
             //Set the StatsField text to the statsText
-            StatsField.text = manager.statsText;
+            ifStatsField.text = manager.statsText;
 
             //Disable the Enemy1Button
-            Enemy1Button.enabled = false;
+            bEnemy1Button.enabled = false;
             //Disable the Enemy2Button
-            Enemy2Button.enabled = false;
+            bEnemy2Button.enabled = false;
             //Disable the Enemy3Button
-            Enemy3Button.enabled = false;
+            bEnemy3Button.enabled = false;
             //Enable the save menu
-            SaveMenu.enabled = true;
-           //Set isDone to true
-            isDone = true;
+            cSaveMenu.enabled = true;
+            //Set isDone to true
+            bIsDone = true;
            
         }
         //If isDone is equal to false
-        if (isDone == false)
+        if (bIsDone == false)
         {//Call the process turn function 
-            processTurn(index);
+            processTurn(iIndex);
         }
         
     }
@@ -463,130 +464,133 @@ public class GameFlow : MonoBehaviour {
     //Function activated when the Enemy2Attack button is clicked - Gives user option of attacking specific unit
     public void AttackEnemy2()
     {//Set isDone to false
-        isDone = false;
+        bIsDone = false;
         //If the current enemy in the enemyParty is alive
-        if (enemyParty[1].Life == true)
+        if (ulEnemyParty[1].bLife == true)
         {//The current unit will attack that enemy
-            a.Participants[index].Attack(enemyParty[1]);
+            a.ulParticipants[iIndex].Attack(ulEnemyParty[1]);
             //Set the battleBox text to stufftext data
-            battleBox.text = a.Participants[index].stuffText;
+            ifBattleBox.text = a.ulParticipants[iIndex].sStuffText;
             //If the index is equal to the count variable
-            if (index == count)
+            if (iIndex == iCount)
             {//Set index to 0
-                index = 0;
+                iIndex = 0;
             }
             //If the index is not equal to the count variable
             else
             {//Increment the index by 1
-                index += 1;
+                iIndex += 1;
             }
         }
-        //If the Checkforvictory function returns true
-        if (manager.Checkforvictory(playerParty, enemyParty) == true)
-        {//Set the battleBox text to winText data
-            battleBox.text = manager.winText;
+        //If the CheckForVictory function returns true
+        if (manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
+        {
+            
+               //Set isDone to true
+               bIsDone = true;
+            //Set the battleBox text to winText data
+            ifBattleBox.text = manager.winText;
             //Set the statsText to ""
             manager.statsText = "";
             //Call this function to print out the Stats of the objects in battle
-            manager.Statsofobjects(a.Participants);
+            manager.StatsOfObjects(a.ulParticipants);
             //Set the StatsField text to the statsText
-            StatsField.text = manager.statsText;
+            ifStatsField.text = manager.statsText;
 
             //Disable the Enemy1Button
-            Enemy1Button.enabled = false;
+            bEnemy1Button.enabled = false;
             //Disable the Enemy2Button
-            Enemy2Button.enabled = false;
+            bEnemy2Button.enabled = false;
             //Disable the Enemy3Button
-            Enemy3Button.enabled = false;
+            bEnemy3Button.enabled = false;
             //Enable the save menu
-            SaveMenu.enabled = true;
-            //Set isDone to true
-            isDone = true;
+            cSaveMenu.enabled = true;
+            
 
         }
         //If isDone is equal to false
-        if (isDone == false)
+        if (bIsDone == false)
         {//Call the process turn function 
-            processTurn(index);
+            processTurn(iIndex);
         }
     }
 
     //Function activated when the Enemy3Attack button is clicked - Gives user option of attacking specific unit
     public void AttackEnemy3()
     {//Set isDone to false
-        isDone = false;
+        bIsDone = false;
         //If the current enemy in the enemyParty is alive
-        if (enemyParty[2].Life == true)
+        if (ulEnemyParty[2].bLife == true)
         {//The current unit will attack that enemy
-            a.Participants[index].Attack(enemyParty[2]);
+            a.ulParticipants[iIndex].Attack(ulEnemyParty[2]);
             //Set the battleBox text to stufftext data
-            battleBox.text = a.Participants[index].stuffText;
+            ifBattleBox.text = a.ulParticipants[iIndex].sStuffText;
             //If the index is equal to the count variable
-            if (index == count)
+            if (iIndex == iCount)
             {//Set index to 0
-                index = 0;
+                iIndex = 0;
             }
             //If the index is not equal to the count variable
             else
             {//Increment the index by 1
-                index += 1;
+                iIndex += 1;
             }
         }
-        //If the Checkforvictory function returns true
-        if (manager.Checkforvictory(playerParty, enemyParty) == true)
+        //If the CheckForVictory function returns true
+        if (manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
         {//Set the battleBox text to winText data
-            battleBox.text = manager.winText;
+            ifBattleBox.text = manager.winText;
             //Set the statsText to ""
             manager.statsText = "";
             //Call this function to print out the Stats of the objects in battle
-            manager.Statsofobjects(a.Participants);
+            manager.StatsOfObjects(a.ulParticipants);
             //Set the StatsField text to the statsText
-            StatsField.text = manager.statsText;
+            ifStatsField.text = manager.statsText;
 
             //Disable the Enemy1Button
-            Enemy1Button.enabled = false;
+            bEnemy1Button.enabled = false;
             //Disable the Enemy2Button
-            Enemy2Button.enabled = false;
+            bEnemy2Button.enabled = false;
             //Disable the Enemy3Button
-            Enemy3Button.enabled = false;
+            bEnemy3Button.enabled = false;
             //Enable the save menu
-            SaveMenu.enabled = true;
+            cSaveMenu.enabled = true;
             //Set isDone to true
-            isDone = true;
+            bIsDone = true;
 
         }
         //If isDone is equal to false
-        if (isDone == false)
+        if (bIsDone == false)
         {//Call the process turn function 
-            processTurn(index);
+            processTurn(iIndex);
         }
     }
 
     //Function called to start the battle
     public void FirstAttack(List<Unit> uList)
     {//Add the battleBox to "It is then the current units name's turn! then a newline
-        battleBox.text += "It is " + uList[index].Name + "'s turn!\n";
+        ifBattleBox.text += "It is " + uList[iIndex].sName + "'s turn!\n";
         //if the current units type is an enemy and it is alive
-        if (uList[index].Type == "Enemy" && uList[index].Life == true)
+        if (uList[iIndex].sType == "Enemy" && uList[iIndex].bLife == true)
         {//Feed the machine
             fsm.Feed("ENEMYTURN");
 
         }
         //if the current units type is a player and it is alive
-        if (uList[index].Type == "Player" && uList[index].Life == true)
+        if (uList[iIndex].sType == "Player" && uList[iIndex].bLife == true)
         {//Feed the machine
             fsm.Feed("PLAYERTURN");
         }
         //Set the StatsField text to the statsText variable data
-        StatsField.text = manager.statsText;
+        ifStatsField.text = manager.statsText;
     }
 
     //Function called in the exit State
     private void exitState()
     {//Disable the New Game Button
-        NewGameButton.enabled = false;
+        bNewGameButton.enabled = false;
         //Disable the Load Game Button
-        LoadGameButton.enabled = false;
+        bLoadGameButton.enabled = false;
         //Call the instance of the fileManger and call OnApplication function
         fileManager.Instance.OnApplicationQuit();
         //Quit the application
@@ -596,17 +600,17 @@ public class GameFlow : MonoBehaviour {
     //Function called when the Yes button is clicked
     public void ClickYes()
     {//Disable the save menu
-        SaveMenu.enabled = false;
+        cSaveMenu.enabled = false;
         //Create a new instance of a party object
         Party party = new Party();
         //Set the list in the party object to the player Party list
-        party.units = playerParty;
+        party.ulUnits = ulPlayerParty;
         //Loop through the list
-        foreach (Unit u in party.units)
+        foreach (Unit u in party.ulUnits)
         {//Reset health
-            u.Health = u.MaxHp;
+            u.iHealth = u.iMaxHp;
             //Bring life to true 
-            u.Life = true;
+            u.bLife = true;
         }
 
         //string ppartyfile = EditorUtility.SaveFilePanel("Save File", Application.dataPath + "/GameData/VictoryParty", "Enter a filename here for your party", "xml");
@@ -615,11 +619,11 @@ public class GameFlow : MonoBehaviour {
         //Serialize the data
         File.Serialize(ppartyfile, party);
         //Enable the gameCanvas
-        canvasScript.gameCanvas.enabled = true;
+        canvasScript.cGameCanvas.enabled = true;
         //Disable the battleCanvas
-        canvasScript.battleCanvas.enabled = false;
+        canvasScript.cBattleCanvas.enabled = false;
         //Enable the SavedFilePrompt Canvas
-        canvasScript.SavedFilePrompt.enabled = true;
+        canvasScript.cSavedFilePrompt.enabled = true;
         //Feed the machine
         fsm.Feed("playertostart");
     }
@@ -627,11 +631,11 @@ public class GameFlow : MonoBehaviour {
     //Function called when the No button is clicked
     public void ClickNo()
     {//Disable the save menu
-        SaveMenu.enabled = false;
+        cSaveMenu.enabled = false;
         //Enable the gameCanvas
-        canvasScript.gameCanvas.enabled = true;
+        canvasScript.cGameCanvas.enabled = true;
         //Disable the battleCanvas
-        canvasScript.battleCanvas.enabled = false;
+        canvasScript.cBattleCanvas.enabled = false;
         //Feed the machine
         fsm.Feed("playertostart");
     }
@@ -639,16 +643,16 @@ public class GameFlow : MonoBehaviour {
     //Function called when ok button is clicked on the EnemyWon Canvas
     public void eEnemyWon()
     {//Disable the Enemy Won canvas
-        EnemyWon.enabled = false;
+        cEnemyWon.enabled = false;
 
     }
 
     //Function called when the main menu button is clicked
     public void MainMenu()
     {//Disable the battle canvas
-        BattleCanvas.enabled = false;
+        cBattleCanvas.enabled = false;
         //Enable the gameCanvas
-        canvasScript.gameCanvas.enabled = true;
+        canvasScript.cGameCanvas.enabled = true;
         //Feed machine
         fsm.Feed("playertostart");
     }

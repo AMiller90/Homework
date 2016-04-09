@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,19 +55,19 @@
      <None Include="Assets\GameData\index.xml" />
      <None Include="Assets\GameData\EnemyParty\e.xml" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Users/HeavensGate/Desktop/New Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Adgp125 Assessment Library">
- <HintPath>C:/Users/Andrew.Miller/Desktop/Github Clones/Homework/Adgp 125 Assessment/Assets/DLLs/Adgp125 Assessment Library.dll</HintPath>
+ <HintPath>C:/Users/HeavensGate/Desktop/Homework/Adgp 125 Assessment/Assets/DLLs/Adgp125 Assessment Library.dll</HintPath>
  </Reference>
  <Reference Include="FileIO">
- <HintPath>C:/Users/Andrew.Miller/Desktop/Github Clones/Homework/Adgp 125 Assessment/Assets/DLLs/FileIO.dll</HintPath>
+ <HintPath>C:/Users/HeavensGate/Desktop/Homework/Adgp 125 Assessment/Assets/DLLs/FileIO.dll</HintPath>
  </Reference>
  <Reference Include="FiniteStateMachine">
- <HintPath>C:/Users/Andrew.Miller/Desktop/Github Clones/Homework/Adgp 125 Assessment/Assets/DLLs/FiniteStateMachine.dll</HintPath>
+ <HintPath>C:/Users/HeavensGate/Desktop/Homework/Adgp 125 Assessment/Assets/DLLs/FiniteStateMachine.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

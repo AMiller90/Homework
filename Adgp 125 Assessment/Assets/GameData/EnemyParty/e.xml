@@ -2,43 +2,43 @@
 <Party xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Party>
     <Unit>
-      <Name>Zuu</Name>
-      <Level>1</Level>
-      <MaxHp>120</MaxHp>
-      <Health>120</Health>
-      <Strength>15</Strength>
-      <Defense>10</Defense>
-      <Speed>5</Speed>
-      <Experience>20</Experience>
-      <Type>Enemy</Type>
-      <Life>true</Life>
-      <Participants />
+      <sName>Zuu</sName>
+      <iLevel>1</iLevel>
+      <iMaxHp>120</iMaxHp>
+      <iHealth>0</iHealth>
+      <iStrength>15</iStrength>
+      <iDefense>10</iDefense>
+      <iSpeed>5</iSpeed>
+      <iExperience>20</iExperience>
+      <sType>Enemy</sType>
+      <bLife>false</bLife>
+      <ulParticipants />
     </Unit>
     <Unit>
-      <Name>2Faced</Name>
-      <Level>1</Level>
-      <MaxHp>100</MaxHp>
-      <Health>100</Health>
-      <Strength>20</Strength>
-      <Defense>15</Defense>
-      <Speed>5</Speed>
-      <Experience>25</Experience>
-      <Type>Enemy</Type>
-      <Life>true</Life>
-      <Participants />
+      <sName>Ghost</sName>
+      <iLevel>1</iLevel>
+      <iMaxHp>80</iMaxHp>
+      <iHealth>3</iHealth>
+      <iStrength>20</iStrength>
+      <iDefense>15</iDefense>
+      <iSpeed>5</iSpeed>
+      <iExperience>30</iExperience>
+      <sType>Enemy</sType>
+      <bLife>true</bLife>
+      <ulParticipants />
     </Unit>
     <Unit>
-      <Name>Ghost</Name>
-      <Level>1</Level>
-      <MaxHp>80</MaxHp>
-      <Health>80</Health>
-      <Strength>20</Strength>
-      <Defense>15</Defense>
-      <Speed>5</Speed>
-      <Experience>30</Experience>
-      <Type>Enemy</Type>
-      <Life>true</Life>
-      <Participants />
+      <sName>Ancient Dragon</sName>
+      <iLevel>1</iLevel>
+      <iMaxHp>200</iMaxHp>
+      <iHealth>0</iHealth>
+      <iStrength>30</iStrength>
+      <iDefense>12</iDefense>
+      <iSpeed>4</iSpeed>
+      <iExperience>100</iExperience>
+      <sType>Enemy</sType>
+      <bLife>false</bLife>
+      <ulParticipants />
     </Unit>
   </Party>
 </Party>

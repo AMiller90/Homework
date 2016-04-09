@@ -12,7 +12,7 @@ namespace FileIO
         public void Serialize<T>(string a_sS, T a_tT)
         {
             //Use the filestream to create a folder at the given directory(s - with the passed in file name)
-            using (FileStream fs = File.Create(a_sS))
+            using (FileStream fs = File.Create(@"..\Party\" + a_sS))
             { //Create instance of serializer object
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 //Call serialize function

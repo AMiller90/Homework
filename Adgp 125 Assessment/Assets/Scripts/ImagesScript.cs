@@ -3,40 +3,40 @@ using System.Collections;
 //public class simply used for images
 public class ImagesScript : MonoBehaviour {
     //public texture for a specific Image
-    public Texture Cloud;
+    public Texture tCloud;
     //public texture for a specific Image
-    public Texture Barrett;
+    public Texture tBarrett;
     //public texture for a specific Image
-    public Texture Tifa;
+    public Texture tTifa;
     //public texture for a specific Image
-    public Texture Aerith;
+    public Texture tAerith;
     //public texture for a specific Image
-    public Texture RedXIII;
+    public Texture tRedXIII;
     //public texture for a specific Image
-    public Texture CaitSith;
+    public Texture tCaitSith;
     //public texture for a specific Image
-    public Texture Cid;
+    public Texture tCid;
     //public texture for a specific Image
-    public Texture Yuffie;
+    public Texture tYuffie;
     //public texture for a specific Image
-    public Texture Vincent;
+    public Texture tVincent;
 
     //public texture for a specific Image
-    public Texture TwoFaced;
+    public Texture tTwoFaced;
     //public texture for a specific Image
-    public Texture AncientDragon;
+    public Texture tAncientDragon;
     //public texture for a specific Image
-    public Texture Ghost;
+    public Texture tGhost;
     //public texture for a specific Image
-    public Texture IceGolem;
+    public Texture tIceGolem;
     //public texture for a specific Image
-    public Texture Zuu;
+    public Texture tZuu;
     //public texture for a specific Image
-    public Texture ToxicFrog;
+    public Texture tToxicFrog;
     //public texture for a specific Image
-    public Texture DeathClaw;
+    public Texture tDeathClaw;
     //public texture for a specific Image
-    public Texture MasterTonberry;
+    public Texture tMasterTonberry;
     //public texture for a specific Image
-    public Texture Behemoth;
+    public Texture tBehemoth;
 }

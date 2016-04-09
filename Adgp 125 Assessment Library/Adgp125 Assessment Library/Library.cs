@@ -108,7 +108,7 @@ namespace Adgp125_Assessment_Library
                 }
             }
             //Loop through the elist 
-            foreach (Unit e in a_ulPlist)
+            foreach (Unit e in a_ulElist)
             {//If the current units life is false
                 if (e.bLife == false)
                 {//Increase the e count by 1

@@ -2,43 +2,43 @@
 <Party xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Party>
     <Unit>
-      <Name>Red XIII</Name>
-      <Level>1</Level>
-      <MaxHp>220</MaxHp>
-      <Health>220</Health>
-      <Strength>10</Strength>
-      <Defense>12</Defense>
-      <Speed>10</Speed>
-      <Experience>0</Experience>
-      <Type>Player</Type>
-      <Life>true</Life>
-      <Participants />
+      <sName>Red XIII</sName>
+      <iLevel>1</iLevel>
+      <iMaxHp>220</iMaxHp>
+      <iHealth>38</iHealth>
+      <iStrength>10</iStrength>
+      <iDefense>12</iDefense>
+      <iSpeed>10</iSpeed>
+      <iExperience>20</iExperience>
+      <sType>Player</sType>
+      <bLife>true</bLife>
+      <ulParticipants />
     </Unit>
     <Unit>
-      <Name>Tifa</Name>
-      <Level>1</Level>
-      <MaxHp>215</MaxHp>
-      <Health>215</Health>
-      <Strength>11</Strength>
-      <Defense>11</Defense>
-      <Speed>7</Speed>
-      <Experience>0</Experience>
-      <Type>Player</Type>
-      <Life>true</Life>
-      <Participants />
+      <sName>Tifa</sName>
+      <iLevel>2</iLevel>
+      <iMaxHp>235</iMaxHp>
+      <iHealth>224</iHealth>
+      <iStrength>16</iStrength>
+      <iDefense>16</iDefense>
+      <iSpeed>9</iSpeed>
+      <iExperience>0</iExperience>
+      <sType>Player</sType>
+      <bLife>true</bLife>
+      <ulParticipants />
     </Unit>
     <Unit>
-      <Name>Cloud</Name>
-      <Level>1</Level>
-      <MaxHp>150</MaxHp>
-      <Health>150</Health>
-      <Strength>12</Strength>
-      <Defense>12</Defense>
-      <Speed>6</Speed>
-      <Experience>0</Experience>
-      <Type>Player</Type>
-      <Life>true</Life>
-      <Participants />
+      <sName>Barret</sName>
+      <iLevel>1</iLevel>
+      <iMaxHp>220</iMaxHp>
+      <iHealth>16</iHealth>
+      <iStrength>15</iStrength>
+      <iDefense>13</iDefense>
+      <iSpeed>5</iSpeed>
+      <iExperience>0</iExperience>
+      <sType>Player</sType>
+      <bLife>true</bLife>
+      <ulParticipants />
     </Unit>
   </Party>
 </Party>
