@@ -145,9 +145,9 @@ void Grid::PrintGame()
 	//Print out input options
 	cout << "What Would You Like To Do?\n\n";
 	cout << "Move Up: w\n";
-	cout << "Move Up: a\n";
-	cout << "Move Up: s\n";
-	cout << "Move Up: d\n";
+	cout << "Move Left: a\n";
+	cout << "Move Down: s\n";
+	cout << "Move Right: d\n";
 	cout << "Use Arrow: 1\n\n";
 	//call player inventory function to print inventory to screen
 	player.Inventory();
