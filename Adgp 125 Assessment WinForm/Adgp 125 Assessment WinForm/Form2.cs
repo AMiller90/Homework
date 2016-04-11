@@ -16,15 +16,15 @@ namespace Adgp_125_Assessment_WinForm
     {//Create an instance of the FileIO class
         FileIOS _Save = new FileIOS();
         //Create a bool variable and set it to false
-        bool isDone = false;
+        bool bIsDone = false;
         //Create an int variable to represent the index of a given list
-        int index;
+        int iIndex;
         //Create an int variable to compare the index too
-        int count;
+        int iCount;
         //Create a public unit list for player types
-        List<Unit> playerParty = new List<Unit>();
+        List<Unit> ulPlayerParty = new List<Unit>();
         //Create a public unit list for enemy types
-        List<Unit> enemyParty = new List<Unit>();
+        List<Unit> ulEnemyParty = new List<Unit>();
 
         //Create a public variable to reference the Form1 class
         public Form1 refer;
@@ -42,7 +42,7 @@ namespace Adgp_125_Assessment_WinForm
         //Function called to start the battle
         private void FirstAttack(List<Unit> uList)
         {//Add the BattleText to "It is then the current units name's turn! then a newline
-            BattleText.Text += "It is " + uList[index].sName + "'s turn!\n";
+            BattleText.Text += "It is " + uList[iIndex].sName + "'s turn!\n";
 
             //If the deserialized state variable is not equal to null
             if (refer.deserializedState != null)
@@ -53,13 +53,13 @@ namespace Adgp_125_Assessment_WinForm
             //else if the deserialized state is null that means the game isnt loaded from a saved file
             else
             {//if the current units type is an enemy and it is alive
-                if (uList[index].sType == "Enemy" && uList[index].bLife == true)
+                if (uList[iIndex].sType == "Enemy" && uList[iIndex].bLife == true)
                 {//Transition to ENEMYTURN state
                     refer.fsm.Feed("ENEMYTURN");
 
                 }
                 //if the current units type is a player and it is alive
-                if (uList[index].sType == "Player" && uList[index].bLife == true)
+                if (uList[iIndex].sType == "Player" && uList[iIndex].bLife == true)
                 {//Transition to PLAYERTURN state
                     refer.fsm.Feed("PLAYERTURN");
                 }
@@ -74,33 +74,33 @@ namespace Adgp_125_Assessment_WinForm
         //Function activated when the Enemy1Button is clicked - Gives user option of attacking specific unit
         private void Enemy1Button_Click(object sender, EventArgs e)
         {//Set the current unit in the list into a Unit variable to simplify and make it easier to read
-            Unit a = refer.u.ulParticipants[index];
+            Unit a = refer.u.ulParticipants[iIndex];
             //If the current enemy in the enemyParty is alive
-            if (enemyParty[0].bLife == true)
+            if (ulEnemyParty[0].bLife == true)
             {//The current unit will attack that enemy
-                a.Attack(enemyParty[0]);
+                a.Attack(ulEnemyParty[0]);
                 //Set the BattleText text to stufftext data
                 BattleText.Text = a.sStuffText;
                 //If the index is equal to the count variable
-                if (index == count)
+                if (iIndex == iCount)
                 {//Set index to 0
-                    index = 0;
+                    iIndex = 0;
                 }
                 //If the index is not equal to the count variable
                 else
                 {//Increment the index by 1
-                    index += 1;
+                    iIndex += 1;
                 }
 
             }
             //If the Checkforvictory function returns true 
-            if (refer.manager.CheckForVictory(playerParty, enemyParty) == true)
+            if (refer.manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
             {//Set the BattleText text to the winText
                 BattleText.Text += refer.manager.winText;
                 //Create a new Party object
                 Party party = new Party();
                 //Set the units list in that party object to the playerParty list
-                party.ulUnits = playerParty;
+                party.ulUnits = ulPlayerParty;
                 //Loop through each unit in the party units list
                 foreach (Unit u in party.ulUnits)
                 {//Reset health
@@ -135,15 +135,15 @@ namespace Adgp_125_Assessment_WinForm
                     MessageBox.Show("Game Has Been Saved!", "Save", MessageBoxButtons.OK);
                 }
                 //Set isDone variable to true
-                isDone = true;
+                bIsDone = true;
                 //Changes state to start
                 refer.fsm.Feed("start");
 
             }
             //If isDone is equal to false
-            if(isDone == false)
+            if(bIsDone == false)
             {//Call the process turn function 
-                processTurn(index);
+                processTurn(iIndex);
             }
             
 
@@ -152,36 +152,36 @@ namespace Adgp_125_Assessment_WinForm
         //Function activated when the Enemy2Button is clicked - Gives user option of attacking specific unit
         private void Enemy2Button_Click(object sender, EventArgs e)
         {//Set the current unit in the list into a Unit variable to simplify and make it easier to read
-            Unit a = refer.u.ulParticipants[index];
+            Unit a = refer.u.ulParticipants[iIndex];
 
             //If the current enemy in the enemyParty is alive
-            if (enemyParty[1].bLife == true)
+            if (ulEnemyParty[1].bLife == true)
             { 
                 //The current unit will attack that enemy
-                a.Attack(enemyParty[1]);
+                a.Attack(ulEnemyParty[1]);
                 //Set the BattleText text to stufftext data
                 BattleText.Text = a.sStuffText;
 
                 //If the index is equal to the count variable
-                if (index == count)
+                if (iIndex == iCount)
                 {//Set index to 0
-                    index = 0;
+                    iIndex = 0;
                 }
                 //If the index is not equal to the count variable
                 else
                 {//Increment the index by 1
-                    index += 1;
+                    iIndex += 1;
                 }
 
             }
             //If the Checkforvictory function returns true 
-            if (refer.manager.CheckForVictory(playerParty, enemyParty) == true)
+            if (refer.manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
             {//Set the BattleText text to the winText
                 BattleText.Text += refer.manager.winText;
                 //Create a new Party object
                 Party party = new Party();
                 //Set the units list in that party object to the playerParty list
-                party.ulUnits = playerParty;
+                party.ulUnits = ulPlayerParty;
                 //Loop through each unit in the party units list
                 foreach (Unit u in party.ulUnits)
                 {//Reset health
@@ -218,45 +218,45 @@ namespace Adgp_125_Assessment_WinForm
                     MessageBox.Show("Game Has Been Saved!", "Save", MessageBoxButtons.OK);
                 }
                 //Set isDone variable to true
-                isDone = true;
+                bIsDone = true;
                 //Changes state to start
                 refer.fsm.Feed("start");
 
             }
             //If isDone is equal to false
-            if (isDone == false)
+            if (bIsDone == false)
             {//Call the process turn function 
-                processTurn(index);
+                processTurn(iIndex);
             }
         }
 
         //Function activated when the Enemy3Button is clicked - Gives user option of attacking specific unit
         private void Enemy3Button_Click(object sender, EventArgs e)
         {//Set the current unit in the list into a Unit variable to simplify and make it easier to read
-            Unit a = refer.u.ulParticipants[index];
+            Unit a = refer.u.ulParticipants[iIndex];
 
             //If the current enemy in the enemyParty is alive
-            if (enemyParty[2].bLife == true)
+            if (ulEnemyParty[2].bLife == true)
             {
                 //The current unit will attack that enemy
-                a.Attack(enemyParty[2]);
+                a.Attack(ulEnemyParty[2]);
                 //Set the BattleText text to stufftext data
                 BattleText.Text = a.sStuffText;
 
                 //If the index is equal to the count variable
-                if (index == count)
+                if (iIndex == iCount)
                 {//Set index to 0
-                    index = 0;
+                    iIndex = 0;
                 }
                 //If the index is not equal to the count variable
                 else
                 {//Increment the index by 1
-                    index += 1;
+                    iIndex += 1;
                 }
 
             }
             //If the Checkforvictory function returns true 
-            if (refer.manager.CheckForVictory(playerParty, enemyParty) == true)
+            if (refer.manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
             {//Set the BattleText text to the winText
                 BattleText.Text += refer.manager.winText;
 
@@ -264,7 +264,7 @@ namespace Adgp_125_Assessment_WinForm
                 Party party = new Party();
 
                 //Set the units list in that party object to the playerParty list
-                party.ulUnits = playerParty;
+                party.ulUnits = ulPlayerParty;
 
                 //Loop through each unit in the party units list
                 foreach (Unit u in party.ulUnits)
@@ -303,27 +303,27 @@ namespace Adgp_125_Assessment_WinForm
                 }
 
                 //Set isDone variable to true
-                isDone = true;
+                bIsDone = true;
                 //Changes state to start
                 refer.fsm.Feed("start");
 
             }
             //If isDone is equal to false
-            if (isDone == false)
+            if (bIsDone == false)
             {//Call the process turn function 
-                processTurn(index);
+                processTurn(iIndex);
             }
         }
 
         //Function called to determine the next units turn
-        private void processTurn(int number)
+        private void processTurn(int iNumber)
         {//If number is equal to the count of the participants list
-            if (number == refer.u.ulParticipants.Count)
+            if (iNumber == refer.u.ulParticipants.Count)
             {//That means we need to start over in the list
                 //Set number to 0
-                number = 0;
+                iNumber = 0;
                 //Set index to 0
-                index = 0;
+                iIndex = 0;
             }
             //Set e_States.Battle as an Enum and store it into a new Enum variable
             Enum state = e_STATES.BATTLE as Enum;
@@ -334,19 +334,19 @@ namespace Adgp_125_Assessment_WinForm
             }
            
             //If the current unit is of type Player and is alive
-            if (refer.u.ulParticipants[number].sType == "Player" && refer.u.ulParticipants[number].bLife == true)
+            if (refer.u.ulParticipants[iNumber].sType == "Player" && refer.u.ulParticipants[iNumber].bLife == true)
                 {
                 //Add It is The current units names turn! and a newline to the BattleText text
-                BattleText.Text += "It is " + refer.u.ulParticipants[number].sName + "'s turn!\n";
+                BattleText.Text += "It is " + refer.u.ulParticipants[iNumber].sName + "'s turn!\n";
                 //Change to the Player state
                 refer.fsm.Feed("battletoplayer");
 
                 }
             // else if the current unit is of type Enemy and is alive
-            else if (refer.u.ulParticipants[number].sType == "Enemy" && refer.u.ulParticipants[number].bLife == true)
+            else if (refer.u.ulParticipants[iNumber].sType == "Enemy" && refer.u.ulParticipants[iNumber].bLife == true)
                 {
                 //Add It is The current units names turn! and a newline to the BattleText text
-                BattleText.Text += "It is " + refer.u.ulParticipants[number].sName + "'s turn!\n";
+                BattleText.Text += "It is " + refer.u.ulParticipants[iNumber].sName + "'s turn!\n";
                 //Change to the Enemy state
                 refer.fsm.Feed("battletoenemy");
 
@@ -354,23 +354,23 @@ namespace Adgp_125_Assessment_WinForm
             //If the current unit is not of Type player or enemy or the unit is not alive
                 else
                 {//Increment the index by 1 
-                    index += 1;
+                iIndex += 1;
                 //Call processTurn function again with the index passed in so the next unit can have its turn
-                processTurn(index);
+                processTurn(iIndex);
                 }
 
             
         }
 
         //Function used to set the images of objects that will be in battle
-        private void setImages(List<Unit> units)
+        private void setImages(List<Unit> ulUnits)
         {//Loop through the number of units in the list
-            for (int i = 0; i < units.Count; i++)
+            for (int i = 0; i < ulUnits.Count; i++)
             {//If the unit at the current indexes name is the same as the Player1Label.Text
                 //Player Images
-                if (units[i].sName == Player1Label.Text)
+                if (ulUnits[i].sName == Player1Label.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].sName)
+                    switch (ulUnits[i].sName)
                     {//If the name is here in a case then set the p1PictureBox.Image to the proper picture
                         case "Cloud":
                             p1PictureBox.Image = Properties.Resources.Cloud;
@@ -404,9 +404,9 @@ namespace Adgp_125_Assessment_WinForm
                     }
                 }
                 //If the unit at the current indexes name is the same as the Player2Label.Text
-                if (units[i].sName == Player2Label.Text)
+                if (ulUnits[i].sName == Player2Label.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].sName)
+                    switch (ulUnits[i].sName)
                     {//If the name is here in a case then set the p2PictureBox.Image to the proper picture
                         case "Cloud":
                             p2PictureBox.Image = Properties.Resources.Cloud;
@@ -441,9 +441,9 @@ namespace Adgp_125_Assessment_WinForm
 
                 }
                 //If the unit at the current indexes name is the same as the Player3Label.Text
-                if (units[i].sName == Player3Label.Text)
+                if (ulUnits[i].sName == Player3Label.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].sName)
+                    switch (ulUnits[i].sName)
                     {//If the name is here in a case then set the p3PictureBox.Image to the proper picture
                         case "Cloud":
                             p3PictureBox.Image = Properties.Resources.Cloud;
@@ -479,9 +479,9 @@ namespace Adgp_125_Assessment_WinForm
                 }
                 //If the unit at the current indexes name is the same as the Enemy1Label.Text
                 //Enemy Images
-                if (units[i].sName == Enemy1Label.Text)
+                if (ulUnits[i].sName == Enemy1Label.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].sName)
+                    switch (ulUnits[i].sName)
                     {//If the name is here in a case then set the e1PictureBox.Image to the proper picture
                         case "2Faced":
                             e1PictureBox.Image = Properties.Resources._2Faced;
@@ -515,9 +515,9 @@ namespace Adgp_125_Assessment_WinForm
                     }
                 }
                 //If the unit at the current indexes name is the same as the Enemy2Label.Text
-                if (units[i].sName == Enemy2Label.Text)
+                if (ulUnits[i].sName == Enemy2Label.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].sName)
+                    switch (ulUnits[i].sName)
                     {//If the name is here in a case then set the e2PictureBox.Image to the proper picture
                         case "2Faced":
                             e2PictureBox.Image = Properties.Resources._2Faced;
@@ -552,9 +552,9 @@ namespace Adgp_125_Assessment_WinForm
 
                 }
                 //If the unit at the current indexes name is the same as the Enemy3Label.Text
-                if (units[i].sName == Enemy3Label.Text)
+                if (ulUnits[i].sName == Enemy3Label.Text)
                 {//Look For the Name in this statement
-                    switch (units[i].sName)
+                    switch (ulUnits[i].sName)
                     {//If the name is here in a case then set the e3PictureBox.Image to the proper picture
                         case "2Faced":
                             e3PictureBox.Image = Properties.Resources._2Faced;
@@ -604,11 +604,11 @@ namespace Adgp_125_Assessment_WinForm
             List<Party> pList = new List<Party>();
 
             //Create a new int variable and set it to the index 
-            int number = index;
+            int number = iIndex;
             //Set the units list inside this party to the playerParty
-            a.ulUnits = playerParty;
+            a.ulUnits = ulPlayerParty;
             //Set the units list inside this party to the enemyParty
-            b.ulUnits = enemyParty;
+            b.ulUnits = ulEnemyParty;
             //Set the Enum variable to the currentStates name
             E = refer.fsm.sCurrentState.eName;
 
@@ -628,16 +628,16 @@ namespace Adgp_125_Assessment_WinForm
         //Function called when this form is loaded
         private void Form2_Load(object sender, EventArgs e)
         {//Set isDone variable to false
-            isDone = false;
+            bIsDone = false;
             //If the playerParty count is greater than or equal to 1
-            if(playerParty.Count >= 1)
+            if(ulPlayerParty.Count >= 1)
             {//Remove all elements in the playerParty
-                playerParty.RemoveRange(0, playerParty.Count);
+                ulPlayerParty.RemoveRange(0, ulPlayerParty.Count);
             }
             //If the enemyParty count is greater than or equal to 1
-            if (enemyParty.Count >= 1)
+            if (ulEnemyParty.Count >= 1)
             {//Remove all elements in the enemyParty
-                enemyParty.RemoveRange(0, enemyParty.Count);
+                ulEnemyParty.RemoveRange(0, ulEnemyParty.Count);
             }
             //Disable the Enemy1Button
             Enemy1Button.Enabled = false;
@@ -647,11 +647,11 @@ namespace Adgp_125_Assessment_WinForm
             Enemy3Button.Enabled = false;
 
             //Set count equal to the participants list count - 1
-            count = refer.u.ulParticipants.Count - 1;
+            iCount = refer.u.ulParticipants.Count - 1;
             //Set index to 0
-            index = 0;
+            iIndex = 0;
             //Set index to currenntUnitIndex if it is loaded in from a save file
-            index = refer.currentUnitIndex;
+            iIndex = refer.currentUnitIndex;
 
             //Set the Player1Label text to the player1name variable
             Player1Label.Text = refer.player1name;
@@ -676,7 +676,7 @@ namespace Adgp_125_Assessment_WinForm
         {//CurrentStateBox text will be set to the deserialized state data
                 CurrentStateBox.Text = refer.deserializedState.ToString();
             //index will be set to the currentUnitIndex data
-                index = refer.currentUnitIndex;
+                iIndex = refer.currentUnitIndex;
             
         }
 
@@ -694,29 +694,22 @@ namespace Adgp_125_Assessment_WinForm
             CurrentStateBox.Text = refer.fsm.sCurrentState.eName.ToString();
 
             //If the current unit is an enemy and alive
-            if (refer.u.ulParticipants[index].sType == "Enemy" && refer.u.ulParticipants[index].bLife == true)
+            if (refer.u.ulParticipants[iIndex].sType == "Enemy" && refer.u.ulParticipants[iIndex].bLife == true)
             {//Create a new unit and store current unit into it
-                Unit Attacker = refer.u.ulParticipants[index];
+                Unit Attacker = refer.u.ulParticipants[iIndex];
                 //Create a new Unit and store the enemies target into it
-                Unit Defender = Attacker.EnemyRandomTarget(playerParty);
+                Unit Defender = Attacker.EnemyRandomTarget(ulPlayerParty);
 
                 //Attack function called on target unit
                 Attacker.Attack(Defender);
                 //Set BattleText to stuffText
                 BattleText.Text += Attacker.sStuffText;
-                //If index is equal to count
-                if (index == count)
-                {//Set index to 0
-                    index = 0;
-                }
-                //If index is not equal to 0
-                else
-                {//Increment the index by 1
-                    index += 1;
-                }
+               
+                //Set index to 0 if true : Add 1 to index if false
+                iIndex = iIndex == iCount ? iIndex = 0 : iIndex += 1;
             }
             //If the Checkforvictory function returns true 
-            if (refer.manager.CheckForVictory(playerParty, enemyParty) == true)
+            if (refer.manager.CheckForVictory(ulPlayerParty, ulEnemyParty) == true)
             {//Set the BattleText text to the winText
                 BattleText.Text += refer.manager.winText;
 
@@ -737,7 +730,7 @@ namespace Adgp_125_Assessment_WinForm
                 //Set currentStateBox text to the currentState
                 CurrentStateBox.Text = refer.fsm.sCurrentState.eName.ToString();
                 //Set isDone to true
-                isDone = true;
+                bIsDone = true;
                 //Message box prompting user that Enemy has won
                 MessageBox.Show("Game Over", "Enemy Has Won!");
                 //Feed machine
@@ -745,9 +738,9 @@ namespace Adgp_125_Assessment_WinForm
 
             }
             //If isDone is equal to false
-            if (isDone == false)
+            if (bIsDone == false)
             {//Call process turn function
-                processTurn(index);
+                processTurn(iIndex);
             }
 
         }
@@ -794,23 +787,23 @@ namespace Adgp_125_Assessment_WinForm
                 {//If the current unit is of type Player
                     if (i.sType == "Player")
                     {//Add the unit to this party
-                        playerParty.Add(i);
+                        ulPlayerParty.Add(i);
 
                     }
                     //If the current unit is of type Enemy
                     if (i.sType == "Enemy")
                     {//Add the unit to this party
-                    enemyParty.Add(i);
+                    ulEnemyParty.Add(i);
                     }
 
                 }
 
                 //Set the Enemy1Label text to the given index of the enemyParty list
-                Enemy1Label.Text = enemyParty[0].sName;
+                Enemy1Label.Text = ulEnemyParty[0].sName;
                 //Set the Enemy2Label text to the given index of the enemyParty list
-                Enemy2Label.Text = enemyParty[1].sName;
+                Enemy2Label.Text = ulEnemyParty[1].sName;
                 //Set the Enemy3Label text to the given index of the enemyParty list
-                Enemy3Label.Text = enemyParty[2].sName;
+                Enemy3Label.Text = ulEnemyParty[2].sName;
 
                 //Call setImages function to set all units in the list with proper pictures
                 setImages(refer.u.ulParticipants);
@@ -840,12 +833,12 @@ namespace Adgp_125_Assessment_WinForm
         }
 
         //Function used to check the which object goes first based on higher speed stat
-        public List<Unit> SortBySpeed(List<Unit> List)
+        public List<Unit> SortBySpeed(List<Unit> uList)
         {
             //Create a new list<Unit>
             List<Unit> sortedlist = new List<Unit>();
             //Set the new list to the passed in list ordered by highest speed stat first
-            sortedlist = List.OrderByDescending(u => u.iSpeed).ToList<Unit>();
+            sortedlist = uList.OrderByDescending(u => u.iSpeed).ToList<Unit>();
             //Return the new sorted list
             return sortedlist;
         }

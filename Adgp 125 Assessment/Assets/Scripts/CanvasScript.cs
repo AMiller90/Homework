@@ -239,6 +239,7 @@ public class CanvasScript : MonoBehaviour {
             {//If true then add to enemy party
                 ulEnemies.Add(i);
             }
+
         }
         //Call function to randomize the objects
         RandomizeAllParties(ulPlayers, ulEnemies);
@@ -474,14 +475,14 @@ public class CanvasScript : MonoBehaviour {
     }
     
     //Function for setting game images to loaded in list
-    public void LoadedGameImages(List<Unit> units)
+    public void LoadedGameImages(List<Unit> ulUnits)
     {//Loop through the number of units in the list
-        for (int i = 0; i < units.Count; i++)
+        for (int i = 0; i < ulUnits.Count; i++)
         {//If the unit at the current indexes name is the same as the riPlayer1Name.Text
             //Player Images
-            if (units[i].sName == tPlayer1Name.text)
+            if (ulUnits[i].sName == tPlayer1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the p1.texture to the proper picture
                     case "Cloud":
                         riP1.texture = iImageList.tCloud;
@@ -515,9 +516,9 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
             //If the unit at the current indexes name is the same as the ifPlayer2Name.Text
-            if (units[i].sName == tPlayer2Name.text)
+            if (ulUnits[i].sName == tPlayer2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the p2.texture to the proper picture
                     case "Cloud":
                         riP2.texture = iImageList.tCloud;
@@ -551,9 +552,9 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
             //If the unit at the current indexes name is the same as the player3Name.Text
-            if (units[i].sName == tPlayer3Name.text)
+            if (ulUnits[i].sName == tPlayer3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the p3.texture to the proper picture
                     case "Cloud":
                         riP3.texture = iImageList.tCloud;
@@ -589,9 +590,9 @@ public class CanvasScript : MonoBehaviour {
             }
             //If the unit at the current indexes name is the same as the enemy1Name.Text
             //Enemy Images
-            if (units[i].sName == tEnemy1Name.text)
+            if (ulUnits[i].sName == tEnemy1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the e1.texture to the proper picture
                     case "2Faced":
                         riE1.texture = iImageList.tTwoFaced;
@@ -625,9 +626,9 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
             //If the unit at the current indexes name is the same as the enemy2Name.Text
-            if (units[i].sName == tEnemy2Name.text)
+            if (ulUnits[i].sName == tEnemy2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the e2.texture to the proper picture
                     case "2Faced":
                         riE2.texture = iImageList.tTwoFaced;
@@ -662,9 +663,9 @@ public class CanvasScript : MonoBehaviour {
 
             }
             //If the unit at the current indexes name is the same as the enemy3Name.Text
-            if (units[i].sName == tEnemy3Name.text)
+            if (ulUnits[i].sName == tEnemy3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the e3.texture to the proper picture
                     case "2Faced":
                         riE3.texture = iImageList.tTwoFaced;
@@ -702,14 +703,14 @@ public class CanvasScript : MonoBehaviour {
     }
     
     //Function for setting the images of new game objects
-    public void setImages(List<Unit> units)
+    public void setImages(List<Unit> ulUnits)
     {//Loop through the number of units in the list
-        for (int i = 0; i < units.Count; i++)
+        for (int i = 0; i < ulUnits.Count; i++)
         {//If the unit at the current indexes name is the same as the riPlayer1Name.Text
             //Player Images
-            if (units[i].sName == tPlayer1Name.text)
+            if (ulUnits[i].sName == tPlayer1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the riPlayer1.texture to the proper picture
                     case "Cloud":
                         riPlayer1.texture = iImageList.tCloud;
@@ -752,9 +753,9 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
             //If the unit at the current indexes name is the same as the ifPlayer2Name.Text
-            if (units[i].sName == tPlayer2Name.text)
+            if (ulUnits[i].sName == tPlayer2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the ifPlayer2.texture to the proper picture
                     case "Cloud":
                         riPlayer2.texture = iImageList.tCloud;
@@ -797,9 +798,9 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
             //If the unit at the current indexes name is the same as the player3Name.Text
-            if (units[i].sName == tPlayer3Name.text)
+            if (ulUnits[i].sName == tPlayer3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the player3.texture to the proper picture
                     case "Cloud":
                         riPlayer3.texture = iImageList.tCloud;
@@ -844,9 +845,9 @@ public class CanvasScript : MonoBehaviour {
             }
             //If the unit at the current indexes name is the same as the enemy1Name.Text
             //Enemy Images
-            if (units[i].sName == tEnemy1Name.text)
+            if (ulUnits[i].sName == tEnemy1Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the e1.texture to the proper picture
                     case "2Faced":
                         riE1.texture = iImageList.tTwoFaced;
@@ -880,9 +881,9 @@ public class CanvasScript : MonoBehaviour {
                 }
             }
             //If the unit at the current indexes name is the same as the enemy2Name.Text
-            if (units[i].sName == tEnemy2Name.text)
+            if (ulUnits[i].sName == tEnemy2Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the e2.texture to the proper picture
                     case "2Faced":
                         riE2.texture = iImageList.tTwoFaced;
@@ -917,9 +918,9 @@ public class CanvasScript : MonoBehaviour {
 
             }
             //If the unit at the current indexes name is the same as the enemy3Name.Text
-            if (units[i].sName == tEnemy3Name.text)
+            if (ulUnits[i].sName == tEnemy3Name.text)
             {//Look For the Name in this statement
-                switch (units[i].sName)
+                switch (ulUnits[i].sName)
                 {//If the name is here in a case then set the e3.texture to the proper picture
                     case "2Faced":
                         riE3.texture = iImageList.tTwoFaced;

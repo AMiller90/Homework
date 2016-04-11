@@ -26,7 +26,6 @@ public enum e_GameStates
     EXIT
 }
 
-//[Serializable()]
 public class GameFlow : MonoBehaviour {
     //Public instance of the GameManager object
     public GameManager manager = GameManager.instance;
@@ -161,12 +160,12 @@ public class GameFlow : MonoBehaviour {
     }
 
     //Function used to check which object goes first based on higher speed stat
-    public List<Unit> sortBySpeed(List<Unit> List)
+    public List<Unit> sortBySpeed(List<Unit> uList)
     {
         //Create a new list<Unit>
         List<Unit> sortedlist = new List<Unit>();
         //Set the new list to the passed in list ordered by highest speed stat first
-        sortedlist = List.OrderByDescending(u => u.iSpeed).ToList<Unit>();
+        sortedlist = uList.OrderByDescending(u => u.iSpeed).ToList<Unit>();
         //Return the new sorted list
         return sortedlist;
     }
@@ -203,7 +202,8 @@ public class GameFlow : MonoBehaviour {
 
     //Function called in the search State
     private void searchState()
-    {//Print out the current State
+    {
+        //Print out the current State
         Debug.Log(fsm.sCurrentState.eName.ToString());
         //Battle party sorted by speed to produce attack order 
         a.ulParticipants = sortBySpeed(canvasScript.ulBattleReadyParty);
@@ -367,11 +367,11 @@ public class GameFlow : MonoBehaviour {
     }
 
     //Function called to determine the next units turn
-    private void processTurn(int number)
+    private void processTurn(int iNumber)
     {//If number is equal to the count of the participants list
-        if (number == a.ulParticipants.Count)
+        if (iNumber == a.ulParticipants.Count)
         {//Set number to 0
-            number = 0;
+            iNumber = 0;
             //Set index to 0
             iIndex = 0;
         }
@@ -381,19 +381,19 @@ public class GameFlow : MonoBehaviour {
             fsm.Feed("battle");
         }
         //If the current unit is of type Player and is alive
-        if (a.ulParticipants[number].sType == "Player" && a.ulParticipants[number].bLife == true)
+        if (a.ulParticipants[iNumber].sType == "Player" && a.ulParticipants[iNumber].bLife == true)
         {
             //Add It is The current units names turn! and a newline to the battleBox text
-            ifBattleBox.text += "It is " + a.ulParticipants[number].sName + "'s turn!\n";
+            ifBattleBox.text += "It is " + a.ulParticipants[iNumber].sName + "'s turn!\n";
             //Feed the machine
             fsm.Feed("battletoplayer");
 
         }
         //else if the current unit is of type Enemy and is alive
-        else if (a.ulParticipants[number].sType == "Enemy" && a.ulParticipants[number].bLife == true)
+        else if (a.ulParticipants[iNumber].sType == "Enemy" && a.ulParticipants[iNumber].bLife == true)
         {
             //Add It is The current units names turn! and a newline to the battleBox text
-            ifBattleBox.text += "It is " + a.ulParticipants[number].sName + "'s turn!\n";
+            ifBattleBox.text += "It is " + a.ulParticipants[iNumber].sName + "'s turn!\n";
             //Feed the machine
             fsm.Feed("battletoenemy");
 
