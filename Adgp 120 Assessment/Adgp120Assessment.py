@@ -45,7 +45,7 @@ def main():
     
     #Create Nodes
     n = Node(x,y)
-    
+
     #Determine whether the node is traversable or not
     #If the index number is less than or equal to 1 and a half the size of the grid then true else false
     unpassable = True if (index <= Grid / 1.5) else False
@@ -60,7 +60,9 @@ def main():
     if z == root - 1:
     #y is set to current y plus 25
      y += 25 
-	  
+    print("index = [{x}, {y}]".format( x = n.col, y = n.row))
+    
+
 #Game Loop
  while(bIsDone):
 
@@ -72,6 +74,7 @@ def main():
   for i in searchSpace:
   #Draw the nodes to screen
    i.draw(screen) 
+  
    
   #Displays the changes to the screen
   pygame.display.update()
