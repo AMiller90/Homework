@@ -59,8 +59,7 @@ def main():
     #if z is equal to the root number minus 1
     if z == root - 1:
     #y is set to current y plus 25
-     y += 25 
-    print("index = [{x}, {y}]".format( x = n.col, y = n.row))
+     y += 25
     
 
 #Game Loop
