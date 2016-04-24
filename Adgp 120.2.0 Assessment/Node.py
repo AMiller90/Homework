@@ -13,7 +13,8 @@ class Node:
         self.F = 0
         self.G = 0
         self.H = 0
-    
+        self.I = 0
+		
     #Draw nodes to screen
     def draw(self, screen):
      if self.xPos == 0 and self.yPos == 0:
@@ -25,8 +26,7 @@ class Node:
         pygame.draw.rect(screen, self.color,(self.xPos, self.yPos, self.width, self.height))
      else:
        pygame.draw.rect(screen, self.color,(self.xPos, self.yPos, self.width, self.height))
-
-       
+      
     #Get the value of F
     def getF(self):
      self.F = self.H + self.G
@@ -39,3 +39,19 @@ class Node:
     #Set the value of H
     def setH(self, h):
       self.H = h
+	  
+	#Get the value of H
+    def getH(self):
+      return self.H
+	  
+	#Set the the nodes index
+    def setI(self, i):
+      self.I = i
+	  
+	#Set the nodes index
+    def getI(self):
+      return self.I
+	
+	#Set the node color allowing visualization of node moving from start to goal
+    def setColor(self, c):
+     self.color = c
