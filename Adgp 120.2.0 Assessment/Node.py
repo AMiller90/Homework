@@ -2,7 +2,8 @@ import pygame
 
 class Node:
     #Initialize a node
-    def __init__(self, x, y, t, c):      
+    def __init__(self, x, y, t, c):    
+        self.adjacents = []    
         self.parent = None
         self.traversable = t
         self.width = 20
@@ -17,11 +18,11 @@ class Node:
 		
     #Draw nodes to screen
     def draw(self, screen):
-     if self.xPos == 0 and self.yPos == 0:
+     #if self.xPos == 0 and self.yPos == 0:
         #Set the color to green representing starting node
-        self.Color = (0,255,0)
-        pygame.draw.rect(screen, self.Color,(self.xPos, self.yPos, self.width, self.height))
-     elif self.xPos == 225 and self.yPos == 225: 
+        #self.Color = (0,255,0)
+        #pygame.draw.rect(screen, self.Color,(self.xPos, self.yPos, self.width, self.height))
+     if self.xPos == 225 and self.yPos == 225: 
         self.color = (255,0,0)
         pygame.draw.rect(screen, self.color,(self.xPos, self.yPos, self.width, self.height))
      else:
