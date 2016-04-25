@@ -36,6 +36,10 @@ class Node:
     def setG(self, g):
       self.G = g
       
+    #Get the value of G
+    def getG(self):
+      return self.G
+    
     #Set the value of H
     def setH(self, h):
       self.H = h

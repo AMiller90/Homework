@@ -149,7 +149,7 @@ def init_grid(width, height, walls):
            #Cannot be traversed
            traversable = False
            #Add to searchSpace
-           searchSpace.append(Node(a,b, traversable, color))
+           searchSpace.append(Node(b,a, traversable, color))
         #If coordinates are not founs in the walls list
         else:
          #It is traversable
@@ -157,13 +157,14 @@ def init_grid(width, height, walls):
          #Set the color to white
          color = (255,255,255)
          #Add to searchSpace
-         searchSpace.append(Node(a,b,traversable, color))
+         searchSpace.append(Node(b,a,traversable, color))
   
   for n in searchSpace:
     index += 1
     n.setI(index)
-
+    
   setHScores(searchSpace)
+  
   #Return the grid
   return searchSpace
              
@@ -174,6 +175,8 @@ def main():
  #Inits all pygame modules 
  pygame.init()
 
+ clock = pygame.time.Clock()
+ 
  #Set title of screen
  pygame.display.set_caption("Adgp 120 Assessment")
     
@@ -198,6 +201,8 @@ def main():
 #Game Loop
  while(bIsDone):
 
+  clock.tick(10)
+  
   for event in pygame.event.get():
    if event.type == pygame.QUIT:
     bIsDone = False
@@ -207,7 +212,7 @@ def main():
   #Draw the nodes to screen
    i.draw(screen) 
   
-  a.Run()
+  a.Run(screen)
 
   #Displays the changes to the screen
   pygame.display.update()
