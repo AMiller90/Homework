@@ -3,13 +3,49 @@
 import sys, pygame, math, random
 #From the Node File import everything
 from Node import *
+from Astar import *
 
+def initGrid(walls, r, c):
+    #SearchSpace
+    searchSpace = []
+ 
+    id = 0
+    rows = r
+    cols = c
+    
+    for x in range(cols):
+        for y in range(rows):
+            
+            n = Node(x,y,id)
+             
+            LWall = True if x % cols == 0 else False
+            RWall = True if x % cols == cols - 1 else False
+            TWall = True if y % rows == 0 else False
+            BWall = True if y % rows == rows - 1 else False
+              
+            if(LWall or RWall or TWall or BWall):
+               n.walk(False)
+            
+
+            if(y,x) in walls:
+                n.walk(False)
+                searchSpace.append(n)
+            else:
+                searchSpace.append(n)
+                
+
+            id += 1
+            
+    return searchSpace
+              
 #Function that sets up and runs the game
 def main(): 
 
  #Inits all pygame modules 
  pygame.init()
 
+ clock = pygame.time.Clock()
+ 
  #Set title of screen
  pygame.display.set_caption("Adgp 120 Assessment")
     
@@ -18,66 +54,36 @@ def main():
 
  #Set the Size Of The Game Window
  screen = pygame.display.set_mode(size)
-
- #Size of grid
- Grid = 100
-
- #y coordinate of rectangle
- y = 0
-
- #searchSpace able to search and determine movement
- searchSpace = [] 
-
+ 
  #Loop control
  bIsDone = True
 
-#Draw a rect (x,y,width height)
- for i in range(Grid):
-
-    #Generate a random number
-    index = random.randrange(0, Grid)
-    #Get the square root of the Grid
-    root = math.sqrt(Grid)
-    #Store the result of the i % root in a new variable
-    z = i % root
-    #Set x to the z value * 25
-    x = z * 25 
-    
-    #Create Nodes
-    n = Node(x,y)
-
-    #Determine whether the node is traversable or not
-    #If the index number is less than or equal to 1 and a half the size of the grid then true else false
-    unpassable = True if (index <= Grid / 1.5) else False
-    
-    #Set whether the node is traversable or not
-    n.walk(unpassable)
-    
-    #Append Nodes to searchSpace
-    searchSpace.append(n)
-    
-    #if z is equal to the root number minus 1
-    if z == root - 1:
-    #y is set to current y plus 25
-     y += 25
-    
-
+ walls = ((2,2),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(8,3),(8,4),(8,5),(8,6),(8,7),(3,3), (4,4), (5, 5), (6,6), (7,7))
+ rows = 11
+ columns = 11
+ grid = initGrid(walls,11,11)
+ 
+ a = Astar(grid, grid[12], grid[108], rows, columns)
+ 
 #Game Loop
  while(bIsDone):
 
-  for event in pygame.event.get():
-   if event.type == pygame.QUIT:
-    bIsDone = False
+        clock.tick(10)
+    
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: bIsDone = False
                   
-  #Loop through searchSpace
-  for i in searchSpace:
-  #Draw the nodes to screen
-   i.draw(screen) 
-  
-   
-  #Displays the changes to the screen
-  pygame.display.update()
-  #Quit Game
-  pygame.quit 
  
+        for n in grid:
+            n.draw(screen)
+    
+
+  
+        #bIsDone = a.Run()
+  
+        #Displays the changes to the screen
+        pygame.display.update()
+        #Quit Game
+        pygame.quit 
+  
 main()
