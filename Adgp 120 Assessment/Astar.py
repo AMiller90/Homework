@@ -32,8 +32,10 @@ class Astar:
              #Set rows to Rows
              self.rows = Rows
              #Set cols to Cols
-             self.cols = Cols
-   
+             self.cols = Cols               
+             #Call the setUp Function
+             self.setUp()
+            
    #Get the current node
    def getCurrent(self):
      #Return the current node
@@ -133,14 +135,7 @@ class Astar:
             
    #Run the Algorithm
    def Run(self):
-   
-    #Loop through the grid
-    for n in self.grid:
-     #Draw the nodes to the screen
-     n.draw(screen)
-            
-    #Call the setUp Function
-    self.setUp()
+
     #Append the Start node to the open list
     self.Open.append(self.start)
     
