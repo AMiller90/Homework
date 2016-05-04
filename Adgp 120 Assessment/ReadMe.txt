@@ -20,41 +20,45 @@ The program will run the algorithm then the path from the start node to the goal
 Starting with the goal node first back tracking through the parent nodes in the list all the way to the start node.
 
 
-Test Case 1:		Test Case 2:	
-Start Node: 12		Start Node: 20
-Goal Node: 108		Goal Node: 100
-
-Expected Result:	Expected Result:
-108 - Goal			100 - Goal
-97			101
-73			102
-61			103
-49			104
-37			105
-25			106
-13			107
-12 - Start  		97
-			86
-Actual Result:		75
-108 - Goal		64
-97			53
-85			42
-73			31
+Test Case 1:		Test Case 2:		Test Case 3:		Test Case 4:		Test Case 5:		Test Case 6:
+Start Node: 12		Start Node: 20		Start Node: 45		Start Node: 56		Start Node: 0		Start Node: 0
+Goal Node: 108		Goal Node: 100		Goal Node: 83		Goal Node: 64		Goal Node: 97		Goal Node: 120
+	
+Expected Result:	Expected Result:	Expected Result:	Expected Result:	Expected Result:	Expected Result:
+108 - Goal	        100 - Goal		83 - Goal		64 - Goal		97 - Goal		Path Not Available
+97			101			73			52			85
+73			102			61			40			73			Actual Result:
+61			103			49			28			61			Path Not Available
+49			104			37			16			49			
+37			105			25			15			37
+25			106			13			14			25			Test Case 7:
+13			107			23			13			13			Start Node: 12
+12 - Start  		97			34			23			12			Goal Node: 110
+			86			45 - Start		34			0 - Start 
+Actual Result:		75						45						Expected Result:
+108 - Goal		64						56 - Start 					Path Not Available
+97			53												
+85			42												Actual Result:
+73			31												Path Not Available
 61			20 - Start
 49			
-37			Actual Result:
-25			100 - Goal
-13			101	
-12 - Start		103
-			104
-			105
-			106
-			107
-			97
-			86
-			75
-			64
-			53
-			42
+37			Actual Result:		Actual Result:		Actual Result:		Actual Result:		Test Case 8:
+25			100 - Goal		83 - Goal		64 - Goal		97 - Goal		Start Node: -1
+13			101			73			52			85			Goal Node: 120
+12 - Start		103			61			40			73			
+			104			49			28			61			Expected Result:
+			105			37			16			49			Start Node:Number Does Not Exist
+			106			25			15			37
+			107			13			14			25			Actual Result:
+			97			23			13			13			Start Node:Number Does Not Exist
+			86			34			23			12	
+			75			45 - Start		34			0 - Start
+			64						45						Test Case 9:
+			53						56 - Start					Start Node: 120
+			42												Goal Node: 130
 			31
-			20 - Start
+			20 - Start											Expected Result:
+															Goal Node:Number Does Not Exist
+
+															Actual Result:
+															Goal Node:Number Does Not Exist

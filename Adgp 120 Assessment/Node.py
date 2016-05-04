@@ -70,8 +70,3 @@ class Node():
         self.H = value
         #Set the F value based on the G and H Value
         self.F = self.G + self.H
-
-    #Set the Color of node
-    def setColor(self, value):
-        #Set color based on value
-        self.color = value

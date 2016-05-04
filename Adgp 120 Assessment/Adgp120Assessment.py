@@ -19,7 +19,7 @@ def initGrid(walls, r, c):
     for x in range(cols):
         #Loop through the rows
         for y in range(rows):
-            #Create the node with y, x, and id 
+            #Create the node with x, y, and id 
             n = Node(x,y,id)
             
             #Create a Left wall for each x value that equals 0
@@ -64,19 +64,60 @@ def main():
  #Set grid variable to returned list
  grid = initGrid(walls,11,11)
  
- start = ""
-
+ #Loop Control
+ Begin = True
  
- while(start != "q"):
-  print("Nodes only go from 0 - 120")
-  print("Enter q to Quit")
-  start = input("Enter Start Node: ")
-  goal = input("Enter Goal Node: ")
-  print("\nThe Returned Path From The Goal Node To Start Node:")
+ #While True
+ while(Begin):
+  
+  #Print the number options for user to choose from
+  print("Node Index: 0 - 120")
+  #Print to the user how to quit the application
+  print("\nEnter 123 to Quit")
+  #Get the start node number and store into start
+  start = input("Enter A Start Node: ")
+  #Check if user wants to quit
+  if(start == 123):
+    break
+    
+  #Get the goal node number and store into goal
+  goal = input("Enter A Goal Node: ")
+  #Check if user wants to quit
+  if(goal == 123):
+    break
+  
+  #Error checking - make sure user doesnt put in values less than 0 or greater than 120
+  if(start >= 0 and start <= 120):
+    if(goal >= 0 and goal <=120):
+        #Create instance of Astar Object
+        a = Astar(grid, grid[start], grid[goal], rows, columns)
+        #Run algorithm and return the Path if available
+        path = a.Run()
+        
+        #If path has values
+        if(path):
+            #Print to the screen letting the user know this will be the path returned
+            print("\nThe Returned Path From The Goal Node To Start Node:")
+            #Print the Goal Node ID
+            print grid[goal].getID(),
+            #Loop through them
+            for n in path:
+                #Print the Id for each node to show the algorithm works
+                #The -> helps show the flow 
+                print "-> " + str(n.getID()),
+        #Print newline to help format 
+            print("\n")
+        #Else a path could not be found
+        else:
+            print("\nPath Not Available\n")
 
- #Create instance of Astar Object
-  a = Astar(grid, grid[start], grid[goal], rows, columns)
-  a.Run()
+    #If user puts in the wrong number for a goal node
+    else:
+        print("\nGoal Node:Number Does Not Exist\n")
+  #If user puts in the wrong number for a start node
+  else:
+    print("\nStart Node:Number Does Not Exist\n")
+  
  
 
 #Call main function

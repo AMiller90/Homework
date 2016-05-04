@@ -1,15 +1,6 @@
 #Import everything from Node
 from Node import *
 
-#Set title of screen
-#pygame.display.set_caption("Adgp 120 Assessment")
-
-#Set the dimensions of the game window
-#size = width, height = 640, 360
-
-#Set the Size Of The Game Window
-#screen = pygame.display.set_mode(size)
-
 class Astar:
    #Initialize the Object
    def __init__(self, SearchSpace, Start, Goal, Rows, Cols):
@@ -17,8 +8,6 @@ class Astar:
              self.Open = []
              #Create a Closed List
              self.Closed = []
-             #Create a PATH List
-             self.PATH = []
              #Set grid to searchSpace
              self.grid = SearchSpace
              #Set start to Start
@@ -50,8 +39,6 @@ class Astar:
        path = []
        #Set the current node to the passed in node
        self.setCurrent(node)
-       #Print the current node which is the goal node
-       print(self.getCurrent().getID())
        #While the current node is not the start node
        while(self.current != self.start):
            #Append the current nodes parent to the path list
@@ -92,7 +79,6 @@ class Astar:
                 if self.grid[i].passable() == True:
                     #Append the node to the adjacents list for this specific node
                     node.adjacents.append(self.grid[i])
-                    #print(self.grid[i].getID(), "Current Index ", node.getID())
 
    #Function for sorting a list
    def Sort(self, artosort):
@@ -101,8 +87,6 @@ class Astar:
    
    #Function to set the H Scores
    def setHScores(self, node):
-    #If the node is traversable
-    if node.passable() == True:
         #Divide the xPos by 25
         Sx = node.xPos / 25
         #Divide the yPos by 25
@@ -140,21 +124,16 @@ class Astar:
     self.Open.append(self.start)
     
     #While the open list is not empty
-    while self.Open.count != 0:
+    while self.Open:
+        
         #Sort the open list by the F Value for each node
         self.Sort(self.Open)
-  
         #Grab the first node in the list and set it as the current node
         self.setCurrent(self.Open[0])
         #If the goal node is in the open list
         if(self.goal in self.Open):
             #Set the PATH List with the returned list 
-            self.PATH = self.getPath(self.goal)
-            #Loop through the List 
-            for n in self.PATH:
-                #Print the Id for each node to show the algorithm works
-                #The result should print the path from the goal node back to the starting node
-                print(n.getID())
+            return self.getPath(self.goal)       
             break
         
         #Remove the current node from the open list
@@ -193,9 +172,12 @@ class Astar:
                         a.parent = self.getCurrent()
                         #Set the adjacent nodes g score to the total move cost
                         a.setG(cost)
-                        
+
             #Increment by one so we can loop through the adjacent nodes         
             i+=1
+    
+    
+    
         
         
     
