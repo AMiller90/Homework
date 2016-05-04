@@ -1,16 +1,14 @@
-#Import pygame to reference it
-import pygame
 #Import everything from Node
 from Node import *
 
 #Set title of screen
-pygame.display.set_caption("Adgp 120 Assessment")
+#pygame.display.set_caption("Adgp 120 Assessment")
 
 #Set the dimensions of the game window
-size = width, height = 640, 360
+#size = width, height = 640, 360
 
 #Set the Size Of The Game Window
-screen = pygame.display.set_mode(size)
+#screen = pygame.display.set_mode(size)
 
 class Astar:
    #Initialize the Object
@@ -52,6 +50,8 @@ class Astar:
        path = []
        #Set the current node to the passed in node
        self.setCurrent(node)
+       #Print the current node which is the goal node
+       print(self.getCurrent().getID())
        #While the current node is not the start node
        while(self.current != self.start):
            #Append the current nodes parent to the path list
@@ -143,6 +143,7 @@ class Astar:
     while self.Open.count != 0:
         #Sort the open list by the F Value for each node
         self.Sort(self.Open)
+  
         #Grab the first node in the list and set it as the current node
         self.setCurrent(self.Open[0])
         #If the goal node is in the open list
@@ -154,7 +155,7 @@ class Astar:
                 #Print the Id for each node to show the algorithm works
                 #The result should print the path from the goal node back to the starting node
                 print(n.getID())
-            return False;
+            break
         
         #Remove the current node from the open list
         self.Open.remove(self.getCurrent())

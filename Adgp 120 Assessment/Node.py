@@ -27,27 +27,6 @@ class Node():
         #H Score
         self.H = 0
     
-    #Draw nodes to screen
-    def draw(self, screen):
-     #If this is the current position then its the start node
-     if self.xPos == 25 and self.yPos == 25:
-        #Set the color to green representing starting node
-        startingNodeColor = (0,255,0)
-        #Draw the node
-        pygame.draw.rect(screen, startingNodeColor,(self.xPos, self.yPos, self.width, self.height))
-     #If this is the current position then its the goal node
-     elif self.xPos == 225 and self.yPos == 225:
-        #Set the color to green representing starting node
-        goalNodeColor = (255,0,0)
-        #Draw the node
-        pygame.draw.rect(screen, goalNodeColor,(self.xPos, self.yPos, self.width, self.height))
-     #If any other position
-     else:
-        #If the node is traverable set it to white else set it to blue
-        color = (255,255,255) if (self.traversable) else (0,0,255)
-        #Draw the node
-        pygame.draw.rect(screen, color,(self.xPos, self.yPos, self.width, self.height))
-    
     #Can we walk through a node
     def passable(self):
         #Return self.traversable variable value

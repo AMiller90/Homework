@@ -1,5 +1,3 @@
-#Imports pygame so it can be referenced
-import pygame
 #From the Node File import everything
 from Node import *
 #From the Astar File import everything
@@ -22,7 +20,7 @@ def initGrid(walls, r, c):
         #Loop through the rows
         for y in range(rows):
             #Create the node with y, x, and id 
-            n = Node(y,x,id)
+            n = Node(x,y,id)
             
             #Create a Left wall for each x value that equals 0
             LWall = True if x % cols == 0 else False
@@ -39,7 +37,7 @@ def initGrid(walls, r, c):
                n.walk(False)
             
             #If the coordinates exist in the list called walls
-            if(y,x) in walls:
+            if(x,y) in walls:
                 #Set the node to False
                 n.walk(False)
                 #Append to searchSpace
@@ -57,17 +55,8 @@ def initGrid(walls, r, c):
 #Function that sets up and runs the game
 def main(): 
 
- #Inits all pygame modules 
- pygame.init()
-
- #Create a clock variable
- clock = pygame.time.Clock()
- 
- #Loop control
- bIsDone = True
-
  #Walls that will not be traversable
- walls = ((2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(3,8),(4,8),(5,8),(6,8),(7,8 ),(3,3), (4,4), (5, 5), (6,6), (7,7),(8,8))
+ walls = ((2,2),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(8,3),(8,4),(8,5),(8,6),(8,7),(3,3), (4,4), (5, 5), (6,6), (7,7),(8,8))
  #Number of rows
  rows = 11
  #Number of Columns
@@ -75,28 +64,20 @@ def main():
  #Set grid variable to returned list
  grid = initGrid(walls,11,11)
  
+ start = ""
+
+ 
+ while(start != "q"):
+  print("Nodes only go from 0 - 120")
+  print("Enter q to Quit")
+  start = input("Enter Start Node: ")
+  goal = input("Enter Goal Node: ")
+  print("\nThe Returned Path From The Goal Node To Start Node:")
+
  #Create instance of Astar Object
- a = Astar(grid, grid[12], grid[108], rows, columns)
+  a = Astar(grid, grid[start], grid[goal], rows, columns)
+  a.Run()
  
- 
- 
- while(bIsDone):
- 
- 
-  #Loop through the grid
-    for n in grid:
-     #Draw the nodes to the screen
-        n.draw(screen)
-     
-    
-    
-    bIsDone = a.Run()
-    
-    #Displays the changes to the screen
-    pygame.display.update()
-    #Quit Game
-    pygame.quit 
-     
 
 #Call main function
 main()
