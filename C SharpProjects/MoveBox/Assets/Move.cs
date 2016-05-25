@@ -25,7 +25,7 @@ public class Move : MonoBehaviour {
     }
 
     //Function created to move object 
-    Vector3 MyOwnLerp(Vector3 start, Vector3 end, float percent)
+    Vector3 MyOwnLerp(Vector3 start, Vector3 end)
     {//Add the 2 vectors then multiply times percentage between vectors and then times delta time then times the speed variable
         return start + end * 0.05f * Time.deltaTime * speed;
 
@@ -45,7 +45,7 @@ public class Move : MonoBehaviour {
        //if isMoving is equal to true
         if (isMoving == true)
         {//Call Lerp Function and store its return value in new Vector3 Moving variable
-            Vector3 Moving = MyOwnLerp(gameObject.transform.position, Destination, 0.5f);
+            Vector3 Moving = MyOwnLerp(gameObject.transform.position, Destination);
             //call move function
             move(Moving);
             //Check if gameobjects position is the same as the destinations  position
