@@ -39,6 +39,11 @@ public:
 	///</summary>
 	bool Run();
 
+	///<summary>
+	///Function used to check if the start node or goal node are walls
+	///</summary>
+	bool checkStartandEndNodes();
+
 private:
 	//Vector to reference node pointers in the openlist
 	vector<Node*> m_OpenList;
@@ -58,7 +63,7 @@ private:
 	Node* m_GoalNode;
 	//Reference to the current node
 	Node* m_CurrentNode;
-
+	
 	///<summary>
 	///Function used to set the adjacents of a passed in node pointer
 	///</summary>
