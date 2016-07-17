@@ -58,7 +58,13 @@ bool Astar::checkStartandEndNodes()
 		cout << "ERROR: Start node is not walkable!\n";
 		return false;
 	}
-		
+	
+	//If the goal node is not walkable
+	if (!m_GoalNode->walkable())
+	{//Let user know its not walkable
+		cout << "ERROR: Goal node is not walkable so it can not be reached!\n";
+		return false;
+	}
 
 	//Loop through the size of the adjacents vector of the start node
 	for (int i = 0; i < m_StartNode->getAdjacents().size(); i++)
@@ -72,7 +78,7 @@ bool Astar::checkStartandEndNodes()
 	//This means that all of its adjacents are walls or if the start node is not walkable
 	if (wallCounter == m_StartNode->getAdjacents().size())
 	{//Let user know there is an error
-		cout << "\n\nERROR:ll adjacent nodes are walls\n";
+		cout << "\n\nERROR: All adjacent nodes are walls\n";
 		//break out of the function
 		return false;
 	}
