@@ -2,7 +2,7 @@
 
 bool SolarSystem::Create()
 {
-
+	return true;
 }
 
 void SolarSystem::Destroy()
@@ -12,7 +12,7 @@ void SolarSystem::Destroy()
 
 bool SolarSystem::Update()
 {
-
+	return true;
 }
 
 void SolarSystem::Draw()
