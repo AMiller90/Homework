@@ -3,11 +3,14 @@
 
 #include "Application.h"
 
+using glm::mat4;
+using glm::vec3;
+using glm::vec4;
+
 class SolarSystem : public Application
 {
 
 public:
-
 	bool Create();
 	void Destroy();
 	bool Update();
@@ -15,7 +18,12 @@ public:
 
 private:
 
-
+	GLFWwindow* window;
+	mat4 view;
+	mat4 projection;
+	mat4 sun;
+	mat4 earth;
+	mat4 moon;
 
 };
 
