@@ -24,6 +24,8 @@ private:
 	mat4 sun;
 	mat4 earth;
 	mat4 moon;
+	mat4 pluto;
+	mat4 mars;
 
 };
 
