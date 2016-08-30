@@ -4,19 +4,23 @@
 //Write a function that takes another function as an argument.
 //Store this argument in an array. Then execute every function in the array
 
+//Typedef a function pointer
+typedef void(*funcptr)(void);
+
 //Function with a Function pointer as arguement
-void ExecuteFunctions(void(*funcptr)());
+void ExecuteFunctions(funcptr);
 
 void PrintStuff()
 {
 	std::cout << "I am a function to print stuff";
 }
 
-void(*functarray[1])();
+//void(*functarray[1])();
+funcptr functarray[1];
 
 int main()
 {
-	//Call Function
+	//Call Function with passed in funcptr object
 	ExecuteFunctions(PrintStuff);
 
 	int tmp;
